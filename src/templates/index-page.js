@@ -1,16 +1,46 @@
-import styled from "styled-components";
-import { useState } from "react";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import Navigation from "../components/navigation";
-import Button from "../components/Button";
-import HomePageContent from "../components/homePageContent";
-import HomeFooter from "../components/homeFooter";
-import Footer from "../components/footer";
-import { device } from "../consts/theme";
+import React, { useState } from 'react'
+import { graphql, Link } from 'gatsby'
+import { RiArrowRightSLine } from 'react-icons/ri'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import styled from 'styled-components'
+import Navigation from '../components/navigation'
+import Button from '../components/Button'
+import HomePageContent from '../components/homePageContent'
+import HomeFooter from '../components/homeFooter'
+import Footer from '../components/footer'
+import { device } from '../util/theme'
 
-export default function Home() {
-  const [isActiveMenu, setIsActiveMenu] = useState(false);
+export const pageQuery = graphql`
+  query HomeQuery($id: String!) {
+    markdownRemark(id: { eq: $id }) {
+      id
+      html
+      frontmatter {
+        title
+        tagline
+        featuredImage {
+          childImageSharp {
+            fluid(quality: 80) {
+              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluidLimitPresentationSize
+            }
+            sizes {
+              src
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+const HomePage = ({ data }) => {
+  const { markdownRemark } = data // data.markdownRemark holds your post data
+  const { frontmatter, html } = markdownRemark
+
+  const Image = frontmatter.featuredImage ? frontmatter.featuredImage.childImageSharp.fluid : ''
+  const [isActiveMenu, setIsActiveMenu] = useState(false)
   return (
     <Layout wide={true}>
       <SEO />
@@ -18,40 +48,29 @@ export default function Home() {
         <Up>
           <LeftSection>
             <H1>
-              {`The #1 Place to Learn How to `}{" "}
-              <H1Accent>{`Make Money Online`}</H1Accent>
+              {`The #1 Place to Learn How to `} <H1Accent>{`Make Money Online`}</H1Accent>
             </H1>
 
-            <Description>{`felan tozihat`}</Description>
+            <Description dangerouslySetInnerHTML={{ __html: html }} />
           </LeftSection>
           <RightSection>
             {!isActiveMenu ? (
               <DeactiveMenuNavContainer>
-                <Navigation
-                  setIsActiveMenu={setIsActiveMenu}
-                  isActiveMenu={isActiveMenu}
-                />
+                <Navigation setIsActiveMenu={setIsActiveMenu} isActiveMenu={isActiveMenu} />
               </DeactiveMenuNavContainer>
             ) : (
               <ActiveMenuNavContainer>
-                <Navigation
-                  setIsActiveMenu={setIsActiveMenu}
-                  isActiveMenu={isActiveMenu}
-                />
+                <Navigation setIsActiveMenu={setIsActiveMenu} isActiveMenu={isActiveMenu} />
               </ActiveMenuNavContainer>
             )}
 
             <BlackSection />
 
-            <Pic src={"/ArticlesPageImg.png"} alt={"Featured image"} />
+            {Image ? <Pic src={Image.src} alt={frontmatter.title + ' - Featured image'} /> : ''}
           </RightSection>
         </Up>
         <End>
-          <Button
-            to="/"
-            title="Sign Up Now"
-            childStyle={{ padding: "15px", fontSize: "80%" }}
-          />
+          <Button to="/" title="Sign Up Now" childStyle={{ padding: '10px', padding: '15px', fontSize: '80%' }} />
           <EndLine />
           <EndH3>{`Master Your Life And Your Money`}</EndH3>
         </End>
@@ -60,25 +79,27 @@ export default function Home() {
       <HomeFooter />
       <Footer />
     </Layout>
-  );
+  )
 }
+
+export default HomePage
 
 const Hero = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 const Title = styled.div`
   display: flex;
-`;
+`
 const H1 = styled.h1`
   font-size: 48px;
   line-height: 48px;
   margin: 0 0 5px;
   font-weight: 900;
-`;
+`
 const H1Accent = styled.span`
   color: var(--primary-color-dark);
-`;
+`
 const Up = styled.div`
   align-items: center;
   display: flex;
@@ -101,7 +122,7 @@ const Up = styled.div`
       padding-bottom: 30px;
     }
   }
-`;
+`
 const LeftSection = styled.div`
   height: inherit;
   display: flex;
@@ -116,7 +137,7 @@ const LeftSection = styled.div`
     padding-right: 2rem;
     justify-content: center;
   }
-`;
+`
 const Description = styled.div`
   p {
     font-size: 20px;
@@ -128,7 +149,7 @@ const Description = styled.div`
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
-`;
+`
 const RightSection = styled.div`
   height: 100%;
   max-width: 30rem;
@@ -146,13 +167,13 @@ const RightSection = styled.div`
     max-height: 50%;
     align-items: flex-end;
   }
-`;
+`
 const End = styled.div`
   display: flex;
   padding: 0 5rem;
   justify-content: stretch;
   align-items: flex-end;
-`;
+`
 const EndLine = styled.div`
   width: 8rem;
   border-bottom: 1px solid var(--input-focus-border);
@@ -161,7 +182,7 @@ const EndLine = styled.div`
   @media ${device.tablet} {
     display: none;
   }
-`;
+`
 const EndH3 = styled.h3`
   margin-bottom: -0.8rem;
   font-size: 1.5vw;
@@ -172,7 +193,7 @@ const EndH3 = styled.h3`
   @media ${device.tablet} {
     display: none;
   }
-`;
+`
 const BlackSection = styled.div`
   width: 100%;
   height: inherit;
@@ -180,7 +201,7 @@ const BlackSection = styled.div`
   @media (max-width: 456px) {
     display: none;
   }
-`;
+`
 const Pic = styled.img`
   margin-top: -40%;
   margin-right: 81%;
@@ -198,7 +219,7 @@ const Pic = styled.img`
   @media (max-width: 456px) {
     display: none;
   }
-`;
+`
 const DeactiveMenuNavContainer = styled.div`
   height: 3rem;
   background: black !important;
@@ -208,7 +229,7 @@ const DeactiveMenuNavContainer = styled.div`
   align-items: center;
   padding-right: 1rem;
   z-index: 2;
-`;
+`
 const ActiveMenuNavContainer = styled.div`
   height: 3rem;
   background: var(--secondary-color-dark);
@@ -222,4 +243,4 @@ const ActiveMenuNavContainer = styled.div`
   top: 0;
   right: 0;
   z-index: 4;
-`;
+`

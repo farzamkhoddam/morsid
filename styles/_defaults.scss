@@ -1,0 +1,55 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: var(--font-family);
+  font-size: 16px;
+}
+code {
+  font-family: var(--font-family-mono);
+}
+
+p {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: #3b5548;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    color: var(--home-link-hover-color);
+  }
+}
+h1 {
+  font-size: 4.875rem;
+  font-weight: 800;
+  line-height: 5.375rem;
+  color: #3b5548;
+}
+h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 3.68575rem;
+  color: #3b5548;
+}
+h3 {
+  font-size: 1.437rem;
+  font-weight: 800;
+  line-height: 1.875rem;
+  color: #19251f;
+}
+h5 {
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 0.75rem;
+  color: #19251f;
+}
