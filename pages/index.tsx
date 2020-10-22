@@ -67,9 +67,7 @@ const Hero = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Title = styled.div`
-  display: flex;
-`;
+
 const H1 = styled.h1`
   font-size: 48px;
   line-height: 48px;

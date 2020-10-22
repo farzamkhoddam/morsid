@@ -1,32 +1,34 @@
-import React from "react";
-import { Link } from "gatsby";
-import Img from "gatsby-image";
-import styled from "styled-components";
 import { device } from "../consts/theme";
+import styled from "styled-components";
+import { Posts_posts_nodes } from "../wpapi";
+import Link from "next/link";
 
-const PostCard = ({ data }) => (
-  <Container>
-    <LinkContainer to={data.frontmatter.slug}>
-      {data.frontmatter.featuredImage ? (
+const PostCard: React.FC<Posts_posts_nodes> = ({
+  slug,
+  featuredImage,
+  title,
+  excerpt,
+}) => (
+  <Link href={`article/${slug}`}>
+    <Container>
+      <Post>
         <Image
-          fluid={data.frontmatter.featuredImage.childImageSharp.fluid}
-          objectFit="cover"
-          objectPosition="50% 50%"
-          alt={data.frontmatter.title + " - Featured image"}
+          src={featuredImage || "/PostImgPlaceholder.jpg"}
+          alt={title + " - Featured image"}
         />
-      ) : (
-        ""
-      )}
-      <ContentContainer>
-        <Title>
-          <Link to={data.frontmatter.slug}>{data.frontmatter.title}</Link>
-        </Title>
 
-        <P>{data.excerpt}</P>
-        <H5>READ ARTICLE NOW</H5>
-      </ContentContainer>
-    </LinkContainer>
-  </Container>
+        <ContentContainer>
+          <Title>{title}</Title>
+
+          <P>
+            {excerpt ||
+              `navid lkasjfdl; ldkafj ;alkdsfj a;lskdfj al;dksjf l;aksdjf l;aksdjf l;akjdf ;alksdfj al;kfjd al;skdjfl;kjlkjl;kfjd as;lfkj dasf sdfsdfadfadfafsd `}
+          </P>
+          <H5>READ ARTICLE NOW</H5>
+        </ContentContainer>
+      </Post>
+    </Container>
+  </Link>
 );
 
 export default PostCard;
@@ -56,7 +58,7 @@ const Container = styled.article`
   }
 `;
 
-const Image = styled(Img)`
+const Image = styled.img`
   border-radius: 12px;
   width: 100%;
   max-width: 680px !important;
@@ -92,7 +94,7 @@ const H5 = styled.h5`
   font-size: 90%;
   margin-top: auto;
 `;
-const LinkContainer = styled(Link)`
+const Post = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;

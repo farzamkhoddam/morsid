@@ -1,30 +1,26 @@
 import { GetStaticProps } from "next";
-import Link from "next/link";
-import Head from "next/head";
-import { fetchPosts, Posts_posts as Posts } from "../wpapi";
+import { fetchPosts, Posts_posts as Posts, Posts_posts_nodes } from "../wpapi";
+import { ArticlesView } from "../perPageComponenta/Articles/View";
 
 interface Props {
   posts: Posts;
 }
 
 export default function Articles({ posts }: Props) {
-  return (
-    <>
-      <Head>
-        <title>{"Articles Page Title"}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        {posts.nodes.map(({ id, title, slug }) => (
-          <div key={id}>
-            <Link href={`/article/${slug}`}>
-              <a>{title}</a>
-            </Link>
-          </div>
-        ))}
-      </main>
-    </>
-  );
+  const firstPost: Posts_posts_nodes = posts?.nodes[0];
+
+  //TODO: add more Article in WP and uncomment in section
+  // const restPosts: Posts_posts_nodes[] = posts?.nodes.splice(
+  //   1,
+  //   posts?.nodes.length,
+  // );
+  //TODO: add more Article in WP and remove in section
+  const restPosts: Posts_posts_nodes[] = [];
+  for (let index = 0; index < 12; index++) {
+    restPosts.push(firstPost);
+  }
+
+  return <ArticlesView firstPost={firstPost} restPosts={restPosts} />;
 }
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -43,3 +39,15 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 20,
   };
 };
+
+{
+  /* <main>
+{posts.nodes.map(({ id, title, slug }) => (
+  <div key={id}>
+    <Link href={`/article/${slug}`}>
+      <a>{title}</a>
+    </Link>
+  </div>
+))}
+</main> */
+}

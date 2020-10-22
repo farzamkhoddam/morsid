@@ -99,20 +99,18 @@ const H4 = styled.h4`
   z-index: 1;
   color: var(--primary-color-light);
 `;
-const ColoredRectangle = styled.div`
-  background: black;
-  height: 100%;
-  width: 100%;
-  margin-top: -29rem;
-`;
+
 const Img = styled.img`
   max-width: 75%;
   height: 30rem;
   object-fit: contain;
   margin-top: -10rem;
+  max-width: 30%;
+  min-width: 40%;
   z-index: 1;
   @media ${device.tablet} {
     margin-top: -10rem;
+    min-width: unset;
   }
   @media ${device.mobileL} {
     margin-top: -13rem;

@@ -1,17 +1,28 @@
-import { RiArrowDownLine, RiArrowRightSLine } from "react-icons/ri";
+import { RiArrowRightSLine } from "react-icons/ri";
 
 import PostCard from "./post-card";
 import styled from "styled-components";
 import FirstArticle from "./first-Article";
 import { device } from "../consts/theme";
 import Link from "next/link";
+import { Posts_posts_nodes } from "../wpapi";
 
-const PostMaker = ({ data }) => {
+interface Props {
+  firstPost: Posts_posts_nodes;
+  restPosts: Posts_posts_nodes[];
+}
+
+const BlogListHome: React.FC<Props> = ({ firstPost, restPosts }) => {
   return (
-    <Section className="home-posts">
+    <Section className={`home-posts `}>
       <H2>Featured Article</H2>
-      <FirstArticle data={data[0].props.data} />
-      <ArticlesContainer>{data.splice(1, data.length)}</ArticlesContainer>
+      <FirstArticle {...firstPost} />
+      <ArticlesContainer>
+        {restPosts.map((post) => (
+          <PostCard key={post.id} {...post} />
+        ))}
+      </ArticlesContainer>
+      {/* TODO: Handle pagination */}
       <Link href="/blog">
         <div className="button">
           See more
@@ -23,11 +34,8 @@ const PostMaker = ({ data }) => {
     </Section>
   );
 };
-// export default function BlogListHome() {
-//   return <PostCard key={edge.node.id} data={edge.node} />;
+export default BlogListHome;
 
-//   return <PostMaker data={posts} />;
-// }
 const Section = styled.section`
   padding-bottom: 100px;
   display: flex;

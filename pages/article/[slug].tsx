@@ -1,28 +1,16 @@
 import { GetServerSideProps, GetStaticProps } from "next";
-import Head from "next/head";
+
 import { fetchPost, Post_post as Post, PostIdType } from "../../wpapi";
+import { ArticleView } from "../../perPageComponenta/Article/View";
 
 interface Props {
   post: Post;
 }
 
 export default function Articles({ post }: Props) {
-  const { title, content } = post;
-
-  return (
-    <>
-      <Head>
-        <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <h1>{title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-      </main>
-    </>
-  );
+  return <ArticleView post={post} />;
 }
-
+//TODO: I think for static site we must use GetStaticProps instead oh getServerSideProps
 export const getServerSideProps: GetServerSideProps = async ({
   query: { slug },
 }) => {

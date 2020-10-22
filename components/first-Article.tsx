@@ -1,42 +1,34 @@
 import React from "react";
-import { Link } from "gatsby";
-import Img from "gatsby-image";
-import styled from "styled-components";
 import { device } from "../consts/theme";
+import styled from "styled-components";
+import { Posts_posts_nodes } from "../wpapi";
+import Link from "next/link";
 
-interface Props {
-  data: {
-    excerpt: string;
-    frontmatter: {
-      featuredImage: {
-        childImageSharp: {
-          fluid: object;
-        };
-      };
-      slug: string;
-      title: string;
-    };
-  };
-}
-
-const FirstArticle = ({ data }: Props) => (
+const FirstArticle: React.FC<Posts_posts_nodes> = ({
+  title,
+  slug,
+  featuredImage,
+  excerpt,
+}: Posts_posts_nodes) => (
   <Container>
-    <LinkContainer to={data.frontmatter.slug}>
-      {data.frontmatter.featuredImage && (
+    <Link href={slug}>
+      <Post>
         <Image
-          fluid={data.frontmatter.featuredImage.childImageSharp.fluid}
-          objectFit="cover"
-          objectPosition="50% 50%"
-          alt={data.frontmatter.title + " - Featured image"}
+          src={featuredImage || "/PostImgPlaceholder.jpg"}
+          alt={title + " - Featured image"}
         />
-      )}
-      <ContentContainer>
-        <Title>{data.frontmatter.title}</Title>
 
-        <P>{data.excerpt}</P>
-        <H5>READ ARTICLE NOW</H5>
-      </ContentContainer>
-    </LinkContainer>
+        <ContentContainer>
+          <Title>{title}</Title>
+          <P>
+            {excerpt ||
+              `navid lkasjfdl; ldkafj ;alkdsfj a;lskdfj al;dksjf l;aksdjf l;aksdjf l;akjdf ;alksdfj al;kfjd al;skdjfl;kjlkjl;kfjd as;lfkj dasf sdfsdfadfadfafsd `}
+          </P>
+
+          <H5>READ ARTICLE NOW</H5>
+        </ContentContainer>
+      </Post>
+    </Link>
   </Container>
 );
 
@@ -65,10 +57,11 @@ const Container = styled.article`
     }
   }
 `;
-const Image = styled(Img)`
+const Image = styled.img`
   border-radius: 12px;
   width: 45%;
   max-width: 680px !important;
+  object-fit: cover;
   img {
     display: block;
     margin: 0;
@@ -109,7 +102,7 @@ const H5 = styled.h5`
   font-size: 90%;
   margin-top: auto;
 `;
-const LinkContainer = styled(Link)`
+const Post = styled.div`
   display: flex;
   justify-content: flex-start;
   width: 100%;

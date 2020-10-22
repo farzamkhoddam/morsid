@@ -24,6 +24,8 @@ export interface Posts_posts_nodes_featuredImage {
 }
 
 export interface Posts_posts_nodes {
+  //TODO: تایپ نیم کجا استفاده میشه و چرا به کار رفته؟
+  //TODO: تایپ ها دستی ساخته شده یا از یک ابزار خاص کمک گرفته شده؟
   __typename: "Post";
   /**
    * The globally unique identifier of the post object.
@@ -45,6 +47,10 @@ export interface Posts_posts_nodes {
    * Connection between the NodeWithFeaturedImage type and the MediaItem type
    */
   featuredImage: Posts_posts_nodes_featuredImage | null;
+  /**
+   * A few lines at the beginning of the content
+   */
+  excerpt: string | null;
 }
 
 export interface Posts_posts {
@@ -117,11 +123,15 @@ export interface Post_post {
    * Connection between the NodeWithFeaturedImage type and the MediaItem type
    */
   featuredImage: Post_post_featuredImage | null;
+  /**
+   * A few lines at the beginning of the content
+   */
+  excerpt: string | null;
 }
 
 export interface Post {
   /**
-   * An object of the post Type. 
+   * An object of the post Type.
    */
   post: Post_post | null;
 }
