@@ -64,10 +64,14 @@ export default HomePageContent;
 
 const Container = styled.section`
   display: Flex;
-  margin-top: 3rem;
+  margin-top: 8rem;
+  @media ${device.laptop} {
+    margin-top: 0rem;
+  }
   @media ${device.tablet} {
     display: flex;
     flex-direction: column;
+    margin-top: 0rem;
   }
 `;
 const LeftSection = styled.div`
@@ -78,6 +82,9 @@ const LeftSection = styled.div`
   background-color: black;
   padding: 3rem 0;
   margin-top: 7rem;
+  @media ${device.laptop} {
+    margin-top: 9rem;
+  }
   @media ${device.tablet} {
     width: 100%;
   }
@@ -108,12 +115,15 @@ const Img = styled.img`
   max-width: 30%;
   min-width: 40%;
   z-index: 1;
+  @media ${device.laptop} {
+    margin-top: -16rem;
+  }
   @media ${device.tablet} {
-    margin-top: -10rem;
+    margin-top: -16rem;
     min-width: unset;
   }
   @media ${device.mobileL} {
-    margin-top: -13rem;
+    margin-top: -17rem;
   }
 `;
 const RightSection = styled.div`

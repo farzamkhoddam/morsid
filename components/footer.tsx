@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const Footer = (props) => {
+const Footer = () => {
   return (
     <Container>
       <Img src={"/Logo.png"} alt="logo" />
@@ -20,4 +20,6 @@ const Container = styled.div`
   width: 100vw;
   justify-content: center;
   height: 2rem;
+  position: absolute;
+  bottom: 0;
 `;

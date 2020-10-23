@@ -1,12 +1,11 @@
 import { Post } from "../../wpapi";
-import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 import Footer from "../../components/footer";
 
 export const ArticleView: React.FC<Post> = ({ post }) => {
   const { title, content, excerpt, date, featuredImage } = post;
   return (
-    <Layout className="page">
+    <div className="page">
       <SEO
         title={title}
         description={content ? content : excerpt}
@@ -37,6 +36,6 @@ export const ArticleView: React.FC<Post> = ({ post }) => {
       </article>
       <Footer />
       {/* {(previous || next) && <Pagination {...props} />} */}
-    </Layout>
+    </div>
   );
 };

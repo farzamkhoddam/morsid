@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Navigation from "../components/navigation";
 import { device } from "../consts/theme";
 import { useState } from "react";
-interface Props extends React.ReactElement {
+interface Props {
   className?: string;
 }
 const Menu: React.FC<Props> = ({ className }) => {
