@@ -11,7 +11,7 @@ const FirstArticle: React.FC<Posts_posts_nodes> = ({
   excerpt,
 }: Posts_posts_nodes) => (
   <Container>
-    <Link href={slug}>
+    <Link href={`article/${slug}`}>
       <Post>
         <Image
           src={featuredImage || "/PostImgPlaceholder.jpg"}

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { graphql, Link } from 'gatsby'
-import { RiArrowRightSLine } from 'react-icons/ri'
-import Layout from '../components/layout'
-import BlogListHome from '../components/blog-list-home'
-import SEO from '../components/seo'
-import styled from 'styled-components'
-import Navigation from '../components/navigation'
-import { device } from '../util/theme'
+import React, { useState } from "react";
+import { graphql, Link } from "gatsby";
+import { RiArrowRightSLine } from "react-icons/ri";
+import Layout from "../components/layout";
+import BlogList from "../components/blog-list-home";
+import SEO from "../components/seo";
+import styled from "styled-components";
+import Navigation from "../components/navigation";
+import { device } from "../util/theme";
 
 export const pageQuery = graphql`
   query Articles($id: String!) {
@@ -34,14 +34,16 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 const Articles = ({ data }) => {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+  const { markdownRemark } = data; // data.markdownRemark holds your post data
+  const { frontmatter, html } = markdownRemark;
 
-  const Image = frontmatter.featuredImage ? frontmatter.featuredImage.childImageSharp.fluid : ''
-  const [isActiveMenu, setIsActiveMenu] = useState(false)
+  const Image = frontmatter.featuredImage
+    ? frontmatter.featuredImage.childImageSharp.fluid
+    : "";
+  const [isActiveMenu, setIsActiveMenu] = useState(false);
   return (
     <Layout wide={true}>
       <SEO />
@@ -62,26 +64,39 @@ const Articles = ({ data }) => {
         <RightSection>
           {!isActiveMenu ? (
             <DeactiveMenuNavContainer>
-              <Navigation setIsActiveMenu={setIsActiveMenu} isActiveMenu={isActiveMenu} />
+              <Navigation
+                setIsActiveMenu={setIsActiveMenu}
+                isActiveMenu={isActiveMenu}
+              />
             </DeactiveMenuNavContainer>
           ) : (
             <ActiveMenuNavContainer>
-              <Navigation setIsActiveMenu={setIsActiveMenu} isActiveMenu={isActiveMenu} />
+              <Navigation
+                setIsActiveMenu={setIsActiveMenu}
+                isActiveMenu={isActiveMenu}
+              />
             </ActiveMenuNavContainer>
           )}
 
           <BlackSection />
 
-          {Image ? <Pic src={Image.src} alt={frontmatter.title + ' - Featured image'} /> : ''}
+          {Image ? (
+            <Pic
+              src={Image.src}
+              alt={frontmatter.title + " - Featured image"}
+            />
+          ) : (
+            ""
+          )}
           {/* {Image ? <Pic fluid={Image} alt={frontmatter.title + ' - Featured image'} /> : ''} */}
         </RightSection>
       </Hero>
-      <BlogListHome style={{ maxWidth: '1240px' }} />
+      <BlogList style={{ maxWidth: "1240px" }} />
     </Layout>
-  )
-}
+  );
+};
 
-export default Articles
+export default Articles;
 
 const Hero = styled.div`
   align-items: center;
@@ -117,7 +132,7 @@ const Hero = styled.div`
       padding-bottom: 30px;
     }
   }
-`
+`;
 const LeftSection = styled.div`
   height: inherit;
   display: flex;
@@ -127,7 +142,7 @@ const LeftSection = styled.div`
   justify-content: flex-end;
   padding-left: 5rem;
   padding-right: 7rem;
-`
+`;
 const Description = styled.div`
   p {
     font-size: 20px;
@@ -139,7 +154,7 @@ const Description = styled.div`
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
-`
+`;
 const RightSection = styled.div`
   height: 100%;
   max-width: 30rem;
@@ -157,7 +172,7 @@ const RightSection = styled.div`
     max-height: 50%;
     align-items: flex-end;
   }
-`
+`;
 const BlackSection = styled.div`
   width: 100%;
   height: inherit;
@@ -165,7 +180,7 @@ const BlackSection = styled.div`
   @media ${device.mobileL} {
     display: none;
   }
-`
+`;
 const Pic = styled.img`
   margin-top: -50%;
   margin-right: 30%;
@@ -178,7 +193,7 @@ const Pic = styled.img`
   @media ${device.mobileL} {
     display: none;
   }
-`
+`;
 const DeactiveMenuNavContainer = styled.div`
   height: 3rem;
   background: black !important;
@@ -188,7 +203,7 @@ const DeactiveMenuNavContainer = styled.div`
   align-items: center;
   padding-right: 1rem;
   z-index: 2;
-`
+`;
 const ActiveMenuNavContainer = styled.div`
   height: 3rem;
   background: var(--secondary-color-dark);
@@ -201,4 +216,4 @@ const ActiveMenuNavContainer = styled.div`
   top: 0;
   right: 0;
   z-index: 4;
-`
+`;

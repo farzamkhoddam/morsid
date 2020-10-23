@@ -22,7 +22,7 @@ const Layout = ({ children, className, wide }: Props) => {
 
 export default Layout;
 
-const Main = styled.div<{ wide: boolean }>`
+const Main = styled.main<{ wide: boolean }>`
   margin: 0 auto;
   max-width:${(wide) => (wide ? "100vw" : "1240px")};
   padding: :${(wide) => (wide ? "0" : "0 20px")} ;

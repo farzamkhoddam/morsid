@@ -1,9 +1,9 @@
 import styled from "styled-components";
 const Footer = (props) => {
   return (
-    <Div>
+    <Container>
       <Img src={"/Logo.png"} alt="logo" />
-    </Div>
+    </Container>
   );
 };
 
@@ -13,9 +13,11 @@ const Img = styled.img`
   max-width: 8rem;
   display: flex;
   justify-content: center;
+  object-fit: contain;
 `;
-const Div = styled.div`
+const Container = styled.div`
   display: flex;
+  width: 100vw;
   justify-content: center;
-  margin-bottom: 1rem;
+  height: 2rem;
 `;

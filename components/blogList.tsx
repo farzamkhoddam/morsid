@@ -12,7 +12,7 @@ interface Props {
   restPosts: Posts_posts_nodes[];
 }
 
-const BlogListHome: React.FC<Props> = ({ firstPost, restPosts }) => {
+const BlogList: React.FC<Props> = ({ firstPost, restPosts }) => {
   return (
     <Section className={`home-posts `}>
       <H2>Featured Article</H2>
@@ -22,19 +22,18 @@ const BlogListHome: React.FC<Props> = ({ firstPost, restPosts }) => {
           <PostCard key={post.id} {...post} />
         ))}
       </ArticlesContainer>
-      {/* TODO: Handle pagination */}
-      <Link href="/blog">
+      {/* <Link href="/blog">
         <div className="button">
           See more
           <span className="icon -right">
             <RiArrowRightSLine />
           </span>
         </div>
-      </Link>
+      </Link> */}
     </Section>
   );
 };
-export default BlogListHome;
+export default BlogList;
 
 const Section = styled.section`
   padding-bottom: 100px;

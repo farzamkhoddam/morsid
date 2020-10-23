@@ -5,9 +5,10 @@ $breakpoint-lg: 1024px;
 $breakpoint-xl: 1440px;
 
 :root {
-  --font-family: 'Manrope', BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto,
-    segoe ui, arial, sans-serif;
-  --font-family-mono: Manrope, Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+  --font-family: "Manrope", BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  --font-family-mono: Manrope, Menlo, Consolas, Monaco, Liberation Mono,
+    Lucida Console, monospace;
   --font-size-small: 12px;
 
   --primary-color: #dec28d;
@@ -33,6 +34,5 @@ $breakpoint-xl: 1440px;
   --label-text: rgba(0, 0, 0, 0.5);
   --input-focus-border: #3b5548;
 
-  // CSS Grid Utility
-  --grid-gap: 30px;
+  --header-height-desktop: 7rem;
 }

@@ -22,7 +22,7 @@ export default function Home() {
               <H1Accent>{`Make Money Online`}</H1Accent>
             </H1>
 
-            <Description>{`felan tozihat`}</Description>
+            <Description>{`Kakashi Hatake is a fictional character in the Naruto manga and anime series created by Masashi Kishimoto. In the story, Kakashi is the teacher of Team 7, consisting of the series' primary characters, Naruto Uzumaki, Sasuke Uchiha, and Sakura Haruno`}</Description>
           </LeftSection>
           <RightSection>
             {!isActiveMenu ? (
@@ -86,7 +86,7 @@ const Up = styled.div`
   max-width: 100vw;
   width: 100%;
   width: 100%;
-  height: 50vh;
+  height: 32vh;
   margin-bottom: 3rem;
 
   @media ${device.tablet} {
@@ -104,7 +104,6 @@ const LeftSection = styled.div`
   height: inherit;
   display: flex;
   flex-direction: column;
-
   align-items: flex-start;
   justify-content: flex-end;
   padding-left: 5rem;
@@ -115,17 +114,15 @@ const LeftSection = styled.div`
     justify-content: center;
   }
 `;
-const Description = styled.div`
-  p {
-    font-size: 20px;
-    line-height: 1.4;
-    margin-bottom: 30px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
+const Description = styled.p`
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `;
 const RightSection = styled.div`
   height: 100%;

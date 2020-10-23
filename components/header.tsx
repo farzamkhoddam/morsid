@@ -1,25 +1,27 @@
 import styled from "styled-components";
-import Logo from "./logo";
+import LogoImage from "./logo";
 import { device } from "../consts/theme";
 
-const Header = () => {
+const HeaderLogo = () => {
   return (
     <HeaderContainer>
       <LogoContainer>
-        <Logo />
+        <LogoImage />
       </LogoContainer>
     </HeaderContainer>
   );
 };
-export default Header;
+export default HeaderLogo;
 
 const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  height: 3rem;
-  max-width: 70%;
+  height: var(--header-height-desktop);
+  width: 100%;
+  @media ${device.tablet} {
+    background: var(--header-bg-dark);
+  }
 `;
 const LogoContainer = styled.div`
   padding-left: 1rem;

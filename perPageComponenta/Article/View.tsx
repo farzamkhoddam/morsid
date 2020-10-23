@@ -1,6 +1,7 @@
 import { Post } from "../../wpapi";
 import Layout from "../../components/layout";
 import SEO from "../../components/seo";
+import Footer from "../../components/footer";
 
 export const ArticleView: React.FC<Post> = ({ post }) => {
   const { title, content, excerpt, date, featuredImage } = post;
@@ -34,6 +35,7 @@ export const ArticleView: React.FC<Post> = ({ post }) => {
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </article>
+      <Footer />
       {/* {(previous || next) && <Pagination {...props} />} */}
     </Layout>
   );
