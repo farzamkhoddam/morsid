@@ -2,11 +2,13 @@ import styled from "styled-components";
 import Navigation from "../components/navigation";
 import { device } from "../consts/theme";
 import { useState } from "react";
-
-const Menu: React.FC = () => {
+interface Props extends React.ReactElement {
+  className?: string;
+}
+const Menu: React.FC<Props> = ({ className }) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   return (
-    <MenuContainer>
+    <MenuContainer className={className}>
       {!isActiveMenu ? (
         <DeactiveMenuNavContainer>
           <Navigation
@@ -47,10 +49,6 @@ const DeactiveMenuNavContainer = styled.div`
   align-items: center;
   padding-right: 1rem;
   z-index: 2;
-
-  @media ${device.mobileL} {
-    width: 100vw;
-  }
 `;
 const ActiveMenuNavContainer = styled.div`
   height: 4rem;

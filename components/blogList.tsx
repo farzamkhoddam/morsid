@@ -54,4 +54,7 @@ const ArticlesContainer = styled.div`
 `;
 const H2 = styled.h2`
   margin-left: 1rem;
+  @media ${device.mobileL} {
+    font-size: 2rem;
+  }
 `;

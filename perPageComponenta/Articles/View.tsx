@@ -18,18 +18,22 @@ export const ArticlesView: React.FC<Props> = (props) => {
       <SEO />
       <Hero>
         <LeftSection>
-          <Header />
-          {/* <Title className="title">
-            {`Start Learning Skills to Make `}
+          <LeftSideHeaderContainer>
+            <Header />
+            <TabletMenu />
+          </LeftSideHeaderContainer>
+
+          <Title className="title">{`Start Learning Skills`}</Title>
+          <Title className="title">
+            {` to Make `}
             <HilightDesc>{`$$$`}</HilightDesc>
           </Title>
           <Description>
             {`Itachi Uchiha  is a fictional character in the Naruto manga and anime series created by Masashi Kishimoto. Itachi is the older brother of Sasuke Uchiha and is responsible for killing all the members of their clan, sparing only his younger brother Sasuke.`}
-          </Description> */}
+          </Description>
         </LeftSection>
         <RightSection>
           <Menu />
-
           <BlackSection />
           <PicContainer>
             <BlackNavar>
@@ -60,13 +64,35 @@ const Hero = styled.div`
     color: rgba(0, 0, 0, 0.7);
   }
 `;
+const LeftSideHeaderContainer = styled.div`
+  display: flex;
+  width: 100%;
+  @media ${device.tablet} {
+    margin-bottom: 3rem;
+  }
+`;
+const TabletMenu = styled(Menu)`
+  display: none;
+  @media ${device.tablet} {
+    display: flex;
+  }
+`;
 const Title = styled.h1`
-  font-size: 48px;
   line-height: 48px;
   margin: 0 0 5px;
   font-weight: 900;
+  margin-left: 5rem;
+  padding-right: 12rem;
+  font-size: 3.5vw;
+  line-height: 100%;
+  margin-bottom: 0;
+  @media ${device.laptop} {
+    font-size: 3vw;
+    padding-right: 6rem;
+  }
   @media ${device.tablet} {
     font-size: xx-large;
+    padding-right: 0rem;
   }
 `;
 
@@ -76,7 +102,9 @@ const LeftSection = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   flex-basis: 60%;
+  flex-grow: 1;
   height: inherit;
+  max-width: 100vw;
 `;
 const Description = styled.p`
   font-size: 20px;
@@ -87,6 +115,14 @@ const Description = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  margin-left: 5rem;
+  padding-right: 12rem;
+  @media ${device.laptop} {
+    padding-right: 6rem;
+  }
+  @media ${device.tablet} {
+    padding-right: 3rem;
+  }
 `;
 const HilightDesc = styled.span`
   color: var(--primary-color-dark);
@@ -101,8 +137,7 @@ const RightSection = styled.div`
   min-height: var(--header-height-desktop);
 
   @media ${device.tablet} {
-    max-width: 100vw;
-    align-items: flex-end;
+    display: none;
   }
   @media ${device.mobileL} {
     max-height: 50%;
