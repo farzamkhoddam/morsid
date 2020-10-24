@@ -14,7 +14,7 @@ const FirstArticle: React.FC<Posts_posts_nodes> = ({
     <Link href={`article/${slug}`}>
       <Post>
         <Image
-          src={featuredImage || "/PostImgPlaceholder.jpg"}
+          src={featuredImage?.node?.mediaItemUrl || "/PostImgPlaceholder.jpg"}
           alt={title + " - Featured image"}
         />
 

@@ -13,7 +13,7 @@ const PostCard: React.FC<Posts_posts_nodes> = ({
     <Container>
       <Post>
         <Image
-          src={featuredImage || "/PostImgPlaceholder.jpg"}
+          src={featuredImage?.node?.mediaItemUrl || "/PostImgPlaceholder.jpg"}
           alt={title + " - Featured image"}
         />
 

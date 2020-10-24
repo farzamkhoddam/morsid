@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import { fetchPosts, Posts_posts as Posts, Posts_posts_nodes } from "../wpapi";
-import { ArticlesView, HeroView } from "../perPageComponenta/Articles/View";
+import { ArticlesView } from "../perPageComponenta/Articles/View";
 
 interface Props {
   posts: Posts;
