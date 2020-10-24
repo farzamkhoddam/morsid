@@ -53,3 +53,10 @@ export function fetchRegisterUser(
     ...options,
   });
 }
+
+export function fetchLoginUser(options?: Options<types.LoginUserVariables>) {
+  return fetchQuery<types.LoginUser, types.LoginUserVariables>({
+    query: queries.LOGIN_USER,
+    ...options,
+  });
+}

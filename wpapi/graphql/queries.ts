@@ -44,3 +44,11 @@ export const REGISTER_USER = gql`
     }
   }
 `;
+
+export const LOGIN_USER = gql`
+  mutation LoginUser($input: LoginInput!) {
+    login(input: $input) {
+      refreshToken
+    }
+  }
+`;

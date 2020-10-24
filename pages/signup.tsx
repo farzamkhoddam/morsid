@@ -15,11 +15,11 @@ interface FormValues {
 }
 
 const initialValues: FormValues = {
-  email: "sdfasdfas@asdasd.com",
-  password: "1234qwer",
-  confirmPassword: "1234qwer",
-  firstName: "sadasdas",
-  lastName: "sdasda",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  firstName: "",
+  lastName: "",
 };
 
 const SignupSchema = yup.object().shape({

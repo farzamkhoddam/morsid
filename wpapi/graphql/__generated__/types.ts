@@ -24,8 +24,6 @@ export interface Posts_posts_nodes_featuredImage {
 }
 
 export interface Posts_posts_nodes {
-  //TODO: تایپ نیم کجا استفاده میشه و چرا به کار رفته؟
-  //TODO: تایپ ها دستی ساخته شده یا از یک ابزار خاص کمک گرفته شده؟
   __typename: "Post";
   /**
    * The globally unique identifier of the post object.
@@ -47,10 +45,6 @@ export interface Posts_posts_nodes {
    * Connection between the NodeWithFeaturedImage type and the MediaItem type
    */
   featuredImage: Posts_posts_nodes_featuredImage | null;
-  /**
-   * A few lines at the beginning of the content
-   */
-  excerpt: string | null;
 }
 
 export interface Posts_posts {
@@ -123,15 +117,11 @@ export interface Post_post {
    * Connection between the NodeWithFeaturedImage type and the MediaItem type
    */
   featuredImage: Post_post_featuredImage | null;
-  /**
-   * A few lines at the beginning of the content
-   */
-  excerpt: string | null;
 }
 
 export interface Post {
   /**
-   * An object of the post Type.
+   * An object of the post Type. 
    */
   post: Post_post | null;
 }
@@ -171,6 +161,34 @@ export interface RegisterUserVariables {
 // @generated
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: LoginUser
+// ====================================================
+
+export interface LoginUser_login {
+  __typename: "LoginPayload";
+  /**
+   * A JWT token that can be used in future requests to get a refreshed jwtAuthToken. If the refresh token used in a request is revoked or otherwise invalid, a valid Auth token will NOT be issued in the response headers.
+   */
+  refreshToken: string | null;
+}
+
+export interface LoginUser {
+  /**
+   * The payload for the login mutation
+   */
+  login: LoginUser_login | null;
+}
+
+export interface LoginUserVariables {
+  input: LoginInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
@@ -183,6 +201,15 @@ export enum PostIdType {
   ID = "ID",
   SLUG = "SLUG",
   URI = "URI",
+}
+
+/**
+ * Input for the login mutation
+ */
+export interface LoginInput {
+  clientMutationId: string;
+  password: string;
+  username: string;
 }
 
 /**
@@ -201,7 +228,9 @@ export interface RegisterUserInput {
   nicename?: string | null;
   nickname?: string | null;
   password?: string | null;
+  refreshJwtUserSecret?: boolean | null;
   registered?: string | null;
+  revokeJwtUserSecret?: boolean | null;
   richEditing?: string | null;
   username: string;
   websiteUrl?: string | null;
