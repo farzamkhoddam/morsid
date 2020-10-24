@@ -52,3 +52,13 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const VIEWER = gql`
+  query Viewer {
+    viewer {
+      email
+      firstName
+      lastName
+    }
+  }
+`;

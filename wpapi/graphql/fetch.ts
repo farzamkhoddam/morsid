@@ -1,4 +1,5 @@
-import Axios from "../axios";
+import { NewWPClient } from "../axios";
+import { AxiosRequestConfig } from "axios";
 import { AxiosInstance } from "axios";
 import * as types from "./__generated__/types";
 import * as queries from "./queries";
@@ -8,21 +9,42 @@ export interface QLResponse<R> {
   errors?: any[];
 }
 
+export interface Context {
+  headers: { [key: string]: string };
+}
+
 interface Options<T = undefined> {
   variables?: T;
   client?: AxiosInstance;
+  clientConfig?: () =>
+    | Promise<AxiosRequestConfig | undefined>
+    | AxiosRequestConfig
+    | undefined;
 }
+
+const defaultClient = NewWPClient();
 
 async function fetchQuery<R = any, T = any>({
   query,
   variables,
   client,
+  clientConfig,
 }: Options<T> & { query: string }) {
-  const c = client || Axios;
-  const result = await c.post<QLResponse<R> | undefined>("/graphql/", {
-    query,
-    variables,
-  });
+  const c = client || defaultClient;
+  let config: AxiosRequestConfig = undefined;
+
+  if (clientConfig) {
+    config = await clientConfig();
+  }
+
+  const result = await c.post<QLResponse<R> | undefined>(
+    "/graphql/",
+    {
+      query,
+      variables,
+    },
+    config,
+  );
 
   if (result.data && result.data.errors) {
     throw result.data.errors[0];
@@ -57,6 +79,13 @@ export function fetchRegisterUser(
 export function fetchLoginUser(options?: Options<types.LoginUserVariables>) {
   return fetchQuery<types.LoginUser, types.LoginUserVariables>({
     query: queries.LOGIN_USER,
+    ...options,
+  });
+}
+
+export function fetchViwer(options?: Options) {
+  return fetchQuery<types.Viewer>({
+    query: queries.VIEWER,
     ...options,
   });
 }

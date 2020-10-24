@@ -189,6 +189,38 @@ export interface LoginUserVariables {
 // @generated
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL query operation: Viewer
+// ====================================================
+
+export interface Viewer_viewer {
+  __typename: "User";
+  /**
+   * Email address of the user. This is equivalent to the WP_User-&gt;user_email property.
+   */
+  email: string | null;
+  /**
+   * First name of the user. This is equivalent to the WP_User-&gt;user_first_name property.
+   */
+  firstName: string | null;
+  /**
+   * Last name of the user. This is equivalent to the WP_User-&gt;user_last_name property.
+   */
+  lastName: string | null;
+}
+
+export interface Viewer {
+  /**
+   * Returns the current user
+   */
+  viewer: Viewer_viewer | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================

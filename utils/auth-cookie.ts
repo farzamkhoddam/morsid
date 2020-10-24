@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { serialize, parse } from "cookie";
+import { IncomingMessage } from "http";
 
 const TOKEN_NAME = "token";
 const MAX_AGE = 60 * 60 * 24 * 14; // 14 days
@@ -26,16 +27,18 @@ export function removeTokenCookie(res: NextApiResponse) {
   res.setHeader("Set-Cookie", cookie);
 }
 
-export function parseCookies(req: NextApiRequest) {
+export function parseCookies(req: IncomingMessage | NextApiRequest) {
   // For API Routes we don't need to parse the cookies.
-  if (req.cookies) return req.cookies;
+  if ("cookies" in req) return req.cookies;
 
   // For pages we do need to parse the cookies.
   const cookie = req.headers?.cookie;
   return parse(cookie || "");
 }
 
-export function getTokenCookie(req: NextApiRequest): string | undefined | null {
+export function getTokenCookie(
+  req: IncomingMessage | NextApiRequest,
+): string | undefined | null {
   const cookies = parseCookies(req);
   return cookies[TOKEN_NAME];
 }
