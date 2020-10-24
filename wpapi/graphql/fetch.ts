@@ -44,3 +44,12 @@ export function fetchPost(options?: Options<types.PostVariables>) {
     ...options,
   });
 }
+
+export function fetchRegisterUser(
+  options?: Options<types.RegisterUserVariables>,
+) {
+  return fetchQuery<types.RegisterUser, types.RegisterUserVariables>({
+    query: queries.REGISTER_USER,
+    ...options,
+  });
+}

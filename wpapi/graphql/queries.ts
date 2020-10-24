@@ -36,3 +36,11 @@ export const POST = gql`
     }
   }
 `;
+
+export const REGISTER_USER = gql`
+  mutation RegisterUser($input: RegisterUserInput!) {
+    registerUser(input: $input) {
+      clientMutationId
+    }
+  }
+`;

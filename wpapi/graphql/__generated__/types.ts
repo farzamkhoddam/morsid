@@ -146,6 +146,31 @@ export interface PostVariables {
 // @generated
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: RegisterUser
+// ====================================================
+
+export interface RegisterUser_registerUser {
+  __typename: "RegisterUserPayload";
+  clientMutationId: string;
+}
+
+export interface RegisterUser {
+  /**
+   * The payload for the registerUser mutation
+   */
+  registerUser: RegisterUser_registerUser | null;
+}
+
+export interface RegisterUserVariables {
+  input: RegisterUserInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
@@ -158,6 +183,29 @@ export enum PostIdType {
   ID = "ID",
   SLUG = "SLUG",
   URI = "URI",
+}
+
+/**
+ * Input for the registerUser mutation
+ */
+export interface RegisterUserInput {
+  aim?: string | null;
+  clientMutationId: string;
+  description?: string | null;
+  displayName?: string | null;
+  email?: string | null;
+  firstName?: string | null;
+  jabber?: string | null;
+  lastName?: string | null;
+  locale?: string | null;
+  nicename?: string | null;
+  nickname?: string | null;
+  password?: string | null;
+  registered?: string | null;
+  richEditing?: string | null;
+  username: string;
+  websiteUrl?: string | null;
+  yim?: string | null;
 }
 
 //==============================================================
