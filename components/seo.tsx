@@ -1,10 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 
 import { seoData } from "../consts/seo";
 
-const SEO = ({ title, description, image, article }) => {
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  article: boolean;
+}
+
+const SEO = ({ title, description, image, article }: Props) => {
   const {
     defaultTitle,
     defaultDescription,
@@ -17,13 +22,12 @@ const SEO = ({ title, description, image, article }) => {
     title: title || defaultTitle,
     description: description || defaultDescription,
     image: `${siteUrl}${image || defaultImage}`,
-    // url: `${siteUrl}${pathname}`,
     url: `${siteUrl}navid`,
   };
 
   return (
-    <Helmet title={seo.title} titleTemplate={titleTemplate}>
-      <html lang="en-US" />
+    <Head>
+      <title>{titleTemplate.replace("%s", seo.title)}</title>
       <link rel="alternate" href={seo.url} hrefLang="en-us" />
       <link rel="alternate" href={seo.url} hrefLang="en" />
       <link rel="alternate" href={seo.url} hrefLang="x-default" />
@@ -51,22 +55,8 @@ const SEO = ({ title, description, image, article }) => {
       )}
 
       {seo.image && <meta name="twitter:image" content={seo.image} />}
-    </Helmet>
+    </Head>
   );
 };
 
 export default SEO;
-
-SEO.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  image: PropTypes.string,
-  article: PropTypes.bool,
-};
-
-SEO.defaultProps = {
-  title: null,
-  description: null,
-  image: null,
-  article: false,
-};
