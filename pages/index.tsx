@@ -8,7 +8,7 @@ import Hero from "../components/Hero";
 
 export default function Home() {
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <SEO />
       <Hero
         upTitle={<UpTitle className="title">{`The #1 Place to`}</UpTitle>}
@@ -25,7 +25,7 @@ export default function Home() {
       <HomePageContent />
       <HomeFooter />
       <Footer />
-    </>
+    </div>
   );
 }
 

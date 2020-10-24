@@ -17,9 +17,11 @@ const Img = styled.img`
 `;
 const Container = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
+  max-width: 100vw;
   justify-content: center;
   height: 2rem;
   position: absolute;
   bottom: 0;
+  background-color: white;
 `;

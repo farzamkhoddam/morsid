@@ -18,7 +18,7 @@ const HomePageContent = () => {
         <H2>
           Level Up Your Skills with Our <Span>Coaches</Span>
         </H2>
-        <H4Light>
+        <H4Light style={{ lineHeight: "1.4rem" }}>
           Thirty-seven-year-old Satoru Mikami is a typical corporate worker, who
           is perfectly content with his monotonous lifestyle in Tokyo, other
           than failing to nail down a girlfriend even once throughout his life
@@ -38,21 +38,29 @@ const HomePageContent = () => {
         <H2> Some of the topics covered inside...</H2>
         <TopicsGroup>
           <Topic1>
-            <ImgIcon src={"/ads.png"} alt="Ads" />
-            <H4Dark>Facebook Ads</H4Dark>
+            <div>
+              <ImgIcon src={"/ads.png"} alt="Ads" />
+              <H4Dark>Facebook Ads</H4Dark>
+            </div>
           </Topic1>
           <Topic2>
-            <ImgIcon src={"/Marketing.png"} alt="marketing" />
-            <H4Dark>Marketing Agencies</H4Dark>
+            <div>
+              <ImgIcon src={"/Marketing.png"} alt="marketing" />
+              <H4Dark>Marketing Agencies</H4Dark>
+            </div>
           </Topic2>
 
           <Topic3>
-            <ImgIcon src={"/Email.png"} alt="email"></ImgIcon>
-            <H4Dark>Email Marketing</H4Dark>
+            <div>
+              <ImgIcon src={"/Email.png"} alt="email"></ImgIcon>
+              <H4Dark>Email Marketing</H4Dark>
+            </div>
           </Topic3>
           <Topic4>
-            <ImgIcon src={"/Dropshipping.png"} alt="Dropshipping"></ImgIcon>
-            <H4Dark>Dropshipping & Ecommerce</H4Dark>
+            <div>
+              <ImgIcon src={"/Dropshipping.png"} alt="Dropshipping"></ImgIcon>
+              <H4Dark>Dropshipping & Ecommerce</H4Dark>
+            </div>
           </Topic4>
         </TopicsGroup>
       </RightSection>
@@ -65,6 +73,7 @@ export default HomePageContent;
 const Container = styled.section`
   display: Flex;
   margin-top: 8rem;
+  background-image: "/mountainsAbstract.png";
   @media ${device.laptop} {
     margin-top: 0rem;
   }
@@ -111,7 +120,7 @@ const Img = styled.img`
   max-width: 75%;
   height: 30rem;
   object-fit: contain;
-  margin-top: -10rem;
+  margin-top: -13rem;
   max-width: 30%;
   min-width: 40%;
   z-index: 1;
@@ -132,6 +141,7 @@ const RightSection = styled.div`
   padding-left: 2rem;
   flex-direction: column;
   margin-top: 5.2rem;
+  margin-right: 4rem;
   @media ${device.tablet} {
     width: 100%;
   }
@@ -146,7 +156,6 @@ const Span = styled.span`
 `;
 const Row = styled.div`
   display: flex;
-  margin-bottom: 1rem;
   align-items: center;
 `;
 const LI = styled.div`
@@ -163,7 +172,7 @@ const H4Dark = styled(H4)`
   text-align: center;
 `;
 const H4Light = styled.h4`
-  margin-bottom: 1.3rem;
+  margin-bottom: 0.5rem;
   margin-left: 0;
   text=align: left;
   color: var(--secondary-color-light);
@@ -172,17 +181,20 @@ const TopicsGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
-const Topic1 = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 46%;
-  margin-right: 0.5rem;
+const Topic = styled.div`
+  width: 50%;
   height: 10rem;
-  background-color: var(--button-alternate-color);
-
-  flex-direction: column;
   margin-top: 0.5rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
+    height: 100%;
+  }
+
   @media ${device.tablet} {
     height: 15rem;
   }
@@ -190,14 +202,25 @@ const Topic1 = styled.div`
     width: 100%;
   }
 `;
-const Topic2 = styled(Topic1)`
-  background-color: var(--primary-color);
+const Topic1 = styled(Topic)`
+  div {
+    background-color: var(--button-alternate-color);
+  }
 `;
-const Topic3 = styled(Topic1)`
-  background-color: var(--primary-color-normal);
+const Topic2 = styled(Topic)`
+  div {
+    background-color: var(--primary-color);
+  }
 `;
-const Topic4 = styled(Topic1)`
-  background-color: var(--primary-color-light);
+const Topic3 = styled(Topic)`
+  div {
+    background-color: var(--primary-color-normal);
+  }
+`;
+const Topic4 = styled(Topic)`
+  div {
+    background-color: var(--primary-color-light);
+  }
 `;
 const SignUpBtn = styled(Button)`
   width: 100%;
