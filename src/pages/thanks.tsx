@@ -1,5 +1,3 @@
-import React from "react";
-
 import { RiArrowLeftSLine, RiCheckboxCircleLine } from "react-icons/ri";
 
 import Link from "next/link";

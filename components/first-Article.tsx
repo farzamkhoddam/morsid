@@ -1,4 +1,3 @@
-import React from "react";
 import { device } from "../consts/theme";
 import styled from "styled-components";
 import { Posts_posts_nodes } from "../wpapi";

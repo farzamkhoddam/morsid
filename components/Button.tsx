@@ -1,5 +1,3 @@
-import React from "react";
-
 import styled, { CSSObject } from "styled-components";
 import Link from "next/link";
 
