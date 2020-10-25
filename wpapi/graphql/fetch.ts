@@ -89,3 +89,15 @@ export function fetchViwer(options?: Options) {
     ...options,
   });
 }
+
+export function fetchCreateStripeSession(
+  options?: Options<types.CreateStripeSessionVariables>,
+) {
+  return fetchQuery<
+    types.CreateStripeSession,
+    types.CreateStripeSessionVariables
+  >({
+    query: queries.CREATE_STRIPE_SESSION,
+    ...options,
+  });
+}

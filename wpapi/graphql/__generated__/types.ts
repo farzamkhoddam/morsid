@@ -42,6 +42,10 @@ export interface Posts_posts_nodes {
    */
   date: string | null;
   /**
+   * The excerpt of the post.
+   */
+  excerpt: string | null;
+  /**
    * Connection between the NodeWithFeaturedImage type and the MediaItem type
    */
   featuredImage: Posts_posts_nodes_featuredImage | null;
@@ -109,6 +113,10 @@ export interface Post_post {
    * Post publishing date.
    */
   date: string | null;
+  /**
+   * The excerpt of the post.
+   */
+  excerpt: string | null;
   /**
    * The content of the post.
    */
@@ -207,6 +215,7 @@ export interface Viewer_viewer {
    * Last name of the user. This is equivalent to the WP_User-&gt;user_last_name property.
    */
   lastName: string | null;
+  subscribed: boolean | null;
 }
 
 export interface Viewer {
@@ -214,6 +223,31 @@ export interface Viewer {
    * Returns the current user
    */
   viewer: Viewer_viewer | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: CreateStripeSession
+// ====================================================
+
+export interface CreateStripeSession_createStripeSession {
+  __typename: "CreateStripeSessionPayload";
+  stripeSessionId: string | null;
+}
+
+export interface CreateStripeSession {
+  /**
+   * The payload for the createStripeSession mutation
+   */
+  createStripeSession: CreateStripeSession_createStripeSession | null;
+}
+
+export interface CreateStripeSessionVariables {
+  input: CreateStripeSessionInput;
 }
 
 /* tslint:disable */
@@ -233,6 +267,13 @@ export enum PostIdType {
   ID = "ID",
   SLUG = "SLUG",
   URI = "URI",
+}
+
+/**
+ * Input for the createStripeSession mutation
+ */
+export interface CreateStripeSessionInput {
+  clientMutationId: string;
 }
 
 /**
