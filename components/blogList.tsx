@@ -10,7 +10,6 @@ interface Props {
 }
 
 const BlogList: React.FC<Props> = ({ firstPost, restPosts }) => {
-  console.log("navid firstPost=", firstPost.excerpt);
   return (
     <Section className={`home-posts `}>
       <H2>Featured Article</H2>

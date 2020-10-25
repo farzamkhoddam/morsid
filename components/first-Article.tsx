@@ -86,7 +86,7 @@ const ContentContainer = styled.div`
     margin-left: 0;
   }
 `;
-const Content = styled.p`
+const Content = styled.div`
   font-size: 110%;
   overflow: hidden;
   text-overflow: ellipsis;

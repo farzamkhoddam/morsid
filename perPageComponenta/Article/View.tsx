@@ -4,7 +4,7 @@ import Footer from "../../components/footer";
 import SimplePageHeader from "components/simplePageHeader";
 import { StripeButton } from "components/StripeButton";
 import Button from "components/Button";
-
+import styled from "styled-components";
 interface Props {
   post: Post;
 }
@@ -32,11 +32,13 @@ export function ArticleView({ post }: Props) {
             <time>{date}</time>
           </section>
           {featuredImage ? (
-            <img
-              src={featuredImage?.node?.mediaItemUrl}
-              alt={title + " - Featured image"}
-              className="featured-image"
-            />
+            <ImgContainer>
+              <img
+                src={featuredImage?.node?.mediaItemUrl}
+                alt={title + " - Featured image"}
+                className="featured-image"
+              />
+            </ImgContainer>
           ) : (
             ""
           )}
@@ -57,3 +59,6 @@ export function ArticleView({ post }: Props) {
     </div>
   );
 }
+const ImgContainer = styled.div`
+  display: flex;
+`;
