@@ -1,8 +1,8 @@
-import PostCard from "./post-card";
+import PostCard from "../../components/post-card";
 import styled from "styled-components";
-import FirstArticle from "./first-Article";
-import { device } from "../consts/theme";
-import { Posts_posts_nodes } from "../wpapi";
+import FirstArticle from "../../components/first-Article";
+import { device } from "../../consts/theme";
+import { Posts_posts_nodes } from "../../wpapi";
 
 interface Props {
   firstPost: Posts_posts_nodes;

@@ -1,6 +1,6 @@
 import SEO from "../../components/seo";
 
-import BlogList from "../../components/blogList";
+import BlogList from "./blogList";
 import styled from "styled-components";
 import { Posts_posts_nodes } from "../../wpapi";
 import Hero from "../../components/Hero";

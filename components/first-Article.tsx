@@ -2,6 +2,7 @@ import { device } from "../consts/theme";
 import styled from "styled-components";
 import { Posts_posts_nodes } from "../wpapi";
 import Link from "next/link";
+import ReadArticleSection from "perPageComponenta/Articles/readArticleSection";
 
 const FirstArticle: React.FC<Posts_posts_nodes> = ({
   title,
@@ -22,7 +23,7 @@ const FirstArticle: React.FC<Posts_posts_nodes> = ({
           {/* <Content>{excerpt}</Content> */}
           <Content dangerouslySetInnerHTML={{ __html: excerpt }} />
 
-          <H5>READ ARTICLE NOW</H5>
+          <ReadArticleSection />
         </ContentContainer>
       </Post>
     </Link>
@@ -71,8 +72,7 @@ const Image = styled.img`
 const Title = styled.h3`
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
+  margin-bottom: 0;
 `;
 const ContentContainer = styled.div`
   margin-top: 0.5rem;
@@ -90,15 +90,11 @@ const Content = styled.div`
   font-size: 110%;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  margin-bottom: 0;
   margin-top: 0;
+  height: 7rem;
 `;
-const H5 = styled.h5`
-  font-size: 90%;
-  margin-top: auto;
-`;
+
 const Post = styled.div`
   display: flex;
   justify-content: flex-start;

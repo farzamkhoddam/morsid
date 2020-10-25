@@ -2,6 +2,7 @@ import { device } from "../consts/theme";
 import styled from "styled-components";
 import { Posts_posts_nodes } from "../wpapi";
 import Link from "next/link";
+import ReadArticleSection from "perPageComponenta/Articles/readArticleSection";
 
 const PostCard: React.FC<Posts_posts_nodes> = ({
   slug,
@@ -21,7 +22,7 @@ const PostCard: React.FC<Posts_posts_nodes> = ({
           <Title>{title}</Title>
 
           <Content dangerouslySetInnerHTML={{ __html: excerpt }} />
-          <H5>READ ARTICLE NOW</H5>
+          <ReadArticleSection />
         </ContentContainer>
       </Post>
     </Container>
@@ -89,10 +90,7 @@ const Content = styled.p`
   -webkit-box-orient: vertical;
   margin-top: 0;
 `;
-const H5 = styled.h5`
-  font-size: 90%;
-  margin-top: auto;
-`;
+
 const Post = styled.div`
   display: flex;
   flex-direction: column;
