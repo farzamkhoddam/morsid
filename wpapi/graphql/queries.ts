@@ -10,6 +10,7 @@ export const POSTS = gql`
         slug
         title
         date
+        excerpt
         featuredImage {
           node {
             mediaItemUrl
@@ -27,12 +28,19 @@ export const POST = gql`
       slug
       title
       date
+      excerpt
       content
       featuredImage {
         node {
           mediaItemUrl
         }
       }
+    }
+    viewer {
+      email
+      firstName
+      lastName
+      subscribed
     }
   }
 `;
@@ -59,6 +67,15 @@ export const VIEWER = gql`
       email
       firstName
       lastName
+      subscribed
+    }
+  }
+`;
+
+export const CREATE_STRIPE_SESSION = gql`
+  mutation CreateStripeSession($input: CreateStripeSessionInput!) {
+    createStripeSession(input: $input) {
+      stripeSessionId
     }
   }
 `;

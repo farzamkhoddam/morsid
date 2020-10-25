@@ -1,15 +1,15 @@
 import { GetServerSideProps } from "next";
-import { fetchPost, Post_post as Post, PostIdType } from "../../wpapi";
+import { fetchPost, Post, PostIdType } from "../../wpapi";
 import { ArticleView } from "../../perPageComponenta/Article/View";
 import { getTokenCookie } from "utils/auth-cookie";
 import Error from "next/error";
 
 interface Props {
-  post: Post;
+  post?: Post;
 }
 
 export default function Articles({ post }: Props) {
-  if (!post) {
+  if (!post || !post.post) {
     return <Error statusCode={404} />;
   }
 
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   return {
     props: {
-      post: data?.post || null,
+      post: data || null,
     },
   };
 };
