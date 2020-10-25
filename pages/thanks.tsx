@@ -1,11 +1,13 @@
 import { RiArrowLeftSLine, RiCheckboxCircleLine } from "react-icons/ri";
 
 import Link from "next/link";
-import SEO from "../../components/seo";
+import SEO from "../components/seo";
+import SimplePageHeader from "components/simplePageHeader";
 
 const Thanks = () => (
   <div className="thanks-page">
     <SEO title="Thank you" />
+    <SimplePageHeader />
     <div
       className="wrapper"
       style={{

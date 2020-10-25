@@ -1,10 +1,12 @@
 import { RiArrowLeftSLine, RiBugLine, RiSkullLine } from "react-icons/ri";
-import SEO from "../../components/seo";
+import SEO from "../components/seo";
 import Link from "next/link";
+import SimplePageHeader from "components/simplePageHeader";
 
 const NotFound = () => (
   <div className="not-found-page">
     <SEO title="Page not found" />
+    <SimplePageHeader />
     <div
       className="wrapper"
       style={{

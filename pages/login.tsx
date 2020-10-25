@@ -27,7 +27,7 @@ export default function Login() {
   const router = useRouter();
   const [loginFailed, setLoginFailed] = useState(false);
   return (
-    <div className="contact-page">
+    <div className="account-page">
       <SimplePageHeader />
       <Container>
         <div className="wrapper">
