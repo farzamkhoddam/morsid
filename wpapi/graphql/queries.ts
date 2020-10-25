@@ -36,6 +36,12 @@ export const POST = gql`
         }
       }
     }
+    viewer {
+      email
+      firstName
+      lastName
+      subscribed
+    }
   }
 `;
 

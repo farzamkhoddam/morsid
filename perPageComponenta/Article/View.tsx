@@ -1,9 +1,19 @@
 import { Post } from "../../wpapi";
 import SEO from "../../components/seo";
 import Footer from "../../components/footer";
+import { StripeButton } from "components/StripeButton";
+import Button from "components/Button";
 
-export const ArticleView: React.FC<Post> = ({ post }) => {
-  const { title, content, excerpt, date, featuredImage } = post;
+interface Props {
+  post: Post;
+}
+
+export function ArticleView({ post }: Props) {
+  const {
+    post: { title, content, excerpt, date, featuredImage },
+    viewer,
+  } = post;
+
   return (
     <div className="page">
       <SEO
@@ -34,8 +44,13 @@ export const ArticleView: React.FC<Post> = ({ post }) => {
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </article>
+      {!viewer ? (
+        <Button to="/login" title="Login" />
+      ) : (
+        <StripeButton title="Subscribe Now" />
+      )}
       <Footer />
       {/* {(previous || next) && <Pagination {...props} />} */}
     </div>
   );
-};
+}

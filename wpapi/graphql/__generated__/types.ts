@@ -127,11 +127,32 @@ export interface Post_post {
   featuredImage: Post_post_featuredImage | null;
 }
 
+export interface Post_viewer {
+  __typename: "User";
+  /**
+   * Email address of the user. This is equivalent to the WP_User-&gt;user_email property.
+   */
+  email: string | null;
+  /**
+   * First name of the user. This is equivalent to the WP_User-&gt;user_first_name property.
+   */
+  firstName: string | null;
+  /**
+   * Last name of the user. This is equivalent to the WP_User-&gt;user_last_name property.
+   */
+  lastName: string | null;
+  subscribed: boolean | null;
+}
+
 export interface Post {
   /**
    * An object of the post Type. 
    */
   post: Post_post | null;
+  /**
+   * Returns the current user
+   */
+  viewer: Post_viewer | null;
 }
 
 export interface PostVariables {
