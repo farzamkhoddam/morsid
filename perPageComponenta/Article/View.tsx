@@ -44,14 +44,14 @@ export function ArticleView({ post }: Props) {
 
         <div
           className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: content || excerpt }}
         />
       </article>
       {!viewer ? (
         <Button to="/login" title="Login" />
-      ) : (
+      ) : !viewer.subscribed ? (
         <StripeButton title="Subscribe Now" />
-      )}
+      ) : null}
       <Footer />
       {/* {(previous || next) && <Pagination {...props} />} */}
     </div>

@@ -26,6 +26,9 @@ export default async function RegisterUser(
     const token = data.data.login.refreshToken;
     setTokenCookie(res, token);
     res.status(200).json({ success: true });
-  } catch (e) {}
+    return;
+  } catch (e) {
+    console.log(e);
+  }
   res.status(400).send({ success: false });
 }

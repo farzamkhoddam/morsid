@@ -23,6 +23,8 @@ export default async function RegisterUser(
     });
     const sessionId = data.data.createStripeSession.stripeSessionId;
     res.status(200).json({ success: true, sessionId });
+    return;
   } catch (e) {}
+
   res.status(400).send({ success: false });
 }
