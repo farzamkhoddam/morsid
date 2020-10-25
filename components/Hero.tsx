@@ -1,4 +1,4 @@
-import Header from "../components/header";
+import HalfHeader from "../components/header";
 import Menu from "../components/menu";
 import { device } from "../consts/theme";
 import styled from "styled-components";
@@ -24,7 +24,7 @@ const Hero: React.FC<Props> = ({
       <TwoSidesContainer>
         <LeftSection>
           <LeftSideHeaderContainer>
-            <Header />
+            <HalfHeader />
             <TabletMenu />
           </LeftSideHeaderContainer>
 

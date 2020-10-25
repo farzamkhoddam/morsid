@@ -2,16 +2,19 @@ import styled from "styled-components";
 import Navigation from "../components/navigation";
 import { device } from "../consts/theme";
 import { useState } from "react";
+import { MenuColorType } from "./simplePageHeader";
 interface Props {
   className?: string;
+  colorType?: MenuColorType;
 }
-const Menu: React.FC<Props> = ({ className }) => {
+const Menu: React.FC<Props> = ({ className, colorType }) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   return (
-    <MenuContainer className={className}>
+    <MenuContainer className={className} colorType={colorType}>
       {!isActiveMenu ? (
-        <DeactiveMenuNavContainer>
+        <DeactiveMenuNavContainer colorType={colorType}>
           <Navigation
+            colorType={colorType}
             setIsActiveMenu={setIsActiveMenu}
             isActiveMenu={isActiveMenu}
           />
@@ -29,20 +32,21 @@ const Menu: React.FC<Props> = ({ className }) => {
 };
 export default Menu;
 
-const MenuContainer = styled.header`
+const MenuContainer = styled.header<{ colorType: MenuColorType }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: var(--header-height-desktop);
-  background: black;
+  background: ${(props) => (props.colorType === "light" ? "white " : "black ")};
   @media ${device.tablet} {
     width: 100%;
   }
 `;
 
-const DeactiveMenuNavContainer = styled.div`
+const DeactiveMenuNavContainer = styled.div<{ colorType: MenuColorType }>`
   height: 4rem;
-  background: black !important;
+  background: ${(props) =>
+    props.colorType === "light" ? "white !important" : "black !important"};
   width: 100%;
   display: flex;
   justify-content: flex-end;

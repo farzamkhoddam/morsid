@@ -2,7 +2,7 @@ import styled from "styled-components";
 import LogoImage from "./logo";
 import { device } from "../consts/theme";
 
-const HeaderLogo = () => {
+const HalfHeaderLogo = () => {
   return (
     <HeaderContainer>
       <LogoContainer>
@@ -11,7 +11,7 @@ const HeaderLogo = () => {
     </HeaderContainer>
   );
 };
-export default HeaderLogo;
+export default HalfHeaderLogo;
 
 const HeaderContainer = styled.header`
   display: flex;

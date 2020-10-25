@@ -3,6 +3,7 @@ import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import styled from "styled-components";
 import Link from "next/link";
 import { device } from "../consts/theme";
+import { MenuColorType } from "./simplePageHeader";
 
 const MenuItems = [
   {
@@ -28,14 +29,18 @@ interface Props {
   // eslint-disable-next-line @typescript-eslint/ban-types
   setIsActiveMenu: Function;
   isActiveMenu: boolean;
+  colorType?: MenuColorType;
 }
-const Navigation: React.FC<Props> = ({ setIsActiveMenu, isActiveMenu }) => {
+const Navigation: React.FC<Props> = ({
+  setIsActiveMenu,
+  isActiveMenu,
+  colorType,
+}) => {
   const [toggleMenu, setToggleMenu] = useState(isActiveMenu);
   function handleToggleClick() {
     // this.setState(state => ({
     //   showMenu: !state.showMenu,
     // }))
-    console.log("navid toggleMenu=", toggleMenu);
     setIsActiveMenu(!toggleMenu);
     setToggleMenu(!toggleMenu);
   }
@@ -47,7 +52,7 @@ const Navigation: React.FC<Props> = ({ setIsActiveMenu, isActiveMenu }) => {
   ));
   return (
     // <Container className={this.state.showMenu ? ' cross-nav' : ''}>
-    <Container className={"site-navigation"}>
+    <Container className={"site-navigation"} colorType={colorType}>
       <button
         onClick={handleToggleClick}
         className={"menu-trigger" + (toggleMenu ? " is-active" : "")}
@@ -68,9 +73,9 @@ const Navigation: React.FC<Props> = ({ setIsActiveMenu, isActiveMenu }) => {
 
 export default Navigation;
 
-const Container = styled.nav`
+const Container = styled.nav<{ colorType: MenuColorType }>`
   width: max-content;
-  color: red;
+
   ul {
     list-style: none;
     margin: 0;
@@ -81,10 +86,16 @@ const Container = styled.nav`
     margin-left: 20px;
   }
   a {
-    color: rgba(255, 255, 255, 0.6);
+    color: ${(props) =>
+      props.colorType === "light"
+        ? "var(--secondary-color-dark)"
+        : "rgba(255, 255, 255, 0.6)"};
     text-decoration: none;
     &:hover {
-      color: rgba(255, 255, 255, 0.8);
+      color: ${(props) =>
+        props.colorType === "light"
+          ? "var(--secondary-color-light)"
+          : "rgba(255, 255, 255, 0.6)"};
     }
   }
   a[aria-current="page"] {
@@ -95,7 +106,10 @@ const Container = styled.nav`
     font-size: 24px;
     background: none;
     border: none;
-    color: white;
+    color: ${(props) =>
+      props.colorType === "light"
+        ? "var(--secondary-color-dark)"
+        : "rgba(255, 255, 255, 0.6)"};
     padding: 0;
     cursor: pointer;
   }

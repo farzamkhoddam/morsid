@@ -1,17 +1,20 @@
 import { Post } from "../../wpapi";
 import SEO from "../../components/seo";
 import Footer from "../../components/footer";
+import SimplePageHeader from "components/simplePageHeader";
 
 export const ArticleView: React.FC<Post> = ({ post }) => {
   const { title, content, excerpt, date, featuredImage } = post;
   return (
     <div className="page">
+      <SimplePageHeader />
       <SEO
         title={title}
         description={content ? content : excerpt}
         image={featuredImage?.node?.mediaItemUrl}
         article={true}
       />
+
       <article className="blog-post">
         <header className="featured-banner">
           <section className="article-header">
