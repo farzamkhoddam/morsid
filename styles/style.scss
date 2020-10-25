@@ -150,6 +150,8 @@ article img {
   .wrapper {
     max-width: 768px;
     margin: 0 auto;
+    width: inherit;
+    padding: 0 10%;
   }
   .description {
     line-height: 1.5;

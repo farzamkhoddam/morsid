@@ -1,13 +1,6 @@
 import { useField } from "formik";
 import styled from "styled-components";
 
-const Input = styled.div<{ hasError?: boolean }>`
-  input {
-    border: 1px solid;
-    border-color: ${({ hasError }) => (hasError ? "red" : "#000")};
-  }
-`;
-
 interface Props {
   name: string;
   type?: string;
@@ -25,3 +18,18 @@ export function TextInput({ className, name, ...props }: Props) {
     </Input>
   );
 }
+const Input = styled.div<{ hasError?: boolean }>`
+  input {
+    width: 100%;
+    max-width: 100%;
+    margin: 8px 0 16px;
+    padding: 16px;
+    border: 6px solid;
+    border-radius: 1px;
+    appearance: none;
+    font-size: 18px;
+    font-weight: 600;
+    border-color: ${({ hasError }) =>
+      hasError ? "red" : "var(--primary-color-normal)"};
+  }
+`;

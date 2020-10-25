@@ -8,7 +8,7 @@ export type MenuColorType = "light" | "dark";
 const SimplePageHeader: React.FC = () => {
   return (
     <Container>
-      <LogoImage />
+      <CustomLogoImage />
       <Menu colorType="light" />
     </Container>
   );
@@ -23,4 +23,7 @@ const Container = styled.header`
   width: 100%;
   @media ${device.tablet} {
   }
+`;
+const CustomLogoImage = styled(LogoImage)`
+  margin-left: 1rem;
 `;

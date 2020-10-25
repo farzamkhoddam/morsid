@@ -1,10 +1,12 @@
-import { MainLayout } from "layouts/MainLayout";
 import { TextInput } from "components/TextInput";
 import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import ky from "ky/umd";
 import * as yup from "yup";
 import { useState } from "react";
+import styled from "styled-components";
+import SimplePageHeader from "components/simplePageHeader";
+import Footer from "components/footer";
 
 interface FormValues {
   email: string;
@@ -25,40 +27,63 @@ export default function Login() {
   const router = useRouter();
   const [loginFailed, setLoginFailed] = useState(false);
   return (
-    <MainLayout title="Login">
-      <div className="featured-banner">
-        <section className="article-header">
-          <h1>Login</h1>
-        </section>
-      </div>
-      {loginFailed ? (
-        <div>
-          <div>{"Wrong email or password"}</div>
+    <div className="contact-page">
+      <SimplePageHeader />
+      <Container>
+        <div className="wrapper">
+          <section className="article-header">
+            <H1>Login</H1>
+          </section>
         </div>
-      ) : null}
-      <Formik
-        initialValues={initialValues}
-        validationSchema={LoginSchema}
-        onSubmit={async (values) => {
-          setLoginFailed(false);
-          try {
-            await ky.post("/api/users/login", { json: values }).json();
-            router.push("/");
-          } catch {
-            setLoginFailed(true);
-          }
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <TextInput name="email" type="email" placeholder="Email Address" />
-            <TextInput name="password" type="password" placeholder="Password" />
-            <button disabled={isSubmitting} type="submit">
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </MainLayout>
+        {loginFailed ? (
+          <div>
+            <div>{"Wrong email or password"}</div>
+          </div>
+        ) : null}
+        <Formik
+          initialValues={initialValues}
+          validationSchema={LoginSchema}
+          onSubmit={async (values) => {
+            setLoginFailed(false);
+            try {
+              await ky.post("/api/users/login", { json: values }).json();
+              router.push("/");
+            } catch {
+              setLoginFailed(true);
+            }
+          }}
+        >
+          {({ isSubmitting }) => (
+            <Form className="contact-form wrapper">
+              <TextInput
+                name="email"
+                type="email"
+                placeholder="Email Address"
+              />
+              <TextInput
+                name="password"
+                type="password"
+                placeholder="Password"
+              />
+              <button className="button" disabled={isSubmitting} type="submit">
+                Submit
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </Container>
+    </div>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100vh - 16rem);
+  width: 100%;
+`;
+const H1 = styled.h1`
+  color: var(--secondary-color-light);
+`;
