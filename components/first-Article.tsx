@@ -19,10 +19,8 @@ const FirstArticle: React.FC<Posts_posts_nodes> = ({
 
         <ContentContainer>
           <Title>{title}</Title>
-          <P>
-            {excerpt ||
-              `navid lkasjfdl; ldkafj ;alkdsfj a;lskdfj al;dksjf l;aksdjf l;aksdjf l;akjdf ;alksdfj al;kfjd al;skdjfl;kjlkjl;kfjd as;lfkj dasf sdfsdfadfadfafsd `}
-          </P>
+          {/* <Content>{excerpt}</Content> */}
+          <Content dangerouslySetInnerHTML={{ __html: excerpt }} />
 
           <H5>READ ARTICLE NOW</H5>
         </ContentContainer>
@@ -88,7 +86,7 @@ const ContentContainer = styled.div`
     margin-left: 0;
   }
 `;
-const P = styled.p`
+const Content = styled.p`
   font-size: 110%;
   overflow: hidden;
   text-overflow: ellipsis;

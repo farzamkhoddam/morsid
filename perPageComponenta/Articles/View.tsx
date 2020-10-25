@@ -12,7 +12,7 @@ interface Props {
 }
 export const ArticlesView: React.FC<Props> = (props) => {
   return (
-    <>
+    <div className="page">
       <SEO />
       <Hero
         upTitle={<UpTitle className="title">{`Start Learning Skills`}</UpTitle>}
@@ -26,7 +26,7 @@ export const ArticlesView: React.FC<Props> = (props) => {
         pic={<Pic src="/Lamp.png" alt="Featured image" />}
       />
       <BlogList {...props} />
-    </>
+    </div>
   );
 };
 const Title = styled.h1`

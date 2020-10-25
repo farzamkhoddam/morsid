@@ -1,10 +1,7 @@
-import { RiArrowRightSLine } from "react-icons/ri";
-
 import PostCard from "./post-card";
 import styled from "styled-components";
 import FirstArticle from "./first-Article";
 import { device } from "../consts/theme";
-import Link from "next/link";
 import { Posts_posts_nodes } from "../wpapi";
 
 interface Props {
@@ -13,6 +10,7 @@ interface Props {
 }
 
 const BlogList: React.FC<Props> = ({ firstPost, restPosts }) => {
+  console.log("navid firstPost=", firstPost.excerpt);
   return (
     <Section className={`home-posts `}>
       <H2>Featured Article</H2>

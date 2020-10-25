@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import SEO from "../components/seo";
-import HomePageContent from "../components/homePageContent";
-import HomeFooter from "../components/homeFooter";
+import HomePageContent from "../perPageComponenta/Home/homePageContent";
+import HomeFooter from "../perPageComponenta/Home/homeFooter";
 import Footer from "../components/footer";
 import { device } from "../consts/theme";
 import Hero from "../components/Hero";

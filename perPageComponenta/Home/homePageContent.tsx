@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Button from "./Button";
-import { device } from "../consts/theme";
+import Button from "../../components/Button";
+import { device } from "../../consts/theme";
 const HomePageContent = () => {
   return (
     <Container>
@@ -169,6 +169,12 @@ const H4Dark = styled(H4)`
   color: black;
   color: var(--secondary-color-dark);
   text-align: center;
+  @media ${device.laptop} {
+    font-size: 80%;
+  }
+  @media ${device.tablet} {
+    font-size: 100%;
+  }
 `;
 const H4Light = styled.h4`
   margin-bottom: 0.5rem;
@@ -193,7 +199,12 @@ const Topic = styled.div`
     margin-right: 0.5rem;
     height: 100%;
   }
-
+  @media ${device.laptopL} {
+    height: 10rem;
+  }
+  @media ${device.laptop} {
+    height: 7rem;
+  }
   @media ${device.tablet} {
     height: 15rem;
   }
@@ -229,4 +240,10 @@ const ImgIcon = styled.img`
   height: auto;
   object-fit: contain;
   margin-bottom: 0.7rem;
+  @media ${device.laptop} {
+    width: 2rem;
+  }
+  @media ${device.tablet} {
+    width: 3rem;
+  }
 `;

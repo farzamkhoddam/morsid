@@ -16,9 +16,6 @@ export default function Articles({ posts }: Props) {
   // );
   //TODO: add more Article in WP and remove in section
   const restPosts: Posts_posts_nodes[] = [];
-  for (let index = 0; index < 12; index++) {
-    restPosts.push(firstPost);
-  }
 
   return <ArticlesView firstPost={firstPost} restPosts={restPosts} />;
 }

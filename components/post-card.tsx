@@ -20,10 +20,7 @@ const PostCard: React.FC<Posts_posts_nodes> = ({
         <ContentContainer>
           <Title>{title}</Title>
 
-          <P>
-            {excerpt ||
-              `navid lkasjfdl; ldkafj ;alkdsfj a;lskdfj al;dksjf l;aksdjf l;aksdjf l;akjdf ;alksdfj al;kfjd al;skdjfl;kjlkjl;kfjd as;lfkj dasf sdfsdfadfadfafsd `}
-          </P>
+          <Content dangerouslySetInnerHTML={{ __html: excerpt }} />
           <H5>READ ARTICLE NOW</H5>
         </ContentContainer>
       </Post>
@@ -72,6 +69,7 @@ const Title = styled.h3`
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  margin-bottom: 0;
 `;
 const ContentContainer = styled.div`
   display: flex;
@@ -80,8 +78,9 @@ const ContentContainer = styled.div`
   flex-grow: 1;
   width: 100%;
   margin-top: 0.5rem;
+  color: var(--secondary-color-normal);
 `;
-const P = styled.p`
+const Content = styled.p`
   font-size: 110%;
   overflow: hidden;
   text-overflow: ellipsis;
