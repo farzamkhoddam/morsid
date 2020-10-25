@@ -27,7 +27,8 @@ export default async function RegisterUser(
     });
   } catch (e) {
     // TODO fix this in WP side
-    const message = e.message.split(":")[1].trim();
+    const parts = e.message.split(":");
+    const message = parts[parts.lenght === 1 ? 0 : 1].trim();
     res.status(400).send({ success: false, errors: [message] });
     return;
   }

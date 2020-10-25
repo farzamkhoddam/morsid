@@ -27,6 +27,8 @@ export default async function RegisterUser(
     setTokenCookie(res, token);
     res.status(200).json({ success: true });
     return;
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
   res.status(400).send({ success: false });
 }
