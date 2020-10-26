@@ -70,8 +70,6 @@ const Image = styled.img`
   }
 `;
 const Title = styled.h3`
-  overflow: hidden;
-  text-overflow: ellipsis;
   margin-bottom: 0;
 `;
 const ContentContainer = styled.div`
@@ -81,6 +79,7 @@ const ContentContainer = styled.div`
   justify-content: flex-start;
   width: 50%;
   margin-left: 4rem;
+  height: fit-content;
   @media ${device.tablet} {
     width: 100%;
     margin-left: 0;
@@ -99,7 +98,8 @@ const Post = styled.div`
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  height: 16rem;
+  height: auto;
+  min-height: 16rem;
 
   @media ${device.tablet} {
     flex-direction: column;

@@ -10,12 +10,12 @@ export default function Articles({ posts }: Props) {
   const firstPost: Posts_posts_nodes = posts?.nodes[0];
 
   //TODO: add more Article in WP and uncomment in section
-  // const restPosts: Posts_posts_nodes[] = posts?.nodes.splice(
-  //   1,
-  //   posts?.nodes.length,
-  // );
+  const restPosts: Posts_posts_nodes[] = posts?.nodes.splice(
+    1,
+    posts?.nodes.length,
+  );
   //TODO: add more Article in WP and remove in section
-  const restPosts: Posts_posts_nodes[] = [];
+  // const restPosts: Posts_posts_nodes[] = [];
 
   return <ArticlesView firstPost={firstPost} restPosts={restPosts} />;
 }
