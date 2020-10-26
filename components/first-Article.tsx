@@ -20,7 +20,7 @@ const FirstArticle: React.FC<Posts_posts_nodes> = ({
 
         <ContentContainer>
           <Title>{title}</Title>
-          {/* <Content>{excerpt}</Content> */}
+          {/* TODO: این قسمت باید تنها سه خط باشه. فعلا موقتا با سی اس اس هندل شده اما باید از سمت وردپرس هندل بشه */}
           <Content dangerouslySetInnerHTML={{ __html: excerpt }} />
 
           <ReadArticleSection />
