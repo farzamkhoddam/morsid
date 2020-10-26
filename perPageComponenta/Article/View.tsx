@@ -29,7 +29,7 @@ export function ArticleView({ post }: Props) {
         <header className="featured-banner">
           <section className="article-header">
             <h1>{title}</h1>
-            <time>{date}</time>
+            <time style={{ fontSize: "larger" }}>{date.split("T")[0]}</time>
           </section>
           {featuredImage ? (
             <ImgContainer>
