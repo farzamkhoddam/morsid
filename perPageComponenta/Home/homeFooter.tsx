@@ -1,6 +1,6 @@
 import Button from "../../components/Button";
 import styled from "styled-components";
-
+//
 const HomeFooter = () => {
   return (
     <Container>
