@@ -38,7 +38,7 @@ const HomePageContent = () => {
         <TopicsGroup>
           <Topic1>
             <div>
-              <ImgIcon src={"/Speaker.png"} alt="Ads" />
+              <ImgIcon src={"/facebookad.png"} alt="ad" />
               <H4Dark>Facebook Ads</H4Dark>
             </div>
           </Topic1>
