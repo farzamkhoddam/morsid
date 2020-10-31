@@ -17,7 +17,7 @@ const Thanks = () => (
       <RiCheckboxCircleLine
         style={{
           fontSize: "128px",
-          color: "var(--primary-color)",
+          color: "var(--primary-color-dark)",
         }}
       />
       <h1>Got your message</h1>

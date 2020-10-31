@@ -6,7 +6,7 @@ const RingSvg: React.FC<Props> = ({ className }) => (
     <svg className="progress-ring" width="32" height="32">
       <circle
         className="progress-ring__circle"
-        stroke="#ca9e4a"
+        stroke="#dbbd82"
         strokeWidth="2"
         fill="transparent"
         r="14"

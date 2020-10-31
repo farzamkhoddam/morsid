@@ -146,7 +146,7 @@ const RightSection = styled.div`
   }
 `;
 const H2 = styled.h2`
-  color: var(--secondary-color-light);
+  color: var(--secondary-color-normal);
   font-size: 155%;
   line-height: initial;
 `;
@@ -214,22 +214,22 @@ const Topic = styled.div`
 `;
 const Topic1 = styled(Topic)`
   div {
-    background-color: var(--button-alternate-color);
+    background-color: var(--primary-color-dark);
   }
 `;
 const Topic2 = styled(Topic)`
   div {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color-normal);
   }
 `;
 const Topic3 = styled(Topic)`
   div {
-    background-color: var(--primary-color-normal);
+    background-color: var(--primary-color-light);
   }
 `;
 const Topic4 = styled(Topic)`
   div {
-    background-color: var(--primary-color-light);
+    background-color: var(--primary-color-xlight);
   }
 `;
 const SignUpBtn = styled(Button)`

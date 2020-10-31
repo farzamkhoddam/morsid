@@ -22,7 +22,7 @@ const SEO = ({ title, description, image, article }: Props) => {
     title: title || defaultTitle,
     description: description || defaultDescription,
     image: `${siteUrl}${image || defaultImage}`,
-    url: `${siteUrl}navid`,
+    url: `${siteUrl}`,
   };
 
   return (

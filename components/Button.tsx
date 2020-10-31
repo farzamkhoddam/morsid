@@ -58,7 +58,7 @@ const Container = styled.div`
     color: var(--button-alternate-color);
   }
   &.-outline {
-    color: var(--primary-color);
+    color: var(--primary-color-dark);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
     background: #fff;
     &:hover {

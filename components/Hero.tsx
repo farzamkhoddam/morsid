@@ -170,7 +170,7 @@ const BottomRow = styled.div`
 `;
 const BottomLine = styled.div`
   width: 8rem;
-  border-bottom: 1px solid var(--input-focus-border);
+  border-bottom: 1px solid var(--black-color-dark);
   flex-grow: 1;
   margin: 0 3rem;
   @media ${device.tablet} {
@@ -180,7 +180,7 @@ const BottomLine = styled.div`
 const BottomH3 = styled.h3`
   margin-bottom: -0.8rem;
   font-size: 1.5vw;
-  color: var(--secondary-color-light);
+  color: var(--secondary-color-dark);
   @media ${device.laptop} {
     font-size: 1.4vw;
   }

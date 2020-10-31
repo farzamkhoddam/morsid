@@ -27,7 +27,7 @@ const Container = styled.div`
   background-size: contain;
 `;
 const H2 = styled.h2`
-  color: var(--secondary-color-light);
+  color: var(--secondary-color-normal);
   line-height: initial;
   margin-bottom: 0;
   text-align: center;

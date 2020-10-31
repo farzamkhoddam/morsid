@@ -17,7 +17,7 @@ const NotFound = () => (
         <RiSkullLine
           style={{
             fontSize: "128px",
-            color: "var(--primary-color)",
+            color: "var(--primary-color-dark)",
           }}
         />
         <h1>Oops we did not expect that to happen</h1>

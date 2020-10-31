@@ -8,8 +8,7 @@ interface SeoDataInterface {
 export const seoData: SeoDataInterface = {
   defaultTitle: "Foundation",
   titleTemplate: "%s",
-  defaultDescription:
-    "A starter to launch your blazing fast personal website and a blog, Built with Gatsby and Netlify CMS. Made with ❤ by Stackrole",
-  siteUrl: "https://foundation.stackrole.com",
-  defaultImage: "/Lego.png",
+  defaultDescription: "A NewsPaper site By Made with ❤ by Hustle Club",
+  siteUrl: "https://theHustleclub.com",
+  defaultImage: "/Logo.png",
 };

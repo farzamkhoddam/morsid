@@ -11,28 +11,35 @@ $breakpoint-xl: 1440px;
     Lucida Console, monospace;
   --font-size-small: 12px;
 
-  --primary-color: #dec28d;
-  --primary-color-light: #efe2ca;
-  --primary-color-normal: #e6d2aa;
-  --primary-color-dark: #ca9e4a;
-  --secondary-color-light: #3b5548;
-  --secondary-color-normal: #2d4238;
-  --secondary-color-dark: #19251f;
+  --primary-color-dark: RGBA(219, 189, 130, 100%);
+  --primary-color-normal: RGBA(219, 189, 130, 80%);
+  --primary-color-light: RGBA(219, 189, 130, 60%);
+  --primary-color-xlight: RGBA(219, 189, 130, 40%);
+
+  --secondary-color-dark: RGBA(29, 51, 48, 100%);
+  --secondary-color-normal: RGBA(29, 51, 48, 80%);
+  --secondary-color-light: RGBA(29, 51, 48, 60%);
+
+  --black-color-dark: RGBA(22, 21, 21, 100%);
+  --black-color-normal: RGBA(22, 21, 21, 80%);
+  --black-color-light: RGBA(22, 21, 21, 60%);
+
+  --gray-color-dark: RGBA(219, 221, 220, 100%);
+  --gray-color-normal: RGBA(219, 221, 220, 80%);
+  --gray-color-light: RGBA(219, 221, 220, 60%);
+
   --header-bg-dark: black;
   --header-bg-light: white;
-  --home-link-color: #a1613f;
-  --home-link-hover-color: var(--primary-color);
+
+  --home-link-hover-color: var(--primary-color-dark);
 
   --button-color: #efe2ca;
-  --button-alternate-color: #ca9e4a;
+  --button-alternate-color: #dbbd82;
 
-  --post-link-color: #0f070b;
-
-  --nav-link-hover-bg: #111;
   --text-color-meta: rgba(0, 0, 0, 0.5);
 
   --label-text: rgba(0, 0, 0, 0.5);
-  --input-focus-border: #3b5548;
+  --input-focus-border: var(secondary-color-dark);
 
   --header-height-desktop: 7rem;
 }
