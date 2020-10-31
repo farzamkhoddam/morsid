@@ -1,7 +1,10 @@
 import styled from "styled-components";
+import { useUserData } from "utils/auth-storage";
 import Button from "../../components/Button";
 import { device } from "../../consts/theme";
 const HomePageContent = () => {
+  const data = useUserData();
+  console.log(data);
   return (
     <Container>
       <LeftSection>
@@ -9,7 +12,15 @@ const HomePageContent = () => {
         <LeftSectionContent>
           <H3>{`Articles Released Weakly To Help You Make Money`}</H3>
           <H4>{`In the midst of a casual encounter with his colleague, he falls victim to a random assailant on the streets and is stabbed. However, while succumbing `}</H4>
-          <SignUpBtn to="/" title="Sign Up Now" />
+          {data ? (
+            data.subscribed ? (
+              <SignUpBtn to="/articles" title="Read Artciles Now" />
+            ) : (
+              <SignUpBtn to="/account" title="Get Artciles Now" />
+            )
+          ) : (
+            <SignUpBtn to="/signup" title="Sign Up Now" />
+          )}
         </LeftSectionContent>
         {/* <ColoredRectangle /> */}
       </LeftSection>

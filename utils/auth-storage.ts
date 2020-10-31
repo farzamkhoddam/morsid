@@ -15,6 +15,10 @@ interface UserData {
 }
 
 export function getUserData(): UserData | null {
+  if (!process.browser) {
+    return null;
+  }
+
   const data = localStorage.getItem(userDataKey);
   if (data) {
     const jsonData = JSON.parse(data);
