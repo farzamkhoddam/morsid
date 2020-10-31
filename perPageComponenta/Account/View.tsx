@@ -29,7 +29,7 @@ export function AccountView({
             <Field>{email}</Field>
             <Button
               title="Log Out"
-              to={"/signup"}
+              to={"/"}
               clickHandler={() => handleLogout()}
             />
           </section>
