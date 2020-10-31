@@ -3,8 +3,8 @@ import { MainLayout } from "layouts/MainLayout";
 import { useRouter } from "next/router";
 import { fetchViwer, Viewer_viewer as User } from "wpapi";
 import { getTokenCookie } from "utils/auth-cookie";
-import Button from "components/Button";
 import { useEffect } from "react";
+import { removeUserData } from "utils/auth-storage";
 
 interface Props {
   user?: User | null;
@@ -23,6 +23,10 @@ export default function Account({ user }: Props) {
     return null;
   }
 
+  const handleLogout = () => {
+    removeUserData();
+  };
+
   const { firstName, lastName, email } = user;
 
   return (
@@ -34,7 +38,9 @@ export default function Account({ user }: Props) {
           <span>({email})</span>
           <br />
           <br />
-          <a href="/logout">Logout</a>
+          <a onClick={handleLogout} href="/logout">
+            Logout
+          </a>
         </section>
       </div>
     </MainLayout>

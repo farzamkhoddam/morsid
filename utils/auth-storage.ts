@@ -6,7 +6,7 @@ export function setUserData(subscribed: boolean) {
   localStorage.setItem(userDataKey, JSON.stringify({ subscribed }));
 }
 
-export function unsetUserLoggedIn() {
+export function removeUserData() {
   localStorage.removeItem(userDataKey);
 }
 
