@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { useUserData } from "utils/auth-storage";
 import Button from "../../components/Button";
 import { device } from "../../consts/theme";
+import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 const HomePageContent = () => {
-  const data = useUserData();
-  console.log(data);
   return (
     <Container>
       <LeftSection>
@@ -12,15 +10,15 @@ const HomePageContent = () => {
         <LeftSectionContent>
           <H3>{`Articles Released Weakly To Help You Make Money`}</H3>
           <H4>{`In the midst of a casual encounter with his colleague, he falls victim to a random assailant on the streets and is stabbed. However, while succumbing `}</H4>
-          {data ? (
-            data.subscribed ? (
-              <SignUpBtn to="/articles" title="Read Artciles Now" />
-            ) : (
+          <SmartCompBaseOnLogin
+            doesNotLogin={<SignUpBtn to="/signup" title="Sign Up Now" />}
+            loginWithoutSubscribed={
               <SignUpBtn to="/account" title="Get Artciles Now" />
-            )
-          ) : (
-            <SignUpBtn to="/signup" title="Sign Up Now" />
-          )}
+            }
+            loginWithSubscribed={
+              <SignUpBtn to="/articles" title="Read Artciles Now" />
+            }
+          />
         </LeftSectionContent>
         {/* <ColoredRectangle /> */}
       </LeftSection>

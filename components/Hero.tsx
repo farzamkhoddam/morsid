@@ -3,6 +3,7 @@ import Menu from "../components/menu";
 import { device } from "../consts/theme";
 import styled from "styled-components";
 import Button from "./Button";
+import SmartCompBaseOnLogin from "./smartCompBaseOnLogin";
 
 interface Props {
   upTitle: React.ReactElement;
@@ -42,11 +43,30 @@ const Hero: React.FC<Props> = ({
       </TwoSidesContainer>
       {bottomRow && (
         <BottomRow>
-          <Button
-            to="/"
-            title="Sign Up Now"
-            childStyle={{ padding: "15px", fontSize: "80%" }}
+          <SmartCompBaseOnLogin
+            doesNotLogin={
+              <Button
+                to="/signup"
+                title="Sign Up Now"
+                childStyle={{ padding: "15px", fontSize: "80%" }}
+              />
+            }
+            loginWithoutSubscribed={
+              <Button
+                to="/account"
+                title="Get Artciles Now"
+                childStyle={{ padding: "15px", fontSize: "80%" }}
+              />
+            }
+            loginWithSubscribed={
+              <Button
+                to="/articles"
+                title="Read Artciles Now"
+                childStyle={{ padding: "15px", fontSize: "80%" }}
+              />
+            }
           />
+
           <BottomLine />
           <BottomH3>{`Master Your Life And Your Money`}</BottomH3>
         </BottomRow>

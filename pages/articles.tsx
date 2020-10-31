@@ -10,8 +10,6 @@ export default function Articles({ posts }: Props) {
   const allPosts = [...posts?.nodes];
   const firstPost = allPosts.shift();
 
-  console.log(allPosts);
-
   return <ArticlesView firstPost={firstPost} restPosts={allPosts} />;
 }
 
@@ -31,15 +29,3 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 20,
   };
 };
-
-{
-  /* <main>
-{posts.nodes.map(({ id, title, slug }) => (
-  <div key={id}>
-    <Link href={`/article/${slug}`}>
-      <a>{title}</a>
-    </Link>
-  </div>
-))}
-</main> */
-}
