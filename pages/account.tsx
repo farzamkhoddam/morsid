@@ -54,8 +54,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     }),
   ];
 
-  console.log(data, token);
-
   return {
     props: {
       user: data?.data?.viewer || null,

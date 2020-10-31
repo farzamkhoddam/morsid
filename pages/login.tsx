@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { useState } from "react";
 import styled from "styled-components";
 import SimplePageHeader from "components/simplePageHeader";
-import Footer from "components/footer";
+import { setUserData } from "utils/auth-storage";
 
 interface FormValues {
   email: string;
@@ -47,7 +47,11 @@ export default function Login() {
             setLoginFailed(false);
             try {
               await ky.post("/api/users/login", { json: values }).json();
-              router.push("/");
+              const data = await ky
+                .post("/api/users/me")
+                .json<{ user: { subscribed: boolean } }>();
+              setUserData(data.user.subscribed);
+              router.push("/account");
             } catch {
               setLoginFailed(true);
             }
