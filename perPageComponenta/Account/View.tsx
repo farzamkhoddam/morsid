@@ -27,7 +27,7 @@ export function AccountView({
             <H1>Profile</H1>
             <Field>{`${lastName} - ${firstName}`}</Field>
             <Field>{email}</Field>
-            <Button
+            <LogoutButtom
               title="Log Out"
               to={"/"}
               clickHandler={() => handleLogout()}
@@ -52,7 +52,7 @@ const Container = styled.div`
 `;
 const H1 = styled.h1`
   color: var(--secondary-color-normal);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 `;
 const Field = styled.div`
     width: 100%;
@@ -69,4 +69,7 @@ const Field = styled.div`
     text-align: start;
     margin-bottom: 2rem;
     
+`;
+const LogoutButtom = styled(Button)`
+  width: 100%;
 `;

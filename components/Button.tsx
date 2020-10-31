@@ -8,11 +8,14 @@ interface Props {
   // eslint-disable-next-line @typescript-eslint/ban-types
   clickHandler?: Function;
   childStyle?: CSSObject;
+  type?: "primary" | "secondary";
 }
 const Button: React.FC<Props> = (props) => {
   return (
     <ButtonContainer {...props}>
-      <Container style={props.childStyle}>{props.title}</Container>
+      <Container type={props.type} style={props.childStyle}>
+        {props.title}
+      </Container>
     </ButtonContainer>
   );
 };
@@ -26,25 +29,38 @@ const ButtonContainer: React.FC<Props> = ({
 }) => {
   return to ? (
     <Link href={to}>
-      <a className={className} onClick={() => clickHandler()}>
+      <a
+        className={className}
+        onClick={() => {
+          clickHandler && clickHandler();
+        }}
+      >
         {children}
       </a>
     </Link>
   ) : (
-    <div className={className} onClick={() => clickHandler()}>
+    <div
+      className={className}
+      onClick={() => {
+        clickHandler && clickHandler();
+      }}
+    >
       {children}
     </div>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ type?: "primary" | "secondary" }>`
   --padding: 20px;
   --margin: 20px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: var(--padding) calc(var(--padding) * 2);
-  background-color: var(--button-alternate-color);
+  background-color: ${(props) =>
+    props.type === "secondary"
+      ? "var(--secondary-color-xlight)"
+      : "var(--button-alternate-color)"};
   color: white;
   border-radius: 1px;
   text-decoration: none;
@@ -56,8 +72,9 @@ const Container = styled.div`
   max-height: 3.5rem;
   width: inherit;
   &:hover {
-    background-color: var(--button-color);
-    color: var(--button-alternate-color);
+    background-color: ${(props) =>
+      props.type === "secondary" ? "white" : "var(--button-alternate-color)"};
+    color: var(--secondary-color-light);
   }
   &.-outline {
     color: var(--primary-color-dark);

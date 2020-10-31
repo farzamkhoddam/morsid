@@ -7,6 +7,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import SimplePageHeader from "components/simplePageHeader";
 import { setUserData } from "utils/auth-storage";
+import Button from "components/Button";
 
 interface FormValues {
   email: string;
@@ -69,9 +70,22 @@ export default function Login() {
                 type="password"
                 placeholder="Password"
               />
-              <button className="button" disabled={isSubmitting} type="submit">
-                Submit
-              </button>
+              <ButtonsContainer>
+                <button
+                  className="button"
+                  disabled={isSubmitting}
+                  type="submit"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: "0 0.5rem",
+                    width: "10rem",
+                  }}
+                >
+                  Login
+                </button>
+                <SignButtom title="Sign Up" to={"/signup"} type="secondary" />
+              </ButtonsContainer>
             </Form>
           )}
         </Formik>
@@ -90,4 +104,16 @@ const Container = styled.div`
 `;
 const H1 = styled.h1`
   color: var(--secondary-color-normal);
+`;
+const SignButtom = styled(Button)`
+  color: var(--primary-color-dark);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+  background: #fff;
+  margin: 0 0.5rem;
+  width: 10rem;
+`;
+const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
 `;
