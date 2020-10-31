@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import { fetchPosts, Posts_posts as Posts, Posts_posts_nodes } from "../wpapi";
+import { fetchPosts, Posts_posts as Posts } from "../wpapi";
 import { ArticlesView } from "../perPageComponenta/Articles/View";
 
 interface Props {
@@ -7,13 +7,12 @@ interface Props {
 }
 
 export default function Articles({ posts }: Props) {
-  const firstPost: Posts_posts_nodes = posts?.nodes[0];
-  const restPosts: Posts_posts_nodes[] = posts?.nodes.splice(
-    1,
-    posts?.nodes.length,
-  );
+  const allPosts = [...posts?.nodes];
+  const firstPost = allPosts.shift();
 
-  return <ArticlesView firstPost={firstPost} restPosts={restPosts} />;
+  console.log(allPosts);
+
+  return <ArticlesView firstPost={firstPost} restPosts={allPosts} />;
 }
 
 export const getStaticProps: GetStaticProps = async () => {
