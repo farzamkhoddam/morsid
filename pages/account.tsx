@@ -1,10 +1,11 @@
 import { GetServerSideProps } from "next";
-import { MainLayout } from "layouts/MainLayout";
+
 import { useRouter } from "next/router";
 import { fetchViwer, Viewer_viewer as User } from "wpapi";
 import { getTokenCookie } from "utils/auth-cookie";
 import { useEffect } from "react";
 import { removeUserData } from "utils/auth-storage";
+import { AccountView } from "perPageComponenta/Account/View";
 
 interface Props {
   user?: User | null;
@@ -24,26 +25,19 @@ export default function Account({ user }: Props) {
   }
 
   const handleLogout = () => {
+    console.log("navid inja", localStorage.getItem("user_data"));
     removeUserData();
   };
 
   const { firstName, lastName, email } = user;
 
   return (
-    <MainLayout title="Account">
-      <div className="featured-banner">
-        <section className="article-header">
-          <h1>Account</h1>
-          <strong>{`${firstName} ${lastName} `}</strong>
-          <span>({email})</span>
-          <br />
-          <br />
-          <a onClick={handleLogout} href="/logout">
-            Logout
-          </a>
-        </section>
-      </div>
-    </MainLayout>
+    <AccountView
+      firstName={firstName}
+      lastName={lastName}
+      email={email}
+      handleLogout={handleLogout}
+    />
   );
 }
 

@@ -16,7 +16,7 @@ const MenuItems = [
   },
   {
     path: "/account",
-    title: "Accouunt",
+    title: "Account",
   },
 ];
 

@@ -89,5 +89,5 @@ const Container = styled.div`
   width: 100%;
 `;
 const H1 = styled.h1`
-  color: var(--secondary-color-light);
+  color: var(--secondary-color-normal);
 `;

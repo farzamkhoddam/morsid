@@ -26,7 +26,9 @@ const ButtonContainer: React.FC<Props> = ({
 }) => {
   return to ? (
     <Link href={to}>
-      <a className={className}>{children}</a>
+      <a className={className} onClick={() => clickHandler()}>
+        {children}
+      </a>
     </Link>
   ) : (
     <div className={className} onClick={() => clickHandler()}>
