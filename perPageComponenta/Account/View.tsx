@@ -22,8 +22,8 @@ export function AccountView({
     <div className="account-page">
       <SimplePageHeader />
       <Container>
-        <div className="wrapper">
-          <section className="article-header">
+        <Wrapper>
+          <Section>
             <H1>Profile</H1>
             <Field>{`${lastName} - ${firstName}`}</Field>
             <Field>{email}</Field>
@@ -31,9 +31,10 @@ export function AccountView({
               title="Log Out"
               to={"/"}
               clickHandler={() => handleLogout()}
+              childStyle={{ maxWidth: "36rem" }}
             />
-          </section>
-        </div>
+          </Section>
+        </Wrapper>
       </Container>
     </div>
   );
@@ -46,17 +47,29 @@ const Container = styled.div`
   flex-direction: column;
   height: calc(100vh - 16rem);
   width: 100%;
-  max-width: 36rem;
+`;
+const Wrapper = styled.div`
+  max-width: 1068px;
   margin: 0 auto;
-  padding: 0 5rem;
+  width: inherit;
+  padding: 0 10%;
+`;
+const Section = styled.article`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 const H1 = styled.h1`
   color: var(--secondary-color-normal);
   margin-bottom: 2rem;
+  font-size: 270%;
+  text-align: center;
+  line-height: 100%;
 `;
 const Field = styled.div`
     width: 100%;
-    max-width: 100%;
+    max-width: 36rem;
     margin: 8px 0 16px;
     padding: 16px;
     border: 6px solid;
@@ -68,8 +81,13 @@ const Field = styled.div`
     overflow-wrap: anywhere;
     text-align: start;
     margin-bottom: 2rem;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
     
 `;
 const LogoutButtom = styled(Button)`
   width: 100%;
+  display: flex;
+  justify-content: center;
 `;

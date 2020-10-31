@@ -48,6 +48,7 @@ const ArticlesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 30px;
+  width: 100%;
 `;
 const H2 = styled.h2`
   margin-left: 1rem;
