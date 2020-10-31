@@ -25,7 +25,6 @@ export default function Account({ user }: Props) {
   }
 
   const handleLogout = () => {
-    console.log("navid inja", localStorage.getItem("user_data"));
     removeUserData();
   };
 
