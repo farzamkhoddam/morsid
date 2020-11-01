@@ -1,7 +1,7 @@
 import { RiArrowLeftSLine, RiCheckboxCircleLine } from "react-icons/ri";
 
 import Link from "next/link";
-import SEO from "../components/seo";
+import SEO from "components/seo";
 import SimplePageHeader from "components/simplePageHeader";
 
 const Thanks = () => (
@@ -20,13 +20,13 @@ const Thanks = () => (
           color: "var(--primary-color-dark)",
         }}
       />
-      <h1>Got your message</h1>
-      <p>Thank you for getting in touch us. We will get back to you shortly.</p>
+      <h1>Your invoice successfully has been paid</h1>
+      <p>Thank you for purchase.</p>
       <Link href="/">
-        <div className="button">
+        <a className="button">
           <RiArrowLeftSLine className="icon -left" />
           Lets go back to Homepage
-        </div>
+        </a>
       </Link>
     </div>
   </div>
