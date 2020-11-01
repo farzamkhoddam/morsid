@@ -7,6 +7,7 @@ import { useState } from "react";
 import SimplePageHeader from "components/simplePageHeader";
 import styled from "styled-components";
 import Button from "components/Button";
+import { device } from "consts/theme";
 
 interface FormValues {
   email: string;
@@ -99,20 +100,26 @@ export default function Signup() {
                 placeholder="Confirm Password"
               />
               <ButtonsContainer>
-                <button
-                  className="button"
-                  disabled={isSubmitting}
-                  type="submit"
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    margin: "0 0.5rem",
-                    width: "10rem",
-                  }}
-                >
-                  Sign Up
-                </button>
-                <SignButtom title="Login" to={"/login"} type="secondary" />
+                <ResponsiveContainer>
+                  <button
+                    className="button"
+                    disabled={isSubmitting}
+                    type="submit"
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Sign Up
+                  </button>
+                </ResponsiveContainer>
+                <LoginButtom
+                  title="Login"
+                  to={"/login"}
+                  type="secondary"
+                  childStyle={{ whiteSpace: "nowrap" }}
+                />
               </ButtonsContainer>
             </Form>
           )}
@@ -125,22 +132,42 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   flex-direction: column;
-  height: calc(100vh - 16rem);
+  width: 100%;
   width: 100%;
 `;
 const H1 = styled.h1`
   color: var(--secondary-color-normal);
 `;
-const SignButtom = styled(Button)`
+const ResponsiveContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0 0.5rem;
+  min-width: 10rem;
+  @media ${device.mobileM} {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+`;
+const LoginButtom = styled(Button)`
   color: var(--primary-color-dark);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
   background: #fff;
   margin: 0 0.5rem;
   width: 10rem;
+  @media ${device.mobileM} {
+    width: 100%; 
+    margin: 0.5rem 0;
+  }
+  
+}
 `;
 const ButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  @media ${device.mobileM} {
+    flex-direction: column;
+  }
 `;

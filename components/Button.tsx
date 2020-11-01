@@ -70,7 +70,7 @@ const Container = styled.div<{ type?: "primary" | "secondary" }>`
   line-height: 1;
   transition: background 0.3s linear;
   max-height: 3.5rem;
-  width: inherit;
+  width: 100%;
   &:hover {
     background-color: ${(props) =>
       props.type === "secondary" ? "white" : "var(--button-alternate-color)"};

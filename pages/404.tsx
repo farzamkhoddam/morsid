@@ -32,11 +32,11 @@ const NotFound = () => (
           Back to Homepage
         </div>
       </Link>
-      <Link href="/contact">
+      {/* <Link href="/contact">
         <div className="button -outline">
           Report this <RiBugLine className="icon -right" />
         </div>
-      </Link>
+      </Link> */}
     </div>
   </div>
 );
