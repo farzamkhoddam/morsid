@@ -1,10 +1,7 @@
 import SimplePageHeader from "components/simplePageHeader";
-
 import styled from "styled-components";
+import SimpleButton from "components/SimpleButton";
 
-import { setUserData } from "utils/auth-storage";
-import { TextInput } from "components/TextInput";
-import Button from "components/Button";
 interface Props {
   firstName: string;
   lastName: string;
@@ -27,12 +24,9 @@ export function AccountView({
             <H1>Profile</H1>
             <Field>{`${lastName} - ${firstName}`}</Field>
             <Field>{email}</Field>
-            <LogoutButtom
-              title="Log Out"
-              to={"/"}
-              clickHandler={() => handleLogout()}
-              childStyle={{ maxWidth: "36rem" }}
-            />
+            <SimpleButton href="/logout" onClick={() => handleLogout()}>
+              {"Logout"}
+            </SimpleButton>
           </Section>
         </Wrapper>
       </Container>
@@ -84,10 +78,4 @@ const Field = styled.div`
     height: 4.5rem;
     display: flex;
     align-items: center;
-    
-`;
-const LogoutButtom = styled(Button)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
 `;
