@@ -37,7 +37,7 @@
     font-size: 36px;
     font-size: clamp(18px, calc(1rem + 2vw), 36px);
     margin: 0 auto 6px;
-    max-width: 768px;
+    max-width: var(--page-max-width);
     line-height: 1.3;
     font-weight: 600;
   }
@@ -157,14 +157,14 @@ article img {
   position: relative;
   min-height: 100vh;
   .wrapper {
-    max-width: 768px;
+    max-width: var(--page-max-width);
     margin: 0 auto;
   }
 }
 // Contact page
 .account-page {
   .wrapper {
-    max-width: 768px;
+    max-width: var(--page-max-width);
     margin: 0 auto;
     width: inherit;
     padding: 0 10%;

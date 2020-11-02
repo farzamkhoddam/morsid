@@ -50,9 +50,17 @@ export function ArticleView({ post }: Props) {
         />
       </article>
       {!viewer ? (
-        <Button to="/login" title="Login" />
+        <MustBuyContainer>
+          <TransparentSection />
+          <H4>Read the rest of this story with a premium account.</H4>
+          <Button to="/login" title="Login" />
+        </MustBuyContainer>
       ) : !viewer.subscribed ? (
-        <StripeButton title="Subscribe Now" />
+        <MustBuyContainer>
+          <TransparentSection />
+          <H4>Read the rest of this story with a premium account.</H4>
+          <StripeButton />
+        </MustBuyContainer>
       ) : null}
       <Footer />
       {/* {(previous || next) && <Pagination {...props} />} */}
@@ -61,4 +69,29 @@ export function ArticleView({ post }: Props) {
 }
 const ImgContainer = styled.div`
   display: flex;
+`;
+const MustBuyContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 4rem;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+`;
+const TransparentSection = styled.div`
+  background: rgba(0, 0, 0, 0)
+    linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5),
+      rgb(255, 255, 255)
+    )
+    repeat scroll 0% 0%;
+  height: 250px;
+  margin-top: -280px;
+  position: relative;
+  width: 100%;
+`;
+const H4 = styled.h4`
+  color: var(--black-color-normal);
 `;

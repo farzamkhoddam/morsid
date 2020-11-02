@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import ky from "ky/umd";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
+import Button from "./Button";
 
 interface Props {
-  title: string;
   className?: string;
 }
 
-export function StripeButton({ title, ...props }: Props) {
+export function StripeButton({ className }: Props) {
   const [stripe, setStripe] = useState<Stripe | null>(null);
   const [isRedirecting, setIsRedirecting] = useState(false);
 
@@ -44,19 +43,10 @@ export function StripeButton({ title, ...props }: Props) {
 
   return (
     <Button
-      {...props}
-      onClick={handleStripe}
-      type="button"
-      isLoading={isDisabled}
-      disabled={isDisabled}
-    >
-      {title}
-    </Button>
+      title={"Subscribe Now"}
+      clickHandler={handleStripe}
+      type="primary"
+      className={className}
+    />
   );
 }
-
-const Button = styled.button<{ isLoading?: boolean }>`
-  background-color: #000;
-  color: #fff;
-  opacity: ${({ isLoading }) => (isLoading ? "0.5" : "1")};
-`;
