@@ -6,7 +6,7 @@ interface SeoDataInterface {
   defaultImage: string;
 }
 export const seoData: SeoDataInterface = {
-  defaultTitle: "Foundation",
+  defaultTitle: "Hustle Playbook",
   titleTemplate: "%s",
   defaultDescription: "A NewsPaper site By Made with ❤ by Hustle Club",
   siteUrl: "https://theHustleclub.com",
