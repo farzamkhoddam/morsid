@@ -13,7 +13,11 @@ interface Props {
 const Button: React.FC<Props> = (props) => {
   return (
     <ButtonContainer {...props}>
-      <Container type={props.type} style={props.childStyle}>
+      <Container
+        type={props.type}
+        style={props.childStyle}
+        className={props.className}
+      >
         {props.title}
       </Container>
     </ButtonContainer>
@@ -57,7 +61,7 @@ const Container = styled.div<{ type?: "primary" | "secondary" }>`
   align-items: center;
   justify-content: center;
   padding: var(--padding) calc(var(--padding) * 2);
-  background-color: ${(props) =>
+  background: ${(props) =>
     props.type === "secondary"
       ? "var(--secondary-color-xlight)"
       : "var(--button-alternate-color)"};

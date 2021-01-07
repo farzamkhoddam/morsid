@@ -11,29 +11,28 @@ $breakpoint-xl: 1440px;
     Lucida Console, monospace;
   --font-size-small: 12px;
 
-  --primary-color-dark: RGBA(219, 189, 130, 100%);
-  --primary-color-normal: RGBA(219, 189, 130, 80%);
-  --primary-color-light: RGBA(219, 189, 130, 60%);
-  --primary-color-xlight: RGBA(219, 189, 130, 40%);
+  // --primary-color-dark: RGBA(219, 189, 130, 100%);
+  --primary-color-normal: #1d3330;
+  // --primary-color-light: RGBA(219, 189, 130, 60%);
+  // --primary-color-xlight: RGBA(219, 189, 130, 40%);
 
-  --secondary-color-dark: RGBA(29, 51, 48, 100%);
-  --secondary-color-normal: RGBA(29, 51, 48, 80%);
-  --secondary-color-light: RGBA(29, 51, 48, 60%);
-  --secondary-color-xlight: RGBA(29, 51, 48, 40%);
+  // --secondary-color-dark: RGBA(29, 51, 48, 100%);
+  --secondary-color-normal: #161515;
+  // --secondary-color-light: RGBA(29, 51, 48, 60%);
+  // --secondary-color-xlight: RGBA(29, 51, 48, 40%);
 
-  --black-color-dark: RGBA(22, 21, 21, 100%);
-  --black-color-normal: RGBA(22, 21, 21, 80%);
-  --black-color-light: RGBA(22, 21, 21, 60%);
+  --accent-color-normal: #dbbd82;
 
-  --gray-color-dark: RGBA(219, 221, 220, 100%);
-  --gray-color-normal: RGBA(219, 221, 220, 80%);
-  --gray-color-light: RGBA(219, 221, 220, 60%);
+  --gray-color-dark: var(--secondary-color-normal);
+  --gray-color-normal: #4f4f4f;
+  --gray-color-light: #828282;
+  --gray-color-xlight: #dbdddc;
+  --gray-color-xxkight: #f0f0f0;
 
-  --header-bg-dark: black;
-  --header-bg-light: white;
+  --page-max-width: 1440px;
 
+  /////////////////////////
   --home-link-hover-color: var(--primary-color-dark);
-
   --button-color: #efe2ca;
   --button-alternate-color: #dbbd82;
 
@@ -43,6 +42,4 @@ $breakpoint-xl: 1440px;
   --input-focus-border: var(secondary-color-dark);
 
   --header-height-desktop: 7rem;
-
-  --page-max-width: 768px;
 }
