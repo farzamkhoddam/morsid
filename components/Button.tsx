@@ -61,7 +61,7 @@ const Container = styled.div<{ type?: "glow" | "normal" }>`
     props.type === "glow"
       ? " radial-gradient(    100% 1655.01% at 0% 6.25%,    #d49844 0%,    #fee7b1 35.61%,    #fee6af 67.08%,    #f6c757 100%  );"
       : "var(--accent-color-normal)"};
-  color: white;
+  color: #1D3330;
   border-radius: 1px;
   text-decoration: none;
   appearance: none;

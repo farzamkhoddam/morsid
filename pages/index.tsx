@@ -197,6 +197,7 @@ const SectionTitle = styled.h2`
   font-size: 56px;
   line-height: 67px;
   text-transform: capitalize;
+  margin-left: 1rem;
   @media ${device.tablet} {
     font-size: 28px;
   }
