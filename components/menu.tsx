@@ -71,7 +71,7 @@ const ActiveMenuNavContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 1rem;
+
   width: 100vw;
   position: fixed;
   top: 0;

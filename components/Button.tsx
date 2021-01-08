@@ -71,9 +71,6 @@ const Container = styled.div<{ type?: "glow" | "normal" }>`
   transition: background 0.3s linear;
   max-height: 3.5rem;
   width: 100%;
-  &:hover {
-    color: var(--secondary-color-light);
-  }
   &.-outline {
     color: var(--primary-color-dark);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);

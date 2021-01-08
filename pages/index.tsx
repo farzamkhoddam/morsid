@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import SEO from "../components/seo";
-
 import { device } from "../consts/theme";
 import Image from "next/image";
 import React from "react";
@@ -15,14 +14,21 @@ export default function Home() {
       <SEO />
       <Menu />
       <Header>
+        <InnerSection>
         <TitleAndButton>
           <Title>LEARN HOW TO MAKE MONEY ONLINE</Title>
-          <Button title="SIGN UP NOW" type="glow" />
+          <SignUpButton title="SIGN UP NOW" type="glow" />
         </TitleAndButton>
 
-        <LogoContainer>
-          <Image src="/home-header.jpg" alt="header" width={440} height={295} />
-        </LogoContainer>
+        <ImageContainer>
+        
+          <Image src="/home-header.jpg"
+           alt="header" layout="fill"
+            // objectFit="none"
+            quality={100}/>
+            
+        </ImageContainer>
+        </InnerSection>
       </Header>
       <Latest>
         <LatestHeader>
@@ -43,34 +49,44 @@ export default function Home() {
           </ArrowsContainer>
         </LatestHeader>
         <CardsContainer>
+          {/* @ts-ignore */}
           <CardItem
             slug="slugggggggggggg"
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
+          {/* @ts-ignore */}
+
           <CardItem
             slug="slugggggggggggg"
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
+           {/* @ts-ignore */}
+          <HiddenContainer>
           <CardItem
             slug="slugggggggggggg"
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
+          </HiddenContainer>
         </CardsContainer>
       </Latest>
       <WhyUs>
         <SectionTitle>LEVEL UP YOUR SKILL WITH OUR COACH</SectionTitle>
         <IconsContainer>
-          <Icon>
+         <Icon1Container>
+            <Icon>
             <Image
               src="/digital-marketing.svg"
               alt="digital-marketing"
               width={60}
               height={60}
             />
-          </Icon>
+            </Icon>
+          <H3>FASEBOOK ADS</H3>
+          </Icon1Container>   
+          <Icon1Container>  
           <Icon>
             <Image
               src="/presentation.svg"
@@ -79,6 +95,9 @@ export default function Home() {
               height={60}
             />
           </Icon>
+          <H3>EMAIL MARKETING</H3>
+          </Icon1Container>
+          <Icon1Container>
           <Icon>
             <Image
               src="/new-email.svg"
@@ -87,6 +106,9 @@ export default function Home() {
               height={60}
             />
           </Icon>
+          <H3>MARKETING AGENCIES</H3>
+          </Icon1Container>
+          <Icon1Container>
           <Icon>
             <Image
               src="/mobile-phone.svg"
@@ -95,24 +117,36 @@ export default function Home() {
               height={60}
             />
           </Icon>
+          <H3>Dropshopping & Ecommerce</H3>
+          </Icon1Container>
         </IconsContainer>
       </WhyUs>
       <Footer />
+      
     </div>
   );
 }
 const Header = styled.section`
   width: 100%;
-  height: 10rem;
+  height: 100%;
   background: var(--primary-color-normal);
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: auto;
+  
 `;
-const LogoContainer = styled.div`
-  width: auto;
+const ImageContainer = styled.div`
+  position: relative;
+  height:500px;
+  width:70%;  
+  margin-bottom: -3rem;
 `;
+const InnerSection=styled.div`
+display: flex;
+width: 100%;
+max-width: var(--page-max-width);
+margin: 0 1rem;
+`
 const TitleAndButton = styled.div`
   display: flex;
   flex-direction: column;
@@ -122,9 +156,10 @@ const Title = styled.h1`
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: normal;
-  font-size: 82px;
-  line-height: 98px;
+  font-size: 40px;
+  line-height: 50px;
   text-transform: uppercase;
+  color: #FFFFFF;
 
   @media ${device.laptop} {
     font-size: 3vw;
@@ -135,20 +170,28 @@ const Title = styled.h1`
     padding-right: 0rem;
   }
 `;
+const SignUpButton = styled(Button)`
+width:70%;
+margin-bottom:-3rem;
+`
 const Latest = styled.section`
-  display: flex;
+  display: flex;    
   flex-direction: column;
   align-items: center;
   margin-top: 3rem;
   width: 100%;
   height: auto;
   max-width: var(--page-max-width);
-  background-color: red;
+  // background-color: red;
+
 `;
 const LatestHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding:0 1rem;
+  max-width: var(--page-max-width);
+  
 `;
 const SectionTitle = styled.h2`
   font-family: Bebas Neue;
@@ -157,29 +200,62 @@ const SectionTitle = styled.h2`
   font-size: 56px;
   line-height: 67px;
   text-transform: capitalize;
+  @media ${device.tablet}{
+    font-size: 28px;
+  }
 `;
 const ArrowsContainer = styled.div`
   display: flex;
 `;
 const CardsContainer = styled.div`
   display: flex;
+  justify-content: space-around;
+  padding: 0 1rem;
+  max-width: var(--page-max-width);
+  width: 100%;
+  padding:0 1rem;
+  flex-wrap:wrap;
 `;
 const CardItem = styled(PostCard)`
-  width: 30%;
+  margin:0 1rem
 `;
+const HiddenContainer = styled.div`
+display:none
+`
+
 const WhyUs = styled.section`
   margin-top: 3rem;
   width: 100%;
+  display: flex;
+  flex-direction:column;
 `;
 const IconsContainer = styled.div`
   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 `;
+const Icon1Container = styled.div`
+  display: flex;
+  flex-direction:column;
+  align-items: center;  
+  width: 25%;
+  @media ${device.tablet}{
+    width: 49%;
+  }
+`
 const Icon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid var(--accent-color-normal);
   padding: 0.5rem;
-  box-shadow: -5px 10px red;
+  box-shadow: -5px 10px  #DBBD82;;
   margin: 1rem;
+  width: 7.5rem;
+  height:7.5rem;
+  
 `;
+const H3 = styled.h3`
+  text-align: center;
+`
+
