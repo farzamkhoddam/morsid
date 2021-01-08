@@ -44,16 +44,14 @@ const MenuContainer = styled.header<{ colorType: MenuColorType }>`
   align-items: center;
   height: var(--header-height-desktop);
   background: var(--primary-color-normal);
-  @media ${device.tablet} {
-    width: 100%;
-  }
+  width: 100%;
 `;
 const Contents = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
   max-width: var(--page-max-width);
-  margin:0 1rem;
+  padding: 0 1rem;
 `;
 
 const DeactiveMenuNavContainer = styled.div<{ colorType: MenuColorType }>`
@@ -73,7 +71,7 @@ const ActiveMenuNavContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  
+
   width: 100vw;
   position: fixed;
   top: 0;

@@ -1,15 +1,12 @@
 import styled from "styled-components";
-import LogoImage from "./logo";
 import Menu from "../components/menu";
-import { device } from "../consts/theme";
 
 export type MenuColorType = "light" | "dark";
 
 const SimplePageHeader: React.FC = () => {
   return (
     <Container>
-      <CustomLogoImage />
-      <Menu colorType="light" />
+      <Menu />
     </Container>
   );
 };
@@ -21,9 +18,4 @@ const Container = styled.header`
   align-items: center;
   height: var(--header-height-desktop);
   width: 100%;
-  @media ${device.tablet} {
-  }
-`;
-const CustomLogoImage = styled(LogoImage)`
-  margin-left: 1rem;
 `;

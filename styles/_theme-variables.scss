@@ -30,7 +30,7 @@ $breakpoint-xl: 1440px;
   --gray-color-xxkight: #f0f0f0;
 
   --page-max-width: 1440px;
-
+  --header-height-desktop: 7rem;
   /////////////////////////
   --home-link-hover-color: var(--primary-color-dark);
   --button-color: #efe2ca;
@@ -40,6 +40,4 @@ $breakpoint-xl: 1440px;
 
   --label-text: rgba(0, 0, 0, 0.5);
   --input-focus-border: var(secondary-color-dark);
-
-  --header-height-desktop: 7rem;
 }

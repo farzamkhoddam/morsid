@@ -23,7 +23,6 @@ const Container = styled.div`
   max-width: 100vw;
   justify-content: center;
   height: 360px;
-  position: absolute;
   bottom: 0;
   background-color: var(--primary-color-normal);
 `;
