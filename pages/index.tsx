@@ -63,13 +63,13 @@ export default function Home() {
             excerpt="This article is about email marketing for marketers"
           />
            {/* @ts-ignore */}
-          <HiddenContainer>
-          <CardItem
+          
+          <SmartCardItem
             slug="slugggggggggggg"
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
-          </HiddenContainer>
+          
         </CardsContainer>
       </Latest>
       <WhyUs>
@@ -219,9 +219,12 @@ const CardsContainer = styled.div`
 const CardItem = styled(PostCard)`
   margin:0 1rem
 `;
-const HiddenContainer = styled.div`
-display:none
+const SmartCardItem = styled(PostCard)`
+  @media ${device.tablet}{
+    display:none
+}  
 `
+
 
 const WhyUs = styled.section`
   margin-top: 3rem;
