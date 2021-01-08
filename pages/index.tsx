@@ -15,19 +15,20 @@ export default function Home() {
       <Menu />
       <Header>
         <InnerSection>
-        <TitleAndButton>
-          <Title>LEARN HOW TO MAKE MONEY ONLINE</Title>
-          <SignUpButton title="SIGN UP NOW" type="glow" />
-        </TitleAndButton>
+          <TitleAndButton>
+            <Title>LEARN HOW TO MAKE MONEY ONLINE</Title>
+            <SignUpButton title="SIGN UP NOW" type="glow" />
+          </TitleAndButton>
 
-        <ImageContainer>
-        
-          <Image src="/home-header.jpg"
-           alt="header" layout="fill"
-            // objectFit="none"
-            quality={100}/>
-            
-        </ImageContainer>
+          <ImageContainer>
+            <Image
+              src="/home-header.jpg"
+              alt="header"
+              layout="fill"
+              // objectFit="none"
+              quality={100}
+            />
+          </ImageContainer>
         </InnerSection>
       </Header>
       <Latest>
@@ -62,67 +63,66 @@ export default function Home() {
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
-           {/* @ts-ignore */}
+          {/* @ts-ignore */}
           <HiddenContainer>
-          <CardItem
-            slug="slugggggggggggg"
-            title="Email Marketing Play Book"
-            excerpt="This article is about email marketing for marketers"
-          />
+            <CardItem
+              slug="slugggggggggggg"
+              title="Email Marketing Play Book"
+              excerpt="This article is about email marketing for marketers"
+            />
           </HiddenContainer>
         </CardsContainer>
       </Latest>
       <WhyUs>
         <SectionTitle>LEVEL UP YOUR SKILL WITH OUR COACH</SectionTitle>
         <IconsContainer>
-         <Icon1Container>
+          <Icon1Container>
             <Icon>
-            <Image
-              src="/digital-marketing.svg"
-              alt="digital-marketing"
-              width={60}
-              height={60}
-            />
+              <Image
+                src="/digital-marketing.svg"
+                alt="digital-marketing"
+                width={60}
+                height={60}
+              />
             </Icon>
-          <H3>FASEBOOK ADS</H3>
-          </Icon1Container>   
-          <Icon1Container>  
-          <Icon>
-            <Image
-              src="/presentation.svg"
-              alt="presentation"
-              width={60}
-              height={60}
-            />
-          </Icon>
-          <H3>EMAIL MARKETING</H3>
+            <H3>FASEBOOK ADS</H3>
           </Icon1Container>
           <Icon1Container>
-          <Icon>
-            <Image
-              src="/new-email.svg"
-              alt="new-email"
-              width={60}
-              height={60}
-            />
-          </Icon>
-          <H3>MARKETING AGENCIES</H3>
+            <Icon>
+              <Image
+                src="/presentation.svg"
+                alt="presentation"
+                width={60}
+                height={60}
+              />
+            </Icon>
+            <H3>EMAIL MARKETING</H3>
           </Icon1Container>
           <Icon1Container>
-          <Icon>
-            <Image
-              src="/mobile-phone.svg"
-              alt="mobile-phone"
-              width={60}
-              height={60}
-            />
-          </Icon>
-          <H3>Dropshopping & Ecommerce</H3>
+            <Icon>
+              <Image
+                src="/new-email.svg"
+                alt="new-email"
+                width={60}
+                height={60}
+              />
+            </Icon>
+            <H3>MARKETING AGENCIES</H3>
+          </Icon1Container>
+          <Icon1Container>
+            <Icon>
+              <Image
+                src="/mobile-phone.svg"
+                alt="mobile-phone"
+                width={60}
+                height={60}
+              />
+            </Icon>
+            <H3>Dropshopping & Ecommerce</H3>
           </Icon1Container>
         </IconsContainer>
       </WhyUs>
       <Footer />
-      
     </div>
   );
 }
@@ -133,20 +133,19 @@ const Header = styled.section`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  
 `;
 const ImageContainer = styled.div`
   position: relative;
-  height:500px;
-  width:70%;  
+  height: 500px;
+  width: 70%;
   margin-bottom: -3rem;
 `;
-const InnerSection=styled.div`
-display: flex;
-width: 100%;
-max-width: var(--page-max-width);
-margin: 0 1rem;
-`
+const InnerSection = styled.div`
+  display: flex;
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 1rem;
+`;
 const TitleAndButton = styled.div`
   display: flex;
   flex-direction: column;
@@ -159,7 +158,7 @@ const Title = styled.h1`
   font-size: 40px;
   line-height: 50px;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: #ffffff;
 
   @media ${device.laptop} {
     font-size: 3vw;
@@ -171,11 +170,11 @@ const Title = styled.h1`
   }
 `;
 const SignUpButton = styled(Button)`
-width:70%;
-margin-bottom:-3rem;
-`
+  width: 70%;
+  margin-bottom: -3rem;
+`;
 const Latest = styled.section`
-  display: flex;    
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 3rem;
@@ -183,15 +182,13 @@ const Latest = styled.section`
   height: auto;
   max-width: var(--page-max-width);
   // background-color: red;
-
 `;
 const LatestHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding:0 1rem;
+  padding: 0 1rem;
   max-width: var(--page-max-width);
-  
 `;
 const SectionTitle = styled.h2`
   font-family: Bebas Neue;
@@ -200,7 +197,7 @@ const SectionTitle = styled.h2`
   font-size: 56px;
   line-height: 67px;
   text-transform: capitalize;
-  @media ${device.tablet}{
+  @media ${device.tablet} {
     font-size: 28px;
   }
 `;
@@ -213,21 +210,21 @@ const CardsContainer = styled.div`
   padding: 0 1rem;
   max-width: var(--page-max-width);
   width: 100%;
-  padding:0 1rem;
-  flex-wrap:wrap;
+  padding: 0 1rem;
+  flex-wrap: wrap;
 `;
 const CardItem = styled(PostCard)`
-  margin:0 1rem
+  margin: 0 1rem;
 `;
 const HiddenContainer = styled.div`
-display:none
-`
+  display: none;
+`;
 
 const WhyUs = styled.section`
   margin-top: 3rem;
   width: 100%;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
 `;
 const IconsContainer = styled.div`
   display: flex;
@@ -236,26 +233,24 @@ const IconsContainer = styled.div`
 `;
 const Icon1Container = styled.div`
   display: flex;
-  flex-direction:column;
-  align-items: center;  
+  flex-direction: column;
+  align-items: center;
   width: 25%;
-  @media ${device.tablet}{
+  @media ${device.tablet} {
     width: 49%;
   }
-`
+`;
 const Icon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid var(--accent-color-normal);
   padding: 0.5rem;
-  box-shadow: -5px 10px  #DBBD82;;
+  box-shadow: -5px 10px #dbbd82;
   margin: 1rem;
   width: 7.5rem;
-  height:7.5rem;
-  
+  height: 7.5rem;
 `;
 const H3 = styled.h3`
   text-align: center;
-`
-
+`;
