@@ -17,7 +17,7 @@ export default function Home() {
       <Header>
         <TitleAndButton>
           <Title>LEARN HOW TO MAKE MONEY ONLINE</Title>
-          <SignUPButton title="SIGN UP NOW" />
+          <Button title="SIGN UP NOW" type="glow" />
         </TitleAndButton>
 
         <LogoContainer>

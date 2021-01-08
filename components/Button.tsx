@@ -8,16 +8,12 @@ interface Props {
   // eslint-disable-next-line @typescript-eslint/ban-types
   clickHandler?: Function;
   childStyle?: CSSObject;
-  type?: "primary" | "secondary";
+  type?: "glow" | "normal";
 }
 const Button: React.FC<Props> = (props) => {
   return (
     <ButtonContainer {...props}>
-      <Container
-        type={props.type}
-        style={props.childStyle}
-        className={props.className}
-      >
+      <Container type={props.type} style={props.childStyle}>
         {props.title}
       </Container>
     </ButtonContainer>
@@ -54,7 +50,7 @@ const ButtonContainer: React.FC<Props> = ({
   );
 };
 
-const Container = styled.div<{ type?: "primary" | "secondary" }>`
+const Container = styled.div<{ type?: "glow" | "normal" }>`
   --padding: 20px;
   --margin: 20px;
   display: inline-flex;
@@ -62,9 +58,9 @@ const Container = styled.div<{ type?: "primary" | "secondary" }>`
   justify-content: center;
   padding: var(--padding) calc(var(--padding) * 2);
   background: ${(props) =>
-    props.type === "secondary"
-      ? "var(--secondary-color-xlight)"
-      : "var(--button-alternate-color)"};
+    props.type === "normal"
+      ? "var(--accent-color-normal"
+      : " radial-gradient(    100% 1655.01% at 0% 6.25%,    #d49844 0%,    #fee7b1 35.61%,    #fee6af 67.08%,    #f6c757 100%  );"};
   color: white;
   border-radius: 1px;
   text-decoration: none;
@@ -76,8 +72,6 @@ const Container = styled.div<{ type?: "primary" | "secondary" }>`
   max-height: 3.5rem;
   width: 100%;
   &:hover {
-    background-color: ${(props) =>
-      props.type === "secondary" ? "white" : "var(--button-alternate-color)"};
     color: var(--secondary-color-light);
   }
   &.-outline {
