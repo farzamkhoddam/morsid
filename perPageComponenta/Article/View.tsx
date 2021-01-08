@@ -77,7 +77,7 @@ const MustBuyContainer = styled.div`
   flex-direction: column;
   padding-bottom: 4rem;
   max-width: var(--page-max-width);
-  margin: 0 auto;
+  margin:0 auto;
 `;
 const TransparentSection = styled.div`
   background: rgba(0, 0, 0, 0)

@@ -61,7 +61,7 @@ const Container = styled.div<{ type?: "glow" | "normal" }>`
     props.type === "normal"
       ? "var(--accent-color-normal"
       : " radial-gradient(    100% 1655.01% at 0% 6.25%,    #d49844 0%,    #fee7b1 35.61%,    #fee6af 67.08%,    #f6c757 100%  );"};
-  color: white;
+  color: #1D3330;
   border-radius: 1px;
   text-decoration: none;
   appearance: none;
@@ -71,9 +71,6 @@ const Container = styled.div<{ type?: "glow" | "normal" }>`
   transition: background 0.3s linear;
   max-height: 3.5rem;
   width: 100%;
-  &:hover {
-    color: var(--secondary-color-light);
-  }
   &.-outline {
     color: var(--primary-color-dark);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);

@@ -14,4 +14,5 @@ const Container = styled.div`
   position: absolute;
   bottom: 0;
   background-color: var(--primary-color-normal);
-`;
+  margin-bottom: -30rem;
+  `;

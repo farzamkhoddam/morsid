@@ -53,7 +53,7 @@ const Contents = styled.div`
   justify-content: space-between;
   width: 100%;
   max-width: var(--page-max-width);
-  margin: 0 1rem;
+  margin:0 1rem;
 `;
 
 const DeactiveMenuNavContainer = styled.div<{ colorType: MenuColorType }>`
@@ -73,7 +73,7 @@ const ActiveMenuNavContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 1rem;
+  
   width: 100vw;
   position: fixed;
   top: 0;
