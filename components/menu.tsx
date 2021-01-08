@@ -14,7 +14,7 @@ const Menu: React.FC<Props> = ({ className, colorType }) => {
     <MenuContainer className={className} colorType={colorType}>
       <Contents>
         <LogoContainer>
-          <Image src="/logo-light.svg" alt="Logo" width={150} height={60} />
+          <Image src="/logo-accent.svg" alt="Logo" width={150} height={60} />
         </LogoContainer>
         {!isActiveMenu ? (
           <DeactiveMenuNavContainer colorType={colorType}>

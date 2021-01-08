@@ -167,15 +167,6 @@ const CardsContainer = styled.div`
 const CardItem = styled(PostCard)`
   width: 30%;
 `;
-const SignUPButton = styled(Button)`
-  background: radial-gradient(
-    100% 1655.01% at 0% 6.25%,
-    #d49844 0%,
-    #fee7b1 35.61%,
-    #fee6af 67.08%,
-    #f6c757 100%
-  );
-`;
 const WhyUs = styled.section`
   margin-top: 3rem;
   width: 100%;
