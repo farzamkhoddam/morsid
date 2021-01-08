@@ -58,9 +58,9 @@ const Container = styled.div<{ type?: "glow" | "normal" }>`
   justify-content: center;
   padding: var(--padding) calc(var(--padding) * 2);
   background: ${(props) =>
-    props.type === "normal"
-      ? "var(--accent-color-normal"
-      : " radial-gradient(    100% 1655.01% at 0% 6.25%,    #d49844 0%,    #fee7b1 35.61%,    #fee6af 67.08%,    #f6c757 100%  );"};
+    props.type === "glow"
+      ? " radial-gradient(    100% 1655.01% at 0% 6.25%,    #d49844 0%,    #fee7b1 35.61%,    #fee6af 67.08%,    #f6c757 100%  );"
+      : "var(--accent-color-normal)"};
   color: white;
   border-radius: 1px;
   text-decoration: none;
