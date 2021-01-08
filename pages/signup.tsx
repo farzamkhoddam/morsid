@@ -48,10 +48,14 @@ export default function Signup() {
     <div className="account-page">
       <Container>
         <Background>
-          <CenterArea></CenterArea>
+          <RightDarkArea />
+          <CenterArea>
+            <DarkArea />
+            <LightArea />
+          </CenterArea>
         </Background>
 
-        {/* <Content>
+        <Content>
           <HomeLinkContainer>
             <MenuRowDarkSide />
             <MenuRowLightSide>
@@ -145,7 +149,7 @@ export default function Signup() {
               </FormWrapper>
             </FormContainer>
           </PicAndForm>
-        </Content>*/}
+        </Content>
       </Container>
     </div>
   );
@@ -165,16 +169,31 @@ const Background = styled.div`
   width: 100%;
   height: 100vh;
 `;
+const RightDarkArea = styled.div`
+  position: fixed;
+  hegith: inherit;
+  background-color: var(--primary-color-normal);
+  height: inherit;
+  width: 15%;
+  left: 0;
+`;
 const CenterArea = styled.div`
-  background-color: red;
+  display: flex;
+  background-color: white;
   width: 100%;
+  max-width: var(--page-max-width);
   height: 100vh;
 `;
-const HalfDarkSide = styled.div`
-  background-color: blue;
-  height: 100vh;
+const DarkArea = styled.div`
+  background-color: var(--primary-color-normal);
   width: 40%;
+  height: inherit;
 `;
+const LightArea = styled.div`
+  width: 60%;
+  height: inherit;
+`;
+
 const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -248,7 +267,7 @@ const H1 = styled.div`
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: normal;
-  font-size: 82px;
+  font-size: 80px;
   line-height: 98px;
   letter-spacing: 0.095em;
   text-transform: uppercase;
@@ -257,7 +276,6 @@ const MenuRowDarkSide = styled.div`
   width: 40%;
   height: inherit;
   color: white;
-  background-color: red;
 `;
 const MenuRowLightSide = styled.div`
   display: flex;
@@ -270,7 +288,7 @@ const MenuRowLightSide = styled.div`
 const DarkSide = styled.div`
   width: 40%;
   color: white;
-  background-color: red;
+
   margin: 0;
   text-align: right;
   padding-right: 0.5rem;
