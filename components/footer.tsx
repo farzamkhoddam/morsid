@@ -7,10 +7,14 @@ const Footer = () => {
   return (
     <Container>
       <Sentense>Do You Interenset?</Sentense>
+      <Part2Container>
       <LogoContainer>
         <Image src="/logo-white.svg" alt="Logo" width={150} height={60} />
       </LogoContainer>
+      <ButtonContainer>
       <Button title="SIGN UP NOW" type="glow" />
+      </ButtonContainer>
+      </Part2Container>
     </Container>
   );
 };
@@ -25,6 +29,7 @@ const Container = styled.div`
   height: 360px;
   bottom: 0;
   background-color: var(--primary-color-normal);
+  flex-wrap: wrap;
 `;
 const Sentense = styled.h3`
   font-family: Bebas Neue;
@@ -36,8 +41,20 @@ const Sentense = styled.h3`
   text-transform: capitalize;
   /* White */
   color: #ffffff;
+  width:100%;
+  margin-left:1rem;
 `;
 const LogoContainer = styled.div`
   width: auto;
   opacity: 0.3;
+  margin-left: 3rem;
 `;
+  const ButtonContainer = styled.div`
+    
+  `
+  const Part2Container = styled.div`
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+    margin: 0 1rem;
+  `

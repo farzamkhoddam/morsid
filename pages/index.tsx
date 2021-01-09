@@ -63,14 +63,14 @@ export default function Home() {
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
-          {/* @ts-ignore */}
-          <HiddenContainer>
-            <CardItem
-              slug="slugggggggggggg"
-              title="Email Marketing Play Book"
-              excerpt="This article is about email marketing for marketers"
-            />
-          </HiddenContainer>
+           {/* @ts-ignore */}
+          
+          <SmartCardItem
+            slug="slugggggggggggg"
+            title="Email Marketing Play Book"
+            excerpt="This article is about email marketing for marketers"
+          />
+          
         </CardsContainer>
       </Latest>
       <WhyUs>
@@ -197,6 +197,7 @@ const SectionTitle = styled.h2`
   font-size: 56px;
   line-height: 67px;
   text-transform: capitalize;
+  margin-left: 1rem;
   @media ${device.tablet} {
     font-size: 28px;
   }
@@ -216,9 +217,12 @@ const CardsContainer = styled.div`
 const CardItem = styled(PostCard)`
   margin: 0 1rem;
 `;
-const HiddenContainer = styled.div`
-  display: none;
-`;
+const SmartCardItem = styled(PostCard)`
+  @media ${device.tablet}{
+    display:none
+}  
+`
+
 
 const WhyUs = styled.section`
   margin-top: 3rem;

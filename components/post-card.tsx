@@ -45,7 +45,7 @@ const PostCard: React.FC<Posts_posts_nodes> = ({
 export default PostCard;
 
 const Container = styled.article`
-  width: 33%;
+  width: 32%;
   margin-right: 8px;
   margin-bottom: 8px;
   background-color: #fff;
