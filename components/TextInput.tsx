@@ -32,7 +32,8 @@ const Input = styled.div<{ hasError?: boolean }>`
     border-color: ${({ hasError }) =>
       hasError ? "red" : "var(--primary-color-normal)"};
   }
-  @media ${device.tablet}{
-   width:100%;
+
+  @media ${device.tablet} {
+    width: 100%;
   }
 `;

@@ -121,19 +121,25 @@ export default function Signup() {
                 >
                   {({ isSubmitting }) => (
                     <Form>
-                      <TextInput name="firstName" placeholder="firstName" />
-                      <TextInput name="lastName" placeholder="Last Name" />
-                      <TextInput
+                      <SignupTextInput
+                        name="firstName"
+                        placeholder="firstName"
+                      />
+                      <SignupTextInput
+                        name="lastName"
+                        placeholder="Last Name"
+                      />
+                      <SignupTextInput
                         name="email"
                         type="email"
                         placeholder="Email Address"
                       />
-                      <TextInput
+                      <SignupTextInput
                         name="password"
                         type="password"
                         placeholder="Password"
                       />
-                      <TextInput
+                      <SignupTextInput
                         name="confirmPassword"
                         type="password"
                         placeholder="Confirm Password"
@@ -246,6 +252,9 @@ const PicAndForm = styled.div`
   max-width: var(--page-max-width);
   padding: 0 1rem;
   height: 60%;
+  @media ${device.laptopL} {
+    height: 66%;
+  }
 `;
 const ImageContainer = styled.div`
   display: flex;
@@ -280,6 +289,13 @@ const FormWrapper = styled.div`
   padding-left: 2rem;
   height: 100%;
 `;
+const SignupTextInput = styled(TextInput)`
+  @media ${device.laptop} {
+    input {
+      height: 3.7rem;
+    }
+  }
+`;
 const H1 = styled.div`
   display: flex;
   width: 100%;
@@ -293,6 +309,12 @@ const H1 = styled.div`
   line-height: 98px;
   letter-spacing: 0.095em;
   text-transform: uppercase;
+  @media ${device.laptopL} {
+    font-size: 5vw;
+    line-height: 7vw;
+    letter-spacing: 0.5vw;
+    margin-bottom: 0.5rem;
+  }
   @media ${device.tablet} {
     height: 23%;
   }
@@ -336,6 +358,7 @@ const LightSide = styled.div`
 `;
 const SigninContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
 const SigninDesc = styled.h5`
   font-family: Montserrat;
@@ -344,6 +367,8 @@ const SigninDesc = styled.h5`
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.06em;
+  margin-right: 0.5rem;
+  color: #4f4f4f;
 `;
 const SigninClickable = styled.span`
   font-family: Montserrat;
