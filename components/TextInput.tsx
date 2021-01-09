@@ -1,6 +1,6 @@
 import { useField } from "formik";
 import styled from "styled-components";
-
+import { device } from "consts/theme";
 interface Props {
   name: string;
   type?: string;
@@ -31,5 +31,8 @@ const Input = styled.div<{ hasError?: boolean }>`
     font-weight: 600;
     border-color: ${({ hasError }) =>
       hasError ? "red" : "var(--primary-color-normal)"};
+  }
+  @media ${device.tablet}{
+   width:100%;
   }
 `;

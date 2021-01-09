@@ -48,7 +48,7 @@ export default function Signup() {
     <div className="account-page">
       <Container>
         <Background>
-          <RightDarkArea />
+          <LeftDarkArea />
           <CenterArea>
             <DarkArea />
             <LightArea />
@@ -121,7 +121,7 @@ export default function Signup() {
                 >
                   {({ isSubmitting }) => (
                     <Form>
-                      <TextInput name="firstName" placeholder="First Name" />
+                      <TextInput name="firstName" placeholder="firstName" />
                       <TextInput name="lastName" placeholder="Last Name" />
                       <TextInput
                         name="email"
@@ -141,8 +141,10 @@ export default function Signup() {
                       <ButtonsContainer>
                         <Button title="SIGN UP" type="normal" />
                       </ButtonsContainer>
+                      <SigninContainer>
                       <SigninDesc>if you have an account, please</SigninDesc>
-                      <SigninClickable>Signd in</SigninClickable>
+                      <SigninClickable>Sign in</SigninClickable>
+                      </SigninContainer>
                     </Form>
                   )}
                 </Formik>
@@ -169,13 +171,18 @@ const Background = styled.div`
   width: 100%;
   height: 100vh;
 `;
-const RightDarkArea = styled.div`
+const LeftDarkArea = styled.div`
   position: fixed;
   hegith: inherit;
   background-color: var(--primary-color-normal);
   height: inherit;
   width: 15%;
   left: 0;
+  max-width: 100vh;
+  @media ${device.tablet}{
+   width:100%;
+   height:15rem;
+  }
 `;
 const CenterArea = styled.div`
   display: flex;
@@ -183,6 +190,9 @@ const CenterArea = styled.div`
   width: 100%;
   max-width: var(--page-max-width);
   height: 100vh;
+  @media ${device.tablet}{
+    display:none;
+  }
 `;
 const DarkArea = styled.div`
   background-color: var(--primary-color-normal);
@@ -220,23 +230,28 @@ const HomeMenu = styled.h5`
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.06em;
+  @media ${device.tablet}{
+    color:white;
+  }
 
   /* Text1 */
 
   color: #161515;
-`;
+  z-index:1;
+`; 
 const PicAndForm = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
   max-width: var(--page-max-width);
   padding: 0 1rem;
+  height:60%;
 `;
 const ImageContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 50%;
-  height: 51rem;
+  height: 100%;
   div {
     height: inherit;
     div {
@@ -246,18 +261,25 @@ const ImageContainer = styled.div`
       }
     }
   }
+  @media ${device.tablet}{
+    display:none;
+  }
 `;
 const FormContainer = styled.div`
   display: flex;
   align-items: center;
   width: 50%;
+  @media ${device.tablet}{
+    width:100%;
+  }
 `;
 const FormWrapper = styled.div`
   max-width: var(--page-max-width);
   margin: 0 auto;
   width: 100%;
   padding-left: 2rem;
-`;
+  height: 100%;
+  `;
 const H1 = styled.div`
   display: flex;
   width: 100%;
@@ -271,6 +293,9 @@ const H1 = styled.div`
   line-height: 98px;
   letter-spacing: 0.095em;
   text-transform: uppercase;
+  @media ${device.tablet}{
+    height: 23%;
+  }
 `;
 const MenuRowDarkSide = styled.div`
   width: 40%;
@@ -284,6 +309,7 @@ const MenuRowLightSide = styled.div`
   width: 60%;
   height: inherit;
   color: var(--primary-color-normal);
+  padding-right:1rem;
 `;
 const DarkSide = styled.div`
   width: 40%;
@@ -296,7 +322,11 @@ const DarkSide = styled.div`
 const DarkSideText = styled.div`
   width: 61%;
   margin-left: auto;
-  text-align: initial;
+  text-align: right;
+  z-index: 2;
+  @media ${device.tablet}{
+    margin-bottom:4rem;
+  }
 `;
 const LightSide = styled.div`
   width: 60%;
@@ -304,7 +334,9 @@ const LightSide = styled.div`
   padding-left: 0.5rem;
   margin: 0;
 `;
-
+const SigninContainer = styled.div`
+  display:flex;
+`
 const SigninDesc = styled.h5`
   font-family: Montserrat;
   font-style: normal;
