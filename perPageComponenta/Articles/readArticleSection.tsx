@@ -1,20 +1,24 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
+import { Posts_posts_nodes as Post } from "../../wpapi";
 
 interface Props {
-  className?: string;
-  date?: string;
+  post: Post;
 }
-const ReadArticleSection: React.FC<Props> = ({ className, date }) => {
+
+const ReadArticleSection = ({ post }: Props) => {
   return (
     <ReadButtonContainer>
-      <H5>Read More</H5>
+      <Link href={`article/${post.slug}`}>
+        <a>Read More</a>
+      </Link>
       <DateContainer>
         <CalenderContainer>
-        <Image src="/calendar.svg" alt="Logo" width={150} height={60} />
+          <Image src="/calendar.svg" alt="Logo" width={150} height={60} />
         </CalenderContainer>
         <TarikhContainer>
-        <h6>{date || "../../.."}</h6>
+          <h6>{post.date || "../../.."}</h6>
         </TarikhContainer>
       </DateContainer>
     </ReadButtonContainer>
@@ -34,15 +38,10 @@ const DateContainer = styled.div`
   display: flex;
 `;
 const CalenderContainer = styled.div`
-  width:3rem;
-  height:1rem;
-  margin-top:1.2rem;
-`
+  width: 3rem;
+  height: 1rem;
+  margin-top: 1.2rem;
+`;
 const TarikhContainer = styled.div`
-margin-right: 1rem;
-`
-const H5 = styled.h5`
-  font-size: 100%;
-  margin-top: auto;
-  color: #DBBD82;
+  margin-right: 1rem;
 `;

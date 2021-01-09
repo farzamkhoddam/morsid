@@ -1,18 +1,14 @@
 import { device } from "../consts/theme";
 import styled from "styled-components";
-import { Posts_posts_nodes } from "../wpapi";
-import Link from "next/link";
+import { Posts_posts_nodes as Post } from "../wpapi";
 import ReadArticleSection from "perPageComponenta/Articles/readArticleSection";
 
-const PostCard: React.FC<Posts_posts_nodes> = ({
-  slug,
-  featuredImage,
-  title,
-  excerpt,
-}) => (
-  <Link href={`article/${slug}`}>
+const PostCard = ({ post }: { post: Post }) => {
+  const { featuredImage, title, excerpt } = post;
+
+  return (
     <Container>
-      <Post>
+      <PostWrapper>
         <GreySide>
           <ImageContainer>
             <Image
@@ -29,32 +25,17 @@ const PostCard: React.FC<Posts_posts_nodes> = ({
             <Title>{title}</Title>
             <Content dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
           </WritesContainer>
-          <ReadArticleSection />
+          <ReadArticleSection post={post} />
         </ContentContainer>
-      </Post>
+      </PostWrapper>
     </Container>
-  </Link>
-);
+  );
+};
 
 export default PostCard;
 
 const Container = styled.article`
-  width: 32%;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  background-color: #fff;
-  transition: box-shadow 0.3s linear;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-
-  @media ${device.tablet} {
-    width: 45%;
-  }
-  @media ${device.mobileL} {
-    width: 100%;
-    align-items: center;
-    background-color: blue;
-  }
+  width: 100%;
 `;
 
 const Image = styled.img`
@@ -95,10 +76,14 @@ const Content = styled.p`
   margin-top: 0;
 `;
 
-const Post = styled.div`
+const PostWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  background-color: #fff;
+  transition: box-shadow 0.3s linear;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.12);
 
   @media ${device.tablet} {
     align-items: center;
@@ -113,4 +98,3 @@ const ImageContainer = styled.div`
   height: 70%;
   margin-left: 3rem;
 `;
-

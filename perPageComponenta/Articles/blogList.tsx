@@ -1,10 +1,10 @@
 import PostCard from "../../components/post-card";
 import styled from "styled-components";
 import { device } from "../../consts/theme";
-import { Posts_posts_nodes } from "../../wpapi";
+import { Posts_posts_nodes as Post } from "../../wpapi";
 
 interface Props {
-  posts: (Posts_posts_nodes | null)[];
+  posts: (Post | null)[];
 }
 
 const BlogList = ({ posts }: Props) => {
@@ -12,7 +12,7 @@ const BlogList = ({ posts }: Props) => {
     <Section className={`home-posts`}>
       <ArticlesContainer>
         {posts.map((post) =>
-          post ? <PostCard key={post.id} {...post} /> : null,
+          post ? <PostCard key={post.id} post={post} /> : null,
         )}
       </ArticlesContainer>
     </Section>
@@ -21,27 +21,27 @@ const BlogList = ({ posts }: Props) => {
 export default BlogList;
 
 const Section = styled.section`
-  margin-top: 80px;
+  margin-top: 50px;
   padding-bottom: 100px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 4rem;
-  padding-bottom: 100px;
   @media ${device.tablet} {
     align-items: center;
     padding-left: 0;
   }
 `;
 const ArticlesContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  padding-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 36px;
   width: 100%;
-`;
-const H2 = styled.h2`
-  margin-left: 1rem;
-  @media ${device.mobileL} {
-    font-size: 2rem;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+  @media ${device.laptop} {
+    grid-template-columns: repeat(2, auto);
+    gap: 24px;
+  }
+  @media ${device.tablet} {
+    grid-template-columns: auto;
   }
 `;
