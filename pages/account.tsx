@@ -8,7 +8,7 @@ import { removeUserData } from "utils/auth-storage";
 import { AccountView } from "perPageComponenta/Account/View";
 
 interface Props {
-  user?: User | null;
+  user?: User;
 }
 
 export default function Account({ user }: Props) {
@@ -32,15 +32,17 @@ export default function Account({ user }: Props) {
 
   return (
     <AccountView
-      firstName={firstName}
-      lastName={lastName}
-      email={email}
+      firstName={firstName || ""}
+      lastName={lastName || ""}
+      email={email || ""}
       handleLogout={handleLogout}
     />
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  req,
+}) => {
   const token = getTokenCookie(req);
 
   if (!token) {
@@ -53,9 +55,18 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     }),
   ];
 
+  if (!data?.data.viewer) {
+    return {
+      redirect: {
+        statusCode: 302,
+        destination: "/login",
+      },
+    };
+  }
+
   return {
     props: {
-      user: data?.data?.viewer || null,
+      user: data.data.viewer,
     },
   };
 };

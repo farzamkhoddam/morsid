@@ -4,7 +4,6 @@ import { Posts_posts_nodes } from "../wpapi";
 import Link from "next/link";
 import ReadArticleSection from "perPageComponenta/Articles/readArticleSection";
 
-
 const PostCard: React.FC<Posts_posts_nodes> = ({
   slug,
   featuredImage,
@@ -12,32 +11,27 @@ const PostCard: React.FC<Posts_posts_nodes> = ({
   excerpt,
 }) => (
   <Link href={`article/${slug}`}>
-    
     <Container>
-    
       <Post>
-      <GreySide>
-        <ImageContainer>
-        <Image
-          src={
-            featuredImage?.node?.mediaItemUrl ||
-            "/article-image-placeholder.png"
-          }
-          alt={title + " - Featured image"}
-        />
-        </ImageContainer>
-       </GreySide>
-          
+        <GreySide>
+          <ImageContainer>
+            <Image
+              src={
+                featuredImage?.node?.mediaItemUrl ||
+                "/article-image-placeholder.png"
+              }
+              alt={title + " - Featured image"}
+            />
+          </ImageContainer>
+        </GreySide>
         <ContentContainer>
           <WritesContainer>
-          <Title>{title}</Title>
-
-          <Content dangerouslySetInnerHTML={{ __html: excerpt }} />
+            <Title>{title}</Title>
+            <Content dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
           </WritesContainer>
           <ReadArticleSection />
         </ContentContainer>
       </Post>
-      
     </Container>
   </Link>
 );
@@ -52,18 +46,15 @@ const Container = styled.article`
   transition: box-shadow 0.3s linear;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.12);
-  
-  
+
   @media ${device.tablet} {
     width: 45%;
-    
   }
   @media ${device.mobileL} {
     width: 100%;
     align-items: center;
-    background-color:  blue;
+    background-color: blue;
   }
-  
 `;
 
 const Image = styled.img`
@@ -81,7 +72,6 @@ const Title = styled.h3`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   margin-bottom: 0;
-  
 `;
 const ContentContainer = styled.div`
   display: flex;
@@ -91,12 +81,10 @@ const ContentContainer = styled.div`
   width: 100%;
   margin-top: 4.5rem;
   color: var(--secondary-color-normal);
-  
-  
 `;
 const WritesContainer = styled.div`
-margin-left: 0.5rem;
-`
+  margin-left: 0.5rem;
+`;
 const Content = styled.p`
   font-size: 110%;
   overflow: hidden;
@@ -105,27 +93,24 @@ const Content = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   margin-top: 0;
-  
-  
 `;
 
 const Post = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  
+
   @media ${device.tablet} {
     align-items: center;
-    
   }
-  
 `;
 const GreySide = styled.div`
-background-color: #DBDDDC;
-`
+  background-color: #dbdddc;
+`;
 const ImageContainer = styled.div`
-margin-bottom: -7rem;
-width: 70%;
-height: 70%;
-margin-left: 3rem;
-`
+  margin-bottom: -7rem;
+  width: 70%;
+  height: 70%;
+  margin-left: 3rem;
+`;
+

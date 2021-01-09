@@ -3,10 +3,10 @@ import Head from "next/head";
 import { seoData } from "../consts/seo";
 
 interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  article?: boolean;
+  title?: string | null;
+  description?: string | null;
+  image?: string | null;
+  article?: boolean | null;
 }
 
 const SEO = ({ title, description, image, article }: Props) => {

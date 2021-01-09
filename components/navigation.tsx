@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, ReactNode } from "react";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import styled from "styled-components";
 import Link from "next/link";
@@ -20,7 +20,7 @@ const MenuItems = [
   },
 ];
 
-const ListLink = (props) => (
+const ListLink = (props: { to: string; children: ReactNode }) => (
   <li>
     <Link href={props.to}>{props.children}</Link>
   </li>
@@ -73,7 +73,7 @@ const Navigation: React.FC<Props> = ({
 
 export default Navigation;
 
-const Container = styled.nav<{ colorType: MenuColorType }>`
+const Container = styled.nav<{ colorType?: MenuColorType }>`
   width: max-content;
 
   ul {

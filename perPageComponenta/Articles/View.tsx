@@ -7,8 +7,8 @@ import Hero from "../../components/Hero";
 import { device } from "../../consts/theme";
 
 interface Props {
-  firstPost: Posts_posts_nodes;
-  restPosts: Posts_posts_nodes[];
+  firstPost?: Posts_posts_nodes | null;
+  restPosts: (Posts_posts_nodes | null)[];
 }
 export const ArticlesView: React.FC<Props> = (props) => {
   return (

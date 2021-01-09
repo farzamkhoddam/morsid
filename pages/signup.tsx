@@ -1,7 +1,7 @@
 import { TextInput } from "components/TextInput";
 import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
-import ky from "ky/umd";
+import axios from "axios";
 import * as yup from "yup";
 import { useState } from "react";
 import styled from "styled-components";
@@ -103,9 +103,7 @@ export default function Signup() {
                   onSubmit={async (values) => {
                     setErrors(null);
                     try {
-                      await ky
-                        .post("/api/users/register", { json: values })
-                        .json();
+                      await axios.post("/api/users/register", { json: values });
                       router.push("/login");
                     } catch (e) {
                       if (
@@ -119,7 +117,7 @@ export default function Signup() {
                     }
                   }}
                 >
-                  {({ isSubmitting }) => (
+                  {() => (
                     <Form>
                       <TextInput name="firstName" placeholder="firstName" />
                       <TextInput name="lastName" placeholder="Last Name" />
