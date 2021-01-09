@@ -176,7 +176,7 @@ const Background = styled.div`
   height: 100vh;
 `;
 const LeftDarkArea = styled.div`
-  position: fixed;
+  position: absolute;
   hegith: inherit;
   background-color: var(--primary-color-normal);
   height: inherit;
@@ -186,6 +186,7 @@ const LeftDarkArea = styled.div`
   @media ${device.tablet} {
     width: 100%;
     height: 15rem;
+    z-index: -1;
   }
 `;
 const CenterArea = styled.div`
@@ -286,11 +287,12 @@ const FormWrapper = styled.div`
   width: 100%;
   padding-left: 2rem;
   height: 100%;
+  
 `;
 const SignupTextInput = styled(TextInput)`
   @media ${device.laptop} {
     input {
-      height: 3.7rem;
+      height: 3.6rem;
     }
   }
 `;
@@ -308,13 +310,15 @@ const H1 = styled.div`
   letter-spacing: 0.095em;
   text-transform: uppercase;
   @media ${device.laptopL} {
-    font-size: 5vw;
-    line-height: 7vw;
+    font-size: 4vw;
+    line-height: 6vw;
     letter-spacing: 0.5vw;
     margin-bottom: 0.5rem;
+    
   }
   @media ${device.tablet} {
-    height: 23%;
+    height: 24%;
+    width:100%;
   }
 `;
 const MenuRowDarkSide = styled.div`
@@ -338,6 +342,10 @@ const DarkSide = styled.div`
   margin: 0;
   text-align: right;
   padding-right: 0.5rem;
+   @media ${device.tablet} {
+    width:100%;
+  }
+  
 `;
 const DarkSideText = styled.div`
   width: 61%;
@@ -346,6 +354,10 @@ const DarkSideText = styled.div`
   z-index: 2;
   @media ${device.tablet} {
     margin-bottom: 4rem;
+    margin-left: 7rem;
+    font-size: 3rem;
+    line-height: 9vw;
+    
   }
 `;
 const LightSide = styled.div`
@@ -353,6 +365,12 @@ const LightSide = styled.div`
   color: var(--primary-color-normal);
   padding-left: 0.5rem;
   margin: 0;
+  @media ${device.tablet}{
+    font-size: 3rem;
+    margin-right:1.5rem;
+    color:white; 
+    line-height:9vw;
+  }
 `;
 const SigninContainer = styled.div`
   display: flex;
@@ -362,21 +380,27 @@ const SigninDesc = styled.h5`
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 2vw;
   line-height: 24px;
   letter-spacing: 0.06em;
   margin-right: 0.5rem;
   color: #4f4f4f;
+  @media ${device.tablet}{
+    font-size: 4vw;
+  }
 `;
 const SigninClickable = styled.span`
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 2vw;
   line-height: 24px;
   letter-spacing: 0.06em;
   color: var(--accent-color-normal);
   border-bottom: solid 1px;
+  @media ${device.tablet}{
+    font-size: 4vw;
+  }
 `;
 
 const ButtonsContainer = styled.div`
@@ -385,5 +409,8 @@ const ButtonsContainer = styled.div`
   width: 100%;
   @media ${device.mobileM} {
     flex-direction: column;
+  }
+  input {
+    height: 3.7rem;
   }
 `;

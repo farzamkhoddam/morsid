@@ -24,7 +24,7 @@ const Input = styled.div<{ hasError?: boolean }>`
     max-width: 100%;
     margin: 8px 0 16px;
     padding: 16px;
-    border: 6px solid;
+    border: 1px solid;
     border-radius: 1px;
     appearance: none;
     font-size: 18px;
