@@ -48,7 +48,7 @@ export default function Signup() {
     <div className="account-page">
       <Container>
         <Background>
-          <RightDarkArea />
+          <LeftDarkArea />
           <CenterArea>
             <DarkArea />
             <LightArea />
@@ -169,13 +169,14 @@ const Background = styled.div`
   width: 100%;
   height: 100vh;
 `;
-const RightDarkArea = styled.div`
+const LeftDarkArea = styled.div`
   position: fixed;
   hegith: inherit;
   background-color: var(--primary-color-normal);
   height: inherit;
   width: 15%;
   left: 0;
+  max-height: 100vh;
 `;
 const CenterArea = styled.div`
   display: flex;
@@ -231,12 +232,13 @@ const PicAndForm = styled.div`
   width: 100%;
   max-width: var(--page-max-width);
   padding: 0 1rem;
+  height: 60%;
 `;
 const ImageContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 50%;
-  height: 51rem;
+  height: 100%;
   div {
     height: inherit;
     div {
@@ -257,6 +259,7 @@ const FormWrapper = styled.div`
   margin: 0 auto;
   width: 100%;
   padding-left: 2rem;
+  height: 100%;
 `;
 const H1 = styled.div`
   display: flex;
