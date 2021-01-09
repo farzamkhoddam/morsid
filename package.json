@@ -9,7 +9,6 @@
     "generate-types": "apollo client:codegen --target typescript --endpoint='http://localhost:8002/graphql' --outputFlat wpapi/graphql/__generated__/types.ts --includes='wpapi/**'"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.6",
     "@reach/router": "^1.3.4",
     "@stripe/stripe-js": "^1.11.0",
     "axios": "^0.21.1",
