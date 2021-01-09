@@ -5,19 +5,19 @@ import { device } from "../../consts/theme";
 import { Posts_posts_nodes } from "../../wpapi";
 
 interface Props {
-  firstPost: Posts_posts_nodes;
-  restPosts: Posts_posts_nodes[];
+  firstPost?: Posts_posts_nodes | null;
+  restPosts: (Posts_posts_nodes | null)[];
 }
 
 const BlogList: React.FC<Props> = ({ firstPost, restPosts }) => {
   return (
     <Section className={`home-posts `}>
       <H2>Featured Article</H2>
-      <FirstArticle {...firstPost} />
+      {firstPost ? <FirstArticle {...firstPost} /> : null}
       <ArticlesContainer>
-        {restPosts.map((post) => (
-          <PostCard key={post.id} {...post} />
-        ))}
+        {restPosts.map((post) =>
+          post ? <PostCard key={post.id} {...post} /> : null,
+        )}
       </ArticlesContainer>
       {/* <Link href="/blog">
         <div className="button">

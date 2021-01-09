@@ -31,7 +31,7 @@ async function fetchQuery<R = any, T = any>({
   clientConfig,
 }: Options<T> & { query: string }) {
   const c = client || defaultClient;
-  let config: AxiosRequestConfig = undefined;
+  let config: AxiosRequestConfig | undefined = undefined;
 
   if (clientConfig) {
     config = await clientConfig();

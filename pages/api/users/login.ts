@@ -23,10 +23,12 @@ export default async function RegisterUser(
         },
       },
     });
-    const token = data.data.login.refreshToken;
-    setTokenCookie(res, token);
-    res.status(200).json({ success: true });
-    return;
+    const token = data?.data?.login?.refreshToken;
+    if (token) {
+      setTokenCookie(res, token);
+      res.status(200).json({ success: true });
+      return;
+    }
   } catch (e) {
     console.log(e);
   }

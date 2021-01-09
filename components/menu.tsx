@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Navigation from "../components/navigation";
-import { device } from "../consts/theme";
 import { useState } from "react";
 import { MenuColorType } from "./simplePageHeader";
 import Image from "next/image";
@@ -38,7 +37,7 @@ const Menu: React.FC<Props> = ({ className, colorType }) => {
 };
 export default Menu;
 
-const MenuContainer = styled.header<{ colorType: MenuColorType }>`
+const MenuContainer = styled.header<{ colorType?: MenuColorType }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +53,7 @@ const Contents = styled.div`
   padding: 0 1rem;
 `;
 
-const DeactiveMenuNavContainer = styled.div<{ colorType: MenuColorType }>`
+const DeactiveMenuNavContainer = styled.div<{ colorType?: MenuColorType }>`
   height: 4rem;
   background:background: var(--primary-color-normal);
   

@@ -1,25 +1,16 @@
 import { GetServerSideProps } from "next";
 
-import { useRouter } from "next/router";
 import { fetchViwer, Viewer_viewer as User } from "wpapi";
 import { getTokenCookie } from "utils/auth-cookie";
-import { useEffect } from "react";
 import { removeUserData } from "utils/auth-storage";
 import { AccountView } from "perPageComponenta/Account/View";
+import { Redirect } from "next";
 
 interface Props {
-  user?: User | null;
+  user?: User;
 }
 
 export default function Account({ user }: Props) {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!user) {
-      router.push("/login");
-    }
-  }, [user, router]);
-
   if (!user) {
     return null;
   }
@@ -32,19 +23,27 @@ export default function Account({ user }: Props) {
 
   return (
     <AccountView
-      firstName={firstName}
-      lastName={lastName}
-      email={email}
+      firstName={firstName || ""}
+      lastName={lastName || ""}
+      email={email || ""}
       handleLogout={handleLogout}
     />
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  req,
+}) => {
   const token = getTokenCookie(req);
+  const redirect: { redirect: Redirect } = {
+    redirect: {
+      statusCode: 302,
+      destination: "/login",
+    },
+  };
 
   if (!token) {
-    return { props: {} };
+    return redirect;
   }
 
   const [{ data }] = [
@@ -53,9 +52,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     }),
   ];
 
+  if (!data?.data.viewer) {
+    return redirect;
+  }
+
   return {
     props: {
-      user: data?.data?.viewer || null,
+      user: data.data.viewer,
     },
   };
 };

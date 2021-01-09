@@ -1,4 +1,5 @@
 import { Post } from "../../wpapi";
+import Error from "next/error";
 import SEO from "../../components/seo";
 import Footer from "../../components/footer";
 import SimplePageHeader from "components/simplePageHeader";
@@ -10,6 +11,10 @@ interface Props {
 }
 
 export function ArticleView({ post }: Props) {
+  if (!post.post) {
+    return <Error statusCode={404} />;
+  }
+
   const {
     post: { title, content, excerpt, date, featuredImage },
     viewer,
@@ -29,12 +34,14 @@ export function ArticleView({ post }: Props) {
         <header className="featured-banner">
           <section className="article-header">
             <h1>{title}</h1>
-            <time style={{ fontSize: "larger" }}>{date.split("T")[0]}</time>
+            <time style={{ fontSize: "larger" }}>
+              {(date || "").split("T")[0]}
+            </time>
           </section>
           {featuredImage ? (
             <ImgContainer>
               <img
-                src={featuredImage?.node?.mediaItemUrl}
+                src={featuredImage?.node?.mediaItemUrl || undefined}
                 alt={title + " - Featured image"}
                 className="featured-image"
               />
@@ -46,7 +53,7 @@ export function ArticleView({ post }: Props) {
 
         <div
           className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: content || excerpt }}
+          dangerouslySetInnerHTML={{ __html: content || excerpt || "" }}
         />
       </article>
       {!viewer ? (
@@ -77,7 +84,7 @@ const MustBuyContainer = styled.div`
   flex-direction: column;
   padding-bottom: 4rem;
   max-width: var(--page-max-width);
-  margin:0 auto;
+  margin: 0 auto;
 `;
 const TransparentSection = styled.div`
   background: rgba(0, 0, 0, 0)

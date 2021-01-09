@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ky from "ky/umd";
+import axios from "axios";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import Button from "./Button";
 
@@ -14,7 +14,7 @@ export function StripeButton({ className }: Props) {
   useEffect(() => {
     (async function () {
       const stripe = await loadStripe(
-        process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY,
+        process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "",
       );
       setStripe(stripe);
     })();
@@ -30,11 +30,9 @@ export function StripeButton({ className }: Props) {
     setIsRedirecting(true);
 
     try {
-      const resp = await ky
-        .post("/api/payments", {})
-        .json<{ sessionId: string }>();
+      const resp = await axios.post("/api/payments", {});
 
-      stripe.redirectToCheckout({ sessionId: resp.sessionId });
+      stripe?.redirectToCheckout({ sessionId: resp.data.sessionId });
     } catch (e) {
       // TODO show a proper alert
       alert("Somthing went wrong...");
@@ -45,7 +43,7 @@ export function StripeButton({ className }: Props) {
     <Button
       title={"Subscribe Now"}
       clickHandler={handleStripe}
-      type="primary"
+      type="glow"
       className={className}
     />
   );

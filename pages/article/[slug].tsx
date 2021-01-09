@@ -5,7 +5,7 @@ import { getTokenCookie } from "utils/auth-cookie";
 import Error from "next/error";
 
 interface Props {
-  post?: Post;
+  post?: Post | null;
 }
 
 export default function Articles({ post }: Props) {
@@ -16,19 +16,15 @@ export default function Articles({ post }: Props) {
   return <ArticleView post={post} />;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
+export const getServerSideProps: GetServerSideProps<Props> = async ({
   req,
   query: { slug },
 }) => {
   const token = getTokenCookie(req);
 
-  const [
-    {
-      data: { data },
-    },
-  ] = [
+  const [{ data }] = [
     await fetchPost({
-      variables: { id: slug.toString(), idType: PostIdType.SLUG },
+      variables: { id: (slug || "").toString(), idType: PostIdType.SLUG },
       clientConfig: token
         ? () => ({ headers: { Authorization: `Bearer ${token}` } })
         : undefined,
@@ -37,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   return {
     props: {
-      post: data || null,
+      post: data?.data || null,
     },
   };
 };

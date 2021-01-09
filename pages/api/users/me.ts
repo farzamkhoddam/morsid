@@ -18,7 +18,7 @@ export default async function RegisterUser(
         clientConfig: () => ({ headers: { Authorization: `Bearer ${token}` } }),
       });
 
-      if (data.data.viewer) {
+      if (data?.data.viewer) {
         res.status(200).json({ success: true, user: data.data.viewer });
         return;
       }

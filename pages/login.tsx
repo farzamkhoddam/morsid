@@ -1,7 +1,7 @@
 import { TextInput } from "components/TextInput";
 import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
-import ky from "ky/umd";
+import axios from "axios";
 import * as yup from "yup";
 import { useState } from "react";
 import styled from "styled-components";
@@ -48,11 +48,11 @@ export default function Login() {
           onSubmit={async (values) => {
             setLoginFailed(false);
             try {
-              await ky.post("/api/users/login", { json: values }).json();
-              const data = await ky
-                .post("/api/users/me")
-                .json<{ user: { subscribed: boolean } }>();
-              setUserData(data.user.subscribed);
+              await axios.post("/api/users/login", { json: values });
+              const res = await axios.post<{ user: { subscribed: boolean } }>(
+                "/api/users/me",
+              );
+              setUserData(res.data.user.subscribed);
               router.push("/account");
             } catch {
               setLoginFailed(true);
@@ -86,7 +86,7 @@ export default function Login() {
                     Login
                   </button>
                 </ResponsiveContainer>
-                <SignButtom title="Sign Up" to={"/signup"} type="secondary" />
+                <SignButtom title="Sign Up" to={"/signup"} type="glow" />
               </ButtonsContainer>
             </Form>
           )}
