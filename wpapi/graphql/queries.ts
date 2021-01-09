@@ -17,6 +17,12 @@ export const POSTS = gql`
           }
         }
       }
+      pageInfo {
+        startCursor
+        endCursor
+        hasNextPage
+        hasPreviousPage
+      }
     }
   }
 `;

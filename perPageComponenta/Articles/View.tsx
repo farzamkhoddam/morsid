@@ -1,11 +1,11 @@
 import SEO from "../../components/seo";
 
 import BlogList from "./blogList";
-import { Posts_posts_nodes } from "../../wpapi";
+import { Posts_posts as Posts } from "../../wpapi";
 import Menu from "../../components/menu";
 
 interface Props {
-  posts: (Posts_posts_nodes | null)[];
+  posts: Posts;
 }
 
 export const ArticlesView = ({ posts }: Props) => {
@@ -13,7 +13,7 @@ export const ArticlesView = ({ posts }: Props) => {
     <div className="page">
       <SEO />
       <Menu />
-      <BlogList posts={posts} />
+      <BlogList posts={posts.nodes || []} />
     </div>
   );
 };

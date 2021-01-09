@@ -51,12 +51,36 @@ export interface Posts_posts_nodes {
   featuredImage: Posts_posts_nodes_featuredImage | null;
 }
 
+export interface Posts_posts_pageInfo {
+  __typename: "WPPageInfo";
+  /**
+   * When paginating backwards, the cursor to continue.
+   */
+  startCursor: string | null;
+  /**
+   * When paginating forwards, the cursor to continue.
+   */
+  endCursor: string | null;
+  /**
+   * When paginating forwards, are there more items?
+   */
+  hasNextPage: boolean;
+  /**
+   * When paginating backwards, are there more items?
+   */
+  hasPreviousPage: boolean;
+}
+
 export interface Posts_posts {
   __typename: "RootQueryToPostConnection";
   /**
    * The nodes of the connection, without the edges
    */
   nodes: (Posts_posts_nodes | null)[] | null;
+  /**
+   * Information about pagination in a connection.
+   */
+  pageInfo: Posts_posts_pageInfo | null;
 }
 
 export interface Posts {
@@ -171,7 +195,7 @@ export interface PostVariables {
 
 export interface RegisterUser_registerUser {
   __typename: "RegisterUserPayload";
-  clientMutationId: string;
+  clientMutationId: string | null;
 }
 
 export interface RegisterUser {
@@ -294,14 +318,14 @@ export enum PostIdType {
  * Input for the createStripeSession mutation
  */
 export interface CreateStripeSessionInput {
-  clientMutationId: string;
+  clientMutationId?: string | null;
 }
 
 /**
  * Input for the login mutation
  */
 export interface LoginInput {
-  clientMutationId: string;
+  clientMutationId?: string | null;
   password: string;
   username: string;
 }
@@ -311,7 +335,7 @@ export interface LoginInput {
  */
 export interface RegisterUserInput {
   aim?: string | null;
-  clientMutationId: string;
+  clientMutationId?: string | null;
   description?: string | null;
   displayName?: string | null;
   email?: string | null;

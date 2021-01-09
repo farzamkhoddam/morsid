@@ -1,7 +1,8 @@
 import { device } from "../consts/theme";
 import styled from "styled-components";
+import NextImage from "next/image";
 import { Posts_posts_nodes as Post } from "../wpapi";
-import ReadArticleSection from "perPageComponenta/Articles/readArticleSection";
+import Link from "next/link";
 
 const PostCard = ({ post }: { post: Post }) => {
   const { featuredImage, title, excerpt } = post;
@@ -22,10 +23,31 @@ const PostCard = ({ post }: { post: Post }) => {
         </GreySide>
         <ContentContainer>
           <WritesContainer>
-            <Title>{title}</Title>
+            <Link href={`/article/${post.slug}`}>
+              <a>
+                <Title>{title}</Title>
+              </a>
+            </Link>
             <Content dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
           </WritesContainer>
-          <ReadArticleSection post={post} />
+          <ReadButtonContainer>
+            <Link href={`/article/${post.slug}`}>
+              <a>Read More</a>
+            </Link>
+            <DateContainer>
+              <CalenderContainer>
+                <NextImage
+                  src="/calendar.svg"
+                  alt="Logo"
+                  width={150}
+                  height={60}
+                />
+              </CalenderContainer>
+              <TarikhContainer>
+                <h6>{post.date || "../../.."}</h6>
+              </TarikhContainer>
+            </DateContainer>
+          </ReadButtonContainer>
         </ContentContainer>
       </PostWrapper>
     </Container>
@@ -90,11 +112,31 @@ const PostWrapper = styled.div`
   }
 `;
 const GreySide = styled.div`
+  display: flex;
+  justify-content: center;
   background-color: #dbdddc;
+  width: 100%;
 `;
 const ImageContainer = styled.div`
   margin-bottom: -7rem;
   width: 70%;
   height: 70%;
-  margin-left: 3rem;
+`;
+const ReadButtonContainer = styled.div`
+  display: flex;
+  margin-top: 2rem;
+  justify-content: space-between;
+  margin-left: 1rem;
+}
+`;
+const DateContainer = styled.div`
+  display: flex;
+`;
+const CalenderContainer = styled.div`
+  width: 3rem;
+  height: 1rem;
+  margin-top: 1.2rem;
+`;
+const TarikhContainer = styled.div`
+  margin-right: 1rem;
 `;

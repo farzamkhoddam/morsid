@@ -7,19 +7,17 @@ interface Props {
   posts?: Posts | null;
 }
 
-const POST_PER_PAGE = 5;
+const POST_PER_PAGE = 6;
 
 export default function Articles({ posts }: Props) {
   if (!posts?.nodes) {
     return <Error statusCode={404} />;
   }
 
-  return <ArticlesView posts={posts.nodes} />;
+  return <ArticlesView posts={posts} />;
 }
 
-export const getStaticProps: GetServerSideProps<Props> = async (context) => {
-  // const page = parseInt((context.params?.page || "1").toString(), 10) || 1;
-
+export const getStaticProps: GetServerSideProps<Props> = async () => {
   const [{ data }] = [
     await fetchPosts({ variables: { first: POST_PER_PAGE } }),
   ];
