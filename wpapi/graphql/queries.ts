@@ -3,8 +3,8 @@ function gql(s: TemplateStringsArray) {
 }
 
 export const POSTS = gql`
-  query Posts($first: Int) {
-    posts(first: $first) {
+  query Posts($after: String, $first: Int) {
+    posts(after: $after, first: $first) {
       nodes {
         id
         slug

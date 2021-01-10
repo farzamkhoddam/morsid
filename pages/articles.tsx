@@ -1,30 +1,60 @@
-import { GetServerSideProps } from "next";
-import { fetchPosts, Posts_posts as Posts } from "../wpapi";
+import { GetStaticProps } from "next";
+import { fetchPosts, Posts_posts as PostsPage } from "../wpapi";
 import { ArticlesView } from "../perPageComponenta/Articles/View";
-import Error from "next/error";
-
-interface Props {
-  posts?: Posts | null;
-}
+import { QueryClient, useInfiniteQuery } from "react-query";
+import { dehydrate } from "react-query/hydration";
+import axios from "axios";
 
 const POST_PER_PAGE = 6;
 
-export default function Articles({ posts }: Props) {
-  if (!posts?.nodes) {
-    return <Error statusCode={404} />;
-  }
+export default function Articles() {
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery<PostsPage>(
+    "posts",
+    async ({ pageParam }) => {
+      const query = new URLSearchParams({
+        first: POST_PER_PAGE.toString(),
+      });
+      if (pageParam) {
+        query.set("after", pageParam);
+      }
+      return (await axios.get(`/api/posts?${query.toString()}`)).data.data
+        .posts;
+    },
+    {
+      staleTime: Infinity,
+      getNextPageParam: (lastPage) => {
+        return lastPage?.pageInfo?.endCursor;
+      },
+    },
+  );
 
-  return <ArticlesView posts={posts} />;
+  return (
+    <ArticlesView
+      hasNextPage={!!hasNextPage}
+      fetchNextPage={fetchNextPage}
+      isFetchingNextPage={isFetchingNextPage}
+      pages={data?.pages || []}
+    />
+  );
 }
 
-export const getStaticProps: GetServerSideProps<Props> = async () => {
-  const [{ data }] = [
-    await fetchPosts({ variables: { first: POST_PER_PAGE } }),
-  ];
+export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchInfiniteQuery("posts", async () => {
+    return (await fetchPosts({ variables: { first: POST_PER_PAGE } })).data
+      ?.data.posts;
+  });
 
   return {
     props: {
-      posts: data?.data.posts,
+      // see https://github.com/tannerlinsley/react-query/issues/1458#issuecomment-747716357
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
+    revalidate: 20,
   };
 };

@@ -1,8 +1,9 @@
-import { device } from "../consts/theme";
 import styled from "styled-components";
 import NextImage from "next/image";
-import { Posts_posts_nodes as Post } from "../wpapi";
 import Link from "next/link";
+import format from "date-fns/format";
+import { device } from "../consts/theme";
+import { Posts_posts_nodes as Post } from "../wpapi";
 
 const PostCard = ({ post }: { post: Post }) => {
   const { featuredImage, title, excerpt } = post;
@@ -35,17 +36,15 @@ const PostCard = ({ post }: { post: Post }) => {
               <a>Read More</a>
             </Link>
             <DateContainer>
-              <CalenderContainer>
-                <NextImage
-                  src="/calendar.svg"
-                  alt="Logo"
-                  width={150}
-                  height={60}
-                />
-              </CalenderContainer>
-              <TarikhContainer>
-                <h6>{post.date || "../../.."}</h6>
-              </TarikhContainer>
+              <NextImage
+                src="/calendar.svg"
+                alt="Logo"
+                width={24}
+                height={24}
+              />
+              <span>
+                {format(new Date(post.date || Date.now()), "LLL, dd, uuuu")}
+              </span>
             </DateContainer>
           </ReadButtonContainer>
         </ContentContainer>
@@ -124,19 +123,11 @@ const ImageContainer = styled.div`
 `;
 const ReadButtonContainer = styled.div`
   display: flex;
-  margin-top: 2rem;
   justify-content: space-between;
-  margin-left: 1rem;
+  margin: 2rem 1rem 1rem;
 }
 `;
 const DateContainer = styled.div`
   display: flex;
-`;
-const CalenderContainer = styled.div`
-  width: 3rem;
-  height: 1rem;
-  margin-top: 1.2rem;
-`;
-const TarikhContainer = styled.div`
-  margin-right: 1rem;
+  align-items: center;
 `;

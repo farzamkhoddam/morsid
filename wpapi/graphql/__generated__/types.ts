@@ -91,6 +91,7 @@ export interface Posts {
 }
 
 export interface PostsVariables {
+  after?: string | null;
   first?: number | null;
 }
 
