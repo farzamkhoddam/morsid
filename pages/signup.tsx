@@ -287,7 +287,6 @@ const FormWrapper = styled.div`
   width: 100%;
   padding-left: 2rem;
   height: 100%;
-  
 `;
 const SignupTextInput = styled(TextInput)`
   @media ${device.laptop} {
@@ -314,11 +313,10 @@ const H1 = styled.div`
     line-height: 6vw;
     letter-spacing: 0.5vw;
     margin-bottom: 0.5rem;
-    
   }
   @media ${device.tablet} {
     height: 24%;
-    width:100%;
+    width: 100%;
   }
 `;
 const MenuRowDarkSide = styled.div`
@@ -342,10 +340,9 @@ const DarkSide = styled.div`
   margin: 0;
   text-align: right;
   padding-right: 0.5rem;
-   @media ${device.tablet} {
-    width:100%;
+  @media ${device.tablet} {
+    width: 100%;
   }
-  
 `;
 const DarkSideText = styled.div`
   width: 61%;
@@ -357,7 +354,6 @@ const DarkSideText = styled.div`
     margin-left: 7rem;
     font-size: 3rem;
     line-height: 9vw;
-    
   }
 `;
 const LightSide = styled.div`
@@ -365,11 +361,11 @@ const LightSide = styled.div`
   color: var(--primary-color-normal);
   padding-left: 0.5rem;
   margin: 0;
-  @media ${device.tablet}{
+  @media ${device.tablet} {
     font-size: 3rem;
-    margin-right:1.5rem;
-    color:white; 
-    line-height:9vw;
+    margin-right: 1.5rem;
+    color: white;
+    line-height: 9vw;
   }
 `;
 const SigninContainer = styled.div`
@@ -385,7 +381,7 @@ const SigninDesc = styled.h5`
   letter-spacing: 0.06em;
   margin-right: 0.5rem;
   color: #4f4f4f;
-  @media ${device.tablet}{
+  @media ${device.tablet} {
     font-size: 4vw;
   }
 `;
@@ -398,7 +394,7 @@ const SigninClickable = styled.span`
   letter-spacing: 0.06em;
   color: var(--accent-color-normal);
   border-bottom: solid 1px;
-  @media ${device.tablet}{
+  @media ${device.tablet} {
     font-size: 4vw;
   }
 `;
