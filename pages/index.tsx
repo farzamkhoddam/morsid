@@ -49,28 +49,28 @@ export default function Home() {
             />
           </ArrowsContainer>
         </LatestHeader>
-        <CardsContainer>
-          {/* @ts-ignore */}
+        {/* <CardsContainer>
+          
           <CardItem
             slug="slugggggggggggg"
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
-          {/* @ts-ignore */}
+          
 
           <CardItem
             slug="slugggggggggggg"
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
-          {/* @ts-ignore */}
+          
 
           <SmartCardItem
             slug="slugggggggggggg"
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
-        </CardsContainer>
+        </CardsContainer> */}
       </Latest>
       <WhyUs>
         <SectionTitle>LEVEL UP YOUR SKILL WITH OUR COACH</SectionTitle>

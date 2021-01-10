@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Button from "components/Button";
 import { device } from "consts/theme";
 import Image from "next/image";
+import { useWindowSize } from "hooks/useWindowSize";
 
 interface FormValues {
   email: string;
@@ -43,7 +44,10 @@ const SignupSchema = yup.object().shape({
 
 export default function Signup() {
   const router = useRouter();
+  const windowSize = useWindowSize();
+  const isSmallDevice = windowSize.width <= 700 ? true : false;
   const [errors, setErrors] = useState<string[] | null>();
+
   return (
     <div className="account-page">
       <Container>
@@ -70,7 +74,21 @@ export default function Signup() {
               <HomeMenu>home</HomeMenu>
             </MenuRowLightSide>
           </HomeLinkContainer>
-
+          {isSmallDevice ? (
+            <H1>
+              <DarkSide>
+                <DarkSideText>{`SIGN UP TO Download`}</DarkSideText>
+                <DarkSideText>{`PLAYBOOKS`}</DarkSideText>
+              </DarkSide>
+            </H1>
+          ) : (
+            <H1>
+              <DarkSide>
+                <DarkSideText>SIGN UP TO &#013; PLAYBOOKS</DarkSideText>
+              </DarkSide>
+              <LightSide>DOWNLOAD</LightSide>
+            </H1>
+          )}
           <H1>
             <DarkSide>
               <DarkSideText>SIGN UP TO &#013; PLAYBOOKS</DarkSideText>
@@ -180,7 +198,7 @@ const LeftDarkArea = styled.div`
   hegith: inherit;
   background-color: var(--primary-color-normal);
   height: inherit;
-  width: 15%;
+  width: 16%;
   left: 0;
   max-width: 100vh;
   @media ${device.tablet} {
@@ -252,7 +270,7 @@ const PicAndForm = styled.div`
   padding: 0 1rem;
   height: 60%;
   @media ${device.laptopL} {
-    height: 66%;
+    height: 62%;
   }
 `;
 const ImageContainer = styled.div`
@@ -291,7 +309,7 @@ const FormWrapper = styled.div`
 const SignupTextInput = styled(TextInput)`
   @media ${device.laptop} {
     input {
-      height: 3.6rem;
+      height: 3rem;
     }
   }
 `;
@@ -309,10 +327,18 @@ const H1 = styled.div`
   letter-spacing: 0.095em;
   text-transform: uppercase;
   @media ${device.laptopL} {
-    font-size: 4vw;
-    line-height: 6vw;
-    letter-spacing: 0.5vw;
-    margin-bottom: 0.5rem;
+    font-size: 4rem;
+    line-height: 5rem;
+    letter-spacing: 0.25rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (max-width: 1360px) {
+    font-size: 3rem;
+    line-height: 4rem;
+    letter-spacing: 0.2rem;
+  }
+  @media ${device.laptop} {
+    margin-bottom: 1.5rem;
   }
   @media ${device.tablet} {
     height: 24%;
@@ -347,9 +373,20 @@ const DarkSide = styled.div`
 const DarkSideText = styled.div`
   width: 61%;
   margin-left: auto;
-  text-align: right;
+  text-align: left;
   z-index: 2;
+  @media ${device.laptopL} {
+    width: 43%;
+  }
+  @media (max-width: 1360px) {
+    width: 34%;
+  }
+  @media ${device.laptop} {
+    width: 46%;
+  }
+
   @media ${device.tablet} {
+    width: 31%;
     margin-bottom: 4rem;
     margin-left: 7rem;
     font-size: 3rem;
@@ -371,38 +408,38 @@ const LightSide = styled.div`
 const SigninContainer = styled.div`
   display: flex;
   align-items: center;
-`;
-const SigninDesc = styled.h5`
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
-  font-size: 2vw;
+  font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.06em;
   margin-right: 0.5rem;
   color: #4f4f4f;
+  margin-top: 2rem;
+  @media ${device.laptop} {
+    font-size: 16px;
+    letter-spacing: 0.03em;
+  }
   @media ${device.tablet} {
     font-size: 4vw;
   }
 `;
+const SigninDesc = styled.div`
+  margin-right: 0.5rem;
+`;
 const SigninClickable = styled.span`
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 2vw;
-  line-height: 24px;
-  letter-spacing: 0.06em;
   color: var(--accent-color-normal);
   border-bottom: solid 1px;
-  @media ${device.tablet} {
-    font-size: 4vw;
-  }
 `;
 
 const ButtonsContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   width: 100%;
+  @media ${device.laptop} {
+    height: 3rem;
+  }
   @media ${device.mobileM} {
     flex-direction: column;
   }
