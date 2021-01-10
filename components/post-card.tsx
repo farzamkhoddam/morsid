@@ -1,18 +1,15 @@
 import { device } from "../consts/theme";
 import styled from "styled-components";
-import { Posts_posts_nodes } from "../wpapi";
+import NextImage from "next/image";
+import { Posts_posts_nodes as Post } from "../wpapi";
 import Link from "next/link";
-import ReadArticleSection from "perPageComponenta/Articles/readArticleSection";
 
-const PostCard: React.FC<Posts_posts_nodes> = ({
-  slug,
-  featuredImage,
-  title,
-  excerpt,
-}) => (
-  <Link href={`article/${slug}`}>
+const PostCard = ({ post }: { post: Post }) => {
+  const { featuredImage, title, excerpt } = post;
+
+  return (
     <Container>
-      <Post>
+      <PostWrapper>
         <GreySide>
           <ImageContainer>
             <Image
@@ -26,35 +23,41 @@ const PostCard: React.FC<Posts_posts_nodes> = ({
         </GreySide>
         <ContentContainer>
           <WritesContainer>
-            <Title>{title}</Title>
+            <Link href={`/article/${post.slug}`}>
+              <a>
+                <Title>{title}</Title>
+              </a>
+            </Link>
             <Content dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
           </WritesContainer>
-          <ReadArticleSection />
+          <ReadButtonContainer>
+            <Link href={`/article/${post.slug}`}>
+              <a>Read More</a>
+            </Link>
+            <DateContainer>
+              <CalenderContainer>
+                <NextImage
+                  src="/calendar.svg"
+                  alt="Logo"
+                  width={150}
+                  height={60}
+                />
+              </CalenderContainer>
+              <TarikhContainer>
+                <h6>{post.date || "../../.."}</h6>
+              </TarikhContainer>
+            </DateContainer>
+          </ReadButtonContainer>
         </ContentContainer>
-      </Post>
+      </PostWrapper>
     </Container>
-  </Link>
-);
+  );
+};
 
 export default PostCard;
 
 const Container = styled.article`
-  width: 32%;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  background-color: #fff;
-  transition: box-shadow 0.3s linear;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-
-  @media ${device.tablet} {
-    width: 45%;
-  }
-  @media ${device.mobileL} {
-    width: 100%;
-    align-items: center;
-    background-color: blue;
-  }
+  width: 100%;
 `;
 
 const Image = styled.img`
@@ -95,22 +98,45 @@ const Content = styled.p`
   margin-top: 0;
 `;
 
-const Post = styled.div`
+const PostWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  background-color: #fff;
+  transition: box-shadow 0.3s linear;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.12);
 
   @media ${device.tablet} {
     align-items: center;
   }
 `;
 const GreySide = styled.div`
+  display: flex;
+  justify-content: center;
   background-color: #dbdddc;
+  width: 100%;
 `;
 const ImageContainer = styled.div`
   margin-bottom: -7rem;
   width: 70%;
   height: 70%;
-  margin-left: 3rem;
 `;
-
+const ReadButtonContainer = styled.div`
+  display: flex;
+  margin-top: 2rem;
+  justify-content: space-between;
+  margin-left: 1rem;
+}
+`;
+const DateContainer = styled.div`
+  display: flex;
+`;
+const CalenderContainer = styled.div`
+  width: 3rem;
+  height: 1rem;
+  margin-top: 1.2rem;
+`;
+const TarikhContainer = styled.div`
+  margin-right: 1rem;
+`;

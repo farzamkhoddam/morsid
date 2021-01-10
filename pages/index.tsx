@@ -63,14 +63,13 @@ export default function Home() {
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
-           {/* @ts-ignore */}
-          
+          {/* @ts-ignore */}
+
           <SmartCardItem
             slug="slugggggggggggg"
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
-          
         </CardsContainer>
       </Latest>
       <WhyUs>
@@ -218,11 +217,10 @@ const CardItem = styled(PostCard)`
   margin: 0 1rem;
 `;
 const SmartCardItem = styled(PostCard)`
-  @media ${device.tablet}{
-    display:none
-}  
-`
-
+  @media ${device.tablet} {
+    display: none;
+  }
+`;
 
 const WhyUs = styled.section`
   margin-top: 3rem;
