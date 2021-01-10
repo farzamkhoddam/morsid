@@ -27,8 +27,8 @@ export default function Articles() {
     },
     {
       staleTime: Infinity,
-      getNextPageParam: (lastPage) => {
-        return lastPage?.pageInfo?.endCursor;
+      getNextPageParam: ({ pageInfo }) => {
+        return pageInfo?.hasNextPage && pageInfo.endCursor;
       },
     },
   );
