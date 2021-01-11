@@ -125,6 +125,7 @@ export default function Signup() {
                 >
                   {() => (
                     <Form>
+                      
                       <SignupTextInput
                         name="firstName"
                         placeholder="firstName"
@@ -155,6 +156,7 @@ export default function Signup() {
                         <SigninDesc>if you have an account, please</SigninDesc>
                         <SigninClickable>Sign in</SigninClickable>
                       </SigninContainer>
+                      
                     </Form>
                   )}
                 </Formik>
@@ -191,9 +193,12 @@ const HomeButton = styled.div`
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.06em;
-
+  z-index: 2;
   /* Text1 */
   color: var(--secondary-color-normal);
+  @media ${device.tablet}{
+    color:white;
+  }
 `;
 const HomeText = styled.div`
   margin-right: 0.4rem;
@@ -247,11 +252,17 @@ const ImageContainer = styled.div`
       }
     }
   }
+  @media ${device.tablet}{
+    display: none;
+  }
 `;
 const FormContainer = styled.div`
   display: flex;
   align-items: center;
   width: 50%;
+  @media ${device.tablet}{
+    width: 100%;
+  }
 `;
 const FormWrapper = styled.div`
   max-width: var(--page-max-width);
@@ -263,7 +274,23 @@ const FormWrapper = styled.div`
   @media ${device.laptop} {
     padding-top: 0rem;
   }
+  @media ${device.mobileL} {
+    display:flex;
+    justify-content:center;
+    margin-right:0;
+    padding:0;
+  }
+  form {
+    @media ${device.mobileL}{
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    }
+    
+  }
 `;
+
 const SignupTextInput = styled(TextInput)`
   @media ${device.laptop} {
     input {
@@ -282,6 +309,13 @@ const LeftDarkSection = styled.div`
   }
   @media ${device.laptop} {
     padding-left: 14%;
+  }
+  @media ${device.tablet} {
+    position: absolute;
+    top:0;
+    height:25%;
+    width:100%;
+    padding-left:0
   }
 `;
 const RightLightSection = styled.div`
@@ -307,6 +341,17 @@ const Title = styled.div`
     line-height: 60px;
     letter-spacing: 0.05em;
   }
+  @media ${device.tablet} {
+   display: flex;
+   justify-content: center;
+   
+}
+  @media ${device.mobileL}{
+    font-size:2.5rem;
+  }
+  @media ${device.mobileM}{
+    font-size:2rem;
+  }
 `;
 
 const DarkSide = styled.div`
@@ -318,12 +363,20 @@ const DarkSideText = styled.div`
   margin-left: auto;
   text-align: left;
   z-index: 2;
+  @media ${device.tablet}{
+    display: flex;
+    justify-content: center;
+    
+  }
 `;
 const LightSide = styled.div`
   width: 60%;
   color: var(--primary-color-normal);
   padding-left: 0.5rem;
   margin: 0;
+  @media ${device.tablet}{
+    display:none;
+  }
 `;
 const SigninContainer = styled.div`
   display: flex;
@@ -342,7 +395,10 @@ const SigninContainer = styled.div`
     letter-spacing: 0.03em;
   }
   @media ${device.tablet} {
-    font-size: 4vw;
+    font-size: 3.3vw;
+  }
+  @media ${device.mobileL} {
+    font-size: 3.8vw;
   }
 `;
 const SigninDesc = styled.div`
@@ -358,11 +414,7 @@ const SignUpButton = styled(Button)`
   justify-content: flex-start;
   width: 264px;
   height: 64px;
-
-  @media ${device.mobileM} {
-    flex-direction: column;
+  @media ${device.mobileL}{
+    width:100%;
   }
-  input {
-    height: 3.7rem;
-  }
-`;
+  `;
