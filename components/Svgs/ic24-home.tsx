@@ -1,11 +1,18 @@
 import React from "react";
 
-const HomeIcon = () => (
+interface Props {
+  width?: string;
+  height?: string;
+  viewBox?: string;
+  fill?: string;
+}
+
+const HomeIcon: React.FC<Props> = ({ width, height, viewBox, fill }) => (
   <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
+    width={width || "24"}
+    height={height || "24"}
+    viewBox={viewBox || "0 0 24 24"}
+    fill={fill || "none"}
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
