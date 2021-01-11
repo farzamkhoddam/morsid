@@ -9,6 +9,7 @@ import Button from "components/Button";
 import { device } from "consts/theme";
 import Image from "next/image";
 import { useWindowSize } from "hooks/useWindowSize";
+import HomeIcon from "../public/ic24-home";
 
 interface FormValues {
   email: string;
@@ -51,44 +52,37 @@ export default function Signup() {
   return (
     <div className="account-page">
       <Container>
+        <HomeButton>
+          <HomeIcon />
+          <HomeText>home</HomeText>
+        </HomeButton>
         <Background>
-          <LeftDarkArea />
-          <CenterArea>
-            <DarkArea />
-            <LightArea />
-          </CenterArea>
+          <LeftDarkSection>
+            {isSmallDevice ? (
+              <Title>
+                <DarkSide>
+                  <DarkSideText>{`SIGN UP TO Download`}</DarkSideText>
+
+                  <DarkSideText>{`PLAYBOOKS`}</DarkSideText>
+                </DarkSide>
+              </Title>
+            ) : (
+              <Title>
+                <DarkSide>
+                  <DarkSideText>{`SIGN UP TO`}</DarkSideText>
+                  <DarkSideText>{`PLAYBOOKS`}</DarkSideText>
+                </DarkSide>
+              </Title>
+            )}
+          </LeftDarkSection>
+          <RightLightSection>
+            <LightSide>
+              <Title>DOWNLOAD</Title>
+            </LightSide>
+          </RightLightSection>
         </Background>
 
         <Content>
-          <HomeLinkContainer>
-            <MenuRowDarkSide />
-            <MenuRowLightSide>
-              <MenuContainer>
-                <Image
-                  src="/ic24-home.svg"
-                  alt="home icon"
-                  width={24}
-                  height={24}
-                />
-              </MenuContainer>
-              <HomeMenu>home</HomeMenu>
-            </MenuRowLightSide>
-          </HomeLinkContainer>
-          {isSmallDevice ? (
-            <H1>
-              <DarkSide>
-                <DarkSideText>{`SIGN UP TO Download`}</DarkSideText>
-                <DarkSideText>{`PLAYBOOKS`}</DarkSideText>
-              </DarkSide>
-            </H1>
-          ) : (
-            <H1>
-              <DarkSide>
-                <DarkSideText>SIGN UP TO &#013; PLAYBOOKS</DarkSideText>
-              </DarkSide>
-              <LightSide>DOWNLOAD</LightSide>
-            </H1>
-          )}
           <PicAndForm>
             <ImageContainer>
               <Image
@@ -173,98 +167,67 @@ export default function Signup() {
   );
 }
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
-  flex-direction: column;
   width: 100%;
   max-width: var(--max-width-page);
+  height: 100vh;
 `;
 const Background = styled.div`
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
   width: 100%;
   height: 100vh;
 `;
-const LeftDarkArea = styled.div`
-  position: absolute;
-  hegith: inherit;
-  background-color: var(--primary-color-normal);
-  height: inherit;
-  width: 16%;
-  left: 0;
-  max-width: 100vh;
-  @media ${device.tablet} {
-    width: 100%;
-    height: 15rem;
-    z-index: -1;
-  }
-`;
-const CenterArea = styled.div`
-  display: flex;
-  background-color: white;
-  width: 100%;
-  max-width: var(--page-max-width);
-  height: 100vh;
-  @media ${device.tablet} {
-    display: none;
-  }
-`;
-const DarkArea = styled.div`
-  background-color: var(--primary-color-normal);
-  width: 40%;
-  height: inherit;
-`;
-const LightArea = styled.div`
-  width: 60%;
-  height: inherit;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  margin-top: -100vh;
-`;
-const HomeLinkContainer = styled.div`
+const HomeButton = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  max-width: var(--page-max-width);
+  padding-right: 1rem;
   height: var(--header-height-desktop);
-`;
-const MenuContainer = styled.div`
-  width: 24px;
-`;
-const HomeMenu = styled.h5`
+  position: fixed;
+  right: 8px;
+  top: 0;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.06em;
-  @media ${device.tablet} {
-    color: white;
-  }
 
   /* Text1 */
-
-  color: #161515;
-  z-index: 1;
+  color: var(--secondary-color-normal);
 `;
+const HomeText = styled.div`
+  margin-right: 0.4rem;
+`;
+
+const Content = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: inherit;
+  z-index: 2;
+`;
+
 const PicAndForm = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
   max-width: var(--page-max-width);
   padding: 0 1rem;
-  height: 60%;
+  height: 65%;
+  margin-top: 19rem;
+  width: inherit;
+  height: 57%;
   @media ${device.laptopL} {
-    height: 62%;
+    margin-top: 15rem;
+    width: inherit;
+    height: 65%;
+  }
+
+  @media ${device.laptop} {
+    margin-top: 14rem;
   }
 `;
 const ImageContainer = styled.div`
@@ -272,6 +235,9 @@ const ImageContainer = styled.div`
   justify-content: flex-end;
   width: 50%;
   height: 100%;
+  @media ${device.laptop} {
+    width: 43%;
+  }
   div {
     height: inherit;
     div {
@@ -281,17 +247,11 @@ const ImageContainer = styled.div`
       }
     }
   }
-  @media ${device.tablet} {
-    display: none;
-  }
 `;
 const FormContainer = styled.div`
   display: flex;
   align-items: center;
   width: 50%;
-  @media ${device.tablet} {
-    width: 100%;
-  }
 `;
 const FormWrapper = styled.div`
   max-width: var(--page-max-width);
@@ -299,18 +259,39 @@ const FormWrapper = styled.div`
   width: 100%;
   padding-left: 2rem;
   height: 100%;
+  padding-top: 1rem;
+  @media ${device.laptop} {
+    padding-top: 0rem;
+  }
 `;
 const SignupTextInput = styled(TextInput)`
   @media ${device.laptop} {
     input {
-      height: 3rem;
     }
   }
 `;
-const H1 = styled.div`
+const LeftDarkSection = styled.div`
+  width: auto;
+  background-color: var(--primary-color-normal);
+  height: inherit;
+  padding-left: 20%;
+  padding-top: 7rem;
+  z-index: 1;
+  @media ${device.laptopL} {
+    padding-left: 27%;
+  }
+  @media ${device.laptop} {
+    padding-left: 14%;
+  }
+`;
+const RightLightSection = styled.div`
+  width: auto;
+  height: inherit;
+  padding-top: 7rem;
+  z-index: 1;
+`;
+const Title = styled.div`
   display: flex;
-  width: 100%;
-  max-width: var(--page-max-width);
   margin: 0 1rem;
   text-align: left;
   font-family: Bebas Neue;
@@ -320,87 +301,29 @@ const H1 = styled.div`
   line-height: 98px;
   letter-spacing: 0.095em;
   text-transform: uppercase;
-  @media ${device.laptopL} {
-    font-size: 4.3vw;
-    line-height: 5rem;
-    letter-spacing: 0.25rem;
-    margin-bottom: 2.5rem;
-  }
-  @media (max-width: 1360px) {
-    font-size: 3.4vw;
-    line-height: 4rem;
-    letter-spacing: 0.2rem;
-    margin-bottom: 1.5rem;
-    margin-top: -2rem;
-  }
-  @media ${device.laptop} {
-    font-size: 4.6vw;
-    margin-bottom: 1.5rem;
-  }
-  @media (max-width: 800px) {
-    height: 24%;
-    width: 100%;
-  }
-`;
-const MenuRowDarkSide = styled.div`
-  width: 40%;
-  height: inherit;
-  color: white;
-`;
-const MenuRowLightSide = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 60%;
-  height: inherit;
-  color: var(--primary-color-normal);
-  padding-right: 1rem;
-`;
-const DarkSide = styled.div`
-  width: 40%;
-  color: white;
 
-  margin: 0;
-  text-align: right;
-  padding-right: 0.5rem;
-  @media ${device.tablet} {
-    width: 100%;
+  @media ${device.laptopL} {
+    font-size: 50px;
+    line-height: 60px;
+    letter-spacing: 0.05em;
   }
+`;
+
+const DarkSide = styled.div`
+  color: white;
+  margin: 0;
 `;
 const DarkSideText = styled.div`
-  width: 61%;
+  width: auto;
   margin-left: auto;
   text-align: left;
   z-index: 2;
-  @media ${device.laptopL} {
-    width: 43%;
-  }
-  @media (max-width: 1360px) {
-    width: 34%;
-  }
-  @media ${device.laptop} {
-    width: 46%;
-  }
-
-  @media ${device.tablet} {
-    width: 31%;
-    margin-bottom: 4rem;
-    margin-left: 7rem;
-    font-size: 3rem;
-    line-height: 9vw;
-  }
 `;
 const LightSide = styled.div`
   width: 60%;
   color: var(--primary-color-normal);
   padding-left: 0.5rem;
   margin: 0;
-  @media ${device.tablet} {
-    font-size: 3rem;
-    margin-right: 1.5rem;
-    color: white;
-    line-height: 9vw;
-  }
 `;
 const SigninContainer = styled.div`
   display: flex;
@@ -435,9 +358,7 @@ const SignUpButton = styled(Button)`
   justify-content: flex-start;
   width: 264px;
   height: 64px;
-  @media ${device.laptop} {
-    height: 3rem;
-  }
+
   @media ${device.mobileM} {
     flex-direction: column;
   }

@@ -23,7 +23,7 @@ $breakpoint-xl: 1440px;
 
   --accent-color-normal: #dbbd82;
 
-  --gray-color-dark: var(--secondary-color-normal);
+  --gray-color-dark: var(-- --primary-color-normal);
   --gray-color-normal: #4f4f4f;
   --gray-color-light: #828282;
   --gray-color-xlight: #dbdddc;
@@ -39,5 +39,5 @@ $breakpoint-xl: 1440px;
   --text-color-meta: rgba(0, 0, 0, 0.5);
 
   --label-text: rgba(0, 0, 0, 0.5);
-  --input-focus-border: var(secondary-color-dark);
+  --input-focus-border: var(--primary-color-normal);
 }

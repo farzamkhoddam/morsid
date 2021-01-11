@@ -66,7 +66,7 @@ const DeactiveMenuNavContainer = styled.div<{ colorType?: MenuColorType }>`
 `;
 const ActiveMenuNavContainer = styled.div`
   height: 4rem;
-  background: var(--secondary-color-dark);
+  background: var(--primary-color-normal);
   display: flex;
   justify-content: flex-end;
   align-items: center;

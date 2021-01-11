@@ -200,7 +200,7 @@ const BottomLine = styled.div`
 const BottomH3 = styled.h3`
   margin-bottom: -0.8rem;
   font-size: 1.5vw;
-  color: var(--secondary-color-dark);
+  color: var(--primary-color-normal);
   @media ${device.laptop} {
     font-size: 1.4vw;
   }

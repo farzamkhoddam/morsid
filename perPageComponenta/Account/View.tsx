@@ -55,7 +55,7 @@ const Section = styled.article`
   align-items: center;
 `;
 const H1 = styled.h1`
-  color: var(--secondary-color-normal);
+  color: var(--primary-color-normal);
   margin-bottom: 2rem;
   font-size: 270%;
   text-align: center;

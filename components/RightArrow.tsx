@@ -20,7 +20,7 @@ const Arrow = styled.div`
 
 const Line = styled.div`
   width: 2.5rem;
-  background: var(--secondary-color-dark);
+  background: var(--primary-color-normal);
   height: 1px;
   z-index: 1;
 `;
@@ -28,7 +28,7 @@ const Point = styled.div`
   width: 0;
   height: 0;
   border-top: 4px solid transparent;
-  border-left: 8px solid var(--secondary-color-dark);
+  border-left: 8px solid var(--primary-color-normal);
   border-bottom: 4px solid transparent;
   z-index: 1;
 `;

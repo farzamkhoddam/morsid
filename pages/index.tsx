@@ -126,38 +126,41 @@ export default function Home() {
   );
 }
 const Header = styled.section`
-  width: 100%;
-  height: 100%;
-  background: var(--primary-color-normal);
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
+  height: 32rem;
+  background: var(--primary-color-normal);
 `;
 const ImageContainer = styled.div`
   position: relative;
-  height: 500px;
+  height: 40rem;
   width: 70%;
-  margin-bottom: -3rem;
 `;
 const InnerSection = styled.div`
   display: flex;
   width: 100%;
   max-width: var(--page-max-width);
   margin: 0 1rem;
+  margin-top: 5rem;
+  height: 29rem;
 `;
 const TitleAndButton = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 30%;
 `;
 const Title = styled.h1`
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: normal;
-  font-size: 40px;
-  line-height: 50px;
+  font-size: 82px;
+  line-height: 98px;
   text-transform: uppercase;
   color: #ffffff;
+  margin-top: 0;
 
   @media ${device.laptop} {
     font-size: 3vw;
@@ -169,18 +172,22 @@ const Title = styled.h1`
   }
 `;
 const SignUpButton = styled(Button)`
-  width: 70%;
-  margin-bottom: -3rem;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  width: 358px;
+  height: 88px;
 `;
 const Latest = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 10rem;
   width: 100%;
   height: auto;
   max-width: var(--page-max-width);
-  // background-color: red;
 `;
 const LatestHeader = styled.div`
   display: flex;

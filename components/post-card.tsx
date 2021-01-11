@@ -82,7 +82,7 @@ const ContentContainer = styled.div`
   flex-grow: 1;
   width: 100%;
   margin-top: 4.5rem;
-  color: var(--secondary-color-normal);
+  color: var(--primary-color-normal);
 `;
 const WritesContainer = styled.div`
   margin-left: 0.5rem;

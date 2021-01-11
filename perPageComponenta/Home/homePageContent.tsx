@@ -155,7 +155,7 @@ const RightSection = styled.div`
   }
 `;
 const H2 = styled.h2`
-  color: var(--secondary-color-normal);
+  color: var(--primary-color-normal);
   font-size: 155%;
   line-height: initial;
 `;
@@ -176,7 +176,7 @@ const H4Dark = styled(H4)`
   margin-top: 0rem;
   margin-bottom: 0rem;
   color: black;
-  color: var(--secondary-color-dark);
+  color: var(--primary-color-normal);
   text-align: center;
   @media ${device.laptop} {
     font-size: 80%;

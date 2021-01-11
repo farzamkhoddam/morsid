@@ -88,7 +88,7 @@ const Container = styled.nav<{ colorType?: MenuColorType }>`
   a {
     color: ${(props) =>
       props.colorType === "light"
-        ? "var(--secondary-color-dark)"
+        ? "var(--primary-color-normal)"
         : "rgba(255, 255, 255, 0.6)"};
     text-decoration: none;
     &:hover {
@@ -108,7 +108,7 @@ const Container = styled.nav<{ colorType?: MenuColorType }>`
     border: none;
     color: ${(props) =>
       props.colorType === "light"
-        ? "var(--secondary-color-dark)"
+        ? "var(--primary-color-normal)"
         : "rgba(255, 255, 255, 0.6)"};
     padding: 0;
     cursor: pointer;
@@ -144,8 +144,8 @@ const Container = styled.nav<{ colorType?: MenuColorType }>`
       border-radius: 0 0 12px 12px;
       overflow: hidden;
       text-align: center;
-      background-color: var(--secondary-color-dark);
-      height: 100%;
+      background-color: var(--primary-color-normal);
+      height: fit-content%;
     }
     ul li {
       display: block;
@@ -154,9 +154,10 @@ const Container = styled.nav<{ colorType?: MenuColorType }>`
     a {
       display: block;
       padding: 20px;
+      text-align: left;
     }
     a:hover {
-      background-color: var(--secondary-color-normal);
+      background-color: var(--primary-color-normal);
     }
   }
 `;
