@@ -5,9 +5,10 @@ import Image from "next/image";
 import { useWindowSize } from "hooks/useWindowSize";
 import HomeIcon from "./Svgs/ic24-home";
 import SignupForm from "perPageComponenta/signup/formView";
+import LoginForm from "perPageComponenta/login/formView";
 
 interface Props {
-  pageName: "SIGN UP" | "Sign In";
+  pageName: "SIGN UP" | "SIGN IN";
 }
 
 const LoginSignupLayout: React.FC<Props> = ({ pageName }) => {
@@ -60,7 +61,7 @@ const LoginSignupLayout: React.FC<Props> = ({ pageName }) => {
                 height={495}
               />
             </ImageContainer>
-            <SignupForm />
+            {pageName === "SIGN UP" ? <SignupForm /> : <LoginForm />}
           </PicAndForm>
         </Content>
       </Container>
