@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import React from "react";
 import Button from "./Button";
+import { device } from "../consts/theme";
 
 const Footer = () => {
   return (
@@ -46,6 +47,13 @@ const LogoContainer = styled.div`
   width: auto;
   opacity: 0.3;
   margin-left: 3rem;
+  @media ${device.mobileL}{
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:0;
+  }
 `;
 const SignUpButton = styled(Button)`
   height: 88px;
@@ -56,4 +64,8 @@ const Part2Container = styled.div`
   justify-content: space-between;
   width: 100%;
   margin: 0 1rem;
+  @media ${device.mobileL}{
+    flex-direction:column;
+    align-items:center;
+  }
 `;

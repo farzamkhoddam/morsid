@@ -200,12 +200,14 @@ const SectionTitle = styled.h2`
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: normal;
-  font-size: 56px;
+  font-size: 4rem;
   line-height: 67px;
   text-transform: capitalize;
   margin-left: 1rem;
+  
   @media ${device.tablet} {
-    font-size: 28px;
+    font-size: 40px;
+    line-height: 48px;
   }
 `;
 const ArrowsContainer = styled.div`
@@ -239,6 +241,9 @@ const IconsContainer = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  @media${device.mobileL}{
+    margin-bottom:4rem;
+  }
 `;
 const Icon1Container = styled.div`
   display: flex;
@@ -248,6 +253,9 @@ const Icon1Container = styled.div`
   @media ${device.tablet} {
     width: 49%;
   }
+  @media ${device.mobileL}{
+    width:100%;
+  }
 `;
 const Icon = styled.div`
   display: flex;
@@ -255,11 +263,26 @@ const Icon = styled.div`
   align-items: center;
   border: 1px solid var(--accent-color-normal);
   padding: 0.5rem;
-  box-shadow: -5px 10px #dbbd82;
+  box-shadow: -10px 10px #dbbd82;
   margin: 1rem;
   width: 7.5rem;
   height: 7.5rem;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+  text-align: center;
+  text-transform: capitalize;
+  
+
 `;
 const H3 = styled.h3`
   text-align: center;
+  font-family: Bebas Neue;
+  font-style: normal;
+font-weight: normal;
+font-size: 32px;
+line-height: 38px;
+text-align: center;
+text-transform: capitalize;
 `;
