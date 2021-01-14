@@ -75,6 +75,7 @@ export default Navigation;
 
 const Container = styled.nav<{ colorType?: MenuColorType }>`
   width: max-content;
+  padding-right: 1rem;
 
   ul {
     list-style: none;
@@ -129,6 +130,8 @@ const Container = styled.nav<{ colorType?: MenuColorType }>`
       }
       .icon-menu-close {
         display: flex;
+        padding-right: 2rem;
+        padding-top: 1rem;
       }
     }
     .menu-trigger.is-active + ul {
@@ -141,7 +144,6 @@ const Container = styled.nav<{ colorType?: MenuColorType }>`
       right: 0;
       width: 100vw;
       height: max-content;
-      border-radius: 0 0 12px 12px;
       overflow: hidden;
       text-align: center;
       background-color: var(--primary-color-normal);

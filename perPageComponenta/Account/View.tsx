@@ -66,7 +66,7 @@ const Field = styled.div`
     max-width: 36rem;
     margin: 8px 0 16px;
     padding: 16px;
-    border: 6px solid;
+    border: 1px solid;
     border-radius: 1px;
     appearance: none;
     font-size: 18px;

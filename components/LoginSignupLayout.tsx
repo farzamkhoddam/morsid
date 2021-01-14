@@ -7,6 +7,7 @@ import HomeIcon from "./Svgs/ic24-home";
 import SignupForm from "perPageComponenta/signup/formView";
 import LoginForm from "perPageComponenta/login/formView";
 import toast, { Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 interface Props {
   pageName: "SIGN UP" | "SIGN IN";
@@ -30,13 +31,19 @@ const LoginSignupLayout: React.FC<Props> = ({ pageName }) => {
         }}
       />
       <Container>
-        <HomeButtonContainer>
-          <HomeButton>
-            {isSmallDevice ? <HomeIcon width="16" height="16" /> : <HomeIcon />}
+        <Link href="/">
+          <HomeButtonContainer>
+            <HomeButton>
+              {isSmallDevice ? (
+                <HomeIcon width="16" height="16" />
+              ) : (
+                <HomeIcon />
+              )}
 
-            <HomeText>home</HomeText>
-          </HomeButton>
-        </HomeButtonContainer>
+              <HomeText>home</HomeText>
+            </HomeButton>
+          </HomeButtonContainer>
+        </Link>
         <Background>
           <LeftDarkSection>
             {isSmallDevice ? (
