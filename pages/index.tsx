@@ -236,14 +236,17 @@ const WhyUs = styled.section`
   width: 100%;
   display: flex;
   flex-direction: column;
+  max-width: var(--page-max-width);
+  margin-right:auto;
+  margin-left:auto;
 `;
 const IconsContainer = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  @media${device.mobileL}{
-    margin-bottom:4rem;
-  }
+  margin-bottom:4rem;
+  
+  
 `;
 const Icon1Container = styled.div`
   display: flex;
