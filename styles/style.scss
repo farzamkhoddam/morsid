@@ -77,8 +77,12 @@ article img {
   max-width: var(--page-max-width);
   margin: 0 auto;
   padding: 1rem;
-  line-height: 1.5;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
   font-size: 20px;
+  line-height: 31px;
+  color: #333333;
   table {
     border-collapse: collapse;
   }

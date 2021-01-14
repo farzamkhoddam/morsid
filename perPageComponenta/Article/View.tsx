@@ -82,7 +82,7 @@ export function ArticleView({ post }: Props) {
         <MustBuyContainer>
           <TransparentSection />
           <H4>Read the rest of this story with a premium account.</H4>
-          <Button to="/login" title="Login" />
+          <LoginButton to="/login" title="Login" />
         </MustBuyContainer>
       ) : !viewer.subscribed ? (
         <MustBuyContainer>
@@ -175,4 +175,8 @@ const TransparentSection = styled.div`
 `;
 const H4 = styled.h4`
   color: var(--black-color-normal);
+`;
+const LoginButton = styled(Button)`
+  width: 264px;
+  height: 64px;
 `;
