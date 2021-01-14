@@ -1,4 +1,7 @@
 module.exports = {
+  images: {
+    domains: ["wp.thehustleclub.com"],
+  },
   async rewrites() {
     return [
       {

@@ -61,7 +61,7 @@ const Container = styled.div<{ viewType?: "glow" | "normal" }>`
     props.viewType === "glow"
       ? " radial-gradient(    100% 1655.01% at 0% 6.25%,    #d49844 0%,    #fee7b1 35.61%,    #fee6af 67.08%,    #f6c757 100%  );"
       : "var(--accent-color-normal)"};
-  color: #1d3330;
+  color: var(--primary-color-normal);
   border-radius: 1px;
   text-decoration: none;
   appearance: none;

@@ -151,7 +151,7 @@ const SignupContainer = styled.div`
   line-height: 24px;
   letter-spacing: 0.06em;
   margin-right: 0.5rem;
-  color: #4f4f4f;
+  color: var(--gray-color-normal);
   margin-top: 2rem;
   @media ${device.laptop} {
     font-size: 16px;
@@ -182,7 +182,7 @@ const SignInButton = styled.input`
   height: 64px;
   padding: var(--padding) calc(var(--padding) * 2);
   background: var(--accent-color-normal);
-  color: #1d3330;
+  color: var(--primary-color-normal);
   border-radius: 1px;
   text-decoration: none;
   appearance: none;

@@ -6,8 +6,12 @@ import SimplePageHeader from "components/simplePageHeader";
 import { StripeButton } from "components/StripeButton";
 import Button from "components/Button";
 import styled from "styled-components";
+import Image from "next/image";
 interface Props {
   post: Post;
+}
+function removePTags(text: string) {
+  return text.replace("<p>", "").replace("</p>", "");
 }
 
 export function ArticleView({ post }: Props) {
@@ -19,7 +23,10 @@ export function ArticleView({ post }: Props) {
     post: { title, content, excerpt, date, featuredImage },
     viewer,
   } = post;
-
+  console.log(
+    "navid featuredImage?.node?.mediaItemUrl=",
+    featuredImage?.node?.mediaItemUrl,
+  );
   return (
     <div className="page">
       <SimplePageHeader />
@@ -29,28 +36,31 @@ export function ArticleView({ post }: Props) {
         image={featuredImage?.node?.mediaItemUrl}
         article={true}
       />
+      <HeaderColor />
 
       <article className="blog-post">
-        <header className="featured-banner">
-          <section className="article-header">
+        {featuredImage ? (
+          <ImgContainer>
+            <Image
+              src={featuredImage?.node?.mediaItemUrl || ""}
+              alt={title + " - Featured image"}
+              width={1141}
+              height={625}
+              layout="responsive"
+            />
+          </ImgContainer>
+        ) : (
+          ""
+        )}
+        <PropertieContainer>
+          <Propertie>
             <h1>{title}</h1>
-            <time style={{ fontSize: "larger" }}>
-              {(date || "").split("T")[0]}
-            </time>
-          </section>
-          {featuredImage ? (
-            <ImgContainer>
-              <img
-                src={featuredImage?.node?.mediaItemUrl || undefined}
-                alt={title + " - Featured image"}
-                className="featured-image"
-              />
-            </ImgContainer>
-          ) : (
-            ""
-          )}
-        </header>
-
+            <p>{removePTags(excerpt || "")}</p>
+            <div>
+              <time>{(date || "").split("T")[0]}</time>
+            </div>
+          </Propertie>
+        </PropertieContainer>
         <div
           className="blog-post-content"
           dangerouslySetInnerHTML={{ __html: content || excerpt || "" }}
@@ -74,8 +84,61 @@ export function ArticleView({ post }: Props) {
     </div>
   );
 }
+const HeaderColor = styled.header`
+  background-color: var(--primary-color-normal);
+  height: 40rem;
+`;
+
 const ImgContainer = styled.div`
-  display: flex;
+  min-height: 40rem;
+  border-radius: 12px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -36rem;
+  width: 100%;
+  max-width: var(--page-max-width);
+  padding: 0 1rem;
+`;
+const PropertieContainer = styled.div`
+  width: 100%;
+  position: relative;
+  max-width: var(--page-max-width);
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+`;
+const Propertie = styled.div`
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  width: 55%;
+  margin-left: auto;
+  padding: 1rem;
+  margin-top: -30%;
+  h1 {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 49px;
+    color: var(--primary-color-normal);
+  }
+  p {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--gray-color-normal);
+  }
+  div {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--gray-color-light);
+    text-align: end;
+  }
 `;
 const MustBuyContainer = styled.div`
   display: flex;

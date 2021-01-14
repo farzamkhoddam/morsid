@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import LogoImage from "./logo";
+import LogoImage from "./Svgs/logo";
 import { device } from "../consts/theme";
 
 const HalfHeaderLogo = () => {
