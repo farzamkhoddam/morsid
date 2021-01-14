@@ -3,11 +3,12 @@ import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import axios from "axios";
 import * as yup from "yup";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "components/Button";
 import { device } from "consts/theme";
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 interface FormValues {
   email: string;
@@ -40,21 +41,36 @@ const SignupSchema = yup.object().shape({
     )
     .required(),
 });
-
+const snackBarOptions = {
+  position: "bottom-right",
+  style: {
+    backgroundColor: "midnightblue",
+    border: "2px solid lightgreen",
+    color: "lightblue",
+    fontFamily: "Menlo, monospace",
+    fontSize: "20px",
+    textAlign: "center",
+  },
+  closeStyle: {
+    color: "lightcoral",
+    fontSize: "16px",
+  },
+};
 export default function SignupForm() {
   const router = useRouter();
-  const [errors, setErrors] = useState<string[] | null>();
+  const [errors, setErrors] = useState<string[] | null>(null);
+
+  useEffect(() => {
+    if (errors && errors.length > 0) {
+      errors.map((err) => toast.error(err));
+      setErrors(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errors]);
 
   return (
     <FormContainer>
       <FormWrapper>
-        {errors && errors.length > 0 ? (
-          <div>
-            {errors.map((err) => (
-              <div key={err}>{err}</div>
-            ))}
-          </div>
-        ) : null}
         <Formik
           initialValues={initialValues}
           validationSchema={SignupSchema}
@@ -65,11 +81,13 @@ export default function SignupForm() {
               router.push("/login");
             } catch (e) {
               if (
-                e.name === "HTTPError" &&
+                // e.name === "HTTPError" &&
                 e.response.status < 500 &&
                 e.response.status >= 400
               ) {
-                const { errors } = await e.response.json();
+                const errors = e?.response?.data?.errors || null;
+                // const { errors } = await e.response.json();
+
                 setErrors(errors);
               }
             }

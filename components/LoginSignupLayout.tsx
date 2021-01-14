@@ -6,6 +6,7 @@ import { useWindowSize } from "hooks/useWindowSize";
 import HomeIcon from "./Svgs/ic24-home";
 import SignupForm from "perPageComponenta/signup/formView";
 import LoginForm from "perPageComponenta/login/formView";
+import toast, { Toaster } from "react-hot-toast";
 
 interface Props {
   pageName: "SIGN UP" | "SIGN IN";
@@ -14,8 +15,20 @@ interface Props {
 const LoginSignupLayout: React.FC<Props> = ({ pageName }) => {
   const windowSize = useWindowSize();
   const isSmallDevice = windowSize.width <= 700 ? true : false;
+
   return (
     <div className="account-page">
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          error: {
+            style: {
+              background: "#161515",
+              color: "white",
+            },
+          },
+        }}
+      />
       <Container>
         <HomeButtonContainer>
           <HomeButton>

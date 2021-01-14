@@ -3569,6 +3569,11 @@ globule@^1.0.0:
     lodash "~4.17.10"
     minimatch "~3.0.2"
 
+goober@^2.0.15:
+  version "2.0.21"
+  resolved "https://registry.yarnpkg.com/goober/-/goober-2.0.21.tgz#7f965d6d5f07a4e742ed72c9fd946d792a673c56"
+  integrity sha512-rfCHTF3gB1ayMEOhYbqzMFo2tbG1ZzYvTY+/VKfXhCVSSwucXSvtxFbFPOhfWJTEa9rkSax1Vua6ItHwL5Cu5g==
+
 graceful-fs@4.1.15:
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz"
@@ -5635,6 +5640,13 @@ react-fast-compare@^2.0.1:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
+react-hot-toast@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-hot-toast/-/react-hot-toast-1.0.1.tgz#1352a526545f157bc83fbc2b19ac3ad1d92e780e"
+  integrity sha512-og5MNzjNHa7BTjdThj3cwGoyD8tLoxMN9c8/Sme6bBLCnlrF54QrNOJW5gJkETTsuAHVsUK5z8Q6vvkc+9OfCg==
+  dependencies:
+    goober "^2.0.15"
 
 react-icons@^4.1.0:
   version "4.1.0"

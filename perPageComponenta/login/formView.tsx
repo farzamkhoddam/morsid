@@ -3,12 +3,12 @@ import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import axios from "axios";
 import * as yup from "yup";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { setUserData } from "utils/auth-storage";
-import Button from "components/Button";
 import { device } from "consts/theme";
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 interface FormValues {
   email: string;
@@ -28,14 +28,18 @@ const LoginSchema = yup.object().shape({
 export default function LoginForm() {
   const router = useRouter();
   const [loginFailed, setLoginFailed] = useState(false);
+
+  useEffect(() => {
+    if (loginFailed) {
+      toast.error("Wrong email or password");
+      // این رو فالس میکنیم که با هر بار ری رندر شدن کامپوننت، این اخطار نشون داده نشه
+      setLoginFailed(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loginFailed]);
   return (
     <FormContainer>
       <FormWrapper>
-        {loginFailed ? (
-          <div>
-            <div style={{ color: "red" }}>{"Wrong email or password"}</div>
-          </div>
-        ) : null}
         <Formik
           initialValues={initialValues}
           validationSchema={LoginSchema}
