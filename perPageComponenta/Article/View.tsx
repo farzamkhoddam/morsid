@@ -7,6 +7,7 @@ import { StripeButton } from "components/StripeButton";
 import Button from "components/Button";
 import styled from "styled-components";
 import Image from "next/image";
+import { useWindowSize } from "hooks/useWindowSize";
 interface Props {
   post: Post;
 }
@@ -15,6 +16,12 @@ function removePTags(text: string) {
 }
 
 export function ArticleView({ post }: Props) {
+  const windowSize = useWindowSize();
+  function getSmartScreenWidth() {
+    console.log("navid res=", windowSize.width);
+    return windowSize.width > 1440 ? 1440 : windowSize.width;
+  }
+
   if (!post.post) {
     return <Error statusCode={404} />;
   }
@@ -23,10 +30,7 @@ export function ArticleView({ post }: Props) {
     post: { title, content, excerpt, date, featuredImage },
     viewer,
   } = post;
-  console.log(
-    "navid featuredImage?.node?.mediaItemUrl=",
-    featuredImage?.node?.mediaItemUrl,
-  );
+  console.log("navid pic=", featuredImage);
   return (
     <div className="page">
       <SimplePageHeader />
@@ -39,14 +43,22 @@ export function ArticleView({ post }: Props) {
       <HeaderColor />
 
       <article className="blog-post">
-        {featuredImage ? (
-          <ImgContainer>
+        {featuredImage && windowSize.width > 0 ? (
+          <ImgContainer
+            style={{
+              position: "relative",
+              width: `${getSmartScreenWidth()}px`,
+              height: getSmartScreenWidth() / 2,
+              padding: "0 1rem",
+            }}
+          >
             <Image
               src={featuredImage?.node?.mediaItemUrl || ""}
               alt={title + " - Featured image"}
-              width={1141}
-              height={625}
-              layout="responsive"
+              // width={getSmartScreenWidth()}
+              // height={625}
+              layout="fill"
+              objectFit="contain"
             />
           </ImgContainer>
         ) : (
@@ -90,7 +102,6 @@ const HeaderColor = styled.header`
 `;
 
 const ImgContainer = styled.div`
-  min-height: 40rem;
   border-radius: 12px;
   margin-right: auto;
   margin-left: auto;
