@@ -3,10 +3,11 @@ import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import axios from "axios";
 import * as yup from "yup";
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "components/Button";
 import { device } from "consts/theme";
+import Link from "next/link";
 
 interface FormValues {
   email: string;
@@ -76,29 +77,30 @@ export default function SignupForm() {
         >
           {() => (
             <Form>
-              <SignupTextInput name="firstName" placeholder="firstName" />
-              <SignupTextInput name="lastName" placeholder="Last Name" />
-              <SignupTextInput
+              <TextInput name="firstName" placeholder="firstName" />
+              <TextInput name="lastName" placeholder="Last Name" />
+              <TextInput
                 name="email"
                 type="email"
                 placeholder="Email Address"
               />
-              <SignupTextInput
+              <TextInput
                 name="password"
                 type="password"
                 placeholder="Password"
               />
-              <SignupTextInput
+              <TextInput
                 name="confirmPassword"
                 type="password"
                 placeholder="Confirm Password"
               />
 
-              <SignUpButton title="SIGN UP" type="normal" />
-
+              <SignUpButton title="SIGN UP" type="submit" />
               <SigninContainer>
                 <SigninDesc>if you have an account, please</SigninDesc>
-                <SigninClickable>Sign in</SigninClickable>
+                <Link href="/login">
+                  <SigninClickable>Sign in</SigninClickable>
+                </Link>
               </SigninContainer>
             </Form>
           )}
@@ -142,13 +144,6 @@ const FormWrapper = styled.div`
   }
 `;
 
-const SignupTextInput = styled(TextInput)`
-  @media ${device.laptop} {
-    input {
-    }
-  }
-`;
-
 const SigninContainer = styled.div`
   display: flex;
   align-items: center;
@@ -179,13 +174,50 @@ const SigninDesc = styled.div`
 const SigninClickable = styled.span`
   color: var(--accent-color-normal);
   border-bottom: solid 1px;
+  cursor: pointer;
 `;
 
-const SignUpButton = styled(Button)`
-  display: flex;
-  justify-content: flex-start;
+const SignUpButton = styled.input`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 264px;
   height: 64px;
+  padding: var(--padding) calc(var(--padding) * 2);
+  background: var(--accent-color-normal);
+  color: #1d3330;
+  border-radius: 1px;
+  text-decoration: none;
+  appearance: none;
+  border: none;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  transition: background 0.3s linear;
+  &.-outline {
+    color: var(--primary-color-dark);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+    background: #fff;
+    &:hover {
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+      background: #f2f2f2;
+    }
+  }
+  & + .button {
+    margin-left: 20px;
+  }
+  .icon {
+    display: inline-flex;
+    &.-right {
+      margin-left: var(--margin);
+    }
+    &.-left {
+      margin-right: var(--margin);
+    }
+  }
   @media ${device.mobileL} {
     width: 100%;
   }

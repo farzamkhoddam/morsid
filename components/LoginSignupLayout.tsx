@@ -218,8 +218,8 @@ const Title = styled.div`
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: normal;
-  font-size: 70px;
-  line-height: 78px;
+  font-size: 3.5rem;
+  line-height: 4rem;
   letter-spacing: 0.07em;
 
   @media ${device.laptopL} {

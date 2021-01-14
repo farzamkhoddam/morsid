@@ -3,11 +3,12 @@ import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import axios from "axios";
 import * as yup from "yup";
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { setUserData } from "utils/auth-storage";
 import Button from "components/Button";
 import { device } from "consts/theme";
+import Link from "next/link";
 
 interface FormValues {
   email: string;
@@ -30,14 +31,9 @@ export default function LoginForm() {
   return (
     <FormContainer>
       <FormWrapper>
-        <div className="wrapper">
-          <section className="article-header">
-            <H1>Login</H1>
-          </section>
-        </div>
         {loginFailed ? (
           <div>
-            <div>{"Wrong email or password"}</div>
+            <div style={{ color: "red" }}>{"Wrong email or password"}</div>
           </div>
         ) : null}
         <Formik
@@ -58,7 +54,7 @@ export default function LoginForm() {
           }}
         >
           {({ isSubmitting }) => (
-            <Form className="contact-form wrapper">
+            <Form>
               <TextInput
                 name="email"
                 type="email"
@@ -86,10 +82,16 @@ export default function LoginForm() {
                 </ResponsiveContainer>
                 <SignButtom title="Sign Up" to={"/signup"} type="glow" />
               </ButtonsContainer> */}
-              <SignInButton title="SIGN UP" type="normal" />
+              <SignInButton
+                title="SIGN UP"
+                type="submit"
+                disabled={isSubmitting}
+              />
               <SignupContainer>
                 <SignUDesc>{`if you haven't an account, please`}</SignUDesc>
-                <SignUpClickable>Sign Up</SignUpClickable>
+                <Link href="/signup">
+                  <SignUpClickable>Sign Up</SignUpClickable>
+                </Link>
               </SignupContainer>
             </Form>
           )}
@@ -165,13 +167,50 @@ const SignUDesc = styled.div`
 const SignUpClickable = styled.span`
   color: var(--accent-color-normal);
   border-bottom: solid 1px;
+  cursor: pointer;
 `;
 
-const SignInButton = styled(Button)`
-  display: flex;
-  justify-content: flex-start;
+const SignInButton = styled.input`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 264px;
   height: 64px;
+  padding: var(--padding) calc(var(--padding) * 2);
+  background: var(--accent-color-normal);
+  color: #1d3330;
+  border-radius: 1px;
+  text-decoration: none;
+  appearance: none;
+  border: none;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  transition: background 0.3s linear;
+  &.-outline {
+    color: var(--primary-color-dark);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+    background: #fff;
+    &:hover {
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+      background: #f2f2f2;
+    }
+  }
+  & + .button {
+    margin-left: 20px;
+  }
+  .icon {
+    display: inline-flex;
+    &.-right {
+      margin-left: var(--margin);
+    }
+    &.-left {
+      margin-right: var(--margin);
+    }
+  }
   @media ${device.mobileL} {
     width: 100%;
   }
