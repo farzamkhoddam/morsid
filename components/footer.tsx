@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import Image from "next/image";
+
 import React from "react";
 import Button from "./Button";
 import { device } from "../consts/theme";
+import Logo from "./Svgs/logo";
 
 const Footer = () => {
   return (
@@ -10,9 +11,9 @@ const Footer = () => {
       <Sentense>Do You Interenset?</Sentense>
       <Part2Container>
         <LogoContainer>
-          <Image src="/logo-white.svg" alt="Logo" width={150} height={60} />
+          <Logo />
         </LogoContainer>
-        <SignUpButton title="SIGN UP NOW" type="glow" />
+        <SignUpButton title="SIGN UP NOW" viewType="glow" />
       </Part2Container>
     </Container>
   );
@@ -47,6 +48,8 @@ const LogoContainer = styled.div`
   width: auto;
   opacity: 0.3;
   margin-left: 3rem;
+  color: #dbdddc;
+  mix-blend-mode: overlay;
   @media ${device.mobileL}{
     width: 100%;
     display:flex;

@@ -5,6 +5,7 @@ import axios from "axios";
 import * as yup from "yup";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { setUserData } from "utils/auth-storage";
 import Button from "components/Button";
 import { device } from "consts/theme";
 import Link from "next/link";
@@ -12,73 +13,48 @@ import Link from "next/link";
 interface FormValues {
   email: string;
   password: string;
-  confirmPassword: string;
-  firstName: string;
-  lastName: string;
 }
 
 const initialValues: FormValues = {
   email: "",
   password: "",
-  confirmPassword: "",
-  firstName: "",
-  lastName: "",
 };
 
-const SignupSchema = yup.object().shape({
-  firstName: yup.string().label("First Name").required(),
-  lastName: yup.string().label("Last Name").required(),
+const LoginSchema = yup.object().shape({
   email: yup.string().label("Email Address").email().required(),
   password: yup.string().min(8).label("Password").required(),
-  confirmPassword: yup
-    .string()
-    .min(8)
-    .label("Confirm Password")
-    .oneOf(
-      [yup.ref("password")],
-      `Password and Confirm Password does not match`,
-    )
-    .required(),
 });
 
-export default function SignupForm() {
+export default function LoginForm() {
   const router = useRouter();
-  const [errors, setErrors] = useState<string[] | null>();
-
+  const [loginFailed, setLoginFailed] = useState(false);
   return (
     <FormContainer>
       <FormWrapper>
-        {errors && errors.length > 0 ? (
+        {loginFailed ? (
           <div>
-            {errors.map((err) => (
-              <div key={err}>{err}</div>
-            ))}
+            <div style={{ color: "red" }}>{"Wrong email or password"}</div>
           </div>
         ) : null}
         <Formik
           initialValues={initialValues}
-          validationSchema={SignupSchema}
+          validationSchema={LoginSchema}
           onSubmit={async (values) => {
-            setErrors(null);
+            setLoginFailed(false);
             try {
-              await axios.post("/api/users/register", { json: values });
-              router.push("/login");
-            } catch (e) {
-              if (
-                e.name === "HTTPError" &&
-                e.response.status < 500 &&
-                e.response.status >= 400
-              ) {
-                const { errors } = await e.response.json();
-                setErrors(errors);
-              }
+              await axios.post("/api/users/login", { json: values });
+              const res = await axios.post<{ user: { subscribed: boolean } }>(
+                "/api/users/me",
+              );
+              setUserData(res.data.user.subscribed);
+              router.push("/account");
+            } catch {
+              setLoginFailed(true);
             }
           }}
         >
-          {() => (
+          {({ isSubmitting }) => (
             <Form>
-              <TextInput name="firstName" placeholder="firstName" />
-              <TextInput name="lastName" placeholder="Last Name" />
               <TextInput
                 name="email"
                 type="email"
@@ -89,19 +65,34 @@ export default function SignupForm() {
                 type="password"
                 placeholder="Password"
               />
-              <TextInput
-                name="confirmPassword"
-                type="password"
-                placeholder="Confirm Password"
+              {/* <ButtonsContainer>
+                <ResponsiveContainer>
+                  <button
+                    className="button"
+                    disabled={isSubmitting}
+                    type="submit"
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Login
+                  </button>
+                </ResponsiveContainer>
+                <SignButtom title="Sign Up" to={"/signup"} type="glow" />
+              </ButtonsContainer> */}
+              <SignInButton
+                title="SIGN UP"
+                type="submit"
+                disabled={isSubmitting}
               />
-
-              <SignUpButton title="SIGN UP" type="submit" />
-              <SigninContainer>
-                <SigninDesc>if you have an account, please</SigninDesc>
-                <Link href="/login">
-                  <SigninClickable>Sign in</SigninClickable>
+              <SignupContainer>
+                <SignUDesc>{`if you haven't an account, please`}</SignUDesc>
+                <Link href="/signup">
+                  <SignUpClickable>Sign Up</SignUpClickable>
                 </Link>
-              </SigninContainer>
+              </SignupContainer>
             </Form>
           )}
         </Formik>
@@ -109,7 +100,6 @@ export default function SignupForm() {
     </FormContainer>
   );
 }
-
 const FormContainer = styled.div`
   display: flex;
   align-items: center;
@@ -143,8 +133,11 @@ const FormWrapper = styled.div`
     }
   }
 `;
+const H1 = styled.h1`
+  color: var(--primary-color-normal);
+`;
 
-const SigninContainer = styled.div`
+const SignupContainer = styled.div`
   display: flex;
   align-items: center;
   font-family: Montserrat;
@@ -168,16 +161,16 @@ const SigninContainer = styled.div`
     font-size: 3.8vw;
   }
 `;
-const SigninDesc = styled.div`
+const SignUDesc = styled.div`
   margin-right: 0.5rem;
 `;
-const SigninClickable = styled.span`
+const SignUpClickable = styled.span`
   color: var(--accent-color-normal);
   border-bottom: solid 1px;
   cursor: pointer;
 `;
 
-const SignUpButton = styled.input`
+const SignInButton = styled.input`
   display: inline-flex;
   align-items: center;
   justify-content: center;

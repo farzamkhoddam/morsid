@@ -4,16 +4,18 @@ import Link from "next/link";
 interface Props {
   title: string;
   className?: string;
+  // وقتی از «تو» استفاده میکنیم که بخوایم ظاهر باتن و موتور لینک رو داشته باشیم
   to?: string;
   // eslint-disable-next-line @typescript-eslint/ban-types
   clickHandler?: Function;
   childStyle?: CSSObject;
-  type?: "glow" | "normal";
+  //برای تعیین ظاهر باتن به کار میره
+  viewType?: "glow" | "normal";
 }
 const Button: React.FC<Props> = (props) => {
   return (
     <ButtonContainer {...props}>
-      <Container type={props.type} style={props.childStyle}>
+      <Container type={props.viewType} style={props.childStyle}>
         {props.title}
       </Container>
     </ButtonContainer>
@@ -50,13 +52,13 @@ const ButtonContainer: React.FC<Props> = ({
   );
 };
 
-const Container = styled.div<{ type?: "glow" | "normal" }>`
+const Container = styled.div<{ viewType?: "glow" | "normal" }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: var(--padding) calc(var(--padding) * 2);
   background: ${(props) =>
-    props.type === "glow"
+    props.viewType === "glow"
       ? " radial-gradient(    100% 1655.01% at 0% 6.25%,    #d49844 0%,    #fee7b1 35.61%,    #fee6af 67.08%,    #f6c757 100%  );"
       : "var(--accent-color-normal)"};
   color: #1d3330;

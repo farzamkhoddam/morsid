@@ -14,7 +14,7 @@ export function TextInput({ className, name, ...props }: Props) {
   return (
     <Input className={className} hasError={hasError}>
       <input {...field} {...props} />
-      {hasError ? <span>{error}</span> : null}
+      {hasError ? <span style={{ color: "red" }}>{error}</span> : null}
     </Input>
   );
 }
