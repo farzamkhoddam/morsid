@@ -43,7 +43,7 @@ export function StripeButton({ className }: Props) {
     <Button
       title={"Subscribe Now"}
       clickHandler={handleStripe}
-      type="glow"
+      viewType="glow"
       className={className}
     />
   );
