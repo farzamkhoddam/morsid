@@ -10,12 +10,14 @@ const Footer = () => {
   return (
     <Container>
       <ContentWrapper>
+        <ImageContainer>
         <Image
           src="/circle-hashur.svg"
           alt="circle-hashur"
-          width={120}
-          height={120}
+          width={130}
+          height={130}
         />
+        </ImageContainer>
         <Sentense>Do You Interenset?</Sentense>
         <Part2Container>
           <LogoContainer>
@@ -120,4 +122,13 @@ const WhiteLogo = styled(Logo)`
 const ContentWrapper = styled.div`
   max-width: var(--page-max-width);
   width: 100%;
+  position: relative;
 `;
+const ImageContainer = styled.div`
+  position:absolute;
+  right: 10rem;
+  top: -38px;
+  @media ${device.laptopL}{
+    display:none;
+  }
+`
