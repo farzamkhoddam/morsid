@@ -93,7 +93,6 @@ export default Navigation;
 
 const Container = styled.nav<{ colorType?: MenuColorType }>`
   width: max-content;
-  padding-right: 1rem;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;

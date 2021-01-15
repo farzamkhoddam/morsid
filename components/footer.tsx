@@ -4,11 +4,18 @@ import React from "react";
 import Button from "./Button";
 import { device } from "../consts/theme";
 import Logo from "./Svgs/logo";
+import Image from "next/image";
 
 const Footer = () => {
   return (
     <Container>
       <ContentWrapper>
+        <Image
+          src="/circle-hashur.svg"
+          alt="circle-hashur"
+          width={120}
+          height={120}
+        />
         <Sentense>Do You Interenset?</Sentense>
         <Part2Container>
           <LogoContainer>

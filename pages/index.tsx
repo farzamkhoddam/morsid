@@ -23,10 +23,10 @@ export default function Home() {
           <ImageContainer>
             <Image
               src="/home-header.jpg"
-              alt="header"
-              layout="fill"
-              objectFit="contain"
-              quality={100}
+              width={686}
+              height={465}
+              layout="responsive"
+              priority={true}
             />
           </ImageContainer>
         </InnerSection>
@@ -137,11 +137,11 @@ const Header = styled.section`
 `;
 const ImageContainer = styled.div`
   position: relative;
-  height: 40rem;
-  width: 70%;
+  width: 60%;
 `;
 const InnerSection = styled.div`
   display: flex;
+  justify-content: space-between;
   width: 100%;
   max-width: var(--page-max-width);
   margin: 0 1rem;

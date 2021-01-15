@@ -56,11 +56,9 @@ const Contents = styled.div`
 const DeactiveMenuNavContainer = styled.div<{ colorType?: MenuColorType }>`
   height: 4rem;
   background:background: var(--primary-color-normal);
-  
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 1rem;
   z-index: 2;
 
 `;
