@@ -17,7 +17,7 @@ export default function Home() {
         <InnerSection>
           <TitleAndButton>
             <Title>LEARN HOW TO MAKE MONEY ONLINE</Title>
-            <SignUpButton title="SIGN UP NOW" type="glow" />
+            <SignUpButton title="SIGN UP NOW" viewType="glow" />
           </TitleAndButton>
 
           <ImageContainer>
@@ -25,12 +25,13 @@ export default function Home() {
               src="/home-header.jpg"
               alt="header"
               layout="fill"
-              // objectFit="none"
+              objectFit="contain"
               quality={100}
             />
           </ImageContainer>
         </InnerSection>
       </Header>
+      {/* 
       <Latest>
         <LatestHeader>
           <SectionTitle>Latest</SectionTitle>
@@ -49,7 +50,7 @@ export default function Home() {
             />
           </ArrowsContainer>
         </LatestHeader>
-        {/* <CardsContainer>
+       <CardsContainer>
           
           <CardItem
             slug="slugggggggggggg"
@@ -70,8 +71,9 @@ export default function Home() {
             title="Email Marketing Play Book"
             excerpt="This article is about email marketing for marketers"
           />
-        </CardsContainer> */}
+        </CardsContainer> 
       </Latest>
+      */}
       <WhyUs>
         <SectionTitle>LEVEL UP YOUR SKILL WITH OUR COACH</SectionTitle>
         <IconsContainer>
@@ -204,7 +206,7 @@ const SectionTitle = styled.h2`
   line-height: 67px;
   text-transform: capitalize;
   margin-left: 1rem;
-  
+
   @media ${device.tablet} {
     font-size: 40px;
     line-height: 48px;
@@ -237,16 +239,14 @@ const WhyUs = styled.section`
   display: flex;
   flex-direction: column;
   max-width: var(--page-max-width);
-  margin-right:auto;
-  margin-left:auto;
+  margin-right: auto;
+  margin-left: auto;
 `;
 const IconsContainer = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-bottom:4rem;
-  
-  
+  margin-bottom: 4rem;
 `;
 const Icon1Container = styled.div`
   display: flex;
@@ -256,8 +256,8 @@ const Icon1Container = styled.div`
   @media ${device.tablet} {
     width: 49%;
   }
-  @media ${device.mobileL}{
-    width:100%;
+  @media ${device.mobileL} {
+    width: 100%;
   }
 `;
 const Icon = styled.div`
@@ -276,16 +276,14 @@ const Icon = styled.div`
   line-height: 38px;
   text-align: center;
   text-transform: capitalize;
-  
-
 `;
 const H3 = styled.h3`
   text-align: center;
   font-family: Bebas Neue;
   font-style: normal;
-font-weight: normal;
-font-size: 32px;
-line-height: 38px;
-text-align: center;
-text-transform: capitalize;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+  text-align: center;
+  text-transform: capitalize;
 `;

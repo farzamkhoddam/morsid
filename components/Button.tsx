@@ -15,7 +15,7 @@ interface Props {
 const Button: React.FC<Props> = (props) => {
   return (
     <ButtonContainer {...props}>
-      <Container type={props.viewType} style={props.childStyle}>
+      <Container viewType={props.viewType} style={props.childStyle}>
         {props.title}
       </Container>
     </ButtonContainer>
