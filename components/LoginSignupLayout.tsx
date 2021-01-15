@@ -101,6 +101,7 @@ const HomeButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
+  z-index: 3;
   @media ${device.mobileL} {
     height: 4rem;
   }

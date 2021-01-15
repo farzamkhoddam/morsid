@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Link from "next/link";
 import { device } from "../consts/theme";
 import { MenuColorType } from "./simplePageHeader";
+import { useRouter } from "next/router";
+import { route } from "next/dist/next-server/server/router";
 
 const MenuItems = [
   {
@@ -37,6 +39,8 @@ const Navigation: React.FC<Props> = ({
   colorType,
 }) => {
   const [toggleMenu, setToggleMenu] = useState(isActiveMenu);
+  const router = useRouter();
+  console.log("navid route=", router.pathname);
   function handleToggleClick() {
     // this.setState(state => ({
     //   showMenu: !state.showMenu,
@@ -45,11 +49,26 @@ const Navigation: React.FC<Props> = ({
     setToggleMenu(!toggleMenu);
   }
 
-  const listMenuItems = MenuItems.map((menuItem, index) => (
-    <ListLink key={index} to={menuItem.path}>
-      {menuItem.title}
-    </ListLink>
-  ));
+  const listMenuItems = MenuItems.map((menuItem, index) => {
+    return (
+      <ListLink key={index} to={menuItem.path}>
+        {menuItem.path === router.pathname ? (
+          <span
+            style={{
+              color: "#DBBD82",
+              paddingBottom: "0.3rem",
+              borderBottom: "2px solid currentColor",
+            }}
+          >
+            {" "}
+            {menuItem.title}
+          </span>
+        ) : (
+          menuItem.title
+        )}
+      </ListLink>
+    );
+  });
   return (
     // <Container className={this.state.showMenu ? ' cross-nav' : ''}>
     <Container className={"site-navigation"} colorType={colorType}>
@@ -76,6 +95,11 @@ export default Navigation;
 const Container = styled.nav<{ colorType?: MenuColorType }>`
   width: max-content;
   padding-right: 1rem;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
 
   ul {
     list-style: none;
