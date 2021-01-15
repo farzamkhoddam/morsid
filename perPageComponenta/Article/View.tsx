@@ -21,6 +21,16 @@ export function ArticleView({ post }: Props) {
   function getSmartScreenWidth() {
     return windowSize.width > 1440 ? 1440 : windowSize.width;
   }
+  function getSmartScreenheight() {
+    // این نسبت یک دوم بستگی به ریشیوی عکس داره. اینجا ریشیوی عکس اینطور درنظر گرفته شده
+    // که عرض دو برابر ارتفاع هست
+    return getSmartScreenWidth() / 2;
+  }
+  function getHeaderContainerHeight() {
+    // این فاصله ایه که میخوایم بخش اطلاعات کارت پایینتر از بخش عکس قرار بگیره
+    const underSpace = 32;
+    return getSmartScreenheight() + underSpace;
+  }
 
   if (!post.post) {
     return <Error statusCode={404} />;
@@ -42,36 +52,32 @@ export function ArticleView({ post }: Props) {
       <HeaderColor />
 
       <article className="blog-post">
-        {featuredImage && windowSize.width > 0 ? (
-          <ImgContainer
-            style={{
-              position: "relative",
-              width: `${getSmartScreenWidth()}px`,
-              height: getSmartScreenWidth() / 2,
-              padding: "0 1rem",
-            }}
-          >
-            <Image
-              src={featuredImage?.node?.mediaItemUrl || ""}
-              alt={title + " - Featured image"}
-              // width={getSmartScreenWidth()}
-              // height={625}
-              layout="fill"
-              objectFit="contain"
-            />
-          </ImgContainer>
-        ) : (
-          ""
-        )}
-        <PropertieContainer>
-          <Propertie>
-            <h1>{title}</h1>
-            <p>{removePTags(excerpt || "")}</p>
-            <div>
-              <time>{(date || "").split("T")[0]}</time>
-            </div>
-          </Propertie>
-        </PropertieContainer>
+        <HeaderSection style={{ height: getHeaderContainerHeight() }}>
+          {featuredImage && windowSize.width > 0 ? (
+            <ImgContainer>
+              <Image
+                src={featuredImage?.node?.mediaItemUrl || ""}
+                alt={title + " - Featured image"}
+                width={1440}
+                height={720}
+                layout="responsive"
+                priority={true}
+              />
+            </ImgContainer>
+          ) : (
+            ""
+          )}
+          <PropertieContainer>
+            <Propertie>
+              <h1>{title}</h1>
+              {/* <h1>Hello World</h1> */}
+              <p>{removePTags(excerpt || "")}</p>
+              <div>
+                <time>{(date || "").split("T")[0]}</time>
+              </div>
+            </Propertie>
+          </PropertieContainer>
+        </HeaderSection>
         <div
           className="blog-post-content"
           dangerouslySetInnerHTML={{ __html: content || excerpt || "" }}
@@ -90,7 +96,7 @@ export function ArticleView({ post }: Props) {
           <StripeButton />
         </MustBuyContainer>
       ) : null}
- 
+
       {/* {(previous || next) && <Pagination {...props} />} */}
     </div>
   );
@@ -99,15 +105,24 @@ const HeaderColor = styled.header`
   background-color: var(--primary-color-normal);
   height: 40rem;
 `;
-
+const HeaderSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-items: center;
+  position: relative;
+  margin-top: -36rem;
+`;
 const ImgContainer = styled.div`
   border-radius: 12px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: -36rem;
   width: 100%;
   max-width: var(--page-max-width);
   padding: 0 1rem;
+  position: absolute;
+  top: 0;
 `;
 const PropertieContainer = styled.div`
   width: 100%;
@@ -124,16 +139,16 @@ const Propertie = styled.div`
   width: 55%;
   margin-left: auto;
   padding: 1rem;
-  margin-top: -30%;
+
   h1 {
     font-family: Montserrat;
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
     color: var(--primary-color-normal);
-    @media ${device.tablet}{
-      font-size:27px;
-      line-height:30px;
+    @media ${device.tablet} {
+      font-size: 27px;
+      line-height: 30px;
     }
   }
   p {
@@ -158,7 +173,7 @@ const Propertie = styled.div`
     color: var(--gray-color-light);
     text-align: end;
   }
-  @media ${device.tablet}{
+  @media ${device.tablet} {
     width: 86%;
   }
 `;
