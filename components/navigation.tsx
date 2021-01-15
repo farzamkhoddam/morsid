@@ -40,7 +40,6 @@ const Navigation: React.FC<Props> = ({
 }) => {
   const [toggleMenu, setToggleMenu] = useState(isActiveMenu);
   const router = useRouter();
-  console.log("navid route=", router.pathname);
   function handleToggleClick() {
     // this.setState(state => ({
     //   showMenu: !state.showMenu,

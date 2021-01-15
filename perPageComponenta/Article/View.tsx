@@ -18,7 +18,6 @@ function removePTags(text: string) {
 export function ArticleView({ post }: Props) {
   const windowSize = useWindowSize();
   function getSmartScreenWidth() {
-    console.log("navid res=", windowSize.width);
     return windowSize.width > 1440 ? 1440 : windowSize.width;
   }
 
@@ -30,7 +29,6 @@ export function ArticleView({ post }: Props) {
     post: { title, content, excerpt, date, featuredImage },
     viewer,
   } = post;
-  console.log("navid pic=", featuredImage);
   return (
     <div className="page">
       <SimplePageHeader />
