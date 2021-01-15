@@ -104,6 +104,9 @@ export function ArticleView({ post }: Props) {
 const HeaderColor = styled.header`
   background-color: var(--primary-color-normal);
   height: 40rem;
+  @media ${device.laptop}{
+    height: 15rem;
+  }
 `;
 const HeaderSection = styled.section`
   display: flex;
@@ -113,6 +116,9 @@ const HeaderSection = styled.section`
   align-items: center;
   position: relative;
   margin-top: -36rem;
+  @media ${device.laptop}{
+    margin-top: -15rem;
+  }
 `;
 const ImgContainer = styled.div`
   border-radius: 12px;
@@ -147,8 +153,8 @@ const Propertie = styled.div`
     line-height: 49px;
     color: var(--primary-color-normal);
     @media ${device.tablet} {
-      font-size: 27px;
-      line-height: 30px;
+      font-size: 24px;
+      line-height: 25px;
     }
   }
   p {
@@ -163,6 +169,7 @@ const Propertie = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 2; /* number of lines to show */
     -webkit-box-orient: vertical;
+    
   }
   div {
     font-family: Montserrat;
@@ -175,6 +182,9 @@ const Propertie = styled.div`
   }
   @media ${device.tablet} {
     width: 86%;
+    font-size:1rem;
+    line-height:1.5rem;
+    
   }
 `;
 const MustBuyContainer = styled.div`
@@ -206,6 +216,7 @@ const H4 = styled.h4`
   font-weight: bold;
   font-size: 20px;
   line-height: 156.4%;
+  text-align: center
 `;
 const LoginButton = styled(Button)`
   width: 264px;
