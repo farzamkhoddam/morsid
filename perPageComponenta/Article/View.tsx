@@ -106,9 +106,13 @@ export function ArticleView({ post }: Props) {
 const HeaderColor = styled.header`
   background-color: var(--primary-color-normal);
   height: 40rem;
+  @media ${device.laptopL} {
+    height: 28rem;
+  }
   @media ${device.laptop} {
     height: 15rem;
   }
+
 `;
 const HeaderSection = styled.section`
   display: flex;
@@ -118,6 +122,9 @@ const HeaderSection = styled.section`
   align-items: center;
   position: relative;
   margin-top: -36rem;
+  @media ${device.laptopL} {
+    margin-top: -28rem;
+  }
   @media ${device.laptop} {
     margin-top: -15rem;
     font-size: 1rem;
@@ -147,6 +154,7 @@ const PropertieContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 0 1rem;
+  
 `;
 const Propertie = styled.div`
   background: #ffffff;
@@ -156,6 +164,7 @@ const Propertie = styled.div`
   padding: 1rem;
   @media ${device.tablet} {
     width: 100%;
+    box-shadow: none;
   }
 
   h1 {
@@ -167,6 +176,10 @@ const Propertie = styled.div`
     @media ${device.tablet} {
       font-size: 24px;
       line-height: 25px;
+    }
+    @media ${device.laptop} {
+      font-size: 27px;
+      line-height: 27px;
     }
   }
   p {
@@ -181,6 +194,7 @@ const Propertie = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 2; /* number of lines to show */
     -webkit-box-orient: vertical;
+    
   }
   div {
     font-family: Montserrat;
@@ -190,6 +204,7 @@ const Propertie = styled.div`
     line-height: 24px;
     color: var(--gray-color-light);
     text-align: end;
+    
   }
 `;
 const MustBuyContainer = styled.div`
@@ -200,6 +215,7 @@ const MustBuyContainer = styled.div`
   padding-bottom: 4rem;
   max-width: var(--page-max-width);
   margin: 0 auto;
+  
 `;
 const TransparentSection = styled.div`
   background: rgba(0, 0, 0, 0)
