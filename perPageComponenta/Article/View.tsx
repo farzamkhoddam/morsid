@@ -164,6 +164,7 @@ const Propertie = styled.div`
   padding: 1rem;
   @media ${device.tablet} {
     width: 100%;
+    box-shadow: none;
   }
 
   h1 {
