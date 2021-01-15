@@ -46,7 +46,7 @@ export default function LoginForm() {
           onSubmit={async (values) => {
             setLoginFailed(false);
             try {
-              await axios.post("/api/users/login", { json: values });
+              await axios.post("/api/users/login", values);
               const res = await axios.post<{ user: { subscribed: boolean } }>(
                 "/api/users/me",
               );
