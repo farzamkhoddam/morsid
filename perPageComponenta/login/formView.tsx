@@ -84,7 +84,7 @@ export default function LoginForm() {
                     Login
                   </button>
                 </ResponsiveContainer>
-                <SignButtom title="Sign Up" to={"/signup"} type="glow" />
+                <SignButtom title="Sign Up" to={"/signup"} viewType="glow" />
               </ButtonsContainer> */}
               <SignInButton
                 title="SIGN UP"

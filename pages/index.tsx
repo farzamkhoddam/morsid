@@ -136,8 +136,11 @@ const Header = styled.section`
   background: var(--primary-color-normal);
 `;
 const ImageContainer = styled.div`
-  position: relative;
   width: 60%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 const InnerSection = styled.div`
   display: flex;
@@ -147,6 +150,7 @@ const InnerSection = styled.div`
   margin: 0 1rem;
   margin-top: 5rem;
   height: 29rem;
+  position: relative;
 `;
 const TitleAndButton = styled.div`
   display: flex;
