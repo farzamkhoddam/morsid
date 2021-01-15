@@ -77,7 +77,7 @@ export default function SignupForm() {
           onSubmit={async (values) => {
             setErrors(null);
             try {
-              await axios.post("/api/users/register", { json: values });
+              await axios.post("/api/users/register", values);
               router.push("/login");
             } catch (e) {
               if (

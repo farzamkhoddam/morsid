@@ -2,6 +2,7 @@ import { Post } from "../../wpapi";
 import Error from "next/error";
 import SEO from "../../components/seo";
 import Footer from "../../components/footer";
+import { device } from "../../consts/theme";
 import SimplePageHeader from "components/simplePageHeader";
 import { StripeButton } from "components/StripeButton";
 import Button from "components/Button";
@@ -89,7 +90,7 @@ export function ArticleView({ post }: Props) {
           <StripeButton />
         </MustBuyContainer>
       ) : null}
-      <Footer />
+ 
       {/* {(previous || next) && <Pagination {...props} />} */}
     </div>
   );
@@ -130,6 +131,10 @@ const Propertie = styled.div`
     font-size: 40px;
     line-height: 49px;
     color: var(--primary-color-normal);
+    @media ${device.tablet}{
+      font-size:27px;
+      line-height:30px;
+    }
   }
   p {
     font-family: Montserrat;
@@ -138,6 +143,11 @@ const Propertie = styled.div`
     font-size: 20px;
     line-height: 24px;
     color: var(--gray-color-normal);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
   }
   div {
     font-family: Montserrat;
@@ -147,6 +157,9 @@ const Propertie = styled.div`
     line-height: 24px;
     color: var(--gray-color-light);
     text-align: end;
+  }
+  @media ${device.tablet}{
+    width: 86%;
   }
 `;
 const MustBuyContainer = styled.div`
@@ -173,6 +186,11 @@ const TransparentSection = styled.div`
 `;
 const H4 = styled.h4`
   color: var(--black-color-normal);
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 156.4%;
 `;
 const LoginButton = styled(Button)`
   width: 264px;
