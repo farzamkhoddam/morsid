@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { GetStaticProps } from "next";
+import { fetchPosts, Posts_posts as PostsPage } from "../wpapi";
 import styled from "styled-components";
 import SEO from "../components/seo";
 import { device } from "../consts/theme";
@@ -5,10 +8,16 @@ import Image from "next/image";
 import React from "react";
 import Menu from "components/menu";
 import Button from "components/Button";
-import PostCard from "components/post-card";
 import Footer from "components/footer";
+import HomeCarousel from "perPageComponenta/Home/homeCarousel";
 
-export default function Home() {
+interface Props {
+  posts: PostsPage;
+}
+
+export default function Home({ posts }: Props) {
+  const [carouselValue, setCarouselValue] = useState(0);
+
   return (
     <div style={{ position: "relative" }}>
       <SEO />
@@ -31,49 +40,34 @@ export default function Home() {
           </ImageContainer>
         </InnerSection>
       </Header>
-      {/* 
       <Latest>
         <LatestHeader>
           <SectionTitle>LEARN HOW TO ENGINEER EXTRA INCOME</SectionTitle>
           <ArrowsContainer>
-            <Image
-              src="/tiny-arrow-left.svg"
-              alt="left"
-              width={24}
-              height={24}
-            />
-            <Image
-              src="/tiny-arrow-right.svg"
-              alt="left"
-              width={24}
-              height={24}
-            />
+            <ArrowButton onClick={() => setCarouselValue((o) => o - 1)}>
+              <Image
+                src="/tiny-arrow-left.svg"
+                alt="left"
+                width={24}
+                height={24}
+              />
+            </ArrowButton>
+            <ArrowButton onClick={() => setCarouselValue((o) => o + 1)}>
+              <Image
+                src="/tiny-arrow-right.svg"
+                alt="left"
+                width={24}
+                height={24}
+              />
+            </ArrowButton>
           </ArrowsContainer>
         </LatestHeader>
-       <CardsContainer>
-          
-          <CardItem
-            slug="slugggggggggggg"
-            title="Email Marketing Play Book"
-            excerpt="This article is about email marketing for marketers"
-          />
-          
-
-          <CardItem
-            slug="slugggggggggggg"
-            title="Email Marketing Play Book"
-            excerpt="This article is about email marketing for marketers"
-          />
-          
-
-          <SmartCardItem
-            slug="slugggggggggggg"
-            title="Email Marketing Play Book"
-            excerpt="This article is about email marketing for marketers"
-          />
-        </CardsContainer> 
+        <HomeCarousel
+          posts={posts}
+          value={carouselValue}
+          onChange={(value) => setCarouselValue(value)}
+        />
       </Latest>
-      */}
       <WhyUs>
         <SectionTitle>
           LEVEL UP YOUR SKILL WITH OUR HUSTLE ADVISORS
@@ -129,6 +123,19 @@ export default function Home() {
     </div>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = (await fetchPosts({ variables: { first: 8 } })).data?.data
+    .posts;
+
+  return {
+    props: {
+      posts,
+    },
+    revalidate: 20,
+  };
+};
+
 const Header = styled.section`
   display: flex;
   justify-content: center;
@@ -262,13 +269,13 @@ const SignUpButton = styled(Button)`
   }
 `;
 const Latest = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-top: 10rem;
   width: 100%;
-  height: auto;
+  display: flex;
+  flex-direction: column;
   max-width: var(--page-max-width);
+  margin-right: auto;
+  margin-left: auto;
 `;
 const LatestHeader = styled.div`
   display: flex;
@@ -294,22 +301,10 @@ const SectionTitle = styled.h2`
 const ArrowsContainer = styled.div`
   display: flex;
 `;
-const CardsContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 0 1rem;
-  max-width: var(--page-max-width);
-  width: 100%;
-  padding: 0 1rem;
-  flex-wrap: wrap;
-`;
-const CardItem = styled(PostCard)`
-  margin: 0 1rem;
-`;
-const SmartCardItem = styled(PostCard)`
-  @media ${device.tablet} {
-    display: none;
-  }
+const ArrowButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
 `;
 
 const WhyUs = styled.section`

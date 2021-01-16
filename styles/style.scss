@@ -1,6 +1,7 @@
 @import "theme-variables";
 @import "defaults";
 @import "lib/css-grid-utility";
+@import '~@brainhubeu/react-carousel/lib/style.css';
 
 .primary-container {
   display: flex;
