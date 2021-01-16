@@ -50,7 +50,7 @@ const Contents = styled.div`
   justify-content: space-between;
   width: 100%;
   max-width: var(--page-max-width);
-  padding: 0 1rem;
+  padding: 0 2rem;
 `;
 
 const DeactiveMenuNavContainer = styled.div<{ colorType?: MenuColorType }>`

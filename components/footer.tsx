@@ -11,19 +11,19 @@ const Footer = () => {
     <Container>
       <ContentWrapper>
         <ImageContainer>
-        <Image
-          src="/circle-hashur.svg"
-          alt="circle-hashur"
-          width={130}
-          height={130}
-        />
+          <Image
+            src="/circle-hashur.svg"
+            alt="circle-hashur"
+            width={130}
+            height={130}
+          />
         </ImageContainer>
-        <Sentense>Do You Interenset?</Sentense>
+        <Sentense>{`UNLOCK THE SKILLS FOE GENERATING "NEW MONEY"`}</Sentense>
         <Part2Container>
           <LogoContainer>
             <WhiteLogo />
           </LogoContainer>
-          <SignUpButton title="SIGN UP NOW" viewType="glow" />
+          <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" />
         </Part2Container>
       </ContentWrapper>
     </Container>
@@ -46,11 +46,9 @@ const Sentense = styled.h3`
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: normal;
-  font-size: 40px;
-  line-height: 48px;
-  /* identical to box height */
+  font-size: 56px;
+  line-height: 67px;
   text-transform: capitalize;
-  /* White */
   color: #ffffff;
   width: fit-content;
   margin-left: 1rem;
@@ -123,12 +121,13 @@ const ContentWrapper = styled.div`
   max-width: var(--page-max-width);
   width: 100%;
   position: relative;
+  overflow: hidden;
 `;
 const ImageContainer = styled.div`
-  position:absolute;
+  position: absolute;
   right: 10rem;
   top: -38px;
-  @media ${device.laptopL}{
-    display:none;
+  @media ${device.laptopL} {
+    display: none;
   }
-`
+`;

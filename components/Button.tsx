@@ -69,7 +69,7 @@ const Container = styled.div<{ viewType?: "glow" | "normal" }>`
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: inherit;
   line-height: 24px;
   text-transform: uppercase;
   transition: background 0.3s linear;

@@ -22,20 +22,8 @@ const MenuItems = [
   },
 ];
 
-const ListLink = (props: {
-  to: string;
-  children: ReactNode;
-  isMobileVersion: boolean;
-}) => (
-  <li
-  // style={
-  //   isMobileVersion && {
-  //     color: "#DBBD82",
-  //     paddingBottom: "0.3rem",
-  //     borderBottom: "2px solid currentColor",
-  //   }
-  // }
-  >
+const ListLink = (props: { to: string; children: ReactNode }) => (
+  <li>
     <Link href={props.to}>{props.children}</Link>
   </li>
 );
@@ -62,7 +50,7 @@ const Navigation: React.FC<Props> = ({
 
   const listMenuItems = MenuItems.map((menuItem, index) => {
     return (
-      <ListLink key={index} to={menuItem.path} isMobileVersion={false}>
+      <ListLink key={index} to={menuItem.path}>
         {menuItem.title}
       </ListLink>
     );
