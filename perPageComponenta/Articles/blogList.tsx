@@ -30,7 +30,7 @@ const Section = styled.section`
 `;
 const ArticlesContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 30%);
   gap: 36px;
   width: 100%;
   max-width: var(--page-max-width);

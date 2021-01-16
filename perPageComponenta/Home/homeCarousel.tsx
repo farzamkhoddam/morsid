@@ -16,7 +16,6 @@ const HomeCarousel = ({ value, onChange, posts }: Props) => {
   return (
     <CardsContainer>
       <Carousel
-        offset={20}
         value={value}
         onChange={onChange}
         plugins={[
@@ -53,7 +52,7 @@ const HomeCarousel = ({ value, onChange, posts }: Props) => {
         }
       >
         {posts.nodes?.map((post) =>
-          post ? <PostCard key={post.id} post={post} /> : null,
+          post ? <Item key={post.id} post={post} /> : null,
         )}
       </Carousel>
     </CardsContainer>
@@ -64,4 +63,8 @@ export default HomeCarousel;
 
 const CardsContainer = styled.div`
   width: 100%;
+`;
+
+const Item = styled(PostCard)`
+  margin: 0 10px;
 `;

@@ -5,11 +5,11 @@ import format from "date-fns/format";
 import { device } from "../consts/theme";
 import { Posts_posts_nodes as Post } from "../wpapi";
 
-const PostCard = ({ post }: { post: Post }) => {
+const PostCard = ({ post, className }: { post: Post; className?: string }) => {
   const { smallThumbnail, title, excerpt } = post;
 
   return (
-    <Container>
+    <Container className={className}>
       <PostWrapper>
         <GreySide>
           <ImageContainer>
@@ -57,6 +57,7 @@ export default PostCard;
 
 const Container = styled.article`
   width: 100%;
+  height: 100%;
 `;
 
 const Image = styled.img`
@@ -86,8 +87,9 @@ const ContentContainer = styled.div`
 `;
 const WritesContainer = styled.div`
   margin-left: 0.5rem;
+  flex: 1;
 `;
-const Content = styled.p`
+const Content = styled.div`
   font-size: 110%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -98,6 +100,7 @@ const Content = styled.p`
 `;
 
 const PostWrapper = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
