@@ -7,7 +7,7 @@
 // GraphQL query operation: Posts
 // ====================================================
 
-export interface Posts_posts_nodes_featuredImage_node {
+export interface Posts_posts_nodes_smallThumbnail_postSmallThumbnail {
   __typename: "MediaItem";
   /**
    * Url of the mediaItem
@@ -15,12 +15,9 @@ export interface Posts_posts_nodes_featuredImage_node {
   mediaItemUrl: string | null;
 }
 
-export interface Posts_posts_nodes_featuredImage {
-  __typename: "NodeWithFeaturedImageToMediaItemConnectionEdge";
-  /**
-   * The nodes of the connection, without the edges
-   */
-  node: Posts_posts_nodes_featuredImage_node | null;
+export interface Posts_posts_nodes_smallThumbnail {
+  __typename: "Post_Smallthumbnail";
+  postSmallThumbnail: Posts_posts_nodes_smallThumbnail_postSmallThumbnail | null;
 }
 
 export interface Posts_posts_nodes {
@@ -45,10 +42,7 @@ export interface Posts_posts_nodes {
    * The excerpt of the post.
    */
   excerpt: string | null;
-  /**
-   * Connection between the NodeWithFeaturedImage type and the MediaItem type
-   */
-  featuredImage: Posts_posts_nodes_featuredImage | null;
+  smallThumbnail: Posts_posts_nodes_smallThumbnail | null;
 }
 
 export interface Posts_posts_pageInfo {

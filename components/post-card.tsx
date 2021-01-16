@@ -6,7 +6,7 @@ import { device } from "../consts/theme";
 import { Posts_posts_nodes as Post } from "../wpapi";
 
 const PostCard = ({ post }: { post: Post }) => {
-  const { featuredImage, title, excerpt } = post;
+  const { smallThumbnail, title, excerpt } = post;
 
   return (
     <Container>
@@ -15,7 +15,7 @@ const PostCard = ({ post }: { post: Post }) => {
           <ImageContainer>
             <Image
               src={
-                featuredImage?.node?.mediaItemUrl ||
+                smallThumbnail?.postSmallThumbnail?.mediaItemUrl ||
                 "/article-image-placeholder.png"
               }
               alt={title + " - Featured image"}

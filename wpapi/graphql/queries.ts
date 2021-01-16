@@ -11,8 +11,8 @@ export const POSTS = gql`
         title
         date
         excerpt
-        featuredImage {
-          node {
+        smallThumbnail {
+          postSmallThumbnail {
             mediaItemUrl
           }
         }

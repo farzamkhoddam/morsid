@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "generate-types": "apollo client:codegen --target typescript --endpoint='http://localhost:8002/graphql' --outputFlat wpapi/graphql/__generated__/types.ts --includes='wpapi/**'"
+    "generate-types": "apollo client:codegen --target typescript --endpoint='https://wp.thehustleclub.com/graphql' --outputFlat wpapi/graphql/__generated__/types.ts --includes='wpapi/**'"
   },
   "dependencies": {
     "@brainhubeu/react-carousel": "2",
