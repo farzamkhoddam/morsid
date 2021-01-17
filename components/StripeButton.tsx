@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import Button from "./Button";
+import styled from "styled-components";
 
 interface Props {
   className?: string;
@@ -43,7 +44,6 @@ export function StripeButton({ className }: Props) {
     <Button
       title={"Subscribe Now"}
       clickHandler={handleStripe}
-      viewType="glow"
       className={className}
     />
   );

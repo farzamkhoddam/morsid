@@ -162,6 +162,9 @@ const SignUDesc = styled.div`
   @media (max-width: 1250px) {
     font-size: 15px;
   }
+  @media ${device.mobileL} {
+    font-size: 12px;
+  }
 `;
 const SignUpClickable = styled.span`
   color: var(--accent-color-normal);
@@ -181,6 +184,9 @@ const ForgotPassword = styled.div`
   }
   @media ${device.laptop} {
     margin-left: 1rem;
+  }
+  @media ${device.mobileL} {
+    margin-top: 1rem;
   }
 `;
 const SignInButton = styled.input`

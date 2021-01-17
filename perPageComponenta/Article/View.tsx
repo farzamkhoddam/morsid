@@ -1,7 +1,6 @@
 import { Post } from "../../wpapi";
 import Error from "next/error";
 import SEO from "../../components/seo";
-import Footer from "../../components/footer";
 import { device } from "../../consts/theme";
 import SimplePageHeader from "components/simplePageHeader";
 import { StripeButton } from "components/StripeButton";
@@ -60,8 +59,8 @@ export function ArticleView({ post }: Props) {
               <Image
                 src={featuredImage?.node?.mediaItemUrl || ""}
                 alt={title + " - Featured image"}
-                width={1440}
-                height={720}
+                width={720}
+                height={360}
                 layout="responsive"
                 priority={true}
               />
@@ -95,7 +94,8 @@ export function ArticleView({ post }: Props) {
         <MustBuyContainer>
           <TransparentSection />
           <H4>Read the rest of this story with a premium account.</H4>
-          <StripeButton />
+
+          <MyStripeButton />
         </MustBuyContainer>
       ) : null}
 
@@ -112,7 +112,6 @@ const HeaderColor = styled.header`
   @media ${device.laptop} {
     height: 15rem;
   }
-
 `;
 const HeaderSection = styled.section`
   display: flex;
@@ -154,7 +153,6 @@ const PropertieContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 0 1rem;
-  
 `;
 const Propertie = styled.div`
   background: #ffffff;
@@ -194,7 +192,6 @@ const Propertie = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 2; /* number of lines to show */
     -webkit-box-orient: vertical;
-    
   }
   div {
     font-family: Montserrat;
@@ -204,7 +201,6 @@ const Propertie = styled.div`
     line-height: 24px;
     color: var(--gray-color-light);
     text-align: end;
-    
   }
 `;
 const MustBuyContainer = styled.div`
@@ -215,7 +211,6 @@ const MustBuyContainer = styled.div`
   padding-bottom: 4rem;
   max-width: var(--page-max-width);
   margin: 0 auto;
-  
 `;
 const TransparentSection = styled.div`
   background: rgba(0, 0, 0, 0)
@@ -240,6 +235,10 @@ const H4 = styled.h4`
   text-align: center;
 `;
 const LoginButton = styled(Button)`
+  width: 264px;
+  height: 64px;
+`;
+const MyStripeButton = styled(StripeButton)`
   width: 264px;
   height: 64px;
 `;

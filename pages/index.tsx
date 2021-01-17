@@ -162,6 +162,9 @@ const Header = styled.section`
   height: 38rem;
   background: var(--primary-color-normal);
 
+  @media (max-width: 1366px) {
+    height: 35rem;
+  }
   @media (max-width: 1260px) {
     height: 30rem;
   }
@@ -240,6 +243,10 @@ const Title = styled.h1`
   color: #ffffff;
   margin-top: 0;
   margin-bottom: 8rem;
+
+  @media (max-width: 1366px) {
+    margin-bottom: 5.5rem;
+  }
 
   @media (max-width: 1260px) {
     font-size: 76px;
