@@ -38,7 +38,7 @@ const HomeCarousel = ({ value, onChange, posts }: Props) => {
                 },
               ],
             },
-            1380: {
+            767: {
               plugins: [
                 {
                   resolve: slidesToShowPlugin,
