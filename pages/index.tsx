@@ -187,6 +187,7 @@ const ImageContainer = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  padding-right: 2rem;
   @media ${device.mobileL} {
     position: relative;
     width: 100%;
@@ -198,7 +199,7 @@ const InnerSection = styled.div`
   justify-content: space-between;
   width: 100%;
   max-width: var(--page-max-width);
-  margin: 0 2rem;
+  padding: 0 2rem;
   margin-top: 5rem;
   height: 29rem;
   position: relative;
@@ -233,7 +234,7 @@ const Title = styled.h1`
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: normal;
-  font-size: 97px;
+  font-size: 93px;
   line-height: 109px;
   text-transform: uppercase;
   color: #ffffff;
@@ -241,7 +242,7 @@ const Title = styled.h1`
   margin-bottom: 8rem;
 
   @media (max-width: 1260px) {
-    font-size: 77px;
+    font-size: 76px;
     line-height: 89px;
     margin-bottom: 4rem;
   }
@@ -294,10 +295,12 @@ const Latest = styled.section`
   max-width: var(--page-max-width);
   margin-right: auto;
   margin-left: auto;
+  padding: 0 1rem;
 `;
 const LatestHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   width: 100%;
   padding: 0 1rem;
   max-width: var(--page-max-width);
@@ -309,11 +312,14 @@ const SectionTitle = styled.h2`
   font-size: 56px;
   line-height: 67px;
   text-transform: capitalize;
-  margin-left: 1rem;
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     font-size: 40px;
     line-height: 48px;
+  }
+  @media ${device.tablet} {
+    font-size: 7vw;
+    line-height: 8vw;
   }
 `;
 const ArrowsContainer = styled.div`

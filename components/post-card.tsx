@@ -74,7 +74,7 @@ const Title = styled.h3`
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  margin-bottom: 0;
+  -webkit-box-orient: vertical;
 `;
 const ContentContainer = styled.div`
   display: flex;
@@ -106,9 +106,10 @@ const PostWrapper = styled.div`
   align-items: stretch;
   background-color: #fff;
   transition: box-shadow 0.3s linear;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(0px 0px ۶px rgba(0, 0, 0, 0.1));
   border: 1px solid rgba(0, 0, 0, 0.12);
-
+  width: 99%;
+  height: 99%;
   @media ${device.tablet} {
     align-items: center;
   }

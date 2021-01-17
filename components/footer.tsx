@@ -5,6 +5,7 @@ import Button from "./Button";
 import { device } from "../consts/theme";
 import Logo from "./Svgs/logo";
 import Image from "next/image";
+import SmartCompBaseOnLogin from "./smartCompBaseOnLogin";
 
 const Footer = () => {
   return (
@@ -23,7 +24,24 @@ const Footer = () => {
           <LogoContainer>
             <WhiteLogo />
           </LogoContainer>
-          <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" />
+          {/* <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" /> */}
+          {typeof window && (
+            <SmartCompBaseOnLogin
+              doesNotLogin={
+                <SmartButton to="/signup" title="Sign Up" viewType="glow" />
+              }
+              loginWithoutSubscribed={
+                <SmartButton
+                  to="/account"
+                  title="Get Artciles"
+                  viewType="glow"
+                />
+              }
+              loginWithSubscribed={
+                <SmartButton to="/articles" title="Read Artciles" />
+              }
+            />
+          )}
         </Part2Container>
       </ContentWrapper>
     </Container>
@@ -75,7 +93,7 @@ const LogoContainer = styled.div`
     margin: 0;
   }
 `;
-const SignUpButton = styled(Button)`
+const SmartButton = styled(Button)`
   height: 70px;
   width: 340px;
   margin-right: 1rem;
