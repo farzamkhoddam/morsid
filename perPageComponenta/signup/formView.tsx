@@ -113,7 +113,7 @@ export default function SignupForm() {
                 placeholder="Confirm Password"
               />
 
-              <SignUpButton title="SIGN UP" type="submit" />
+              <SignUpButton value="SIGN UP" type="submit" />
               <SigninContainer>
                 <SigninDesc>if you have an account, please</SigninDesc>
                 <Link href="/login">

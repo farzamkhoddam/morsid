@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { setUserData } from "utils/auth-storage";
 import { device } from "consts/theme";
 import Link from "next/link";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 interface FormValues {
   email: string;
@@ -87,7 +87,7 @@ export default function LoginForm() {
                 <SignButtom title="Sign Up" to={"/signup"} viewType="glow" />
               </ButtonsContainer> */}
               <SignInButton
-                title="SIGN UP"
+                value="SIGN IN"
                 type="submit"
                 disabled={isSubmitting}
               />
@@ -136,9 +136,6 @@ const FormWrapper = styled.div`
       width: 100%;
     }
   }
-`;
-const H1 = styled.h1`
-  color: var(--primary-color-normal);
 `;
 
 const SignupContainer = styled.div`

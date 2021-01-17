@@ -10,6 +10,7 @@ import Menu from "components/menu";
 import Button from "components/Button";
 import Footer from "components/footer";
 import HomeCarousel from "perPageComponenta/Home/homeCarousel";
+import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 
 interface Props {
   posts: PostsPage;
@@ -26,7 +27,24 @@ export default function Home({ posts }: Props) {
         <InnerSection>
           <TitleAndButton>
             <Title>MASTER THE ART OF ENGINEERING SIDE INCOME</Title>
-            <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" />
+            {/* <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" /> */}
+            {typeof window && (
+              <SmartCompBaseOnLogin
+                doesNotLogin={
+                  <SmartButton to="/signup" title="Sign Up" viewType="glow" />
+                }
+                loginWithoutSubscribed={
+                  <SmartButton
+                    to="/account"
+                    title="Get Artciles"
+                    viewType="glow"
+                  />
+                }
+                loginWithSubscribed={
+                  <SmartButton to="/articles" title="Read Artciles" />
+                }
+              />
+            )}
           </TitleAndButton>
 
           <ImageContainer>
@@ -249,7 +267,7 @@ const Title = styled.h1`
     margin-bottom: 0rem;
   }
 `;
-const SignUpButton = styled(Button)`
+const SmartButton = styled(Button)`
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;

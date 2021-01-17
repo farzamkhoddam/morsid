@@ -73,7 +73,7 @@ const Container = styled.div<{ viewType?: "glow" | "normal" }>`
   line-height: 24px;
   text-transform: uppercase;
   transition: background 0.3s linear;
-  width: 100%;
+  width: inherit;
   height: inherit;
   &.-outline {
     color: var(--primary-color-dark);

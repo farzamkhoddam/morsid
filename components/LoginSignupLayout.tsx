@@ -6,7 +6,7 @@ import { useWindowSize } from "hooks/useWindowSize";
 import HomeIcon from "./Svgs/ic24-home";
 import SignupForm from "perPageComponenta/signup/formView";
 import LoginForm from "perPageComponenta/login/formView";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import Link from "next/link";
 
 interface Props {
