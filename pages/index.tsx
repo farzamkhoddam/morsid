@@ -321,6 +321,10 @@ const SectionTitle = styled.h2`
     font-size: 7vw;
     line-height: 8vw;
   }
+  @media ${device.mobileL} {
+    font-size: 2rem;
+    line-height: 2.2rem;
+  }
 `;
 const ArrowsContainer = styled.div`
   display: flex;
@@ -385,4 +389,8 @@ const H3 = styled.h3`
   text-align: center;
   text-transform: capitalize;
   color: #1d3330;
+  @media ${device.tablet} {
+    font-size: 32px;
+    line-height: 38px;
+  }
 `;

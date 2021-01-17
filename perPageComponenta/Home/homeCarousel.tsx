@@ -28,7 +28,7 @@ const HomeCarousel = ({ value, onChange, posts }: Props) => {
         ]}
         breakpoints={
           {
-            720: {
+            425: {
               plugins: [
                 {
                   resolve: slidesToShowPlugin,
