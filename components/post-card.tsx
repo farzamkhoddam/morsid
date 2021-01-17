@@ -169,6 +169,14 @@ const ReadMore = styled.div`
   font-size: 20px;
   line-height: 24px;
   color: var(--accent-color-normal);
+  @media ${device.tablet} {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  @media ${device.mobileL} {
+    font-size: 20px;
+    line-height: 24px;
+  }
 `;
 const DateContainer = styled.div`
   display: flex;
