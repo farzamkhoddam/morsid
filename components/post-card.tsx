@@ -33,7 +33,7 @@ const PostCard = ({ post, className }: { post: Post; className?: string }) => {
           </WritesContainer>
           <ReadButtonContainer>
             <Link href={`/article/${post.slug}`}>
-              <a>Read More</a>
+              <ReadMore>Read More</ReadMore>
             </Link>
             <DateContainer>
               <NextImage
@@ -42,7 +42,11 @@ const PostCard = ({ post, className }: { post: Post; className?: string }) => {
                 width={24}
                 height={24}
               />
-              <span>
+              <span
+                style={{
+                  marginLeft: "0.5rem",
+                }}
+              >
                 {format(new Date(post.date || Date.now()), "LLL, dd, uuuu")}
               </span>
             </DateContainer>
@@ -75,6 +79,16 @@ const Title = styled.h3`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+
+  margin-bottom: 0;
+  height: 49px; // 2 * line height +1px;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--secondary-color-normal);
 `;
 const ContentContainer = styled.div`
   display: flex;
@@ -88,6 +102,8 @@ const ContentContainer = styled.div`
 const WritesContainer = styled.div`
   margin-left: 0.5rem;
   flex: 1;
+  margin-top: 2rem;
+  padding: 0 1rem;
 `;
 const Content = styled.div`
   font-size: 110%;
@@ -97,6 +113,21 @@ const Content = styled.div`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   margin-top: 0;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--gray-color-normal);
+  p {
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
 `;
 
 const PostWrapper = styled.div`
@@ -131,7 +162,21 @@ const ReadButtonContainer = styled.div`
   margin: 2rem 1rem 1rem;
 }
 `;
+const ReadMore = styled.div`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--accent-color-normal);
+`;
 const DateContainer = styled.div`
   display: flex;
   align-items: center;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--gray-color-light);
 `;

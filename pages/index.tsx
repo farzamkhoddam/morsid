@@ -339,6 +339,7 @@ const WhyUs = styled.section`
   max-width: var(--page-max-width);
   margin-right: auto;
   margin-left: auto;
+  padding: 0 2rem;
 `;
 const IconsContainer = styled.div`
   display: flex;
