@@ -5,98 +5,60 @@ import axios from "axios";
 import * as yup from "yup";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Button from "components/Button";
+import { setUserData } from "utils/auth-storage";
 import { device } from "consts/theme";
 import Link from "next/link";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 interface FormValues {
   email: string;
   password: string;
-  confirmPassword: string;
-  firstName: string;
-  lastName: string;
 }
 
 const initialValues: FormValues = {
   email: "",
   password: "",
-  confirmPassword: "",
-  firstName: "",
-  lastName: "",
 };
 
-const SignupSchema = yup.object().shape({
-  firstName: yup.string().label("First Name").required(),
-  lastName: yup.string().label("Last Name").required(),
+const LoginSchema = yup.object().shape({
   email: yup.string().label("Email Address").email().required(),
   password: yup.string().min(8).label("Password").required(),
-  confirmPassword: yup
-    .string()
-    .min(8)
-    .label("Confirm Password")
-    .oneOf(
-      [yup.ref("password")],
-      `Password and Confirm Password does not match`,
-    )
-    .required(),
 });
-const snackBarOptions = {
-  position: "bottom-right",
-  style: {
-    backgroundColor: "midnightblue",
-    border: "2px solid lightgreen",
-    color: "lightblue",
-    fontFamily: "Menlo, monospace",
-    fontSize: "20px",
-    textAlign: "center",
-  },
-  closeStyle: {
-    color: "lightcoral",
-    fontSize: "16px",
-  },
-};
-export default function SignupForm() {
+
+export default function LoginForm() {
   const router = useRouter();
-  const [errors, setErrors] = useState<string[] | null>(null);
+  const [loginFailed, setLoginFailed] = useState(false);
 
   useEffect(() => {
-    if (errors && errors.length > 0) {
-      errors.map((err) => toast.error(err));
-      setErrors(null);
+    if (loginFailed) {
+      toast.error("Wrong email or password");
+      // این رو فالس میکنیم که با هر بار ری رندر شدن کامپوننت، این اخطار نشون داده نشه
+      setLoginFailed(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errors]);
-
+  }, [loginFailed]);
   return (
     <FormContainer>
       <FormWrapper>
         <Formik
           initialValues={initialValues}
-          validationSchema={SignupSchema}
+          validationSchema={LoginSchema}
           onSubmit={async (values) => {
-            setErrors(null);
+            setLoginFailed(false);
             try {
-              await axios.post("/api/users/register", values);
-              router.push("/login");
-            } catch (e) {
-              if (
-                // e.name === "HTTPError" &&
-                e.response.status < 500 &&
-                e.response.status >= 400
-              ) {
-                const errors = e?.response?.data?.errors || null;
-                // const { errors } = await e.response.json();
-
-                setErrors(errors);
-              }
+              await axios.post("/api/users/login", values);
+              const res = await axios.post<{ user: { subscribed: boolean } }>(
+                "/api/users/me",
+              );
+              setUserData(res.data.user.subscribed);
+              router.push("/account");
+            } catch {
+              setLoginFailed(true);
             }
           }}
         >
-          {() => (
+          {({ isSubmitting }) => (
             <Form>
-              <TextInput name="firstName" placeholder="firstName" />
-              <TextInput name="lastName" placeholder="Last Name" />
               <TextInput
                 name="email"
                 type="email"
@@ -107,21 +69,34 @@ export default function SignupForm() {
                 type="password"
                 placeholder="Password"
               />
-              <TextInput
-                name="confirmPassword"
-                type="password"
-                placeholder="Confirm Password"
+              {/* <ButtonsContainer>
+                <ResponsiveContainer>
+                  <button
+                    className="button"
+                    disabled={isSubmitting}
+                    type="submit"
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Login
+                  </button>
+                </ResponsiveContainer>
+                <SignButtom title="Sign Up" to={"/signup"} viewType="glow" />
+              </ButtonsContainer> */}
+              <SignInButton
+                value="SIGN IN"
+                type="submit"
+                disabled={isSubmitting}
               />
-
-              <SignUpButton value="SIGN UP" type="submit" />
-              <SigninContainer>
-                <SigninDesc>
-                  if you have an account, please{" "}
-                  <Link href="/login">
-                    <SigninClickable>Sign in</SigninClickable>
-                  </Link>
-                </SigninDesc>
-              </SigninContainer>
+              <SignupContainer>
+                <SignUDesc>{`if you haven't an account, please`}</SignUDesc>
+                <Link href="/signup">
+                  <SignUpClickable>Sign Up</SignUpClickable>
+                </Link>
+              </SignupContainer>
             </Form>
           )}
         </Formik>
@@ -129,14 +104,19 @@ export default function SignupForm() {
     </FormContainer>
   );
 }
-
 const FormContainer = styled.div`
-  width: 100%;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;
 const FormWrapper = styled.div`
   max-width: var(--page-max-width);
   margin: 0 auto;
   width: 100%;
+  padding-left: 2rem;
   height: 100%;
   padding-top: 1rem;
   @media ${device.laptop} {
@@ -158,7 +138,9 @@ const FormWrapper = styled.div`
   }
 `;
 
-const SigninContainer = styled.div`
+const SignupContainer = styled.div`
+  display: flex;
+  align-items: center;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -180,16 +162,16 @@ const SigninContainer = styled.div`
     font-size: 3.8vw;
   }
 `;
-const SigninDesc = styled.p`
-  margin: 0;
+const SignUDesc = styled.div`
+  margin-right: 0.5rem;
 `;
-const SigninClickable = styled.span`
+const SignUpClickable = styled.span`
   color: var(--accent-color-normal);
   border-bottom: solid 1px;
   cursor: pointer;
 `;
 
-const SignUpButton = styled.input`
+const SignInButton = styled.input`
   display: inline-flex;
   align-items: center;
   justify-content: center;

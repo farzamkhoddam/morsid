@@ -1,8 +1,11 @@
+import AuthenticationLayout from "components/AuthenticationLayout";
+
 import { TextInput } from "components/TextInput";
 import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import axios from "axios";
 import * as yup from "yup";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { setUserData } from "utils/auth-storage";
 import { device } from "consts/theme";
@@ -11,89 +14,71 @@ import toast from "react-hot-toast";
 
 interface FormValues {
   email: string;
-  password: string;
 }
 
 const initialValues: FormValues = {
   email: "",
-  password: "",
 };
 
 const LoginSchema = yup.object().shape({
   email: yup.string().label("Email Address").email().required(),
-  password: yup.string().min(8).label("Password").required(),
 });
 
-export default function LoginForm() {
+export default function ForgotPassword() {
   const router = useRouter();
+
   return (
-    <FormContainer>
-      <FormWrapper>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={LoginSchema}
-          onSubmit={async (values) => {
-            try {
-              await axios.post("/api/users/login", values);
-              const res = await axios.post<{ user: { subscribed: boolean } }>(
-                "/api/users/me",
-              );
-              setUserData(res.data.user.subscribed);
-              router.push("/account");
-            } catch {
-              toast.error("Wrong email or password");
-            }
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form>
-              <TextInput
-                name="email"
-                type="email"
-                placeholder="Email Address"
-              />
-              <TextInput
-                name="password"
-                type="password"
-                placeholder="Password"
-              />
-              <SignInButtonWrapper>
+    <AuthenticationLayout title="Enter your email, we'll send you a link to reset your password.">
+      <FormContainer>
+        <FormWrapper>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={LoginSchema}
+            onSubmit={async (values) => {
+              try {
+                await axios.post(
+                  "/api/users/send-password-reset-email",
+                  values,
+                );
+                router.push("/login");
+                toast.success("Please check your email inbox");
+              } catch {
+                toast.error("Somthing went wrong!");
+              }
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <TextInput
+                  name="email"
+                  type="email"
+                  placeholder="Email Address"
+                />
                 <SignInButton
-                  value="SIGN IN"
+                  value="SEND"
                   type="submit"
                   disabled={isSubmitting}
                 />
-                <Link href="/forgot-password">
-                  <a>Forgot password</a>
-                </Link>
-              </SignInButtonWrapper>
-              <SignupContainer>
-                <SignUDesc>
-                  {`if you haven't an account, please `}
-                  <Link href="/signup">
-                    <SignUpClickable>Sign Up</SignUpClickable>
-                  </Link>
-                </SignUDesc>
-              </SignupContainer>
-            </Form>
-          )}
-        </Formik>
-      </FormWrapper>
-    </FormContainer>
+                <SigninContainer>
+                  <SigninDesc>
+                    if you have an account, please{" "}
+                    <Link href="/login">
+                      <SigninClickable>Sign in</SigninClickable>
+                    </Link>
+                  </SigninDesc>
+                </SigninContainer>
+              </Form>
+            )}
+          </Formik>
+        </FormWrapper>
+      </FormContainer>
+    </AuthenticationLayout>
   );
 }
 const FormContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-`;
-const SignInButtonWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  @media ${device.mobileL} {
-    flex-direction: column;
-  }
 `;
 const FormWrapper = styled.div`
   max-width: var(--page-max-width);
@@ -120,9 +105,7 @@ const FormWrapper = styled.div`
   }
 `;
 
-const SignupContainer = styled.div`
-  display: flex;
-  align-items: center;
+const SigninContainer = styled.div`
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -144,10 +127,10 @@ const SignupContainer = styled.div`
     font-size: 3.8vw;
   }
 `;
-const SignUDesc = styled.div`
-  margin-right: 0.5rem;
+const SigninDesc = styled.p`
+  margin: 0;
 `;
-const SignUpClickable = styled.span`
+const SigninClickable = styled.span`
   color: var(--accent-color-normal);
   border-bottom: solid 1px;
   cursor: pointer;
@@ -195,6 +178,6 @@ const SignInButton = styled.input`
     }
   }
   @media ${device.mobileL} {
-    margin-bottom: 0.5rem;
+    width: 100%;
   }
 `;

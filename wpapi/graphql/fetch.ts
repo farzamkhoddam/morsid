@@ -101,3 +101,15 @@ export function fetchCreateStripeSession(
     ...options,
   });
 }
+
+export function fetchSendPasswordResetEmail(
+  options?: Options<types.SendPasswordResetEmailVariables>,
+) {
+  return fetchQuery<
+    types.SendPasswordResetEmail,
+    types.SendPasswordResetEmailVariables
+  >({
+    query: queries.SEND_PASSWORD_RESET_EMAIL,
+    ...options,
+  });
+}
