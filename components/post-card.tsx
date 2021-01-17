@@ -10,49 +10,49 @@ const PostCard = ({ post, className }: { post: Post; className?: string }) => {
 
   return (
     <Container className={className}>
-      <PostWrapper>
-        <GreySide>
-          <ImageContainer>
-            <Image
-              src={
-                smallThumbnail?.postSmallThumbnail?.mediaItemUrl ||
-                "/article-image-placeholder.png"
-              }
-              alt={title + " - Featured image"}
-            />
-          </ImageContainer>
-        </GreySide>
-        <ContentContainer>
-          <WritesContainer>
-            <Link href={`/article/${post.slug}`}>
+      <Link href={`/article/${post.slug}`}>
+        <PostWrapper>
+          <GreySide>
+            <ImageContainer>
+              <Image
+                src={
+                  smallThumbnail?.postSmallThumbnail?.mediaItemUrl ||
+                  "/article-image-placeholder.png"
+                }
+                alt={title + " - Featured image"}
+              />
+            </ImageContainer>
+          </GreySide>
+          <ContentContainer>
+            <WritesContainer>
               <a>
                 <Title>{title}</Title>
               </a>
-            </Link>
-            <Content dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
-          </WritesContainer>
-          <ReadButtonContainer>
-            <Link href={`/article/${post.slug}`}>
+
+              <Content dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
+            </WritesContainer>
+            <ReadButtonContainer>
               <ReadMore>Read More</ReadMore>
-            </Link>
-            <DateContainer>
-              <NextImage
-                src="/calendar.svg"
-                alt="Logo"
-                width={24}
-                height={24}
-              />
-              <span
-                style={{
-                  marginLeft: "0.5rem",
-                }}
-              >
-                {format(new Date(post.date || Date.now()), "LLL, dd, uuuu")}
-              </span>
-            </DateContainer>
-          </ReadButtonContainer>
-        </ContentContainer>
-      </PostWrapper>
+
+              <DateContainer>
+                <NextImage
+                  src="/calendar.svg"
+                  alt="Logo"
+                  width={24}
+                  height={24}
+                />
+                <span
+                  style={{
+                    marginLeft: "0.5rem",
+                  }}
+                >
+                  {format(new Date(post.date || Date.now()), "LLL, dd, uuuu")}
+                </span>
+              </DateContainer>
+            </ReadButtonContainer>
+          </ContentContainer>
+        </PostWrapper>
+      </Link>
     </Container>
   );
 };

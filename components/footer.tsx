@@ -60,6 +60,13 @@ const Container = styled.div`
   background-color: var(--primary-color-normal);
   flex-wrap: wrap;
 `;
+const ContentWrapper = styled.div`
+  max-width: var(--page-max-width);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 0 2rem;
+`;
 const Sentense = styled.h3`
   font-family: Bebas Neue;
   font-style: normal;
@@ -69,7 +76,18 @@ const Sentense = styled.h3`
   text-transform: capitalize;
   color: #ffffff;
   width: fit-content;
-  margin-left: 1rem;
+  @media ${device.laptop} {
+    font-size: 40px;
+    line-height: 48px;
+  }
+  @media (max-width: 400px) {
+    font-size: 36px;
+    line-height: 38px;
+  }
+  @media (max-width: 400px) {
+    font-size: 30px;
+    line-height: 38px;
+  }
 `;
 const LogoContainer = styled.div`
   width: auto;
@@ -94,33 +112,32 @@ const LogoContainer = styled.div`
   }
 `;
 const SmartButton = styled(Button)`
-  height: 70px;
-  width: 340px;
-  margin-right: 1rem;
+  width: 358px;
+  height: 88px;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+
+  /* Bg Color */
+
+  color: #1d3330;
   @media ${device.laptop} {
-    height: 70%;
-    width: 35%;
-  }
-  @media ${device.tablet} {
-    height: 70%;
-    width: 40%;
-    margin-top: 0.9rem;
-  }
-  @media ${device.mobileL} {
-    height: 100%;
-    width: 80%;
-    margin-right: 0;
+    width: 252px;
+    height: 61.94px;
+
+    font-size: 16px;
+    line-height: 20px;
   }
 `;
 const Part2Container = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 97%;
-  margin: 0 1rem;
-  height: 37%;
-  margin-left: 0;
   align-items: center;
-  @media ${device.mobileL} {
+  @media (max-width: 500px) {
     flex-direction: column;
     padding-bottom: 2rem;
     height: 45%;
@@ -135,17 +152,9 @@ const WhiteLogo = styled(Logo)`
     height: 90%;
   }
 `;
-const ContentWrapper = styled.div`
-  max-width: var(--page-max-width);
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-`;
+
 const ImageContainer = styled.div`
   position: absolute;
   right: 10rem;
   top: -38px;
-  @media ${device.laptopL} {
-    display: none;
-  }
 `;
