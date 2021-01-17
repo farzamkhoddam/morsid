@@ -3,7 +3,6 @@ import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import axios from "axios";
 import * as yup from "yup";
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { setUserData } from "utils/auth-storage";
 import { device } from "consts/theme";
@@ -27,16 +26,6 @@ const LoginSchema = yup.object().shape({
 
 export default function LoginForm() {
   const router = useRouter();
-  const [loginFailed, setLoginFailed] = useState(false);
-
-  useEffect(() => {
-    if (loginFailed) {
-      toast.error("Wrong email or password");
-      // این رو فالس میکنیم که با هر بار ری رندر شدن کامپوننت، این اخطار نشون داده نشه
-      setLoginFailed(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loginFailed]);
   return (
     <FormContainer>
       <FormWrapper>
@@ -44,7 +33,6 @@ export default function LoginForm() {
           initialValues={initialValues}
           validationSchema={LoginSchema}
           onSubmit={async (values) => {
-            setLoginFailed(false);
             try {
               await axios.post("/api/users/login", values);
               const res = await axios.post<{ user: { subscribed: boolean } }>(
@@ -53,7 +41,7 @@ export default function LoginForm() {
               setUserData(res.data.user.subscribed);
               router.push("/account");
             } catch {
-              setLoginFailed(true);
+              toast.error("Wrong email or password");
             }
           }}
         >
@@ -69,28 +57,16 @@ export default function LoginForm() {
                 type="password"
                 placeholder="Password"
               />
-              {/* <ButtonsContainer>
-                <ResponsiveContainer>
-                  <button
-                    className="button"
-                    disabled={isSubmitting}
-                    type="submit"
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    Login
-                  </button>
-                </ResponsiveContainer>
-                <SignButtom title="Sign Up" to={"/signup"} viewType="glow" />
-              </ButtonsContainer> */}
-              <SignInButton
-                value="SIGN IN"
-                type="submit"
-                disabled={isSubmitting}
-              />
+              <SignInButtonWrapper>
+                <SignInButton
+                  value="SIGN IN"
+                  type="submit"
+                  disabled={isSubmitting}
+                />
+                <Link href="/forgot-password">
+                  <a>Forgot password</a>
+                </Link>
+              </SignInButtonWrapper>
               <SignupContainer>
                 <SignUDesc>
                   {`if you haven't an account, please `}
@@ -110,6 +86,14 @@ const FormContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+`;
+const SignInButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @media ${device.mobileL} {
+    flex-direction: column;
+  }
 `;
 const FormWrapper = styled.div`
   max-width: var(--page-max-width);
@@ -211,6 +195,6 @@ const SignInButton = styled.input`
     }
   }
   @media ${device.mobileL} {
-    width: 100%;
+    margin-bottom: 0.5rem;
   }
 `;

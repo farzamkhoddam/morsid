@@ -85,3 +85,11 @@ export const CREATE_STRIPE_SESSION = gql`
     }
   }
 `;
+
+export const SEND_PASSWORD_RESET_EMAIL = gql`
+  mutation SendPasswordResetEmail($input: SendPasswordResetEmailInput!) {
+    sendPasswordResetEmail(input: $input) {
+      clientMutationId
+    }
+  }
+`;

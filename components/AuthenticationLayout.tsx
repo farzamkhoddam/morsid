@@ -99,12 +99,14 @@ const Content = styled.div`
 const PicAndForm = styled.div`
   max-width: var(--page-max-width);
   padding: 0 1rem;
-  width: 60%;
+  width: 70%;
+  max-width: 700px;
   margin-left: 3rem;
   margin-top: 2rem;
   @media ${device.laptop} {
     width: 100%;
     margin-left: 0;
+    max-width: none;
   }
 `;
 const TitleWrapper = styled(PicAndForm)`
