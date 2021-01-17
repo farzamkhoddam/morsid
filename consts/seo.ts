@@ -10,5 +10,5 @@ export const seoData: SeoDataInterface = {
   titleTemplate: "%s",
   defaultDescription: "Master the art of engineering side income",
   siteUrl: "https://theHustleclub.com",
-  defaultImage: "/logo.png",
+  defaultImage: "/favicon.ico",
 };
