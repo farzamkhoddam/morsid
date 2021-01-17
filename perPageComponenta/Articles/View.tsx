@@ -27,7 +27,7 @@ export const ArticlesView = ({
       ))}
       <LoadMoreButton>
         {hasNextPage ? (
-          <Button
+          <ThisButton
             title={isFetchingNextPage ? "Loading..." : "Load More"}
             clickHandler={fetchNextPage}
           />
@@ -43,4 +43,8 @@ const LoadMoreButton = styled.div`
   margin-top: 50px;
   margin-bottom: 50px;
   width: 300px;
+`;
+const ThisButton = styled(Button)`
+  width: 264px;
+  height: 64px;
 `;
