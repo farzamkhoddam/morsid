@@ -72,6 +72,7 @@ const HomeButton = styled.a`
   line-height: 24px;
   letter-spacing: 0.06em;
   color: var(--secondary-color-normal);
+  height: var(--header-height-desktop);
   @media ${device.laptop} {
     color: white;
     padding: 0;
@@ -102,16 +103,17 @@ const PicAndForm = styled.div`
   width: 70%;
   max-width: 700px;
   margin-left: 3rem;
-  margin-top: 2rem;
+
   @media ${device.laptop} {
     width: 100%;
     margin-left: 0;
     max-width: none;
+    margin-top: 2rem;
   }
 `;
 const TitleWrapper = styled(PicAndForm)`
   @media ${device.laptop} {
-    padding: 2rem;
+    padding: 0 2rem;
     margin: 0;
     background: var(--primary-color-normal);
     color: white;
@@ -121,16 +123,17 @@ const Title = styled.div`
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: normal;
-  font-size: 3.5rem;
-  line-height: 4rem;
+  font-size: 56px;
+  line-height: 67px;
   letter-spacing: 0.07em;
+
   @media ${device.laptopL} {
-    font-size: 50px;
-    line-height: 60px;
+    font-size: 40px;
+    line-height: 44px;
     letter-spacing: 0.05em;
   }
   @media ${device.laptop} {
-    margin-top: 3rem;
+    padding-bottom: 2rem;
     text-align: center;
   }
   @media ${device.tablet} {

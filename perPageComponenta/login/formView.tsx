@@ -64,7 +64,7 @@ export default function LoginForm() {
                   disabled={isSubmitting}
                 />
                 <Link href="/forgot-password">
-                  <a>Forgot password</a>
+                  <ForgotPassword>Forgot password</ForgotPassword>
                 </Link>
               </SignInButtonWrapper>
               <SignupContainer>
@@ -91,6 +91,9 @@ const SignInButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media ${device.laptop} {
+    justify-content: flex-start;
+  }
   @media ${device.mobileL} {
     flex-direction: column;
   }
@@ -145,14 +148,41 @@ const SignupContainer = styled.div`
   }
 `;
 const SignUDesc = styled.div`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.06em;
+
+  /* Gray 2 */
+
+  color: #4f4f4f;
   margin-right: 0.5rem;
+  @media (max-width: 1250px) {
+    font-size: 15px;
+  }
 `;
 const SignUpClickable = styled.span`
   color: var(--accent-color-normal);
   border-bottom: solid 1px;
   cursor: pointer;
 `;
-
+const ForgotPassword = styled.div`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.06em;
+  color: #4f4f4f;
+  @media (max-width: 1200px) {
+    font-size: 17px;
+  }
+  @media ${device.laptop} {
+    margin-left: 1rem;
+  }
+`;
 const SignInButton = styled.input`
   display: inline-flex;
   align-items: center;
@@ -173,6 +203,11 @@ const SignInButton = styled.input`
   line-height: 24px;
   text-transform: uppercase;
   transition: background 0.3s linear;
+  @media (max-width: 1200px) {
+    font-size: 17px;
+    width: 224px;
+    height: 58px;
+  }
   &.-outline {
     color: var(--primary-color-dark);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);

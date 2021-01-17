@@ -167,7 +167,7 @@ const SigninContainer = styled.div`
   letter-spacing: 0.06em;
   margin-right: 0.5rem;
   color: var(--gray-color-normal);
-  margin-top: 2rem;
+  margin-top: 1rem;
   @media ${device.laptop} {
     font-size: 16px;
     letter-spacing: 0.03em;
@@ -181,6 +181,13 @@ const SigninContainer = styled.div`
   }
 `;
 const SigninDesc = styled.p`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  letter-spacing: 0.06em;
+  color: #4f4f4f;
   margin: 0;
 `;
 const SigninClickable = styled.span`
@@ -194,7 +201,7 @@ const SignUpButton = styled.input`
   align-items: center;
   justify-content: center;
   width: 264px;
-  height: 64px;
+  height: 58px;
   padding: var(--padding) calc(var(--padding) * 2);
   background: var(--accent-color-normal);
   color: var(--primary-color-normal);
