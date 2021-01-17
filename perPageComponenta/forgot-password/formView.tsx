@@ -92,12 +92,10 @@ export default function LoginForm() {
                 disabled={isSubmitting}
               />
               <SignupContainer>
-                <SignUDesc>
-                  {`if you haven't an account, please `}
-                  <Link href="/signup">
-                    <SignUpClickable>Sign Up</SignUpClickable>
-                  </Link>
-                </SignUDesc>
+                <SignUDesc>{`if you haven't an account, please`}</SignUDesc>
+                <Link href="/signup">
+                  <SignUpClickable>Sign Up</SignUpClickable>
+                </Link>
               </SignupContainer>
             </Form>
           )}
@@ -109,12 +107,16 @@ export default function LoginForm() {
 const FormContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 50%;
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;
 const FormWrapper = styled.div`
   max-width: var(--page-max-width);
   margin: 0 auto;
   width: 100%;
+  padding-left: 2rem;
   height: 100%;
   padding-top: 1rem;
   @media ${device.laptop} {

@@ -1,5 +1,10 @@
-import LoginSignupLayout from "components/LoginSignupLayout";
+import AuthenticationLayout from "components/AuthenticationLayout";
+import SignupForm from "perPageComponenta/signup/formView";
 
 export default function Signup() {
-  return <LoginSignupLayout pageName="SIGN UP" />;
+  return (
+    <AuthenticationLayout title="Sign up to download the hustle Playbooks">
+      <SignupForm />
+    </AuthenticationLayout>
+  );
 }

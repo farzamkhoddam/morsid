@@ -115,10 +115,12 @@ export default function SignupForm() {
 
               <SignUpButton value="SIGN UP" type="submit" />
               <SigninContainer>
-                <SigninDesc>if you have an account, please</SigninDesc>
-                <Link href="/login">
-                  <SigninClickable>Sign in</SigninClickable>
-                </Link>
+                <SigninDesc>
+                  if you have an account, please{" "}
+                  <Link href="/login">
+                    <SigninClickable>Sign in</SigninClickable>
+                  </Link>
+                </SigninDesc>
               </SigninContainer>
             </Form>
           )}
@@ -129,18 +131,12 @@ export default function SignupForm() {
 }
 
 const FormContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 50%;
-  @media ${device.tablet} {
-    width: 100%;
-  }
+  width: 100%;
 `;
 const FormWrapper = styled.div`
   max-width: var(--page-max-width);
   margin: 0 auto;
   width: 100%;
-  padding-left: 2rem;
   height: 100%;
   padding-top: 1rem;
   @media ${device.laptop} {
@@ -163,8 +159,6 @@ const FormWrapper = styled.div`
 `;
 
 const SigninContainer = styled.div`
-  display: flex;
-  align-items: center;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -186,8 +180,8 @@ const SigninContainer = styled.div`
     font-size: 3.8vw;
   }
 `;
-const SigninDesc = styled.div`
-  margin-right: 0.5rem;
+const SigninDesc = styled.p`
+  margin: 0;
 `;
 const SigninClickable = styled.span`
   color: var(--accent-color-normal);
