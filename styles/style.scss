@@ -1,7 +1,7 @@
 @import "theme-variables";
 @import "defaults";
 @import "lib/css-grid-utility";
-@import '~@brainhubeu/react-carousel/lib/style.css';
+@import "~@brainhubeu/react-carousel/lib/style.css";
 
 .primary-container {
   display: flex;
@@ -77,7 +77,7 @@ article img {
 .blog-post-content {
   max-width: var(--page-max-width);
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 2rem;
   font-family: Montserrat;
   font-style: normal;
   font-weight: normal;

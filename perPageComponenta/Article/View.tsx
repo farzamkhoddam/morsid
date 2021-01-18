@@ -138,7 +138,7 @@ const ImgContainer = styled.div`
   margin-left: auto;
   width: 100%;
   max-width: var(--page-max-width);
-  padding: 0 1rem;
+  padding: 0 2rem;
   position: absolute;
   top: 0;
   @media ${device.tablet} {
@@ -152,7 +152,7 @@ const PropertieContainer = styled.div`
   z-index: 1;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
 `;
 const Propertie = styled.div`
   background: #ffffff;
@@ -160,6 +160,7 @@ const Propertie = styled.div`
   width: 55%;
   margin-left: auto;
   padding: 1rem;
+
   @media ${device.tablet} {
     width: 100%;
     box-shadow: none;

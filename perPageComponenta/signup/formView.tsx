@@ -95,7 +95,7 @@ export default function SignupForm() {
         >
           {() => (
             <Form>
-              <TextInput name="firstName" placeholder="firstName" />
+              <TextInput name="firstName" placeholder="First Name" />
               <TextInput name="lastName" placeholder="Last Name" />
               <TextInput
                 name="email"

@@ -100,7 +100,7 @@ export default function Home({ posts }: Props) {
                 height={60}
               />
             </Icon>
-            <H3>FASEBOOK ADS</H3>
+            <H3>FACEBOOK ADS</H3>
           </Icon1Container>
           <Icon1Container>
             <Icon>
