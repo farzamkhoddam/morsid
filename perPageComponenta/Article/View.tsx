@@ -11,6 +11,7 @@ import { useWindowSize } from "hooks/useWindowSize";
 interface Props {
   post: Post;
 }
+//Todo:navid use dangriousHtml
 function removePTags(text: string) {
   return text.replace("<p>", "").replace("</p>", "");
 }
