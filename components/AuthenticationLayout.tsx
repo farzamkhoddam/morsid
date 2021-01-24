@@ -57,7 +57,7 @@ const Container = styled.div`
   max-width: var(--max-width-page);
 `;
 const FormWrapper = styled.div`
-  flex: 3;
+  flex: 2;
 `;
 const HomeButton = styled.a`
   padding: 3rem 0 5rem;
@@ -73,11 +73,18 @@ const HomeButton = styled.a`
   letter-spacing: 0.06em;
   color: var(--secondary-color-normal);
   height: var(--header-height-desktop);
+  width: auto;
+  margin-left: auto;
+  cursor: pointer;
+  &:hover {
+    color: var(--accent-color-normal);
+  }
   @media ${device.laptop} {
     color: white;
     padding: 0;
   }
 `;
+
 const HomeText = styled.div`
   margin-left: 2px;
 `;
@@ -125,7 +132,7 @@ const Title = styled.div`
   font-weight: normal;
   font-size: 56px;
   line-height: 67px;
-  letter-spacing: 0.07em;
+  text-transform: uppercase;
 
   @media ${device.laptopL} {
     font-size: 40px;

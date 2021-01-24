@@ -59,7 +59,7 @@ export default function LoginForm() {
               />
               <SignInButtonWrapper>
                 <SignInButton
-                  value="SIGN IN"
+                  value="LOGIN"
                   type="submit"
                   disabled={isSubmitting}
                 />
@@ -71,8 +71,9 @@ export default function LoginForm() {
                 <SignUDesc>
                   {`if you haven't an account, please `}
                   <Link href="/signup">
-                    <SignUpClickable>Sign Up</SignUpClickable>
+                    <SignUpClickable>sign up</SignUpClickable>
                   </Link>
+                  {` here.`}
                 </SignUDesc>
               </SignupContainer>
             </Form>

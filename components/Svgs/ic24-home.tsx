@@ -5,10 +5,18 @@ interface Props {
   height?: string;
   viewBox?: string;
   fill?: string;
+  className?: string;
 }
 
-const HomeIcon: React.FC<Props> = ({ width, height, viewBox, fill }) => (
+const HomeIcon: React.FC<Props> = ({
+  width,
+  height,
+  viewBox,
+  fill,
+  className,
+}) => (
   <svg
+    className={className}
     width={width || "24"}
     height={height || "24"}
     viewBox={viewBox || "0 0 24 24"}
