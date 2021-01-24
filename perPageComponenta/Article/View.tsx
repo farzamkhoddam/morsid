@@ -11,10 +11,6 @@ import { useWindowSize } from "hooks/useWindowSize";
 interface Props {
   post: Post;
 }
-//Todo:navid use dangriousHtml
-function removePTags(text: string) {
-  return text.replace("<p>", "").replace("</p>", "");
-}
 
 export function ArticleView({ post }: Props) {
   const windowSize = useWindowSize();
@@ -72,8 +68,8 @@ export function ArticleView({ post }: Props) {
           <PropertieContainer>
             <Propertie>
               <h1>{title}</h1>
-              {/* <h1>Hello World</h1> */}
-              <p>{removePTags(excerpt || "")}</p>
+              {/* <p>{removePTags(excerpt || "")}</p> */}
+              <div dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
               <div>
                 <time>{(date || "").split("T")[0]}</time>
               </div>
