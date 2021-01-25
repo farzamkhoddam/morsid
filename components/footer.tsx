@@ -93,7 +93,7 @@ const LogoContainer = styled.div`
   width: auto;
   opacity: 0.3;
   margin-left: 3rem;
-  color: #dbdddc;
+  color: var(--gray-color-xlight);
   mix-blend-mode: overlay;
   @media ${device.mobileL} {
     width: 100%;

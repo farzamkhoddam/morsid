@@ -4,8 +4,6 @@ import styled from "styled-components";
 import Link from "next/link";
 import { device } from "../consts/theme";
 import { MenuColorType } from "./simplePageHeader";
-import { useRouter } from "next/router";
-import { route } from "next/dist/next-server/server/router";
 
 const MenuItems = [
   {
@@ -39,7 +37,6 @@ const Navigation: React.FC<Props> = ({
   colorType,
 }) => {
   const [toggleMenu, setToggleMenu] = useState(isActiveMenu);
-  const router = useRouter();
   function handleToggleClick() {
     // this.setState(state => ({
     //   showMenu: !state.showMenu,

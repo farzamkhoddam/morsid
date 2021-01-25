@@ -93,7 +93,7 @@ export default function SignupForm() {
             }
           }}
         >
-          {() => (
+          {({ isSubmitting }) => (
             <Form>
               <TextInput name="firstName" placeholder="First Name" />
               <TextInput name="lastName" placeholder="Last Name" />
@@ -113,7 +113,11 @@ export default function SignupForm() {
                 placeholder="Confirm Password"
               />
 
-              <SignUpButton value="SIGN UP" type="submit" />
+              <SignUpButton
+                value={isSubmitting ? "WAIT..." : "SIGN UP"}
+                type="submit"
+                disabled={isSubmitting}
+              />
               <SigninContainer>
                 <SigninDesc>
                   if you have an account, please{" "}
@@ -196,14 +200,18 @@ const SigninClickable = styled.span`
   cursor: pointer;
 `;
 
-const SignUpButton = styled.input`
+const SignUpButton = styled.input<{ disabled: boolean }>`
+  cursor: ${({ disabled }) => (disabled ? "wait" : "pointer")};
+  }
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 264px;
   height: 58px;
   padding: var(--padding) calc(var(--padding) * 2);
-  background: var(--accent-color-normal);
+  background:  ${({ disabled }) =>
+    disabled ? "var(--gray-color-xlight)" : "var(--accent-color-normal)"};
+  }
   color: var(--primary-color-normal);
   border-radius: 1px;
   text-decoration: none;

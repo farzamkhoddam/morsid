@@ -59,7 +59,7 @@ export default function LoginForm() {
               />
               <SignInButtonWrapper>
                 <SignInButton
-                  value="LOGIN"
+                  value={isSubmitting ? "WAIT..." : "LOGIN"}
                   type="submit"
                   disabled={isSubmitting}
                 />
@@ -173,6 +173,7 @@ const SignUpClickable = styled.span`
   cursor: pointer;
 `;
 const ForgotPassword = styled.div`
+  cursor: pointer;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -190,14 +191,20 @@ const ForgotPassword = styled.div`
     margin-top: 1rem;
   }
 `;
-const SignInButton = styled.input`
+const SignInButton = styled.input<{ disabled: boolean }>`
+  cursor: ${({ disabled }) => (disabled ? "wait" : "pointer")};
+  }
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 264px;
   height: 64px;
   padding: var(--padding) calc(var(--padding) * 2);
-  background: var(--accent-color-normal);
+  background: ${({ disabled }) =>
+    disabled ? "var(--gray-color-xlight)" : "var(--accent-color-normal)"};
+  }
+  
+  
   color: var(--primary-color-normal);
   border-radius: 1px;
   text-decoration: none;
