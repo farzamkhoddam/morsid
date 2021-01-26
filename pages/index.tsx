@@ -6,11 +6,12 @@ import SEO from "../components/seo";
 import { device } from "../consts/theme";
 import Image from "next/image";
 import React from "react";
-import Menu from "components/menu";
+
 import Button from "components/Button";
 import Footer from "components/footer";
 import HomeCarousel from "pageComponente/Home/homeCarousel";
 import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
+import HomeMenu from "pageComponente/Home/menu";
 
 interface Props {
   posts: PostsPage;
@@ -22,7 +23,7 @@ export default function Home({ posts }: Props) {
   return (
     <div style={{ position: "relative" }}>
       <SEO />
-      <Menu />
+      <HomeMenu />
       <Header>
         <InnerSection>
           <TitleAndButton>
