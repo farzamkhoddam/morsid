@@ -13,6 +13,7 @@ import HomeCarousel from "pageComponente/Home/homeCarousel";
 import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 import HomeMenu from "pageComponente/Home/menu";
 import Link from "next/link";
+import LighteningIcon from "components/Svgs/lightening";
 
 interface Props {
   posts: PostsPage;
@@ -59,21 +60,23 @@ export default function Home({ posts }: Props) {
           </TitleAndButton>
         </InnerSection>
       </Header>
-      <Latest>
-        <LatestHeader>
-          <SectionTitle>The Shortest Path To Online Income</SectionTitle>
-          <SectionSubtitle>
-            {` Every 14 days, our team of analysts puts together a detailed,
+      <SectionContainer>
+        <StyledLighteningIcon1 />
+        <LatestWrapper>
+          <LatestHeader>
+            <SectionTitle>The Shortest Path To Online Income</SectionTitle>
+            <SectionSubtitle>
+              {` Every 14 days, our team of analysts puts together a detailed,
             step-by-step playbook on proven side hustles that are generating
             real income in today's digital world. All you need to do is choose
             the side hustle that works with your lifestyle and take action on
             our detailed playbooks.`}
-          </SectionSubtitle>
+            </SectionSubtitle>
 
-          {/* در طراحی قبلی، میتونستیم با این دکمه ها، اسلایدر رو حرکت بدیم. در طراحی جدید اسلایدری در کار نیست
+            {/* در طراحی قبلی، میتونستیم با این دکمه ها، اسلایدر رو حرکت بدیم. در طراحی جدید اسلایدری در کار نیست
           اما چون ممکنه دوباره بعدا اسلایدری خواسته بشه، فقط دکمه ها کامنت شدن و اسلایدر پابرجاست 
           اما فقط ۳ کارت رو نشون میده و به خاطر حذف دکمه ها امکان تغییر نداره */}
-          {/* <ArrowsContainer>
+            {/* <ArrowsContainer>
             <ArrowButton onClick={() => setCarouselValue((o) => o - 1)}>
               <Image
                 src="/tiny-arrow-left.svg"
@@ -91,17 +94,19 @@ export default function Home({ posts }: Props) {
               />
             </ArrowButton>
           </ArrowsContainer> */}
-        </LatestHeader>
-        <HomeCarousel
-          posts={posts}
-          value={carouselValue}
-          onChange={(value) => setCarouselValue(value)}
-        />
-        <Link href="/articles">
-          <ShowMoreButton>Show More</ShowMoreButton>
-        </Link>
-      </Latest>
+          </LatestHeader>
+          <HomeCarousel
+            posts={posts}
+            value={carouselValue}
+            onChange={(value) => setCarouselValue(value)}
+          />
+          <Link href="/articles">
+            <ShowMoreButton>Show More</ShowMoreButton>
+          </Link>
+        </LatestWrapper>
+      </SectionContainer>
       <SectionContainer>
+        <StyledLighteningIcon2 />
         <SectionWrapper>
           <OurMissionContent>
             <OurMissionTitle>Our Mission</OurMissionTitle>
@@ -138,6 +143,7 @@ export default function Home({ posts }: Props) {
               alt="Our Mision"
               width={555}
               height={750}
+              objectFit="cover"
             />
           </OurMissionImagContainer>
         </SectionWrapper>
@@ -298,7 +304,7 @@ const SmartButton = styled(Button)`
     height: 48px;
   }
 `;
-const Latest = styled.section`
+const LatestWrapper = styled.section`
   margin-top: 10rem;
   width: 100%;
   display: flex;
@@ -375,6 +381,19 @@ const SectionContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  overflow: hidden;
+  position: relative;
+`;
+const StyledLighteningIcon1 = styled(LighteningIcon)`
+  position: absolute;
+  top: 40%;
+  right: 0%;
+`;
+const StyledLighteningIcon2 = styled(LighteningIcon)`
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  transform: rotate(180deg);
 `;
 const SectionWrapper = styled.div`
   display: flex;
@@ -382,6 +401,7 @@ const SectionWrapper = styled.div`
   align-items: flex-start;
   width: 100%;
   max-width: var(--page-max-width);
+  padding: 0 2rem;
 `;
 const OurMissionContent = styled.div`
   display: flex;

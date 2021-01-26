@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import NextImage from "next/image";
 import Link from "next/link";
 import format from "date-fns/format";
 import { device } from "../consts/theme";
 import { Posts_posts_nodes as Post } from "../wpapi";
+import React from "react";
+import CalendarIcon from "./Svgs/calendar";
 
 const PostCard = ({ post, className }: { post: Post; className?: string }) => {
   const { smallThumbnail, title, excerpt } = post;
@@ -35,12 +36,7 @@ const PostCard = ({ post, className }: { post: Post; className?: string }) => {
               <ReadMore>Read More</ReadMore>
 
               <DateContainer>
-                <NextImage
-                  src="/calendar.svg"
-                  alt="Logo"
-                  width={24}
-                  height={24}
-                />
+                <CalendarIcon width={"24"} height={"24"} />
                 <span
                   style={{
                     marginLeft: "0.5rem",
