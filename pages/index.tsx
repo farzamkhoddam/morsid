@@ -9,7 +9,7 @@ import React from "react";
 import Menu from "components/menu";
 import Button from "components/Button";
 import Footer from "components/footer";
-import HomeCarousel from "perPageComponenta/Home/homeCarousel";
+import HomeCarousel from "pageComponente/Home/homeCarousel";
 import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 
 interface Props {
