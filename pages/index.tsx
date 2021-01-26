@@ -25,6 +25,15 @@ export default function Home({ posts }: Props) {
       <SEO />
       <HomeMenu />
       <Header>
+        <ImageContainer>
+          <Image
+            src="/home-header.jpg"
+            width={686}
+            height={465}
+            layout="responsive"
+            priority={true}
+          />
+        </ImageContainer>
         <InnerSection>
           <TitleAndButton>
             <Title>MASTER THE ART OF ENGINEERING SIDE INCOME</Title>
@@ -47,16 +56,6 @@ export default function Home({ posts }: Props) {
               />
             )}
           </TitleAndButton>
-
-          <ImageContainer>
-            <Image
-              src="/home-header.jpg"
-              width={686}
-              height={465}
-              layout="responsive"
-              priority={true}
-            />
-          </ImageContainer>
         </InnerSection>
       </Header>
       <Latest>
@@ -186,12 +185,11 @@ const Header = styled.section`
   }
 `;
 const ImageContainer = styled.div`
-  width: 60%;
+  width: 50%;
   height: auto;
   position: absolute;
-  top: 0;
+  top: var(--header-height-desktop);
   right: 0;
-  padding-right: 2rem;
   @media ${device.mobileL} {
     position: relative;
     width: 100%;
@@ -206,7 +204,7 @@ const InnerSection = styled.div`
   padding: 0 2rem;
   margin-top: 5rem;
   height: 29rem;
-  position: relative;
+
   @media (max-width: 1260px) {
     height: 28rem;
   }
@@ -228,7 +226,7 @@ const TitleAndButton = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 40%;
+  width: 50%;
   @media ${device.mobileL} {
     width: 100%;
     align-items: center;
