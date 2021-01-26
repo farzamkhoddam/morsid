@@ -12,6 +12,7 @@ import Footer from "components/footer";
 import HomeCarousel from "pageComponente/Home/homeCarousel";
 import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 import HomeMenu from "pageComponente/Home/menu";
+import Link from "next/link";
 
 interface Props {
   posts: PostsPage;
@@ -60,8 +61,19 @@ export default function Home({ posts }: Props) {
       </Header>
       <Latest>
         <LatestHeader>
-          <SectionTitle>LEARN HOW TO ENGINEER EXTRA INCOME</SectionTitle>
-          <ArrowsContainer>
+          <SectionTitle>The Shortest Path To Online Income</SectionTitle>
+          <SectionSubtitle>
+            {` Every 14 days, our team of analysts puts together a detailed,
+            step-by-step playbook on proven side hustles that are generating
+            real income in today's digital world. All you need to do is choose
+            the side hustle that works with your lifestyle and take action on
+            our detailed playbooks.`}
+          </SectionSubtitle>
+
+          {/* در طراحی قبلی، میتونستیم با این دکمه ها، اسلایدر رو حرکت بدیم. در طراحی جدید اسلایدری در کار نیست
+          اما چون ممکنه دوباره بعدا اسلایدری خواسته بشه، فقط دکمه ها کامنت شدن و اسلایدر پابرجاست 
+          اما فقط ۳ کارت رو نشون میده و به خاطر حذف دکمه ها امکان تغییر نداره */}
+          {/* <ArrowsContainer>
             <ArrowButton onClick={() => setCarouselValue((o) => o - 1)}>
               <Image
                 src="/tiny-arrow-left.svg"
@@ -78,65 +90,58 @@ export default function Home({ posts }: Props) {
                 height={24}
               />
             </ArrowButton>
-          </ArrowsContainer>
+          </ArrowsContainer> */}
         </LatestHeader>
         <HomeCarousel
           posts={posts}
           value={carouselValue}
           onChange={(value) => setCarouselValue(value)}
         />
+        <Link href="/articles">
+          <ShowMoreButton>Show More</ShowMoreButton>
+        </Link>
       </Latest>
-      <WhyUs>
-        <SectionTitle>
-          LEVEL UP YOUR SKILL WITH OUR HUSTLE ADVISORS
-        </SectionTitle>
-        <IconsContainer>
-          <Icon1Container>
-            <Icon>
-              <Image
-                src="/digital-marketing.svg"
-                alt="digital-marketing"
-                width={60}
-                height={60}
-              />
-            </Icon>
-            <H3>FACEBOOK ADS</H3>
-          </Icon1Container>
-          <Icon1Container>
-            <Icon>
-              <Image
-                src="/presentation.svg"
-                alt="presentation"
-                width={60}
-                height={60}
-              />
-            </Icon>
-            <H3>EMAIL MARKETING</H3>
-          </Icon1Container>
-          <Icon1Container>
-            <Icon>
-              <Image
-                src="/new-email.svg"
-                alt="new-email"
-                width={60}
-                height={60}
-              />
-            </Icon>
-            <H3>ONLINE AD AGENCIES</H3>
-          </Icon1Container>
-          <Icon1Container>
-            <Icon>
-              <Image
-                src="/mobile-phone.svg"
-                alt="mobile-phone"
-                width={60}
-                height={60}
-              />
-            </Icon>
-            <H3>Dropshopping & Ecommerce</H3>
-          </Icon1Container>
-        </IconsContainer>
-      </WhyUs>
+      <SectionContainer>
+        <SectionWrapper>
+          <OurMissionContent>
+            <OurMissionTitle>Our Mission</OurMissionTitle>
+            <OurMissionSubtitle>
+              To empower 1000 aspiring Entrepreneurs to fire their boss with
+              their side Hustle.
+            </OurMissionSubtitle>
+            <OurMissionDesc>
+              {`We've know how risky it can be to start your own business. And we
+              know that having a game plan can make that journey a whole lot
+              easier.`}
+            </OurMissionDesc>
+            <br />
+            <OurMissionDesc>
+              {`We want to empower you with our combined experience of 20+
+              years in the online business space.`}
+            </OurMissionDesc>
+            <br />
+            <OurMissionDesc>
+              {`With our expert analysts and 7 figure business owners, we know which side hustle actually has the
+              potential to replace your day job and give you the freedom you
+              deserve. That's why we only deliver hustles that have been vetted
+              by our team.`}
+            </OurMissionDesc>
+            <br />
+            <OurMissionDesc>
+              {`As a Hustle Club Member, entrepreneurial success is
+              in your favor.`}
+            </OurMissionDesc>
+          </OurMissionContent>
+          <OurMissionImagContainer>
+            <Image
+              src="/ourMissionImage.jpg"
+              alt="Our Mision"
+              width={555}
+              height={750}
+            />
+          </OurMissionImagContainer>
+        </SectionWrapper>
+      </SectionContainer>
       <Footer />
     </div>
   );
@@ -304,9 +309,6 @@ const Latest = styled.section`
   padding: 0 1rem;
 `;
 const LatestHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
   width: 100%;
   padding: 0 1rem;
   max-width: var(--page-max-width);
@@ -332,71 +334,86 @@ const SectionTitle = styled.h2`
     line-height: 2.2rem;
   }
 `;
-const ArrowsContainer = styled.div`
-  display: flex;
-`;
-const ArrowButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-`;
+const SectionSubtitle = styled.p`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
 
-const WhyUs = styled.section`
-  margin-top: 3rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  max-width: var(--page-max-width);
-  margin-right: auto;
-  margin-left: auto;
-  padding: 0 2rem;
+  /* Gray 2 */
+
+  color: var(--gray-color-normal);
 `;
-const IconsContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-bottom: 4rem;
-`;
-const Icon1Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 25%;
-  @media ${device.tablet} {
-    width: 49%;
-  }
-  @media ${device.mobileL} {
-    width: 100%;
-  }
-`;
-const Icon = styled.div`
+// const ArrowsContainer = styled.div`
+//   display: flex;
+// `;
+// const ArrowButton = styled.button`
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+// `;
+const ShowMoreButton = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--accent-color-normal);
-  padding: 0.5rem;
-  box-shadow: -10px 10px #dbbd82;
-  margin: 1rem;
-  width: 7.5rem;
-  height: 7.5rem;
+  width: 178px;
+  height: 56px;
+  margin: 3rem auto;
+  background: #ffffff;
+  font-family: Montserrat;
   font-style: normal;
-  font-weight: normal;
-  font-size: 32px;
-  line-height: 38px;
-  text-align: center;
-  text-transform: capitalize;
-`;
-const H3 = styled.h3`
-  font-family: Bebas Neue;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 40px;
-  line-height: 48px;
-  text-align: center;
-  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
   color: #1d3330;
-  @media ${device.tablet} {
-    font-size: 32px;
-    line-height: 38px;
-  }
+  border: 2px solid #1d3330;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+`;
+const SectionContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+const SectionWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: var(--page-max-width);
+`;
+const OurMissionContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 50%;
+`;
+const OurMissionTitle = styled.h2`
+  font-family: Bebas Neue;
+  font-size: 56px;
+  line-height: 67px;
+  text-transform: capitalize;
+  color: var(--primary-color-normal);
+  margin: 0;
+`;
+const OurMissionSubtitle = styled.h3`
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 34px;
+  color: var(--gray-color-normal);
+`;
+const OurMissionDesc = styled.p`
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--gray-color-normal);
+  margin: 0;
+`;
+const OurMissionImagContainer = styled.div`
+  width: 50%;
+  height: 100%;
+  padding-left: 1rem;
 `;
