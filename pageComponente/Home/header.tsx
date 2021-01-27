@@ -1,13 +1,7 @@
-import { useState } from "react";
-
 import styled from "styled-components";
-
-import { device } from "../consts/theme";
+import { device } from "../../consts/theme";
 import Image from "next/image";
-import React from "react";
-
 import Button from "components/Button";
-
 import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 
 export default function HomeHeader() {
