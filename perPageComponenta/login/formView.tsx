@@ -39,7 +39,7 @@ export default function LoginForm() {
                 "/api/users/me",
               );
               setUserData(res.data.user.subscribed);
-              router.push("/account");
+              router.back();
             } catch {
               toast.error("Wrong email or password");
             }
