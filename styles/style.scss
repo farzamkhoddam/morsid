@@ -2,7 +2,7 @@
 @import "defaults";
 @import "lib/css-grid-utility";
 @import "~@brainhubeu/react-carousel/lib/style.css";
-
+@import "./wordpress-style.min.css";
 .primary-container {
   display: flex;
   flex-direction: column;
@@ -84,6 +84,10 @@ article img {
   font-size: 20px;
   line-height: 31px;
   color: #333333;
+  overflow: auto;
+  figure {
+    overflow: auto;
+  }
   table {
     border-collapse: collapse;
     margin: 0 auto;
@@ -147,6 +151,9 @@ article img {
   }
   ol ol ol li::before {
     background: var(--accent-color-light);
+  }
+  @media (max-width: $breakpoint-sm) {
+    padding: 1rem 1rem;
   }
 }
 
@@ -328,6 +335,25 @@ article img {
     }
   }
 }
+////////word press styles/////////////
+.wp-block-table {
+  width: 100%;
+  min-width: 240px;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+
+  td,
+  th {
+    padding: 0.3em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    word-break: break-all;
+  }
+  th {
+    text-align: center;
+  }
+}
+
+////////////////////
 
 @import "utility";
 
