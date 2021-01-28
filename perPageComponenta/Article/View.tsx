@@ -38,6 +38,7 @@ export function ArticleView({ post }: Props) {
     post: { title, content, excerpt, date, featuredImage },
     viewer,
   } = post;
+  console.log("navid pic=,", featuredImage);
   return (
     <div className="page">
       <SimplePageHeader />
@@ -51,15 +52,16 @@ export function ArticleView({ post }: Props) {
 
       <article className="blog-post">
         <HeaderSection style={{ height: getHeaderContainerHeight() }}>
-          {featuredImage && windowSize.width > 0 ? (
+          {windowSize.width > 0 ? (
             <ImgContainer>
               <Image
-                src={featuredImage?.node?.mediaItemUrl || ""}
+                src={featuredImage?.node?.mediaItemUrl || "/home-header.jpg"}
                 alt={title + " - Featured image"}
                 width={720}
                 height={360}
                 layout="responsive"
                 priority={true}
+                objectFit="cover"
               />
             </ImgContainer>
           ) : (
