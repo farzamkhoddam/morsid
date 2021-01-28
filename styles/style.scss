@@ -86,6 +86,7 @@ article img {
   color: #333333;
   table {
     border-collapse: collapse;
+    margin: 0 auto;
   }
 
   table,
@@ -98,6 +99,29 @@ article img {
   }
   a {
     color: cornflowerblue;
+  }
+  ul {
+    list-style: none;
+  }
+  ol {
+    list-style: none;
+  }
+
+  li::before {
+    content: "";
+    background: var(--accent-color-normal);
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    display: inline-block;
+    line-height: 2rem;
+    margin-right: 0.5rem;
+  }
+  ol ol li::before {
+    background: #de51ff;
+  }
+  ol ol ol li::before {
+    background: #ee9eff;
   }
 }
 
