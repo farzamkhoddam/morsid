@@ -8,6 +8,7 @@ import Button from "components/Button";
 import styled from "styled-components";
 import Image from "next/image";
 import { useWindowSize } from "hooks/useWindowSize";
+import Head from "next/head";
 interface Props {
   post: Post;
 }
@@ -40,66 +41,76 @@ export function ArticleView({ post }: Props) {
   } = post;
   console.log("navid pic=,", featuredImage);
   return (
-    <div className="page">
-      <SimplePageHeader />
-      <SEO
-        title={title}
-        description={content ? content : excerpt}
-        image={featuredImage?.node?.mediaItemUrl}
-        article={true}
-      />
-      <HeaderColor />
-
-      <article className="blog-post">
-        <HeaderSection style={{ height: getHeaderContainerHeight() }}>
-          {windowSize.width > 0 ? (
-            <ImgContainer>
-              <Image
-                src={featuredImage?.node?.mediaItemUrl || "/home-header.jpg"}
-                alt={title + " - Featured image"}
-                width={720}
-                height={360}
-                layout="responsive"
-                priority={true}
-                objectFit="cover"
-              />
-            </ImgContainer>
-          ) : (
-            ""
-          )}
-          <PropertieContainer>
-            <Propertie>
-              <h1>{title}</h1>
-              {/* <p>{removePTags(excerpt || "")}</p> */}
-              <div dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
-              <div>
-                <time>{(date || "").split("T")[0]}</time>
-              </div>
-            </Propertie>
-          </PropertieContainer>
-        </HeaderSection>
-        <div
-          className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: content || excerpt || "" }}
+    <>
+      <Head>
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="/wordpress-style.min.css"
+          media="screen"
         />
-      </article>
-      {!viewer ? (
-        <MustBuyContainer>
-          <TransparentSection />
-          <H4>Read the rest of this story with a premium account.</H4>
-          <LoginButton to="/login" title="Login" />
-        </MustBuyContainer>
-      ) : !viewer.subscribed ? (
-        <MustBuyContainer>
-          <TransparentSection />
-          <H4>Read the rest of this story with a premium account.</H4>
+      </Head>
+      <div className="page">
+        <SimplePageHeader />
+        <SEO
+          title={title}
+          description={content ? content : excerpt}
+          image={featuredImage?.node?.mediaItemUrl}
+          article={true}
+        />
+        <HeaderColor />
 
-          <MyStripeButton />
-        </MustBuyContainer>
-      ) : null}
+        <article className="blog-post">
+          <HeaderSection style={{ height: getHeaderContainerHeight() }}>
+            {windowSize.width > 0 ? (
+              <ImgContainer>
+                <Image
+                  src={featuredImage?.node?.mediaItemUrl || "/home-header.jpg"}
+                  alt={title + " - Featured image"}
+                  width={720}
+                  height={360}
+                  layout="responsive"
+                  priority={true}
+                  objectFit="cover"
+                />
+              </ImgContainer>
+            ) : (
+              ""
+            )}
+            <PropertieContainer>
+              <Propertie>
+                <h1>{title}</h1>
+                {/* <p>{removePTags(excerpt || "")}</p> */}
+                <div dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
+                <div style={{ textAlign: "end" }}>
+                  <time>{(date || "").split("T")[0]}</time>
+                </div>
+              </Propertie>
+            </PropertieContainer>
+          </HeaderSection>
+          <div
+            className="blog-post-content"
+            dangerouslySetInnerHTML={{ __html: content || excerpt || "" }}
+          />
+        </article>
+        {!viewer ? (
+          <MustBuyContainer>
+            <TransparentSection />
+            <H4>Read the rest of this story with a premium account.</H4>
+            <LoginButton to="/login" title="Login" />
+          </MustBuyContainer>
+        ) : !viewer.subscribed ? (
+          <MustBuyContainer>
+            <TransparentSection />
+            <H4>Read the rest of this story with a premium account.</H4>
 
-      {/* {(previous || next) && <Pagination {...props} />} */}
-    </div>
+            <MyStripeButton />
+          </MustBuyContainer>
+        ) : null}
+
+        {/* {(previous || next) && <Pagination {...props} />} */}
+      </div>
+    </>
   );
 }
 const HeaderColor = styled.header`
@@ -200,7 +211,6 @@ const Propertie = styled.div`
     font-size: 20px;
     line-height: 24px;
     color: var(--gray-color-light);
-    text-align: end;
   }
 `;
 const MustBuyContainer = styled.div`
