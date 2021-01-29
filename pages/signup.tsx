@@ -1,5 +1,5 @@
 import AuthenticationLayout from "components/AuthenticationLayout";
-import SignupForm from "perPageComponenta/signup/formView";
+import SignupForm from "pageComponente/signup/formView";
 
 export default function Signup() {
   return (

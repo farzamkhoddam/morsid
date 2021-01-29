@@ -10,15 +10,32 @@ import SmartCompBaseOnLogin from "./smartCompBaseOnLogin";
 const Footer = () => {
   return (
     <Container>
+      <WaveHashur1Container>
+        <Image
+          src="/wave-hashur-2.svg"
+          alt="circle-hashur"
+          width={260}
+          height={260}
+        />
+      </WaveHashur1Container>
+      <WaveHashur4Container>
+        <Image
+          src="/wave-hashur-4.svg"
+          alt="circle-hashur"
+          width={260}
+          height={260}
+        />
+      </WaveHashur4Container>
       <ContentWrapper>
-        <ImageContainer>
+        <CircleHashrContainer>
           <Image
             src="/circle-hashur.svg"
-            alt="circle-hashur"
+            alt="hashur"
             width={130}
             height={130}
           />
-        </ImageContainer>
+        </CircleHashrContainer>
+
         <Sentense>{`UNLOCK THE SKILLS FOR GENERATING "NEW MONEY"`}</Sentense>
         <Part2Container>
           <LogoContainer>
@@ -59,6 +76,8 @@ const Container = styled.div`
   bottom: 0;
   background-color: var(--primary-color-normal);
   flex-wrap: wrap;
+  overflow: hidden;
+  position: relative;
 `;
 const ContentWrapper = styled.div`
   max-width: var(--page-max-width);
@@ -153,8 +172,21 @@ const WhiteLogo = styled(Logo)`
   }
 `;
 
-const ImageContainer = styled.div`
+const CircleHashrContainer = styled.div`
   position: absolute;
   right: 10rem;
   top: -38px;
+`;
+const WaveHashur1Container = styled.div`
+  position: absolute;
+  left: -97px;
+  bottom: -93px;
+`;
+const WaveHashur4Container = styled.div`
+  position: absolute;
+  top: -80px;
+  right: -110px;
+  @media ${device.tabletL} {
+    display: none;
+  }
 `;

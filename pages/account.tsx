@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import { fetchViwer, Viewer_viewer as User } from "wpapi";
 import { getTokenCookie } from "utils/auth-cookie";
 import { removeUserData } from "utils/auth-storage";
-import { AccountView } from "perPageComponenta/Account/View";
+import { AccountView } from "pageComponente/Account/View";
 import { Redirect } from "next";
 
 interface Props {

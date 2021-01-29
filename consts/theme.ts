@@ -11,6 +11,7 @@ export enum device {
   mobileS = `(max-width: 320px)`,
   mobileM = `(max-width: 375px)`,
   mobileL = `(max-width: 425px)`,
+  tabletL = `(max-width: 768px) `,
   tablet = `(max-width: 700px) `,
   laptop = `(max-width: 1024px)`,
   laptopM = `(max-width: 1366px)`,
