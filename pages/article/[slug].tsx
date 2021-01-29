@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { fetchPost, Post, PostIdType } from "../../wpapi";
-import { ArticleView } from "../../pageComponente/Article/View";
+import { ArticleView } from "../../pageComponents/Article/View";
 import { getTokenCookie } from "utils/auth-cookie";
 import Error from "next/error";
 

@@ -2,10 +2,10 @@ import { GetStaticProps } from "next";
 import { fetchPosts, Posts_posts as PostsPage } from "../wpapi";
 import SEO from "../components/seo";
 import Footer from "components/footer";
-import HomeMenu from "pageComponente/Home/menu";
-import HomeHeader from "pageComponente/Home/header";
-import LatArticles from "pageComponente/Home/lastArticles";
-import OurMission from "pageComponente/Home/ourMisson";
+import HomeMenu from "pageComponents/Home/menu";
+import HomeHeader from "pageComponents/Home/header";
+import LatArticles from "pageComponents/Home/lastArticles";
+import OurMission from "pageComponents/Home/ourMisson";
 
 interface Props {
   posts: PostsPage;

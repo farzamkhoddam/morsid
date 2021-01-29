@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Posts_posts as PostsPage } from "../../wpapi";
 import styled from "styled-components";
 import { device } from "../../consts/theme";
-import HomeCarousel from "pageComponente/Home/homeCarousel";
+import HomeCarousel from "pageComponents/Home/homeCarousel";
 import Link from "next/link";
 import LighteningIcon from "components/Svgs/lightening";
 

@@ -60,12 +60,14 @@ export function ArticleView({ post }: Props) {
 
         <article className="blog-post">
           <HeaderSection
-          // style={{ height: getHeaderContainerHeight() }}
+            id="navid3"
+            // style={{ height: getHeaderContainerHeight() }}
           >
             <HeaderColor />
             {windowSize.width > 0 ? (
-              <ImgContainer>
+              <ImgContainer id="navid1">
                 <Image
+                  id="navid2"
                   src={featuredImage?.node?.mediaItemUrl || "/home-header.jpg"}
                   alt={title + " - Featured image"}
                   width={720}
@@ -121,7 +123,10 @@ const HeaderColor = styled.section`
   position: absolute;
   top: 0;
   @media ${device.laptop} {
-    height: 32rem;
+    height: 24rem;
+  }
+  @media ${device.tabletL} {
+    height: 16rem;
   }
 `;
 const HeaderSection = styled.section`
@@ -137,6 +142,10 @@ const HeaderSection = styled.section`
     line-height: 1.5rem;
     height: 40rem;
   }
+  @media ${device.tabletL} {
+    height: 30rem;
+    justify-content: flex-start;
+  }
 `;
 const ImgContainer = styled.div`
   border-radius: 12px;
@@ -147,10 +156,12 @@ const ImgContainer = styled.div`
   max-width: var(--page-max-width);
   padding: 0 2rem;
   position: absolute;
-  top: 0;
-
-  @media ${device.tablet} {
-    position: relative;
+  top: 4px;
+  @media ${device.laptop} {
+    backgroung-color: blue;
+  }
+  @media ${device.tabletL} {
+    backgroung-color: red;
   }
 `;
 const PropertieContainer = styled.div`
