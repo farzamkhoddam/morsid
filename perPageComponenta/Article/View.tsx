@@ -21,7 +21,7 @@ export function ArticleView({ post }: Props) {
   function getSmartScreenheight() {
     // این نسبت یک دوم بستگی به ریشیوی عکس داره. اینجا ریشیوی عکس اینطور درنظر گرفته شده
     // که عرض دو برابر ارتفاع هست
-    return getSmartScreenWidth() / 2;
+    return getSmartScreenWidth() / 2.5;
   }
   function getHeaderContainerHeight() {
     // این فاصله ایه که میخوایم بخش اطلاعات کارت پایینتر از بخش عکس قرار بگیره
@@ -57,10 +57,12 @@ export function ArticleView({ post }: Props) {
           image={featuredImage?.node?.mediaItemUrl}
           article={true}
         />
-        <HeaderColor />
 
         <article className="blog-post">
-          <HeaderSection style={{ height: getHeaderContainerHeight() }}>
+          <HeaderSection
+          // style={{ height: getHeaderContainerHeight() }}
+          >
+            <HeaderColor />
             {windowSize.width > 0 ? (
               <ImgContainer>
                 <Image
@@ -112,9 +114,12 @@ export function ArticleView({ post }: Props) {
     </>
   );
 }
-const HeaderColor = styled.header`
+const HeaderColor = styled.section`
   background-color: var(--primary-color-normal);
-  height: 40rem;
+  height: 35rem;
+  width: 100vw;
+  position: absolute;
+  top: 0;
   @media ${device.laptopL} {
     height: 28rem;
   }
@@ -129,27 +134,23 @@ const HeaderSection = styled.section`
   align-items: flex-end;
   align-items: center;
   position: relative;
-  margin-top: -36rem;
-  @media ${device.laptopL} {
-    margin-top: -28rem;
-  }
+  height: 45rem;
   @media ${device.laptop} {
-    margin-top: -15rem;
     font-size: 1rem;
     line-height: 1.5rem;
-  }
-  @media ${device.tablet} {
   }
 `;
 const ImgContainer = styled.div`
   border-radius: 12px;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 4rem;
   width: 100%;
   max-width: var(--page-max-width);
   padding: 0 2rem;
   position: absolute;
   top: 0;
+
   @media ${device.tablet} {
     position: relative;
   }
@@ -168,8 +169,6 @@ const Propertie = styled.div`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   width: 55%;
   margin-left: auto;
-  padding: 1rem;
-
   @media ${device.tablet} {
     width: 100%;
     box-shadow: none;
@@ -178,9 +177,12 @@ const Propertie = styled.div`
   h1 {
     font-family: Montserrat;
     font-weight: 600;
-    font-size: 40px;
-    line-height: 49px;
+    font-size: 32px;
+    line-height: 40px;
     color: var(--primary-color-normal);
+    margin: 0;
+    padding: 40px;
+    padding-bottom: 32px;
     @media ${device.tablet} {
       font-size: 24px;
       line-height: 25px;
@@ -202,6 +204,7 @@ const Propertie = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 2; /* number of lines to show */
     -webkit-box-orient: vertical;
+    margin: 0;
   }
   div {
     font-family: Montserrat;
@@ -210,6 +213,9 @@ const Propertie = styled.div`
     font-size: 20px;
     line-height: 24px;
     color: var(--gray-color-light);
+    margin: 0;
+    padding: 0 40px;
+    padding-bottom: 40px;
   }
 `;
 const MustBuyContainer = styled.div`
