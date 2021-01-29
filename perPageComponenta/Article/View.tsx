@@ -120,11 +120,8 @@ const HeaderColor = styled.section`
   width: 100vw;
   position: absolute;
   top: 0;
-  @media ${device.laptopL} {
-    height: 28rem;
-  }
   @media ${device.laptop} {
-    height: 15rem;
+    height: 32rem;
   }
 `;
 const HeaderSection = styled.section`
@@ -138,6 +135,7 @@ const HeaderSection = styled.section`
   @media ${device.laptop} {
     font-size: 1rem;
     line-height: 1.5rem;
+    height: 40rem;
   }
 `;
 const ImgContainer = styled.div`
