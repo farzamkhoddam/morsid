@@ -60,14 +60,13 @@ export function ArticleView({ post }: Props) {
 
         <article className="blog-post">
           <HeaderSection
-            id="navid3"
-            // style={{ height: getHeaderContainerHeight() }}
+
+          // style={{ height: getHeaderContainerHeight() }}
           >
             <HeaderColor />
             {windowSize.width > 0 ? (
-              <ImgContainer id="navid1">
+              <ImgContainer>
                 <Image
-                  id="navid2"
                   src={featuredImage?.node?.mediaItemUrl || "/home-header.jpg"}
                   alt={title + " - Featured image"}
                   width={720}
@@ -85,7 +84,7 @@ export function ArticleView({ post }: Props) {
                 <h1>{title}</h1>
                 {/* <p>{removePTags(excerpt || "")}</p> */}
                 <div dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
-                <div style={{ textAlign: "end" }}>
+                <div id="date">
                   <time>{(date || "").split("T")[0]}</time>
                 </div>
               </Propertie>
@@ -128,6 +127,9 @@ const HeaderColor = styled.section`
   @media ${device.tabletL} {
     height: 16rem;
   }
+  @media ${device.mobileL} {
+    height: 6rem;
+  }
 `;
 const HeaderSection = styled.section`
   display: flex;
@@ -143,7 +145,7 @@ const HeaderSection = styled.section`
     height: 40rem;
   }
   @media ${device.tabletL} {
-    height: 30rem;
+    height: unset;
     justify-content: flex-start;
   }
 `;
@@ -156,12 +158,12 @@ const ImgContainer = styled.div`
   max-width: var(--page-max-width);
   padding: 0 2rem;
   position: absolute;
-  top: 4px;
-  @media ${device.laptop} {
-    backgroung-color: blue;
-  }
+  top: 0;
   @media ${device.tabletL} {
-    backgroung-color: red;
+    position: relative;
+  }
+  @media ${device.mobileL} {
+    margin-top: 0;
   }
 `;
 const PropertieContainer = styled.div`
@@ -178,7 +180,7 @@ const Propertie = styled.div`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   width: 55%;
   margin-left: auto;
-  @media ${device.tablet} {
+  @media ${device.tabletL} {
     width: 100%;
     box-shadow: none;
   }
@@ -192,13 +194,17 @@ const Propertie = styled.div`
     margin: 0;
     padding: 40px;
     padding-bottom: 32px;
-    @media ${device.tablet} {
-      font-size: 24px;
-      line-height: 25px;
-    }
     @media ${device.laptop} {
       font-size: 27px;
-      line-height: 27px;
+      line-height: 34px;
+    }
+    @media ${device.tabletL} {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    @media ${device.mobileL} {
+      font-size: 24px;
+      line-height: 34px;
     }
   }
   p {
@@ -223,8 +229,19 @@ const Propertie = styled.div`
     line-height: 24px;
     color: var(--gray-color-light);
     margin: 0;
-    padding: 0 40px;
+    padding: 0 24px;
     padding-bottom: 40px;
+    @media ${device.tabletL} {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+  #date {
+    text-align: end;
+    @media ${device.tabletL} {
+      text-align: start;
+      margin-bottom: 0;
+    }
   }
 `;
 const MustBuyContainer = styled.div`
