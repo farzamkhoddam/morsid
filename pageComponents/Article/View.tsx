@@ -164,6 +164,7 @@ const ImgContainer = styled.div`
   }
   @media ${device.mobileL} {
     margin-top: 0;
+    padding: 0 1rem;
   }
 `;
 const PropertieContainer = styled.div`
@@ -174,6 +175,9 @@ const PropertieContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 0 2rem;
+  @media ${device.mobileL} {
+    padding: 0 1rem;
+  }
 `;
 const Propertie = styled.div`
   background: #ffffff;
@@ -201,6 +205,8 @@ const Propertie = styled.div`
     @media ${device.tabletL} {
       padding-right: 0;
       padding-left: 0;
+      padding-top: 32px;
+      padding-bottom: 24px;
     }
     @media ${device.mobileL} {
       font-size: 24px;
@@ -234,6 +240,7 @@ const Propertie = styled.div`
     @media ${device.tabletL} {
       padding-right: 0;
       padding-left: 0;
+      padding-bottom: 24px;
     }
   }
   #date {
@@ -241,6 +248,7 @@ const Propertie = styled.div`
     @media ${device.tabletL} {
       text-align: start;
       margin-bottom: 0;
+      padding-bottom: 1rem;
     }
   }
 `;

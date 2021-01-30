@@ -76,5 +76,8 @@ const ActiveMenuNavContainer = styled.div`
   z-index: 4;
 `;
 const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100px;
 `;
