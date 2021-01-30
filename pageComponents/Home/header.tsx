@@ -6,7 +6,18 @@ import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 
 export default function HomeHeader() {
   return (
-    <Header>
+    <Container>
+      <CloneContainerForHashur>
+        <WaveHashur1Container>
+          <Image
+            src="/wave-hashur-1.svg"
+            alt="circle-hashur"
+            width={260}
+            height={260}
+          />
+        </WaveHashur1Container>
+      </CloneContainerForHashur>
+
       <ImageContainer>
         <Image
           src="/home-header.jpg"
@@ -17,6 +28,14 @@ export default function HomeHeader() {
         />
       </ImageContainer>
       <InnerSection>
+        <CircleHashrContainer>
+          <Image
+            src="/circle-hashur.svg"
+            alt="hashur"
+            width={200}
+            height={200}
+          />
+        </CircleHashrContainer>
         <TitleAndButton>
           <Title>MASTER THE ART OF ENGINEERING SIDE INCOME</Title>
           {/* <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" /> */}
@@ -33,17 +52,22 @@ export default function HomeHeader() {
                 />
               }
               loginWithSubscribed={
-                <SmartButton to="/articles" title="Read Artciles" />
+                <SmartButton
+                  to="/articles"
+                  title="Read Artciles"
+                  viewType="glow"
+                />
               }
             />
           )}
         </TitleAndButton>
       </InnerSection>
-    </Header>
+    </Container>
   );
 }
 
-const Header = styled.section`
+const Container = styled.section`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -51,41 +75,86 @@ const Header = styled.section`
   height: 38rem;
   background: var(--primary-color-normal);
 
-  @media (max-width: 1366px) {
-    height: 35rem;
+  @media ${device.laptopL} {
+    height: 29rem;
   }
-  @media (max-width: 1260px) {
-    height: 30rem;
+  @media${device.laptopM} {
+    height: 28rem;
+  }
+  @media ${device.laptopS} {
+    height: 27rem;
   }
   @media ${device.laptop} {
-    height: 26.5rem;
-  }
-  @media (max-width: 950px) {
-    height: 20rem;
-  }
-  @media ${device.tablet} {
-    height: 14rem;
-  }
-  @media ${device.mobileL} {
-    height: 24rem;
-  }
-  @media ${device.mobileM} {
     height: 22rem;
   }
+
+  @media ${device.tabletL} {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 2rem;
+    height: 40rem;
+  }
+  @media ${device.tabletS} {
+    height: 36rem;
+  }
+  @media ${device.mobileL} {
+    height: 27rem;
+  }
+  @media ${device.mobileM} {
+    height: 26rem;
+  }
+  @media ${device.mobileS} {
+    height: 23rem;
+  }
 `;
+const CloneContainerForHashur = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  @media ${device.tabletL} {
+    display: none;
+  }
+`;
+const WaveHashur1Container = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: -53px;
+  opacity: 0.3;
+  @media ${device.laptopL} {
+    left: -10px;
+    bottom: -23px;
+    opacity: 0.3;
+    width: 150px;
+    height: 150px;
+  }
+
+  @media ${device.laptop} {
+    display: none;
+  }
+`;
+
 const ImageContainer = styled.div`
   width: 50%;
   height: auto;
   position: absolute;
-  top: var(--header-height-desktop);
+  top: 1rem;
   right: 0;
-  @media ${device.mobileL} {
+  @media ${device.tabletL} {
     position: relative;
-    width: 100%;
+    width: 69vw;
     margin-top: 2rem;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+    padding: 0 22px;
   }
 `;
 const InnerSection = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -96,27 +165,45 @@ const InnerSection = styled.div`
 
   @media (max-width: 1260px) {
     height: 28rem;
+    margin-top: 1rem;
   }
   @media ${device.laptop} {
     height: 20rem;
   }
-  @media (max-width: 950px) {
-    height: 17.3rem;
-  }
-  @media ${device.tablet} {
+
+  @media ${device.tabletL} {
     height: 6.5rem;
     margin-top: 0;
+    width: 485px;
+    height: auto;
+    padding: 0;
   }
-  @media ${device.mobileL} {
-    flex-wrap: wrap;
+  @media ${device.tabletL} {
+    width: 80%;
+  }
+`;
+const CircleHashrContainer = styled.div`
+  position: absolute;
+  left: -80px;
+  top: -70px;
+  opacity: 0.3;
+  @media ${device.laptopL} {
+    left: -30px;
+    top: -40px;
+    width: 100px;
+    height: 100px;
+  }
+  @media ${device.laptop} {
+    display: none;
   }
 `;
 const TitleAndButton = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 50%;
-  @media ${device.mobileL} {
+
+  @media ${device.tabletL} {
     width: 100%;
     align-items: center;
   }
@@ -130,37 +217,33 @@ const Title = styled.h1`
   text-transform: uppercase;
   color: #ffffff;
   margin-top: 0;
-  margin-bottom: 8rem;
+  margin-bottom: 40px;
 
-  @media (max-width: 1366px) {
-    margin-bottom: 5.5rem;
+  @media ${device.laptopL} {
+    font-size: 73px;
+    line-height: 69px;
   }
-
-  @media (max-width: 1260px) {
-    font-size: 76px;
-    line-height: 89px;
-    margin-bottom: 4rem;
-  }
-
   @media ${device.laptop} {
-    font-size: 62px;
-    line-height: 76px;
-    margin-bottom: 4rem;
+    font-size: 63px;
+    line-height: 59px;
   }
-  @media (max-width: 950px) {
-    font-size: 37px;
-    line-height: 49px;
-    margin-bottom: 2rem;
-  }
-  @media ${device.tablet} {
-    font-size: 33px;
-    line-height: 39px;
-    margin-bottom: 5.9rem;
-    min-height: 6.5rem;
+
+  @media ${device.tabletL} {
+    text-align: center;
+    font-size: 56px;
+    line-height: 67px;
   }
   @media ${device.mobileL} {
-    text-align: center;
-    margin-bottom: 0rem;
+    font-size: 40px;
+    line-height: 48px;
+  }
+  @media ${device.mobileM} {
+    font-size: 36px;
+    line-height: 43px;
+  }
+  @media ${device.mobileS} {
+    font-size: 31px;
+    line-height: 36px;
   }
 `;
 const SmartButton = styled(Button)`
@@ -170,15 +253,11 @@ const SmartButton = styled(Button)`
   font-size: 20px;
   line-height: 24px;
   width: 358px;
-  height: 88px;
-  @media ${device.laptop} {
-    width: 238px;
-    height: 68px;
+  height: 64px;
+  @media ${device.tabletL} {
+    width: 358px;
   }
-  @media ${device.tablet} {
-    font-size: 13px;
-    line-height: 12px;
-    width: 147px;
-    height: 48px;
+  @media ${device.mobileL} {
+    width: 89vw;
   }
 `;

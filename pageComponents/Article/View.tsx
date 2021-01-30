@@ -124,7 +124,7 @@ const HeaderColor = styled.section`
   @media ${device.laptop} {
     height: 24rem;
   }
-  @media ${device.tabletL} {
+  @media ${device.tabletM} {
     height: 16rem;
   }
   @media ${device.mobileL} {
@@ -144,7 +144,7 @@ const HeaderSection = styled.section`
     line-height: 1.5rem;
     height: 40rem;
   }
-  @media ${device.tabletL} {
+  @media ${device.tabletM} {
     height: unset;
     justify-content: flex-start;
   }
@@ -159,7 +159,7 @@ const ImgContainer = styled.div`
   padding: 0 2rem;
   position: absolute;
   top: 0;
-  @media ${device.tabletL} {
+  @media ${device.tabletM} {
     position: relative;
   }
   @media ${device.mobileL} {
@@ -184,7 +184,7 @@ const Propertie = styled.div`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   width: 55%;
   margin-left: auto;
-  @media ${device.tabletL} {
+  @media ${device.tabletM} {
     width: 100%;
     box-shadow: none;
   }
@@ -202,7 +202,7 @@ const Propertie = styled.div`
       font-size: 27px;
       line-height: 34px;
     }
-    @media ${device.tabletL} {
+    @media ${device.tabletM} {
       padding-right: 0;
       padding-left: 0;
       padding-top: 32px;
@@ -237,7 +237,7 @@ const Propertie = styled.div`
     margin: 0;
     padding: 0 24px;
     padding-bottom: 40px;
-    @media ${device.tabletL} {
+    @media ${device.tabletM} {
       padding-right: 0;
       padding-left: 0;
       padding-bottom: 24px;
@@ -245,7 +245,7 @@ const Propertie = styled.div`
   }
   #date {
     text-align: end;
-    @media ${device.tabletL} {
+    @media ${device.tabletM} {
       text-align: start;
       margin-bottom: 0;
       padding-bottom: 1rem;

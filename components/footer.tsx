@@ -10,14 +10,14 @@ import SmartCompBaseOnLogin from "./smartCompBaseOnLogin";
 const Footer = () => {
   return (
     <Container>
-      <WaveHashur1Container>
+      <WaveHashur2Container>
         <Image
           src="/wave-hashur-2.svg"
           alt="circle-hashur"
           width={260}
           height={260}
         />
-      </WaveHashur1Container>
+      </WaveHashur2Container>
       <WaveHashur4Container>
         <Image
           src="/wave-hashur-4.svg"
@@ -176,17 +176,20 @@ const CircleHashrContainer = styled.div`
   position: absolute;
   right: 10rem;
   top: -38px;
+  opacity: 0.3;
 `;
-const WaveHashur1Container = styled.div`
+const WaveHashur2Container = styled.div`
   position: absolute;
   left: -97px;
   bottom: -93px;
+  opacity: 0.3;
 `;
 const WaveHashur4Container = styled.div`
   position: absolute;
   top: -80px;
   right: -110px;
-  @media ${device.tabletL} {
+  opacity: 0.3;
+  @media ${device.tabletM} {
     display: none;
   }
 `;

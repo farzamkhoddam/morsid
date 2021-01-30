@@ -3,6 +3,8 @@ import Image from "next/image";
 import styled from "styled-components";
 import { device } from "../../consts/theme";
 import { useWindowSize } from "hooks/useWindowSize";
+import React from "react";
+import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 
 const HomeMenu = () => {
   const windowSize = useWindowSize();
@@ -23,9 +25,25 @@ const HomeMenu = () => {
             height={getSmartLogoHeight()}
           />
         </LogoContainer>
-        <Link href="/login">
-          <LoginButton>Login</LoginButton>
-        </Link>
+        {typeof window && (
+          <SmartCompBaseOnLogin
+            doesNotLogin={
+              <Link href="/login">
+                <LoginButton>Login</LoginButton>
+              </Link>
+            }
+            loginWithoutSubscribed={
+              <Link href="/account">
+                <LoginButton>My Profile</LoginButton>
+              </Link>
+            }
+            loginWithSubscribed={
+              <Link href="/account">
+                <LoginButton>My Profile</LoginButton>
+              </Link>
+            }
+          />
+        )}
       </Wrapper>
     </Container>
   );
@@ -33,7 +51,7 @@ const HomeMenu = () => {
 
 export default HomeMenu;
 
-const Container = styled.div`
+const Container = styled.section`
   display: flex;
   justify-content: center;
   width: 100%;
@@ -47,6 +65,9 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: var(--page-max-width);
   padding: 0 2rem;
+  @media ${device.mobileL}{
+    padding 0 22px;
+  }
 `;
 const LoginButton = styled.div`
   cursor: pointer;
@@ -74,7 +95,7 @@ const LoginButton = styled.div`
     );
     color: var(--primary-color-normal);
   }
-  @media ${device.tabletL} {
+  @media ${device.tabletM} {
     width: 110px;
     height: 52px;
     font-size: 16px;
