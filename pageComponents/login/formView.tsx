@@ -69,7 +69,7 @@ export default function LoginForm() {
               </SignInButtonWrapper>
               <SignupContainer>
                 <SignUDesc>
-                  {`if you haven't an account, please `}
+                  {`If you don't have an existing account, please `}
                   <Link href="/signup">
                     <SignUpClickable>sign up</SignUpClickable>
                   </Link>
@@ -86,7 +86,13 @@ export default function LoginForm() {
 const FormContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
+  @media ${device.laptop}{
+    width: 100%;
+    max-width:600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
 `;
 const SignInButtonWrapper = styled.div`
   display: flex;
@@ -98,7 +104,12 @@ const SignInButtonWrapper = styled.div`
   @media ${device.mobileL} {
     flex-direction: column;
   }
-`;
+  @media (max-width: 1400px) {
+    flex-direction:column;
+    padding-top:2rem;
+    align-items: flex-start;
+  }
+  `;
 const FormWrapper = styled.div`
   max-width: var(--page-max-width);
   margin: 0 auto;
@@ -155,16 +166,13 @@ const SignUDesc = styled.div`
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.06em;
-
-  /* Gray 2 */
-
   color: #4f4f4f;
   margin-right: 0.5rem;
   @media (max-width: 1250px) {
     font-size: 15px;
   }
   @media ${device.mobileL} {
-    font-size: 12px;
+    font-size: 15px;
   }
 `;
 const SignUpClickable = styled.span`
@@ -181,6 +189,9 @@ const ForgotPassword = styled.div`
   line-height: 24px;
   letter-spacing: 0.06em;
   color: #4f4f4f;
+  &:hover {
+    color: var(--accent-color-normal);
+  }
   @media (max-width: 1200px) {
     font-size: 17px;
   }
@@ -189,6 +200,10 @@ const ForgotPassword = styled.div`
   }
   @media ${device.mobileL} {
     margin-top: 1rem;
+  }
+  @media (max-width: 1400px) {
+    
+    margin-top:2rem;
   }
 `;
 const SignInButton = styled.input<{ disabled: boolean }>`

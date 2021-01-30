@@ -186,7 +186,7 @@ const WaveHashur4Container = styled.div`
   position: absolute;
   top: -80px;
   right: -110px;
-  @media ${device.tabletL} {
+  @media ${device.tabletM} {
     display: none;
   }
 `;

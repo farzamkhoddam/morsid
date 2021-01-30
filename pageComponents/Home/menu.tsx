@@ -74,7 +74,7 @@ const LoginButton = styled.div`
     );
     color: var(--primary-color-normal);
   }
-  @media ${device.tabletL} {
+  @media ${device.tabletM} {
     width: 110px;
     height: 52px;
     font-size: 16px;
