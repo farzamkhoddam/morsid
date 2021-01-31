@@ -39,7 +39,7 @@ const Footer = () => {
         <Sentense>{`UNLOCK THE SKILLS FOR GENERATING "NEW MONEY"`}</Sentense>
         <Part2Container>
           <LogoContainer>
-            <WhiteLogo />
+            <WhiteLogo width={"216"} height={"84"} />
           </LogoContainer>
           {/* <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" /> */}
           {typeof window && (
@@ -76,12 +76,18 @@ const Container = styled.div`
   width: 100%;
   max-width: 100vw;
   justify-content: center;
-  height: 360px;
+  height: 480px;
   bottom: 0;
   background-color: var(--primary-color-normal);
   flex-wrap: wrap;
   overflow: hidden;
   position: relative;
+  @media ${device.tabletL} {
+    height: 368px;
+  }
+  @media ${device.tabletS} {
+    height: auto;
+  }
 `;
 const ContentWrapper = styled.div`
   max-width: var(--page-max-width);
@@ -89,6 +95,9 @@ const ContentWrapper = styled.div`
   position: relative;
   overflow: hidden;
   padding: 0 2rem;
+  @media ${device.tabletS} {
+    text-align: center;
+  }
 `;
 const Sentense = styled.h3`
   font-family: Bebas Neue;
@@ -99,26 +108,40 @@ const Sentense = styled.h3`
   text-transform: capitalize;
   color: #ffffff;
   width: fit-content;
-  @media ${device.laptop} {
+
+  margin-top: 4rem;
+  @media ${device.tabletL} {
     font-size: 40px;
     line-height: 48px;
   }
-  @media (max-width: 400px) {
-    font-size: 36px;
-    line-height: 38px;
+  @media ${device.tabletS} {
+    font-size: 47px;
+    line-height: 56px;
   }
-  @media (max-width: 400px) {
-    font-size: 30px;
-    line-height: 38px;
+  @media ${device.mobileL} {
+    font-size: 40px;
+    line-height: 48px;
+  }
+  @media ${device.mobileM} {
+    font-size: 38px;
+    line-height: 43px;
+  }
+  @media ${device.mobileS} {
+    font-size: 31px;
+    line-height: 37px;
   }
 `;
-const LogoContainer = styled.div`
-  width: auto;
-  opacity: 0.3;
-  margin-left: 3rem;
-  color: var(--gray-color-xlight);
-  mix-blend-mode: overlay;
-  @media ${device.mobileL} {
+const Part2Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8rem;
+
+  @media ${device.tabletL} {
+    justify-content: space-between;
+    margin-top: 4rem;
+  }
+  @media ${device.tabletS} {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -126,18 +149,30 @@ const LogoContainer = styled.div`
     margin: 0;
     margin-bottom: 4rem;
   }
-  @media ${device.tablet} {
-    margin-left: 2rem;
+`;
+const LogoContainer = styled.div`
+  width: 100%
+  opacity: 0.3;
+  margin-left: 3rem;
+  color: var(--gray-color-xlight);
+  mix-blend-mode: overlay;
+  margin-left: 16rem;
+  
+  @media ${device.tabletL} {
+    margin-left: 7rem;
     margin-top: 0.9rem;
   }
-  @media ${device.mobileL} {
+
+  @media ${device.tabletS} {
+   
     margin: 0;
+    margin-bottom: 4rem;
   }
+  
 `;
 const SmartButton = styled(Button)`
   width: 358px;
-  height: 88px;
-
+  height: 64px;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -148,27 +183,19 @@ const SmartButton = styled(Button)`
   /* Bg Color */
 
   color: #1d3330;
-  @media ${device.laptop} {
-    width: 252px;
-    height: 61.94px;
 
+  @media ${device.tabletL} {
+    width: 252px;
+    height: 64px;
     font-size: 16px;
     line-height: 20px;
   }
-`;
-const Part2Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  @media (max-width: 500px) {
-    flex-direction: column;
-    padding-bottom: 2rem;
-    height: 45%;
-  }
-  @media ${device.tablet} {
-    justify-content: space-between;
+  @media ${device.mobileL} {
+    width: 192px;
+    height: 52px;
   }
 `;
+
 const WhiteLogo = styled(Logo)`
   @media ${device.mobileL} {
     width: 120%;
@@ -181,6 +208,9 @@ const CircleHashrContainer = styled.div`
   right: 10rem;
   top: -38px;
   opacity: 0.3;
+  @media ${device.tabletS} {
+    right: 2rem;
+  }
 `;
 const WaveHashur2Container = styled.div`
   position: absolute;
@@ -193,7 +223,7 @@ const WaveHashur4Container = styled.div`
   top: -80px;
   right: -110px;
   opacity: 0.3;
-  @media ${device.tabletM} {
+  @media ${device.tabletL} {
     display: none;
   }
 `;
