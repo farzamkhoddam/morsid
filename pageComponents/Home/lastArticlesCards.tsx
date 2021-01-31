@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import PostCard from "components/post-card";
 import { device } from "consts/theme";
 import { useWindowSize } from "hooks/useWindowSize";
@@ -17,14 +18,17 @@ const LastArticlesCards = ({ posts }: Props) => {
     <CardsContainer>
       {/* کارت ۱ */}
       {posts?.nodes && posts?.nodes?.length > 0 && (
+        //@ts-ignore
         <Item post={posts?.nodes?.[0]} />
       )}
       {/* کارت ۲ */}
       {posts?.nodes && posts?.nodes.length > 1 && (
+        //@ts-ignore
         <Item post={posts?.nodes?.[1]} />
       )}
       {/* کارت ۳ */}
       {deviceType !== "tablet" && posts?.nodes && posts?.nodes.length > 2 && (
+        //@ts-ignore
         <Item post={posts?.nodes?.[2]} />
       )}
     </CardsContainer>
