@@ -7,61 +7,65 @@ import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 export default function HomeHeader() {
   return (
     <Container>
-      <CloneContainerForHashur>
-        <WaveHashur1Container>
-          <Image
-            src="/wave-hashur-1.svg"
-            alt="circle-hashur"
-            width={260}
-            height={260}
-          />
-        </WaveHashur1Container>
-      </CloneContainerForHashur>
-
-      <ImageContainer>
-        <Image
-          src="/home-header.jpg"
-          width={686}
-          height={465}
-          layout="responsive"
-          priority={true}
-        />
-      </ImageContainer>
-      <InnerSection>
-        <CircleHashrContainer>
-          <Image
-            src="/circle-hashur.svg"
-            alt="hashur"
-            width={200}
-            height={200}
-          />
-        </CircleHashrContainer>
-        <TitleAndButton>
-          <Title>MASTER THE ART OF ENGINEERING SIDE INCOME</Title>
-          {/* <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" /> */}
-          {typeof window && (
-            <SmartCompBaseOnLogin
-              doesNotLogin={
-                <SmartButton to="/signup" title="Sign Up" viewType="glow" />
-              }
-              loginWithoutSubscribed={
-                <SmartButton
-                  to="/account"
-                  title="Get Artciles"
-                  viewType="glow"
-                />
-              }
-              loginWithSubscribed={
-                <SmartButton
-                  to="/articles"
-                  title="Read Artciles"
-                  viewType="glow"
-                />
-              }
+      {/* چون عکس هدر باید تا آخر صفحه بره، وقتی صحفه خیلی زوم اوت بشه بسیار زشت میشه. 
+      از این دیو ایمج لیمیتر استفاده میکنیم که ایمیج از یک حدی بزرگتر نشه */}
+      <ImageLimiter>
+        <CloneContainerForHashur>
+          <WaveHashur1Container>
+            <Image
+              src="/wave-hashur-1.svg"
+              alt="circle-hashur"
+              width={260}
+              height={260}
             />
-          )}
-        </TitleAndButton>
-      </InnerSection>
+          </WaveHashur1Container>
+        </CloneContainerForHashur>
+
+        <ImageContainer>
+          <Image
+            src="/home-header.jpg"
+            width={686}
+            height={465}
+            layout="responsive"
+            priority={true}
+          />
+        </ImageContainer>
+        <InnerSection>
+          <CircleHashrContainer>
+            <Image
+              src="/circle-hashur.svg"
+              alt="hashur"
+              width={200}
+              height={200}
+            />
+          </CircleHashrContainer>
+          <TitleAndButton>
+            <Title>MASTER THE ART OF ENGINEERING SIDE INCOME</Title>
+            {/* <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" /> */}
+            {typeof window && (
+              <SmartCompBaseOnLogin
+                doesNotLogin={
+                  <SmartButton to="/signup" title="Sign Up" viewType="glow" />
+                }
+                loginWithoutSubscribed={
+                  <SmartButton
+                    to="/account"
+                    title="Get Artciles"
+                    viewType="glow"
+                  />
+                }
+                loginWithSubscribed={
+                  <SmartButton
+                    to="/articles"
+                    title="Read Artciles"
+                    viewType="glow"
+                  />
+                }
+              />
+            )}
+          </TitleAndButton>
+        </InnerSection>
+      </ImageLimiter>
     </Container>
   );
 }
@@ -108,6 +112,9 @@ const Container = styled.section`
   @media ${device.mobileS} {
     height: 23rem;
   }
+`;
+const ImageLimiter = styled(Container)`
+  max-width: 2000px;
 `;
 const CloneContainerForHashur = styled.div`
   position: absolute;

@@ -25,7 +25,7 @@ export default function Home({ posts }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = (await fetchPosts({ variables: { first: 8 } })).data?.data
+  const posts = (await fetchPosts({ variables: { first: 3 } })).data?.data
     .posts;
 
   return {

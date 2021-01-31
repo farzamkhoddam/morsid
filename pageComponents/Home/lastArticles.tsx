@@ -1,18 +1,17 @@
-import { useState } from "react";
 import { Posts_posts as PostsPage } from "../../wpapi";
 import styled from "styled-components";
 import { device } from "../../consts/theme";
-import HomeCarousel from "pageComponents/Home/homeCarousel";
+
 import Link from "next/link";
 import LighteningIcon from "components/Svgs/lightening";
+import React from "react";
+import LastArticlesCards from "./lastArticlesCards";
 
 interface Props {
   posts: PostsPage;
 }
 
-export default function LatArticles({ posts }: Props) {
-  const [carouselValue, setCarouselValue] = useState(0);
-
+export default function LastArticles({ posts }: Props) {
   return (
     <SectionContainer>
       <StyledLighteningIcon1 />
@@ -26,34 +25,13 @@ export default function LatArticles({ posts }: Props) {
             the side hustle that works with your lifestyle and take action on
             our detailed playbooks.`}
           </SectionSubtitle>
-
-          {/* در طراحی قبلی، میتونستیم با این دکمه ها، اسلایدر رو حرکت بدیم. در طراحی جدید اسلایدری در کار نیست
-          اما چون ممکنه دوباره بعدا اسلایدری خواسته بشه، فقط دکمه ها کامنت شدن و اسلایدر پابرجاست 
-          اما فقط ۳ کارت رو نشون میده و به خاطر حذف دکمه ها امکان تغییر نداره */}
-          {/* <ArrowsContainer>
-            <ArrowButton onClick={() => setCarouselValue((o) => o - 1)}>
-              <Image
-                src="/tiny-arrow-left.svg"
-                alt="left"
-                width={24}
-                height={24}
-              />
-            </ArrowButton>
-            <ArrowButton onClick={() => setCarouselValue((o) => o + 1)}>
-              <Image
-                src="/tiny-arrow-right.svg"
-                alt="left"
-                width={24}
-                height={24}
-              />
-            </ArrowButton>
-          </ArrowsContainer> */}
         </LatestHeader>
-        <HomeCarousel
+        {/* <HomeCarousel
           posts={posts}
           value={carouselValue}
           onChange={(value) => setCarouselValue(value)}
-        />
+        /> */}
+        <LastArticlesCards posts={posts} />
         <Link href="/articles">
           <ShowMoreButton>Show More</ShowMoreButton>
         </Link>
