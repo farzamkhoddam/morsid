@@ -5,16 +5,18 @@ interface Props {
   doesNotLogin: ReactNode;
   loginWithoutSubscribed: ReactNode;
   loginWithSubscribed?: ReactNode;
+  className?: string;
 }
 const SmartCompBaseOnLogin: React.FC<Props> = ({
   doesNotLogin,
   loginWithSubscribed,
   loginWithoutSubscribed,
+  className,
 }) => {
   const data = useUserData();
 
   return (
-    <div>
+    <div className={className}>
       {data
         ? data.subscribed
           ? loginWithSubscribed || loginWithoutSubscribed // in some cased we dont onley things matter is logined or not. in this case we dont sent loginWithSubscribed

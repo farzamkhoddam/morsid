@@ -18,6 +18,15 @@ export default function OurMission() {
             To empower 1000 aspiring Entrepreneurs to fire their boss with their
             side Hustle.
           </OurMissionSubtitle>
+          <OurMissionImagContainer>
+            <Image
+              src="/ourMissionImage.jpg"
+              alt="Our Mision"
+              width={555}
+              height={750}
+              objectFit="cover"
+            />
+          </OurMissionImagContainer>
           <OurMissionDesc>
             {`We've know how risky it can be to start your own business. And we
               know that having a game plan can make that journey a whole lot
@@ -41,9 +50,9 @@ export default function OurMission() {
               in your favor.`}
           </OurMissionDesc>
           {typeof window && (
-            <SmartCompBaseOnLogin
+            <StyledSmartCompBaseOnLogin
               doesNotLogin={
-                <SmartButton to="/signup" title="Sign Up" viewType="glow" />
+                <SmartButton to="/signup" title="Sign Up Now" viewType="glow" />
               }
               loginWithoutSubscribed={
                 <SmartButton
@@ -62,15 +71,6 @@ export default function OurMission() {
             />
           )}
         </OurMissionContent>
-        <OurMissionImagContainer>
-          <Image
-            src="/ourMissionImage.jpg"
-            alt="Our Mision"
-            width={555}
-            height={750}
-            objectFit="cover"
-          />
-        </OurMissionImagContainer>
       </SectionWrapper>
     </SectionContainer>
   );
@@ -81,6 +81,14 @@ const SectionContainer = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
+  margin-top: 3rem;
+  padding-bottom: 25rem;
+  @media ${device.laptopM} {
+    padding-bottom: 19rem;
+  }
+  @media ${device.laptopM} {
+    padding-bottom: 10rem;
+  }
 `;
 
 const StyledLighteningIcon2 = styled(LighteningIcon)`
@@ -88,6 +96,9 @@ const StyledLighteningIcon2 = styled(LighteningIcon)`
   bottom: 0;
   left: 0%;
   transform: rotate(180deg);
+  @media ${device.laptopM} {
+    display: none;
+  }
 `;
 const SectionWrapper = styled.div`
   display: flex;
@@ -96,12 +107,24 @@ const SectionWrapper = styled.div`
   width: 100%;
   max-width: var(--page-max-width);
   padding: 0 2rem;
+  @media ${device.tabletL} {
+    justify-content: center;
+  }
+  @media ${device.mobileL} {
+    padding: 0 22px;
+  }
 `;
 const OurMissionContent = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   width: 50%;
+  @media ${device.tabletL} {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+}
+  }
 `;
 const OurMissionTitle = styled.h2`
   font-family: Bebas Neue;
@@ -117,6 +140,28 @@ const OurMissionSubtitle = styled.h3`
   font-size: 24px;
   line-height: 34px;
   color: var(--gray-color-normal);
+  @media ${device.laptop} {
+    font-size: 22px;
+  }
+  @media ${device.tabletL} {
+    font-size: 24px;
+  }
+`;
+const OurMissionImagContainer = styled.div`
+  width: 48%;
+  height: 100%;
+  padding-left: 1rem;
+  position: absolute;
+  right: 22px;
+  @media ${device.tabletL} {
+    position: relative;
+    width: 70%;
+    right: unset;
+    margin-bottom: 2rem;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+  }
 `;
 const OurMissionDesc = styled.p`
   font-family: Montserrat;
@@ -125,6 +170,15 @@ const OurMissionDesc = styled.p`
   line-height: 24px;
   color: var(--gray-color-normal);
   margin: 0;
+  @media ${device.laptop} {
+    font-size: 17px;
+  }
+  @media ${device.tabletL} {
+    font-size: 20px;
+  }
+`;
+const StyledSmartCompBaseOnLogin = styled(SmartCompBaseOnLogin)`
+  margin-top: 2rem;
 `;
 const SmartButton = styled(Button)`
   font-family: Montserrat;
@@ -134,16 +188,11 @@ const SmartButton = styled(Button)`
   line-height: 24px;
   width: 358px;
   height: 64px;
+
   @media ${device.tabletL} {
     width: 358px;
   }
   @media ${device.mobileL} {
     width: 89vw;
   }
-`;
-
-const OurMissionImagContainer = styled.div`
-  width: 50%;
-  height: 100%;
-  padding-left: 1rem;
 `;

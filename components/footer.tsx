@@ -55,7 +55,11 @@ const Footer = () => {
                 />
               }
               loginWithSubscribed={
-                <SmartButton to="/articles" title="Read Artciles" />
+                <SmartButton
+                  to="/articles"
+                  title="Read Artciles"
+                  viewType="glow"
+                />
               }
             />
           )}
