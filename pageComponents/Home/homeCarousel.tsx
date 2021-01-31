@@ -33,12 +33,12 @@ const HomeCarousel = ({ value, onChange, posts }: Props) => {
                 {
                   resolve: slidesToShowPlugin,
                   options: {
-                    numberOfSlides: 1,
+                    numberOfSlides: 2,
                   },
                 },
               ],
             },
-            767: {
+            800: {
               plugins: [
                 {
                   resolve: slidesToShowPlugin,

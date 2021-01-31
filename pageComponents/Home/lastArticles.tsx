@@ -70,12 +70,21 @@ const LatestWrapper = styled.section`
   max-width: var(--page-max-width);
   margin-right: auto;
   margin-left: auto;
-  padding: 0 1rem;
+  padding: 0 22px;
+  @media ${device.tabletS} {
+    margin-top: 7rem;
+  }
+  @media ${device.mobileL} {
+    margin-top: 10rem;
+  }
 `;
 const LatestHeader = styled.div`
   width: 100%;
   padding: 0 1rem;
   max-width: var(--page-max-width);
+  @media ${device.tabletL} {
+    text-align: center;
+  }
 `;
 const SectionTitle = styled.h2`
   font-family: Bebas Neue;
@@ -89,13 +98,15 @@ const SectionTitle = styled.h2`
     font-size: 40px;
     line-height: 48px;
   }
-  @media ${device.tablet} {
-    font-size: 7vw;
-    line-height: 8vw;
+  @media ${device.tabletL} {
+    font-size: 48px;
+    line-height: 58px;
+    margin-bottom: 20px;
   }
   @media ${device.mobileL} {
-    font-size: 2rem;
-    line-height: 2.2rem;
+    font-size: 40px;
+    line-height: 48px;
+    margin-bottom: 24px;
   }
 `;
 const SectionSubtitle = styled.p`
@@ -104,10 +115,12 @@ const SectionSubtitle = styled.p`
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-
-  /* Gray 2 */
-
   color: var(--gray-color-normal);
+  margin-bottom: 2rem;
+  @media ${device.mobileL} {
+    font-size: 16px;
+    line-height: 20px;
+  }
 `;
 // const ArrowsContainer = styled.div`
 //   display: flex;
@@ -146,4 +159,7 @@ const StyledLighteningIcon1 = styled(LighteningIcon)`
   position: absolute;
   top: 40%;
   right: 0%;
+  @media ${device.tabletL} {
+    display: none;
+  }
 `;

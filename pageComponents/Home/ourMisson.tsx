@@ -3,6 +3,9 @@ import Image from "next/image";
 import React from "react";
 
 import LighteningIcon from "components/Svgs/lightening";
+import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
+import Button from "components/Button";
+import { device } from "consts/theme";
 
 export default function OurMission() {
   return (
@@ -37,6 +40,27 @@ export default function OurMission() {
             {`As a Hustle Club Member, entrepreneurial success is
               in your favor.`}
           </OurMissionDesc>
+          {typeof window && (
+            <SmartCompBaseOnLogin
+              doesNotLogin={
+                <SmartButton to="/signup" title="Sign Up" viewType="glow" />
+              }
+              loginWithoutSubscribed={
+                <SmartButton
+                  to="/account"
+                  title="Get Artciles"
+                  viewType="glow"
+                />
+              }
+              loginWithSubscribed={
+                <SmartButton
+                  to="/articles"
+                  title="Read Artciles"
+                  viewType="glow"
+                />
+              }
+            />
+          )}
         </OurMissionContent>
         <OurMissionImagContainer>
           <Image
@@ -102,6 +126,22 @@ const OurMissionDesc = styled.p`
   color: var(--gray-color-normal);
   margin: 0;
 `;
+const SmartButton = styled(Button)`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  width: 358px;
+  height: 64px;
+  @media ${device.tabletL} {
+    width: 358px;
+  }
+  @media ${device.mobileL} {
+    width: 89vw;
+  }
+`;
+
 const OurMissionImagContainer = styled.div`
   width: 50%;
   height: 100%;
