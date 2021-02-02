@@ -194,9 +194,7 @@ const ForgotPassword = styled.div`
   @media (max-width: 1200px) {
     font-size: 17px;
   }
-  @media ${device.laptopXS} {
-    margin-left: 1rem;
-  }
+
   @media ${device.mobileL} {
     margin-top: 1rem;
   }
