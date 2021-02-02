@@ -127,7 +127,7 @@ const Description = styled.p`
   -webkit-box-orient: vertical;
   margin-left: 5rem;
   padding-right: 12rem;
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     padding-right: 6rem;
   }
   @media ${device.tablet} {
@@ -157,7 +157,7 @@ const BlackSection = styled.div`
   height: 10rem;
   background-color: black;
 
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     height: 3rem;
   }
 
@@ -201,7 +201,7 @@ const BottomH3 = styled.h3`
   margin-bottom: -0.8rem;
   font-size: 1.5vw;
   color: var(--primary-color-normal);
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     font-size: 1.4vw;
   }
   @media ${device.tablet} {

@@ -36,7 +36,7 @@ const ArticlesContainer = styled.div`
   max-width: var(--page-max-width);
   margin: 0 auto;
   padding: 0 16px;
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     grid-template-columns: repeat(2, auto);
     gap: 24px;
   }

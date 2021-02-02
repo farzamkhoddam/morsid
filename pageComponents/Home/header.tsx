@@ -88,7 +88,7 @@ const Container = styled.section`
   @media ${device.laptopS} {
     height: 27rem;
   }
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     height: 22rem;
   }
 
@@ -140,7 +140,7 @@ const WaveHashur1Container = styled.div`
     height: 150px;
   }
 
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     display: none;
   }
 `;
@@ -175,7 +175,7 @@ const InnerSection = styled.div`
     height: 28rem;
     margin-top: 1rem;
   }
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     height: 20rem;
   }
 
@@ -201,7 +201,7 @@ const CircleHashrContainer = styled.div`
     width: 100px;
     height: 100px;
   }
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     display: none;
   }
 `;
@@ -231,7 +231,7 @@ const Title = styled.h1`
     font-size: 73px;
     line-height: 69px;
   }
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     font-size: 63px;
     line-height: 59px;
   }

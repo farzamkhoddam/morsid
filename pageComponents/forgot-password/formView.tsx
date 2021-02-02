@@ -119,7 +119,7 @@ const FormWrapper = styled.div`
   padding-left: 2rem;
   height: 100%;
   padding-top: 1rem;
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     padding-top: 0rem;
   }
   @media ${device.mobileL} {
@@ -150,7 +150,7 @@ const SignupContainer = styled.div`
   margin-right: 0.5rem;
   color: var(--gray-color-normal);
   margin-top: 2rem;
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     font-size: 16px;
     letter-spacing: 0.03em;
     padding-bottom: 1rem;

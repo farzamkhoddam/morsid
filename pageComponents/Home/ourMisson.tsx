@@ -141,7 +141,7 @@ const OurMissionSubtitle = styled.h3`
   font-size: 24px;
   line-height: 34px;
   color: var(--gray-color-normal);
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     font-size: 22px;
   }
   @media ${device.tabletL} {
@@ -171,7 +171,7 @@ const OurMissionDesc = styled.p`
   line-height: 24px;
   color: var(--gray-color-normal);
   margin: 0;
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     font-size: 17px;
   }
   @media ${device.tabletL} {

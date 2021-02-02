@@ -72,7 +72,7 @@ const SectionTitle = styled.h2`
   line-height: 67px;
   text-transform: capitalize;
 
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     font-size: 40px;
     line-height: 48px;
   }

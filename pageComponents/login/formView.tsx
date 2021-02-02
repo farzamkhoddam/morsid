@@ -86,37 +86,36 @@ export default function LoginForm() {
 const FormContainer = styled.div`
   display: flex;
   align-items: center;
-  @media ${device.laptop}{
+  @media ${device.laptopXS} {
     width: 100%;
-    max-width:600px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
   }
-  
 `;
 const SignInButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     justify-content: flex-start;
   }
   @media ${device.mobileL} {
     flex-direction: column;
   }
   @media (max-width: 1400px) {
-    flex-direction:column;
-    padding-top:2rem;
+    flex-direction: column;
+    padding-top: 2rem;
     align-items: flex-start;
   }
-  `;
+`;
 const FormWrapper = styled.div`
   max-width: var(--page-max-width);
   margin: 0 auto;
   width: 100%;
   height: 100%;
   padding-top: 1rem;
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     padding-top: 0rem;
   }
   @media ${device.mobileL} {
@@ -147,7 +146,7 @@ const SignupContainer = styled.div`
   margin-right: 0.5rem;
   color: var(--gray-color-normal);
   margin-top: 2rem;
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     font-size: 16px;
     letter-spacing: 0.03em;
     padding-bottom: 1rem;
@@ -195,15 +194,14 @@ const ForgotPassword = styled.div`
   @media (max-width: 1200px) {
     font-size: 17px;
   }
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     margin-left: 1rem;
   }
   @media ${device.mobileL} {
     margin-top: 1rem;
   }
   @media (max-width: 1400px) {
-    
-    margin-top:2rem;
+    margin-top: 2rem;
   }
 `;
 const SignInButton = styled.input<{ disabled: boolean }>`

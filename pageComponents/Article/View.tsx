@@ -121,7 +121,7 @@ const HeaderColor = styled.section`
   width: 100vw;
   position: absolute;
   top: 0;
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     height: 24rem;
   }
   @media ${device.tabletM} {
@@ -139,7 +139,7 @@ const HeaderSection = styled.section`
   align-items: center;
   position: relative;
   height: 45rem;
-  @media ${device.laptop} {
+  @media ${device.laptopXS} {
     font-size: 1rem;
     line-height: 1.5rem;
     height: 40rem;
@@ -198,7 +198,7 @@ const Propertie = styled.div`
     margin: 0;
     padding: 40px;
     padding-bottom: 32px;
-    @media ${device.laptop} {
+    @media ${device.laptopXS} {
       font-size: 27px;
       line-height: 34px;
     }

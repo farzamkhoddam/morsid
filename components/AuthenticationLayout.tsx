@@ -5,6 +5,7 @@ import { useWindowSize } from "hooks/useWindowSize";
 import HomeIcon from "./Svgs/ic24-home";
 import { Toaster } from "react-hot-toast";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Props {
   title: string;
@@ -29,7 +30,15 @@ const AuthenticationLayout: React.FC<Props> = ({ title, children }) => {
       />
       <Container>
         <Content>
-          <Background />
+          <ImageContainer>
+            <Image
+              src={"/signup.jpg"}
+              alt={title + " - Featured image"}
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+            />
+          </ImageContainer>
           <FormWrapper>
             <TitleWrapper>
               <Link href="/">
@@ -79,7 +88,7 @@ const HomeButton = styled.a`
   &:hover {
     color: var(--accent-color-normal);
   }
-  @media ${device.laptop} {
+  @media ${device.tabletL} {
     color: white;
     padding: 0;
   }
@@ -88,15 +97,15 @@ const HomeButton = styled.a`
 const HomeText = styled.div`
   margin-left: 2px;
 `;
-const Background = styled.div`
+const ImageContainer = styled.div`
   flex: 2;
   position: relative;
-  background-image: url(/signup.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
-  @media ${device.laptop} {
+  background-color: gray;
+
+  @media ${device.tabletL} {
     display: none;
+  }
+  
   }
 `;
 const Content = styled.div`
@@ -111,7 +120,7 @@ const PicAndForm = styled.div`
   max-width: 700px;
   margin-left: 3rem;
 
-  @media ${device.laptop} {
+  @media ${device.tabletL} {
     width: 100%;
     margin-left: 0;
     max-width: none;
@@ -119,7 +128,7 @@ const PicAndForm = styled.div`
   }
 `;
 const TitleWrapper = styled(PicAndForm)`
-  @media ${device.laptop} {
+  @media ${device.tabletL} {
     padding: 0 2rem;
     margin: 0;
     background: var(--primary-color-normal);
@@ -139,7 +148,7 @@ const Title = styled.div`
     line-height: 44px;
     letter-spacing: 0.05em;
   }
-  @media ${device.laptop} {
+  @media ${device.tabletL} {
     padding-bottom: 2rem;
     text-align: center;
     width: 60%;
