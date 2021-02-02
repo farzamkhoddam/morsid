@@ -25,6 +25,7 @@ export default function OurMission() {
               width={555}
               height={750}
               objectFit="cover"
+              quality={100}
             />
           </OurMissionImagContainer>
           <OurMissionDesc>

@@ -7,20 +7,19 @@ import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 export default function HomeHeader() {
   return (
     <Container>
+      <CloneContainerForHashur>
+        <WaveHashur1Container>
+          <Image
+            src="/wave-hashur-1.svg"
+            alt="circle-hashur"
+            width={260}
+            height={260}
+          />
+        </WaveHashur1Container>
+      </CloneContainerForHashur>
       {/* چون عکس هدر باید تا آخر صفحه بره، وقتی صحفه خیلی زوم اوت بشه بسیار زشت میشه. 
       از این دیو ایمج لیمیتر استفاده میکنیم که ایمیج از یک حدی بزرگتر نشه */}
       <ImageLimiter>
-        <CloneContainerForHashur>
-          <WaveHashur1Container>
-            <Image
-              src="/wave-hashur-1.svg"
-              alt="circle-hashur"
-              width={260}
-              height={260}
-            />
-          </WaveHashur1Container>
-        </CloneContainerForHashur>
-
         <ImageContainer>
           <Image
             src="/home-header.jpg"
@@ -28,6 +27,7 @@ export default function HomeHeader() {
             height={465}
             layout="responsive"
             priority={true}
+            quality={70}
           />
         </ImageContainer>
         <InnerSection>
@@ -131,6 +131,7 @@ const WaveHashur1Container = styled.div`
   left: 0;
   bottom: -53px;
   opacity: 0.3;
+  z-index: 1;
   @media ${device.laptopL} {
     left: -10px;
     bottom: -23px;
