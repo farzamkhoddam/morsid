@@ -4,8 +4,23 @@ import styled from "styled-components";
 import Link from "next/link";
 import { device } from "../consts/theme";
 import { MenuColorType } from "./simplePageHeader";
+import { useUserData } from "hooks/useUserData";
 
-const MenuItems = [
+const NotLoginedUserMenuItems = [
+  {
+    path: "/",
+    title: "Home",
+  },
+  {
+    path: "/articles",
+    title: "Articles",
+  },
+  {
+    path: "/login",
+    title: "Login",
+  },
+];
+const LoginedUserMenuItems = [
   {
     path: "/",
     title: "Home",
@@ -16,7 +31,7 @@ const MenuItems = [
   },
   {
     path: "/account",
-    title: "Account",
+    title: "My Profile",
   },
 ];
 
@@ -36,6 +51,7 @@ const Navigation: React.FC<Props> = ({
   isActiveMenu,
   colorType,
 }) => {
+  const { siginStatus } = useUserData();
   const [toggleMenu, setToggleMenu] = useState(isActiveMenu);
   function handleToggleClick() {
     // this.setState(state => ({
@@ -45,6 +61,10 @@ const Navigation: React.FC<Props> = ({
     setToggleMenu(!toggleMenu);
   }
 
+  const MenuItems =
+    siginStatus === "NOT-LOGINED"
+      ? NotLoginedUserMenuItems
+      : LoginedUserMenuItems;
   const listMenuItems = MenuItems.map((menuItem, index) => {
     return (
       <ListLink key={index} to={menuItem.path}>
