@@ -18,4 +18,5 @@ const Container = styled.header`
   align-items: center;
   height: var(--header-height-desktop);
   width: 100%;
+  position: relative;
 `;

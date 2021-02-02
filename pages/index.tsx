@@ -6,6 +6,7 @@ import HomeMenu from "pageComponents/Home/menu";
 import HomeHeader from "pageComponents/Home/header";
 import LatArticles from "pageComponents/Home/lastArticles";
 import OurMission from "pageComponents/Home/ourMisson";
+import styled from "styled-components";
 
 interface Props {
   posts: PostsPage;
@@ -13,14 +14,14 @@ interface Props {
 
 export default function Home({ posts }: Props) {
   return (
-    <div style={{ position: "relative" }}>
+    <Container>
       <SEO />
       <HomeMenu />
       <HomeHeader />
       <LatArticles posts={posts} />
       <OurMission />
       <Footer />
-    </div>
+    </Container>
   );
 }
 
@@ -35,3 +36,8 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 20,
   };
 };
+
+const Container = styled.div`
+  position: "relative";
+  padding-top: var(--header-height-desktop);
+`;

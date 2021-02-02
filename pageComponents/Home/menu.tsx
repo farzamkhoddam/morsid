@@ -57,6 +57,9 @@ const Container = styled.section`
   width: 100%;
   height: var(--header-height-desktop);
   background-color: var(--primary-color-normal);
+  position: fixed;
+  top: 0;
+  z-index: 90;
 `;
 const Wrapper = styled.div`
   display: flex;

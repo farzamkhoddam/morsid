@@ -44,6 +44,9 @@ const MenuContainer = styled.header<{ colorType?: MenuColorType }>`
   height: var(--header-height-desktop);
   background: var(--primary-color-normal);
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 90;
 `;
 const Contents = styled.div`
   display: flex;
