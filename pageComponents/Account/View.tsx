@@ -1,6 +1,6 @@
+import Button from "components/Button";
 import SimplePageHeader from "components/simplePageHeader";
 import styled from "styled-components";
-import SimpleButton from "components/SimpleButton";
 
 interface Props {
   firstName: string;
@@ -20,13 +20,17 @@ export function AccountView({
       <SimplePageHeader />
       <Container>
         <Wrapper>
+          <H1>Profile</H1>
           <Section>
-            <H1>Profile</H1>
+            <Label>Name</Label>
             <Field>{`${lastName} - ${firstName}`}</Field>
+            <Label>Email</Label>
             <Field>{email}</Field>
-            <SimpleButton href="/logout" onClick={() => handleLogout()}>
-              {"Logout"}
-            </SimpleButton>
+            <StyledButton
+              to="/logout"
+              clickHandler={() => handleLogout()}
+              title={`Logout`}
+            />
           </Section>
         </Wrapper>
       </Container>
@@ -43,28 +47,48 @@ const Container = styled.div`
   width: 100%;
 `;
 const Wrapper = styled.div`
-  max-width: 1068px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   width: inherit;
-  padding: 0 10%;
+  height: inherit;
+  padding: 0 2rem;
+  padding-top: 13rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+`;
+const H1 = styled.h1`
+  position: absolute;
+  top: 80px;
+  left: 2rem;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  color: #1d3330;
 `;
 const Section = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 558px;
 `;
-const H1 = styled.h1`
-  color: var(--primary-color-normal);
-  margin-bottom: 2rem;
-  font-size: 270%;
-  text-align: center;
-  line-height: 100%;
+const Label = styled.div`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+  margin-right: auto;
 `;
+
 const Field = styled.div`
     width: 100%;
-    max-width: 36rem;
-    margin: 8px 0 16px;
+    
+    margin: 8px 0 3.125rem;
+    
     padding: 16px;
     border: 1px solid;
     border-radius: 1px;
@@ -75,7 +99,12 @@ const Field = styled.div`
     overflow-wrap: anywhere;
     text-align: start;
     margin-bottom: 2rem;
-    height: 4.5rem;
+    height: 4rem;
     display: flex;
     align-items: center;
+`;
+const StyledButton = styled(Button)`
+  width: 264px;
+  height: 64px;
+  margin-top: 1rem;
 `;
