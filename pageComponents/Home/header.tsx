@@ -44,6 +44,7 @@ export default function HomeHeader() {
             {/* <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" /> */}
             {typeof window && (
               <SmartCompBaseOnLogin
+                style={{ zIndex: 2 }}
                 doesNotLogin={
                   <SmartButton to="/signup" title="Sign Up" viewType="glow" />
                 }

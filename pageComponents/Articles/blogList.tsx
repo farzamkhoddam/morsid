@@ -21,8 +21,9 @@ const BlogList = ({ posts }: Props) => {
 export default BlogList;
 
 const Section = styled.section`
-  margin-top: 36px;
   display: flex;
+  padding-top: 12rem;
+
   @media ${device.tablet} {
     align-items: center;
     padding-left: 0;

@@ -75,6 +75,12 @@ const Container = styled.div<{ viewType?: "glow" | "normal" }>`
   transition: background 0.3s linear;
   width: inherit;
   height: inherit;
+  &:hover {
+    ${(props) =>
+      props.viewType === "glow"
+        ? "box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);"
+        : "filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.2));"}
+  }
   &.-outline {
     color: var(--primary-color-dark);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);

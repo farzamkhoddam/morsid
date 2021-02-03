@@ -59,7 +59,10 @@ const Container = styled.article`
   width: 100%;
   height: 100%;
   cursor: pointer;
-  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
+  &:hover {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const Image = styled.img`
@@ -136,9 +139,7 @@ const PostWrapper = styled.div`
   background-color: #fff;
   transition: box-shadow 0.3s linear;
   filter: drop-shadow(0px 0px ۶px rgba(0, 0, 0, 0.1));
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  width: 99%;
-  height: 99%;
+
   @media ${device.tablet} {
     align-items: center;
   }
