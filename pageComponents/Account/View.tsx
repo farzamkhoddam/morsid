@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   width: inherit;
   height: inherit;
   padding: 0 2rem;
-  padding-top: 13rem;
+  padding-top: 11rem;
 
   display: flex;
   justify-content: center;
@@ -61,7 +61,7 @@ const Wrapper = styled.div`
 `;
 const H1 = styled.h1`
   position: absolute;
-  top: 80px;
+  top: 4rem;
   left: 2rem;
   font-weight: bold;
   font-size: 24px;

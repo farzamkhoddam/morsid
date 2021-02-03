@@ -84,6 +84,7 @@ article img {
   font-size: 20px;
   color: #333333;
   overflow: auto;
+  h2,
   h1 {
     font-weight: bold;
     font-size: 32px;
@@ -131,6 +132,7 @@ article img {
     font-weight: bold;
     font-size: 20px;
     line-height: 156.4%;
+    margin-bottom: 24px;
   }
   ul li::before {
     content: "";
