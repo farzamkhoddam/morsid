@@ -6,8 +6,9 @@ import Image from "next/image";
 interface Props {
   className?: string;
   colorType?: MenuColorType;
+  activeItemIndex: number;
 }
-const Menu: React.FC<Props> = ({ className, colorType }) => {
+const Menu: React.FC<Props> = ({ className, colorType, activeItemIndex }) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   return (
     <MenuContainer className={className} colorType={colorType}>
@@ -18,6 +19,7 @@ const Menu: React.FC<Props> = ({ className, colorType }) => {
         {!isActiveMenu ? (
           <DeactiveMenuNavContainer colorType={colorType}>
             <Navigation
+              activeItemIndex={activeItemIndex}
               colorType={colorType}
               setIsActiveMenu={setIsActiveMenu}
               isActiveMenu={isActiveMenu}

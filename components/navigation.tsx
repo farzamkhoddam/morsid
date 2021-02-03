@@ -5,6 +5,7 @@ import Link from "next/link";
 import { device } from "../consts/theme";
 import { MenuColorType } from "./simplePageHeader";
 import { useUserData } from "hooks/useUserData";
+import { useRouter } from "next/router";
 
 const NotLoginedUserMenuItems = [
   {
@@ -45,18 +46,18 @@ interface Props {
   setIsActiveMenu: Function;
   isActiveMenu: boolean;
   colorType?: MenuColorType;
+  activeItemIndex: number;
 }
 const Navigation: React.FC<Props> = ({
   setIsActiveMenu,
   isActiveMenu,
   colorType,
 }) => {
+  const router = useRouter();
+  console.log("navid router=", router);
   const { siginStatus } = useUserData();
   const [toggleMenu, setToggleMenu] = useState(isActiveMenu);
   function handleToggleClick() {
-    // this.setState(state => ({
-    //   showMenu: !state.showMenu,
-    // }))
     setIsActiveMenu(!toggleMenu);
     setToggleMenu(!toggleMenu);
   }
@@ -119,10 +120,7 @@ const Container = styled.nav<{ colorType?: MenuColorType }>`
         : "rgba(255, 255, 255, 0.6)"};
     text-decoration: none;
     &:hover {
-      color: ${(props) =>
-        props.colorType === "light"
-          ? "var(--secondary-color-light)"
-          : "rgba(255, 255, 255, 0.6)"};
+      color: var(--accent-color-normal);
     }
   }
   a[aria-current="page"] {

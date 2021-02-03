@@ -117,17 +117,22 @@ export function ArticleView({ post }: Props) {
 }
 const HeaderColor = styled.section`
   background-color: var(--primary-color-normal);
-  height: 35rem;
+  height: 33rem;
   width: 100vw;
   position: absolute;
   top: 0;
   @media ${device.laptopXS} {
-    height: 24rem;
+    height: 28rem;
   }
-  @media ${device.tabletM} {
-    height: 16rem;
+
+  @media ${device.tabletL} {
+    height: 19rem;
   }
+
   @media ${device.mobileL} {
+    height: 8rem;
+  }
+  @media ${device.mobileS} {
     height: 6rem;
   }
 `;
@@ -144,7 +149,7 @@ const HeaderSection = styled.section`
     line-height: 1.5rem;
     height: 40rem;
   }
-  @media ${device.tabletM} {
+  @media ${device.tabletL} {
     height: unset;
     justify-content: flex-start;
   }
@@ -159,7 +164,7 @@ const ImgContainer = styled.div`
   padding: 0 2rem;
   position: absolute;
   top: 0;
-  @media ${device.tabletM} {
+  @media ${device.tabletL} {
     position: relative;
   }
   @media ${device.mobileL} {
@@ -184,7 +189,7 @@ const Propertie = styled.div`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   width: 55%;
   margin-left: auto;
-  @media ${device.tabletM} {
+  @media ${device.tabletL} {
     width: 100%;
     box-shadow: none;
   }
@@ -202,7 +207,7 @@ const Propertie = styled.div`
       font-size: 27px;
       line-height: 34px;
     }
-    @media ${device.tabletM} {
+    @media ${device.tabletL} {
       padding-right: 0;
       padding-left: 0;
       padding-top: 32px;
@@ -237,7 +242,7 @@ const Propertie = styled.div`
     margin: 0;
     padding: 0 24px;
     padding-bottom: 40px;
-    @media ${device.tabletM} {
+    @media ${device.tabletL} {
       padding-right: 0;
       padding-left: 0;
       padding-bottom: 24px;
@@ -245,7 +250,7 @@ const Propertie = styled.div`
   }
   #date {
     text-align: end;
-    @media ${device.tabletM} {
+    @media ${device.tabletL} {
       text-align: start;
       margin-bottom: 0;
       padding-bottom: 1rem;
