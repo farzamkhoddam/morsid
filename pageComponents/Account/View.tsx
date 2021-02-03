@@ -1,5 +1,6 @@
 import Button from "components/Button";
 import SimplePageHeader from "components/simplePageHeader";
+import { device } from "consts/theme";
 import styled from "styled-components";
 
 interface Props {
@@ -20,7 +21,10 @@ export function AccountView({
       <SimplePageHeader />
       <Container>
         <Wrapper>
-          <H1>Profile</H1>
+          <TitleContainer>
+            <div>Profile</div>
+          </TitleContainer>
+
           <Section>
             <Label>Name</Label>
             <Field>{`${lastName} - ${firstName}`}</Field>
@@ -55,25 +59,35 @@ const Wrapper = styled.div`
   padding-top: 11rem;
 
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   position: relative;
 `;
-const H1 = styled.h1`
+
+const TitleContainer = styled.div`
   position: absolute;
   top: 4rem;
-  left: 2rem;
   font-weight: bold;
   font-size: 24px;
   line-height: 29px;
   color: #1d3330;
+  width: 100%;
+  max-width: var(--page-max-width);
+  padding: 0 2rem;
+  @media ${device.tabletL} {
+    width: 100%;
+  }
 `;
 const Section = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 558px;
+  width: 34.5rem;
+  @media ${device.tabletL} {
+    width: 100%;
+  }
 `;
 const Label = styled.div`
   font-weight: 500;
