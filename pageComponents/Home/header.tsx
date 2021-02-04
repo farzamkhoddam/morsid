@@ -27,7 +27,7 @@ export default function HomeHeader() {
             height={465}
             layout="responsive"
             priority={true}
-            quality={70}
+            quality={100}
           />
         </ImageContainer>
         <InnerSection>

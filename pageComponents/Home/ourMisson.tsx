@@ -82,6 +82,7 @@ export default function OurMission() {
               alt="Our Mision"
               width={555}
               height={639}
+              objectFit="cover"
               quality={100}
             />
           </OurMissionImagContainer>
@@ -126,6 +127,7 @@ const SectionWrapper = styled.div`
   padding: 0 2rem;
   @media ${device.tabletL} {
     justify-content: center;
+    height: auto;
   }
   @media ${device.mobileL} {
     padding: 0 22px;
@@ -149,7 +151,16 @@ const OurMissionTitle = styled.h2`
   line-height: 67px;
   text-transform: capitalize;
   color: var(--primary-color-normal);
+  font-weight: normal;
   margin: 0;
+  @media ${device.laptopXS} {
+    font-size: 46px;
+    line-height: 37px;
+  }
+  @media ${device.tabletL} {
+    font-size: 48px;
+    line-height: 58px;
+  }
 `;
 const OurMissionSubtitle = styled.h3`
   font-family: Montserrat;
@@ -157,16 +168,22 @@ const OurMissionSubtitle = styled.h3`
   font-size: 24px;
   line-height: 34px;
   color: var(--secondary-color-normalz);
+  margin-top: 5px;
+  margin-bottom: 9px;
   @media ${device.laptopXS} {
-    font-size: 22px;
+    font-size: 20px;
+    line-height: 28px;
   }
   @media ${device.tabletL} {
+    margin-top: 24px;
+    margin-bottom: 32px;
     font-size: 24px;
+    line-height: 142.9%;
   }
 `;
 const OurMissionImagContainer = styled.div`
-  width: 555px;
-  height: 639px;
+  width: 49%;
+  height: auto;
   @media ${device.tabletL} {
     position: relative;
     width: 70%;
@@ -193,6 +210,9 @@ const OurMissionDesc = styled.p`
 `;
 const StyledSmartCompBaseOnLogin = styled(SmartCompBaseOnLogin)`
   margin-top: 2rem;
+  @media ${device.tabletL} {
+    margin-top: 40px;
+  }
 `;
 const SmartButton = styled(Button)`
   font-family: Montserrat;
