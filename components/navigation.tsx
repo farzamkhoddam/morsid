@@ -73,9 +73,6 @@ const Navigation: React.FC<Props> = ({
       ? NotLoginedUserMenuItems
       : LoginedUserMenuItems;
   const listMenuItems = MenuItems.map((menuItem, index) => {
-    console.log("navid activeItemIndex=", activeItemIndex);
-    console.log("navid index=", index);
-    console.log("navid ----------------");
     return (
       <ListLink
         key={index}

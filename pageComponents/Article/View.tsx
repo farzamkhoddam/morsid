@@ -50,7 +50,7 @@ export function ArticleView({ post }: Props) {
         />
       </Head>
       <div className="page">
-        <SimplePageHeader />
+        <SimplePageHeader activeItemIndex={-1} />
         <SEO
           title={title}
           description={content ? content : excerpt}

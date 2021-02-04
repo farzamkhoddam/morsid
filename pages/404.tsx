@@ -6,7 +6,7 @@ import SimplePageHeader from "components/simplePageHeader";
 const NotFound = () => (
   <div className="not-found-page">
     <SEO title="Page not found" />
-    <SimplePageHeader />
+    <SimplePageHeader activeItemIndex={-1} />
     <div
       className="wrapper"
       style={{

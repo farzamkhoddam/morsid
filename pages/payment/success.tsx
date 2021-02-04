@@ -7,7 +7,7 @@ import SimplePageHeader from "components/simplePageHeader";
 const Thanks = () => (
   <div className="thanks-page">
     <SEO title="Thank you" />
-    <SimplePageHeader />
+    <SimplePageHeader activeItemIndex={-1} />
     <div
       className="wrapper"
       style={{
