@@ -28,16 +28,18 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Head>
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
-            rel="stylesheet"
-          ></link>
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-          />
+          <noscript>
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+              rel="stylesheet"
+            ></link>
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+              rel="stylesheet"
+            />
+          </noscript>
         </Head>
         <Component {...pageProps} />
       </Hydrate>
