@@ -41,9 +41,7 @@ const ListLink = (props: {
 }) => (
   <li
     style={{
-      color: props.isActive
-        ? "var(--accent-color-normal)"
-        : "rgba(255, 255, 255, 0.6)",
+      color: props.isActive ? "var(--accent-color-normal)" : "white",
     }}
   >
     <Link href={props.to}>{props.children}</Link>
@@ -125,6 +123,9 @@ const Container = styled.nav`
   }
   a {
     text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+
     &:hover {
       color: var(--accent-color-normal);
     }
@@ -143,10 +144,11 @@ const Container = styled.nav`
     cursor: pointer;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 475px) {
     .menu-trigger,
     .icon-menu-line {
       display: flex;
+      color: white;
     }
 
     .icon-menu-close {
