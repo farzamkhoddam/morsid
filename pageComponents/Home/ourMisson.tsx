@@ -120,6 +120,7 @@ const SectionWrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  height: 639px;
   position: relative;
   max-width: var(--page-max-width);
   padding: 0 2rem;
