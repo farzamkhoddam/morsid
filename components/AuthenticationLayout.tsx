@@ -158,8 +158,12 @@ const Title = styled.div`
     line-height: 67px;
   }
   @media ${device.laptopS} {
-    font-size: 45px;
-    line-height: 50px;
+    font-size: 42px;
+    line-height: 47px;
+  }
+  @media ${device.laptopXS} {
+    font-size: 32px;
+    line-height: 37px;
   }
   @media ${device.tabletM} {
     font-size: 52px;

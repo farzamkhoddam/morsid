@@ -48,7 +48,7 @@ const LatestWrapper = styled.section`
   max-width: var(--page-max-width);
   margin-right: auto;
   margin-left: auto;
-  padding: 0 22px;
+  padding: 0 2rem;
   @media ${device.tabletS} {
     margin-top: 7rem;
   }

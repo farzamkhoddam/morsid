@@ -18,16 +18,7 @@ export default function OurMission() {
             To empower 1000 aspiring Entrepreneurs to fire their boss with their
             side Hustle.
           </OurMissionSubtitle>
-          <OurMissionImagContainer>
-            <Image
-              src="/ourMissionImage.jpg"
-              alt="Our Mision"
-              width={555}
-              height={750}
-              objectFit="cover"
-              quality={100}
-            />
-          </OurMissionImagContainer>
+
           <OurMissionDesc>
             {`We've know how risky it can be to start your own business. And we
               know that having a game plan can make that journey a whole lot
@@ -72,6 +63,15 @@ export default function OurMission() {
             />
           )}
         </OurMissionContent>
+        <OurMissionImagContainer>
+          <Image
+            src="/ourMissionImage.jpg"
+            alt="Our Mision"
+            width={555}
+            height={639}
+            quality={100}
+          />
+        </OurMissionImagContainer>
       </SectionWrapper>
     </SectionContainer>
   );
@@ -106,6 +106,7 @@ const SectionWrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  position: relative;
   max-width: var(--page-max-width);
   padding: 0 2rem;
   @media ${device.tabletL} {
@@ -140,7 +141,7 @@ const OurMissionSubtitle = styled.h3`
   font-weight: 600;
   font-size: 24px;
   line-height: 34px;
-  color: var(--gray-color-normal);
+  color: var(--secondary-color-normalz);
   @media ${device.laptopXS} {
     font-size: 22px;
   }
@@ -149,11 +150,8 @@ const OurMissionSubtitle = styled.h3`
   }
 `;
 const OurMissionImagContainer = styled.div`
-  width: 48%;
-  height: 100%;
-  padding-left: 1rem;
-  position: absolute;
-  right: 22px;
+  width: 555px;
+  height: 639px;
   @media ${device.tabletL} {
     position: relative;
     width: 70%;
