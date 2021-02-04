@@ -4,6 +4,7 @@ import format from "date-fns/format";
 import { device } from "../consts/theme";
 import { Posts_posts_nodes as Post } from "../wpapi";
 import React from "react";
+import Image from "next/image";
 import CalendarIcon from "./Svgs/calendar";
 
 const PostCard = ({ post, className }: { post: Post; className?: string }) => {
@@ -21,6 +22,8 @@ const PostCard = ({ post, className }: { post: Post; className?: string }) => {
                   "/article-image-placeholder.png"
                 }
                 alt={title + " - Featured image"}
+                width={237}
+                height={326}
               />
             </ImageContainer>
           </GreySide>
@@ -65,15 +68,6 @@ const Container = styled.article`
   }
 `;
 
-const Image = styled.img`
-  border-radius: 12px;
-  width: 100%;
-  max-width: 680px !important;
-  img {
-    display: block;
-    margin: 0;
-  }
-`;
 const Title = styled.h3`
   overflow: hidden;
   text-overflow: ellipsis;
@@ -140,7 +134,7 @@ const PostWrapper = styled.div`
   transition: box-shadow 0.3s linear;
   filter: drop-shadow(0px 0px ۶px rgba(0, 0, 0, 0.1));
 
-  @media ${device.tablet} {
+  @media (max-width: 700px) {
     align-items: center;
   }
 `;
@@ -151,10 +145,12 @@ const GreySide = styled.div`
   width: 100%;
 `;
 const ImageContainer = styled.div`
+  border-radius: 12px;
+  width: 237px;
+  height: 326px;
   margin-bottom: -7rem;
-  width: 70%;
-  height: 70%;
 `;
+
 const ReadButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -168,7 +164,7 @@ const ReadMore = styled.div`
   font-size: 20px;
   line-height: 24px;
   color: var(--accent-color-normal);
-  @media ${device.tablet} {
+  @media (max-width: 700px) {
     font-size: 16px;
     line-height: 19px;
   }

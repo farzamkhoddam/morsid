@@ -151,7 +151,7 @@ const SignupContainer = styled.div`
     letter-spacing: 0.03em;
     padding-bottom: 1rem;
   }
-  @media ${device.tablet} {
+  @media (max-width: 700px) {
     font-size: 3.3vw;
   }
   @media ${device.mobileL} {

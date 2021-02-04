@@ -146,7 +146,7 @@ const Container = styled.nav`
     cursor: pointer;
   }
 
-  @media ${device.tablet} {
+  @media (max-width: 700px) {
     .menu-trigger,
     .icon-menu-line {
       display: flex;

@@ -11,6 +11,7 @@ interface Props {
 
 const LastArticlesCards = ({ posts }: Props) => {
   const windowSize = useWindowSize();
+  //TODO: refactor this with the deviceType parameter of useWindowSize hook
   let deviceType = "laptop";
   if (windowSize.width <= 800) deviceType = "tablet";
   if (windowSize.width <= 425) deviceType = "mobile";

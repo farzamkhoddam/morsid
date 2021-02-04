@@ -33,7 +33,7 @@ const Input = styled.div<{ hasError?: boolean }>`
       hasError ? "red" : "var(--primary-color-normal)"};
   }
 
-  @media ${device.tablet} {
+  @media (max-width: 700px) {
     width: 100%;
   }
 `;

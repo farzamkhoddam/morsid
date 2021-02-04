@@ -170,7 +170,7 @@ const Title = styled.div`
     line-height: 50px;
     width: 80%;
   }
-  @media ${device.tablet} {
+  @media (max-width: 700px) {
     display: flex;
     justify-content: center;
     line-height: 50px;

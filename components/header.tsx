@@ -19,7 +19,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   height: var(--header-height-desktop);
   width: 100%;
-  @media ${device.tablet} {
+  @media (max-width: 700px) {
     background: var(--header-bg-dark);
   }
 `;
@@ -27,7 +27,7 @@ const LogoContainer = styled.div`
   padding-left: 1rem;
   background: var(--header-bg-light);
   z-index: 3;
-  @media ${device.tablet} {
+  @media (max-width: 700px) {
     background: var(--header-bg-dark);
   }
 `;

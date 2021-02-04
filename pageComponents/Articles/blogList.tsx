@@ -24,7 +24,7 @@ const Section = styled.section`
   display: flex;
   padding-top: 12rem;
 
-  @media ${device.tablet} {
+  @media (max-width: 700px) {
     align-items: center;
     padding-left: 0;
   }
@@ -41,7 +41,7 @@ const ArticlesContainer = styled.div`
     grid-template-columns: repeat(2, auto);
     gap: 24px;
   }
-  @media ${device.tablet} {
+  @media (max-width: 700px) {
     grid-template-columns: auto;
   }
 `;
