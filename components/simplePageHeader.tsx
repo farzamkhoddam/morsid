@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import Menu from "../components/menu";
 
-export type MenuColorType = "light" | "dark";
+interface Props {
+  activeItemIndex: number;
+}
 
-const SimplePageHeader: React.FC = () => {
+const SimplePageHeader: React.FC<Props> = ({ activeItemIndex }) => {
   return (
     <Container>
-      <Menu />
+      <Menu activeItemIndex={activeItemIndex} />
     </Container>
   );
 };

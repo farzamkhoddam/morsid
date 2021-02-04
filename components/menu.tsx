@@ -1,26 +1,25 @@
 import styled from "styled-components";
 import Navigation from "../components/navigation";
 import { useState } from "react";
-import { MenuColorType } from "./simplePageHeader";
+
 import Image from "next/image";
 interface Props {
   className?: string;
-  colorType?: MenuColorType;
+
   activeItemIndex: number;
 }
-const Menu: React.FC<Props> = ({ className, colorType, activeItemIndex }) => {
+const Menu: React.FC<Props> = ({ className, activeItemIndex }) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   return (
-    <MenuContainer className={className} colorType={colorType}>
+    <MenuContainer className={className}>
       <Contents>
         <LogoContainer>
           <Image src="/logo-accent.svg" alt="Logo" width={150} height={60} />
         </LogoContainer>
         {!isActiveMenu ? (
-          <DeactiveMenuNavContainer colorType={colorType}>
+          <DeactiveMenuNavContainer>
             <Navigation
               activeItemIndex={activeItemIndex}
-              colorType={colorType}
               setIsActiveMenu={setIsActiveMenu}
               isActiveMenu={isActiveMenu}
             />
@@ -28,6 +27,7 @@ const Menu: React.FC<Props> = ({ className, colorType, activeItemIndex }) => {
         ) : (
           <ActiveMenuNavContainer>
             <Navigation
+              activeItemIndex={activeItemIndex}
               setIsActiveMenu={setIsActiveMenu}
               isActiveMenu={isActiveMenu}
             />
@@ -39,7 +39,7 @@ const Menu: React.FC<Props> = ({ className, colorType, activeItemIndex }) => {
 };
 export default Menu;
 
-const MenuContainer = styled.header<{ colorType?: MenuColorType }>`
+const MenuContainer = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +58,7 @@ const Contents = styled.div`
   padding: 0 2rem;
 `;
 
-const DeactiveMenuNavContainer = styled.div<{ colorType?: MenuColorType }>`
+const DeactiveMenuNavContainer = styled.div`
   height: 4rem;
   background:background: var(--primary-color-normal);
   display: flex;

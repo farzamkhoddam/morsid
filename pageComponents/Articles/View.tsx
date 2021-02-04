@@ -21,7 +21,7 @@ export const ArticlesView = ({
   return (
     <div className="page">
       <SEO />
-      <Menu />
+      <Menu activeItemIndex={1} />
       {pages.map((page) => (
         <BlogList key={page.pageInfo?.startCursor} posts={page.nodes || []} />
       ))}

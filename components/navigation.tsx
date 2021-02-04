@@ -3,9 +3,7 @@ import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import styled from "styled-components";
 import Link from "next/link";
 import { device } from "../consts/theme";
-import { MenuColorType } from "./simplePageHeader";
 import { useUserData } from "hooks/useUserData";
-import { useRouter } from "next/router";
 
 const NotLoginedUserMenuItems = [
   {
@@ -36,8 +34,18 @@ const LoginedUserMenuItems = [
   },
 ];
 
-const ListLink = (props: { to: string; children: ReactNode }) => (
-  <li>
+const ListLink = (props: {
+  to: string;
+  children: ReactNode;
+  isActive: boolean;
+}) => (
+  <li
+    style={{
+      color: props.isActive
+        ? "var(--accent-color-normal)"
+        : "rgba(255, 255, 255, 0.6)",
+    }}
+  >
     <Link href={props.to}>{props.children}</Link>
   </li>
 );
@@ -45,16 +53,14 @@ interface Props {
   // eslint-disable-next-line @typescript-eslint/ban-types
   setIsActiveMenu: Function;
   isActiveMenu: boolean;
-  colorType?: MenuColorType;
   activeItemIndex: number;
 }
 const Navigation: React.FC<Props> = ({
   setIsActiveMenu,
   isActiveMenu,
-  colorType,
+
+  activeItemIndex,
 }) => {
-  const router = useRouter();
-  console.log("navid router=", router);
   const { siginStatus } = useUserData();
   const [toggleMenu, setToggleMenu] = useState(isActiveMenu);
   function handleToggleClick() {
@@ -67,15 +73,22 @@ const Navigation: React.FC<Props> = ({
       ? NotLoginedUserMenuItems
       : LoginedUserMenuItems;
   const listMenuItems = MenuItems.map((menuItem, index) => {
+    console.log("navid activeItemIndex=", activeItemIndex);
+    console.log("navid index=", index);
+    console.log("navid ----------------");
     return (
-      <ListLink key={index} to={menuItem.path}>
+      <ListLink
+        key={index}
+        to={menuItem.path}
+        isActive={activeItemIndex === index}
+      >
         {menuItem.title}
       </ListLink>
     );
   });
   return (
     // <Container className={this.state.showMenu ? ' cross-nav' : ''}>
-    <Container className={"site-navigation"} colorType={colorType}>
+    <Container className={"site-navigation"}>
       <button
         onClick={handleToggleClick}
         className={"menu-trigger" + (toggleMenu ? " is-active" : "")}
@@ -96,7 +109,7 @@ const Navigation: React.FC<Props> = ({
 
 export default Navigation;
 
-const Container = styled.nav<{ colorType?: MenuColorType }>`
+const Container = styled.nav`
   width: max-content;
   font-family: Montserrat;
   font-style: normal;
@@ -114,10 +127,6 @@ const Container = styled.nav<{ colorType?: MenuColorType }>`
     margin-left: 20px;
   }
   a {
-    color: ${(props) =>
-      props.colorType === "light"
-        ? "var(--primary-color-normal)"
-        : "rgba(255, 255, 255, 0.6)"};
     text-decoration: none;
     &:hover {
       color: var(--accent-color-normal);
@@ -131,10 +140,8 @@ const Container = styled.nav<{ colorType?: MenuColorType }>`
     font-size: 24px;
     background: none;
     border: none;
-    color: ${(props) =>
-      props.colorType === "light"
-        ? "var(--primary-color-normal)"
-        : "rgba(255, 255, 255, 0.6)"};
+    color: "var(--primary-color-normal)";
+
     padding: 0;
     cursor: pointer;
   }

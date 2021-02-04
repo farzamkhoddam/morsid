@@ -18,7 +18,7 @@ export function AccountView({
 }: Props) {
   return (
     <div className="account-page">
-      <SimplePageHeader />
+      <SimplePageHeader activeItemIndex={2} />
       <Container>
         <Wrapper>
           <TitleContainer>
