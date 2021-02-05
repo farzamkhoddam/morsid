@@ -1,5 +1,5 @@
 import { useState, ReactNode } from "react";
-import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
+import { HiOutlineMenu, HiX } from "react-icons/hi";
 import styled from "styled-components";
 import Link from "next/link";
 import { device } from "../consts/theme";
@@ -89,10 +89,10 @@ const Navigation: React.FC<Props> = ({
         className={"menu-trigger" + (toggleMenu ? " is-active" : "")}
       >
         <div className="icon-menu-line">
-          <RiMenu3Line />
+          <HiOutlineMenu />
         </div>
         <div className="icon-menu-close">
-          <RiCloseLine />
+          <HiX />
         </div>
       </button>
 
