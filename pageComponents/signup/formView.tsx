@@ -5,10 +5,9 @@ import axios from "axios";
 import * as yup from "yup";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Button from "components/Button";
 import { device } from "consts/theme";
 import Link from "next/link";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 interface FormValues {
   email: string;
@@ -41,21 +40,7 @@ const SignupSchema = yup.object().shape({
     )
     .required(),
 });
-const snackBarOptions = {
-  position: "bottom-right",
-  style: {
-    backgroundColor: "midnightblue",
-    border: "2px solid lightgreen",
-    color: "lightblue",
-    fontFamily: "Menlo, monospace",
-    fontSize: "20px",
-    textAlign: "center",
-  },
-  closeStyle: {
-    color: "lightcoral",
-    fontSize: "16px",
-  },
-};
+
 export default function SignupForm() {
   const router = useRouter();
   const [errors, setErrors] = useState<string[] | null>(null);
@@ -78,6 +63,7 @@ export default function SignupForm() {
             setErrors(null);
             try {
               await axios.post("/api/users/register", values);
+              toast.success("Your registration was successful");
               router.push("/login");
             } catch (e) {
               if (
