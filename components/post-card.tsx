@@ -15,18 +15,26 @@ const PostCard = ({ post, className }: { post: Post; className?: string }) => {
       <Link href={`/article/${post.slug}`}>
         <PostWrapper>
           <GreySide>
-            <ImageContainer>
-              <Image
-                src={
-                  smallThumbnail?.postSmallThumbnail?.mediaItemUrl ||
-                  "/article-image-placeholder.png"
-                }
-                alt={title + " - Featured image"}
-                width={237}
-                height={326}
-              />
-            </ImageContainer>
+            {!smallThumbnail?.postSmallThumbnail?.mediaItemUrl ? (
+              <ImageContainer>
+                <Image
+                  src={"/article-image-placeholder.jpg"}
+                  alt={title + " - Featured image"}
+                  layout="fill"
+                />
+              </ImageContainer>
+            ) : (
+              <ImageContainer>
+                <Image
+                  src={smallThumbnail?.postSmallThumbnail?.mediaItemUrl}
+                  alt={title + " - Featured image"}
+                  width={237}
+                  height={326}
+                />
+              </ImageContainer>
+            )}
           </GreySide>
+
           <ContentContainer>
             <WritesContainer>
               <a>
@@ -91,13 +99,13 @@ const ContentContainer = styled.div`
   justify-content: flex-start;
   flex-grow: 1;
   width: 100%;
-  margin-top: 4.5rem;
+  margin-top: 3.8rem;
   color: var(--primary-color-normal);
 `;
 const WritesContainer = styled.div`
   margin-left: 0.5rem;
   flex: 1;
-  margin-top: 2rem;
+
   padding: 0 1rem;
 `;
 const Content = styled.div`
@@ -143,12 +151,15 @@ const GreySide = styled.div`
   justify-content: center;
   background-color: #dbdddc;
   width: 100%;
+  height: 262px;
 `;
+
 const ImageContainer = styled.div`
   border-radius: 12px;
   width: 237px;
-  height: 326px;
+  height: 262px;
   margin-bottom: -7rem;
+  position: relative;
 `;
 
 const ReadButtonContainer = styled.div`
