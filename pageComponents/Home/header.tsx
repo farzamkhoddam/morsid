@@ -51,7 +51,7 @@ export default function HomeHeader() {
                 loginWithoutSubscribed={
                   <SmartButton
                     to="/account"
-                    title="Get Artciles"
+                    title="Read Playbooks"
                     viewType="glow"
                   />
                 }

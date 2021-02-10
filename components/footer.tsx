@@ -50,7 +50,7 @@ const Footer = () => {
               loginWithoutSubscribed={
                 <SmartButton
                   to="/account"
-                  title="Get Artciles"
+                  title="Read Playbooks"
                   viewType="glow"
                 />
               }
