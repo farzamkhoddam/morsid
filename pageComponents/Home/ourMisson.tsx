@@ -56,7 +56,7 @@ export default function OurMission() {
           {typeof window && (
             <StyledSmartCompBaseOnLogin
               doesNotLogin={
-                <SmartButton to="/signup" title="Sign Up Now" viewType="glow" />
+                <SmartButton to="/signup" title="We Know How" viewType="glow" />
               }
               loginWithoutSubscribed={
                 <SmartButton

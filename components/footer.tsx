@@ -45,7 +45,7 @@ const Footer = () => {
           {typeof window && (
             <SmartCompBaseOnLogin
               doesNotLogin={
-                <SmartButton to="/signup" title="Sign Up" viewType="glow" />
+                <SmartButton to="/signup" title="Enter Email" viewType="glow" />
               }
               loginWithoutSubscribed={
                 <SmartButton
