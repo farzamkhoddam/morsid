@@ -60,7 +60,7 @@ export default function OurMission() {
               }
               loginWithoutSubscribed={
                 <SmartButton
-                  to="/account"
+                  to="/articles"
                   title="Read Playbooks"
                   viewType="glow"
                 />
