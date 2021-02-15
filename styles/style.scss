@@ -73,6 +73,9 @@ article iframe {
 }
 article img {
   max-width: 100%;
+  object-fit: contain;
+  object-position: 100% 0%;
+  height: auto;
 }
 .blog-post-content {
   max-width: var(--page-max-width);
