@@ -82,7 +82,7 @@ const HomeButton = styled.a`
   letter-spacing: 0.06em;
   color: var(--secondary-color-normal);
   height: var(--header-height-desktop);
-  width: auto;
+  width: fit-content;
   margin-left: auto;
   cursor: pointer;
   &:hover {

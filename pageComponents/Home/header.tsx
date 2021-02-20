@@ -2,9 +2,12 @@ import styled from "styled-components";
 import { device } from "../../consts/theme";
 import Image from "next/image";
 import Button from "components/Button";
-import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
+import React from "react";
+import { useUserData } from "hooks/useUserData";
+import GetEmail from "./getEmail";
 
 export default function HomeHeader() {
+  const { siginStatus } = useUserData();
   return (
     <Container>
       <CloneContainerForHashur>
@@ -41,8 +44,16 @@ export default function HomeHeader() {
           </CircleHashrContainer>
           <TitleAndButton>
             <Title>MASTER THE ART OF ENGINEERING SIDE INCOME</Title>
-            {/* <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" /> */}
-            {typeof window && (
+            {siginStatus === "NOT-LOGINED" ? (
+              <StyledGetEmail vertical={true} />
+            ) : (
+              <SmartButton
+                to="/articles"
+                title="Read Playbooks"
+                viewType="glow"
+              />
+            )}
+            {/* {typeof window && (
               <SmartCompBaseOnLogin
                 style={{ zIndex: 2 }}
                 doesNotLogin={
@@ -63,7 +74,7 @@ export default function HomeHeader() {
                   />
                 }
               />
-            )}
+            )} */}
           </TitleAndButton>
         </InnerSection>
       </ImageLimiter>
@@ -254,6 +265,9 @@ const Title = styled.h1`
     font-size: 31px;
     line-height: 36px;
   }
+`;
+const StyledGetEmail = styled(GetEmail)`
+  padding-right: 2rem;
 `;
 const SmartButton = styled(Button)`
   font-family: Montserrat;

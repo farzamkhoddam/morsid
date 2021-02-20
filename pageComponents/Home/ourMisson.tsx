@@ -3,13 +3,15 @@ import Image from "next/image";
 import React from "react";
 
 import LighteningIcon from "components/Svgs/lightening";
-import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 import Button from "components/Button";
 import { device } from "consts/theme";
 import { deviceTypes, useWindowSize } from "hooks/useWindowSize";
+import { useUserData } from "hooks/useUserData";
+import GetEmail from "./getEmail";
 
 export default function OurMission() {
   const { deviceType } = useWindowSize();
+  const { siginStatus } = useUserData();
   return (
     <SectionContainer>
       <StyledLighteningIcon2 />
@@ -53,7 +55,16 @@ export default function OurMission() {
             {`As a Hustle Club Member, entrepreneurial success is
               in your favor.`}
           </OurMissionDesc>
-          {typeof window && (
+          {siginStatus === "NOT-LOGINED" ? (
+            <StyledGetEmail />
+          ) : (
+            <SmartButton
+              to="/articles"
+              title="Read Playbooks"
+              viewType="glow"
+            />
+          )}
+          {/* {typeof window && (
             <StyledSmartCompBaseOnLogin
               doesNotLogin={
                 <SmartButton to="/signup" title="We Know How" viewType="glow" />
@@ -73,7 +84,7 @@ export default function OurMission() {
                 />
               }
             />
-          )}
+          )} */}
         </OurMissionContent>
         {deviceType > deviceTypes.tabletL && (
           <OurMissionImagContainer>
@@ -208,11 +219,8 @@ const OurMissionDesc = styled.p`
     font-size: 20px;
   }
 `;
-const StyledSmartCompBaseOnLogin = styled(SmartCompBaseOnLogin)`
+const StyledGetEmail = styled(GetEmail)`
   margin-top: 2rem;
-  @media ${device.tabletL} {
-    margin-top: 40px;
-  }
 `;
 const SmartButton = styled(Button)`
   font-family: Montserrat;

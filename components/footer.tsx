@@ -5,9 +5,12 @@ import Button from "./Button";
 import { device } from "../consts/theme";
 import Logo from "./Svgs/logo";
 import Image from "next/image";
-import SmartCompBaseOnLogin from "./smartCompBaseOnLogin";
+
+import GetEmail from "pageComponents/Home/getEmail";
+import { useUserData } from "hooks/useUserData";
 
 const Footer = () => {
+  const { siginStatus } = useUserData();
   return (
     <Container>
       <WaveHashur2Container>
@@ -41,8 +44,16 @@ const Footer = () => {
           <LogoContainer>
             <WhiteLogo width={"216"} height={"84"} />
           </LogoContainer>
-          {/* <SignUpButton title="SIGN UP NOW" viewType="glow" to="/signup" /> */}
-          {typeof window && (
+          {siginStatus === "NOT-LOGINED" ? (
+            <StyledGetEmail />
+          ) : (
+            <SmartButton
+              to="/articles"
+              title="Read Playbooks"
+              viewType="glow"
+            />
+          )}
+          {/* {typeof window && (
             <SmartCompBaseOnLogin
               doesNotLogin={
                 <SmartButton to="/signup" title="Enter Email" viewType="glow" />
@@ -62,7 +73,7 @@ const Footer = () => {
                 />
               }
             />
-          )}
+          )} */}
         </Part2Container>
       </ContentWrapper>
     </Container>
@@ -141,7 +152,7 @@ const Part2Container = styled.div`
     justify-content: space-between;
     margin-top: 4rem;
   }
-  @media ${device.tabletS} {
+  @media ${device.tabletL} {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -151,24 +162,27 @@ const Part2Container = styled.div`
   }
 `;
 const LogoContainer = styled.div`
-  width: 100%
+  width: 70%;
   opacity: 0.3;
   margin-left: 3rem;
   color: var(--gray-color-xlight);
   mix-blend-mode: overlay;
-  margin-left: 16rem;
-  
+  margin-left: 6rem;
+
   @media ${device.tabletL} {
     margin-left: 7rem;
     margin-top: 0.9rem;
   }
 
   @media ${device.tabletS} {
-   
     margin: 0;
     margin-bottom: 4rem;
   }
-  
+`;
+const StyledGetEmail = styled(GetEmail)`
+  @media ${device.tabletL} {
+    margin: 1rem 0;
+  }
 `;
 const SmartButton = styled(Button)`
   width: 358px;

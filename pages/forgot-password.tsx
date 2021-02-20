@@ -5,9 +5,8 @@ import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import axios from "axios";
 import * as yup from "yup";
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { setUserData } from "utils/auth-storage";
+
 import { device } from "consts/theme";
 import Link from "next/link";
 import toast from "react-hot-toast";
