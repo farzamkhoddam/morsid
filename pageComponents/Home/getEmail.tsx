@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "components/Button";
+
 import { Formik, Form } from "formik";
 import { TextInput } from "components/TextInput";
 import { device } from "consts/theme";
@@ -8,6 +8,7 @@ import * as yup from "yup";
 interface Props {
   vertical?: boolean;
   className?: string;
+  submitLabel?: string;
 }
 interface FormValues {
   email: string;
@@ -20,7 +21,11 @@ const initialValues: FormValues = {
 const LoginSchema = yup.object().shape({
   email: yup.string().label("Email Address").email().required(),
 });
-const GetEmail: React.FC<Props> = ({ className, vertical = false }) => {
+const GetEmail: React.FC<Props> = ({
+  className,
+  vertical = false,
+  submitLabel = "SUBSCRIBE",
+}) => {
   return (
     <Container className={className}>
       <Formik
@@ -39,7 +44,7 @@ const GetEmail: React.FC<Props> = ({ className, vertical = false }) => {
               vertical={vertical}
             />
             <SubmitButton
-              value="SUBSCRIBE"
+              value={submitLabel}
               type="submit"
               disabled={isSubmitting}
               vertical={vertical}

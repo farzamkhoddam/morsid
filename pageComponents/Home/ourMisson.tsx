@@ -56,7 +56,7 @@ export default function OurMission() {
               in your favor.`}
           </OurMissionDesc>
           {siginStatus === "NOT-LOGINED" ? (
-            <StyledGetEmail />
+            <StyledGetEmail submitLabel="GET MY PLAYBOOKS NOW" />
           ) : (
             <SmartButton
               to="/articles"

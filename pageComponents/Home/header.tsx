@@ -45,7 +45,10 @@ export default function HomeHeader() {
           <TitleAndButton>
             <Title>MASTER THE ART OF ENGINEERING SIDE INCOME</Title>
             {siginStatus === "NOT-LOGINED" ? (
-              <StyledGetEmail vertical={true} />
+              <StyledGetEmail
+                vertical={true}
+                submitLabel="GET MY PLAYBOOKS NOW"
+              />
             ) : (
               <SmartButton
                 to="/articles"
