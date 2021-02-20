@@ -56,7 +56,10 @@ export default function OurMission() {
               in your favor.`}
           </OurMissionDesc>
           {siginStatus === "NOT-LOGINED" ? (
-            <StyledGetEmail submitLabel="GET MY PLAYBOOKS NOW" />
+            <StyledGetEmail
+              vertical={true}
+              submitLabel="GET MY PLAYBOOKS NOW"
+            />
           ) : (
             <SmartButton
               to="/articles"
@@ -135,7 +138,7 @@ const SectionWrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  height: 639px;
+  height: auto;
   position: relative;
   max-width: var(--page-max-width);
   padding: 0 2rem;
@@ -198,6 +201,8 @@ const OurMissionSubtitle = styled.h3`
 const OurMissionImagContainer = styled.div`
   width: 49%;
   height: auto;
+  margin-top: auto;
+  display: flex;
   @media ${device.tabletL} {
     position: relative;
     width: 70%;

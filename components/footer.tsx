@@ -7,10 +7,8 @@ import Logo from "./Svgs/logo";
 import Image from "next/image";
 
 import GetEmail from "pageComponents/Home/getEmail";
-import { useUserData } from "hooks/useUserData";
 
 const Footer = () => {
-  const { siginStatus } = useUserData();
   return (
     <Container>
       <WaveHashur2Container>
@@ -44,36 +42,6 @@ const Footer = () => {
           <LogoContainer>
             <WhiteLogo width={"216"} height={"84"} />
           </LogoContainer>
-          {siginStatus === "NOT-LOGINED" ? (
-            <StyledGetEmail />
-          ) : (
-            <SmartButton
-              to="/articles"
-              title="Read Playbooks"
-              viewType="glow"
-            />
-          )}
-          {/* {typeof window && (
-            <SmartCompBaseOnLogin
-              doesNotLogin={
-                <SmartButton to="/signup" title="Enter Email" viewType="glow" />
-              }
-              loginWithoutSubscribed={
-                <SmartButton
-                  to="/articles"
-                  title="Read Playbooks"
-                  viewType="glow"
-                />
-              }
-              loginWithSubscribed={
-                <SmartButton
-                  to="/articles"
-                  title="Read Artciles"
-                  viewType="glow"
-                />
-              }
-            />
-          )} */}
         </Part2Container>
       </ContentWrapper>
     </Container>
