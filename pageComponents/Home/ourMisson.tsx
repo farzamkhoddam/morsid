@@ -116,6 +116,9 @@ const SectionContainer = styled.div`
   @media ${device.laptopM} {
     padding-bottom: 10rem;
   }
+  @media ${device.mobileL} {
+    padding-bottom: 4rem;
+  }
 `;
 
 const StyledLighteningIcon2 = styled(LighteningIcon)`

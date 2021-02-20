@@ -49,11 +49,14 @@ const LatestWrapper = styled.section`
   margin-right: auto;
   margin-left: auto;
   padding: 0 2rem;
+  @media ${device.tabletL} {
+    margin-top: 19rem;
+  }
   @media ${device.tabletS} {
-    margin-top: 7rem;
+    margin-top: 16rem;
   }
   @media ${device.mobileL} {
-    margin-top: 10rem;
+    margin-top: 45vw;
   }
 `;
 const LatestHeader = styled.div`

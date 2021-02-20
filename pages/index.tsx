@@ -38,6 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const Container = styled.div`
-  position: "relative";
+  position: relative;
   padding-top: var(--header-height-desktop);
+  width: fit-content;
 `;

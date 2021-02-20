@@ -88,17 +88,17 @@ const Container = styled.section`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  height: 38rem;
+  height: 39rem;
   background: var(--primary-color-normal);
 
   @media ${device.laptopL} {
-    height: 29rem;
+    height: 30rem;
   }
   @media${device.laptopM} {
-    height: 28rem;
+    height: 29rem;
   }
   @media ${device.laptopS} {
-    height: 27rem;
+    height: 26rem;
   }
   @media ${device.laptopXS} {
     height: 22rem;
@@ -110,19 +110,19 @@ const Container = styled.section`
     align-items: center;
     justify-content: flex-end;
     padding-top: 2rem;
-    height: 40rem;
+    height: 38rem;
   }
   @media ${device.tabletS} {
-    height: 36rem;
+    height: 35rem;
   }
   @media ${device.mobileL} {
-    height: 27rem;
+    height: 31rem;
   }
   @media ${device.mobileM} {
-    height: 26rem;
+    height: 32rem;
   }
   @media ${device.mobileS} {
-    height: 23rem;
+    height: 26.6rem;
   }
 `;
 const ImageLimiter = styled(Container)`
@@ -171,6 +171,10 @@ const ImageContainer = styled.div`
   @media ${device.mobileL} {
     width: 100%;
     padding: 0 22px;
+    margin-top: 7rem;
+  }
+  @media ${device.mobileM} {
+    margin-top: 6.5rem;
   }
 `;
 const InnerSection = styled.div`
@@ -183,6 +187,9 @@ const InnerSection = styled.div`
   margin-top: 5rem;
   height: 29rem;
 
+  @media ${device.laptopL} {
+    margin-top: 3rem;
+  }
   @media (max-width: 1260px) {
     height: 28rem;
     margin-top: 1rem;
@@ -237,14 +244,14 @@ const Title = styled.h1`
   text-transform: uppercase;
   color: #ffffff;
   margin-top: 0;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 
   @media ${device.laptopL} {
-    font-size: 73px;
+    font-size: 64px;
     line-height: 69px;
   }
   @media ${device.laptopXS} {
-    font-size: 63px;
+    font-size: 57px;
     line-height: 59px;
   }
 
@@ -257,17 +264,24 @@ const Title = styled.h1`
     font-size: 40px;
     line-height: 48px;
   }
-  @media ${device.mobileM} {
-    font-size: 36px;
-    line-height: 43px;
-  }
-  @media ${device.mobileS} {
-    font-size: 31px;
-    line-height: 36px;
-  }
 `;
 const StyledGetEmail = styled(GetEmail)`
   padding-right: 2rem;
+
+  @media ${device.tabletL} {
+    padding-right: 0;
+    width: 69vw;
+    padding-top: 1rem;
+  }
+  @media ${device.mobileL} {
+    width: 100vw;
+    padding: 1rem 22px 0;
+  }
+  * {
+    @media ${device.mobileL} {
+      height: 58px;
+    }
+  }
 `;
 const SmartButton = styled(Button)`
   font-family: Montserrat;
