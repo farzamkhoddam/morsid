@@ -3,6 +3,7 @@ import Navigation from "../components/navigation";
 import { useState } from "react";
 
 import Image from "next/image";
+import Link from "next/link";
 interface Props {
   className?: string;
 
@@ -13,9 +14,11 @@ const Menu: React.FC<Props> = ({ className, activeItemIndex }) => {
   return (
     <MenuContainer className={className}>
       <Contents>
-        <LogoContainer>
-          <Image src="/logo-accent.svg" alt="Logo" width={150} height={60} />
-        </LogoContainer>
+        <Link href="/">
+          <LogoContainer>
+            <Image src="/logo-accent.svg" alt="Logo" width={150} height={60} />
+          </LogoContainer>
+        </Link>
         {!isActiveMenu ? (
           <DeactiveMenuNavContainer>
             <Navigation
@@ -85,4 +88,5 @@ const LogoContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100px;
+  cursor: pointer;
 `;
