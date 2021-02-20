@@ -39,7 +39,9 @@ export default function LoginForm() {
                 "/api/users/me",
               );
               setUserData(res.data.user.subscribed);
-              router.back();
+              // اگه مستقیم آدرس صفحه لاگین رو توی بروزر تایپ کرده باشه ، به هوم پیج بره
+              if (document.referrer) router.back();
+              router.push("/");
             } catch {
               toast.error("Wrong email or password");
             }
