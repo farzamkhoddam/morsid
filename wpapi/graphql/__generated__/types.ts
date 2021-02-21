@@ -165,7 +165,7 @@ export interface Post_viewer {
 
 export interface Post {
   /**
-   * An object of the post Type. 
+   * An object of the post Type.
    */
   post: Post_post | null;
   /**
@@ -255,6 +255,7 @@ export interface Viewer_viewer {
    * Last name of the user. This is equivalent to the WP_User-&gt;user_last_name property.
    */
   lastName: string | null;
+
   subscribed: boolean | null;
 }
 

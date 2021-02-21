@@ -58,7 +58,7 @@ export default function OurMission() {
           {siginStatus === "NOT-LOGINED" ? (
             <StyledGetEmail
               vertical={true}
-              submitLabel="GET MY PLAYBOOKS NOW"
+              submitLabel="Get Proven Side Hustles Now"
             />
           ) : (
             <SmartButton

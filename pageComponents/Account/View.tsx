@@ -2,6 +2,7 @@ import Button from "components/Button";
 import SimplePageHeader from "components/simplePageHeader";
 import { device } from "consts/theme";
 import styled from "styled-components";
+import Link from "next/link";
 
 interface Props {
   firstName: string;
@@ -23,6 +24,14 @@ export function AccountView({
         <Wrapper>
           <TitleContainer>
             <div>Profile</div>
+            <LinksContainer>
+              <Link href="/">
+                <span>Edit Profile</span>
+              </Link>
+              <Link href="/">
+                <span style={{ marginLeft: "4.25rem" }}>Unsubscribe</span>
+              </Link>
+            </LinksContainer>
           </TitleContainer>
 
           <Section>
@@ -66,6 +75,8 @@ const Wrapper = styled.div`
 `;
 
 const TitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
   position: absolute;
   top: 4rem;
   font-weight: bold;
@@ -77,6 +88,19 @@ const TitleContainer = styled.div`
   padding: 0 2rem;
   @media ${device.tabletL} {
     width: 100%;
+  }
+`;
+const LinksContainer = styled.div`
+  display: flex;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #333333;
+  span {
+    cursor: pointer;
+    &:hover {
+      color: var(--accent-color-normal);
+    }
   }
 `;
 const Section = styled.article`

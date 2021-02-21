@@ -1,12 +1,7 @@
 import styled from "styled-components";
-
-import React from "react";
-import Button from "./Button";
 import { device } from "../consts/theme";
 import Logo from "./Svgs/logo";
 import Image from "next/image";
-
-import GetEmail from "pageComponents/Home/getEmail";
 
 const Footer = () => {
   return (
@@ -145,36 +140,6 @@ const LogoContainer = styled.div`
   @media ${device.tabletS} {
     margin: 0;
     margin-bottom: 4rem;
-  }
-`;
-const StyledGetEmail = styled(GetEmail)`
-  @media ${device.tabletL} {
-    margin: 1rem 0;
-  }
-`;
-const SmartButton = styled(Button)`
-  width: 358px;
-  height: 64px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  text-transform: uppercase;
-
-  /* Bg Color */
-
-  color: #1d3330;
-
-  @media ${device.tabletL} {
-    width: 252px;
-    height: 64px;
-    font-size: 16px;
-    line-height: 20px;
-  }
-  @media ${device.mobileL} {
-    width: 192px;
-    height: 52px;
   }
 `;
 

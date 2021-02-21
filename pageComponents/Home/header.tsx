@@ -47,7 +47,7 @@ export default function HomeHeader() {
             {siginStatus === "NOT-LOGINED" ? (
               <StyledGetEmail
                 vertical={true}
-                submitLabel="GET MY PLAYBOOKS NOW"
+                submitLabel="Get Proven Side Hustles Now"
               />
             ) : (
               <SmartButton
@@ -56,28 +56,6 @@ export default function HomeHeader() {
                 viewType="glow"
               />
             )}
-            {/* {typeof window && (
-              <SmartCompBaseOnLogin
-                style={{ zIndex: 2 }}
-                doesNotLogin={
-                  <SmartButton to="/signup" title="Sign Up" viewType="glow" />
-                }
-                loginWithoutSubscribed={
-                  <SmartButton
-                    to="/articles"
-                    title="Read Playbooks"
-                    viewType="glow"
-                  />
-                }
-                loginWithSubscribed={
-                  <SmartButton
-                    to="/articles"
-                    title="Read Artciles"
-                    viewType="glow"
-                  />
-                }
-              />
-            )} */}
           </TitleAndButton>
         </InnerSection>
       </ImageLimiter>
