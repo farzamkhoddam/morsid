@@ -26,8 +26,6 @@ export default function EditProfile({ user }: Props) {
       firstName={firstName || ""}
       lastName={lastName || ""}
       email={email || ""}
-      handleLogout={handleLogout}
-      password={"navid"}
     />
   );
 }

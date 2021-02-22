@@ -12,8 +12,6 @@ interface Props {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
-  handleLogout: () => void;
 }
 interface FormValues {
   name: string;
@@ -28,12 +26,7 @@ const LoginSchema = yup.object().shape({
   newPassword: yup.string().min(8).label("New Password").required(),
   lastPassword: yup.string().min(8).label("Last Password").required(),
 });
-export function EditProfileView({
-  firstName,
-  lastName,
-  email,
-  handleLogout,
-}: Props) {
+export function EditProfileView({ firstName, lastName, email }: Props) {
   const smartName = `${firstName} ${lastName}`;
   const initialValues: FormValues = {
     name: smartName,
@@ -70,15 +63,15 @@ export function EditProfileView({
                 <Section>
                   <RowItem>
                     <Label>Name</Label>
-                    <TextInput name="name" type="text" />
+                    <StyledField name="name" type="text" />
                   </RowItem>
                   <RowItem>
                     <Label>Email</Label>
-                    <TextInput name="email" type="email" />
+                    <StyledField name="email" type="email" />
                   </RowItem>
                   <RowItem>
                     <Label>Last Password</Label>
-                    <TextInput
+                    <StyledField
                       name="lastPassword"
                       type="password"
                       placeholder="Enter Last Password"
@@ -86,7 +79,7 @@ export function EditProfileView({
                   </RowItem>
                   <RowItem>
                     <Label>New Password</Label>
-                    <TextInput
+                    <StyledField
                       name="newPassword"
                       type="password"
                       placeholder="Enter New Password"
@@ -182,7 +175,7 @@ const Label = styled.div`
   text-transform: capitalize;
 `;
 
-const TextInput = styled(Field)`
+const StyledField = styled(Field)`
     width: 100%;
     margin: 8px 0 3.125rem;
     padding: 16px;
