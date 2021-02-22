@@ -7,26 +7,14 @@ import styled from "styled-components";
 import axios from "axios";
 import React from "react";
 import Stepper from "components/Stepper";
-import FormikTextArea from "components/formikTextArea";
 
 interface Props {
   email: string;
   name: string;
 }
-interface FormValues {
-  email: string;
-}
 
-const LoginSchema = yup.object().shape({
-  Name: yup.string().label("Name").email().required(),
-  email: yup.string().label("Email Address").email().required(),
-  newPassword: yup.string().min(8).label("New Password").required(),
-  lastPassword: yup.string().min(8).label("Last Password").required(),
-});
 export function Step1({ email, name }: Props) {
-  const initialValues: FormValues = {
-    email: email,
-  };
+  const initialValues = {};
 
   return (
     <Container>
@@ -37,14 +25,14 @@ export function Step1({ email, name }: Props) {
         />
         <Formik
           initialValues={initialValues}
-          validationSchema={LoginSchema}
+          //   validationSchema={step1Schema}
           onSubmit={async (values) => {
             try {
-              await axios.post("/api/users/login", values);
-              const res = await axios.post<{ user: { subscribed: boolean } }>(
-                "/api/users/me",
-              );
-              console.log("navid success");
+              //   await axios.post("/api/users/login", values);
+              //   const res = await axios.post<{ user: { subscribed: boolean } }>(
+              //     "/api/users/me",
+              //   );
+              console.log("navid value=", values);
             } catch {
               console.log("navid error");
             }
@@ -52,10 +40,13 @@ export function Step1({ email, name }: Props) {
         >
           {({ isSubmitting }) => (
             <FormWrapper>
-              <Form>
-                <Section>
-                  <H1>Dear Parisa, we’d hate to see you go.</H1>
-                  <H2>Why do you want to cancel?</H2>
+              <Section>
+                <H1>{`Dear ${name}, we’d hate to see you go`}.</H1>
+
+                <StyledForm>
+                  <H2 style={{ marginTop: "3rem", marginBottom: "0" }}>
+                    Why do you want to cancel?
+                  </H2>
                   <Checkboxs role="group" aria-labelledby="checkbox-group">
                     <label>
                       <Field
@@ -90,21 +81,36 @@ export function Step1({ email, name }: Props) {
                       />
                       {`I was looking for something different`}
                     </label>
-                    <label>
+                    <label style={{ marginBottom: "3rem" }}>
                       <Field type="checkbox" name="why" value="other" />
                       {`other`}
                     </label>
 
-                    <FormikTextArea
-                      label="Comment (Optional)"
+                    <H2
+                      style={{ marginBottom: "2rem" }}
+                    >{`Comment (Optional)`}</H2>
+                    <Field
+                      as="textarea"
                       name="otherDesc"
-                      rows={6}
                       placeholder="Please tell us more so we can improve the Hustle Club."
+                      rows={6}
                     />
                   </Checkboxs>
                   <p>Select one or more option s to continue.</p>
-                </Section>
-              </Form>
+
+                  <SubmitButton
+                    value="CONTINIUE"
+                    type="submit"
+                    disabled={isSubmitting}
+                  />
+                </StyledForm>
+                <MetaData>
+                  <H2>You are about to lose your</H2>
+                  <H2>Hustle Club membership</H2>
+                  <H3>Commitment:</H3>
+                  <H3>Monthly plan, Paid monthly - US$9/mo</H3>
+                </MetaData>
+              </Section>
             </FormWrapper>
           )}
         </Formik>
@@ -134,18 +140,29 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-const StyledStepper = styled(Stepper)`
-  height: 5rem;
-  width: 80%;
-`;
 const FormWrapper = styled.div`
   width: 100%;
   padding: 5rem 2rem 4rem 2rem;
 `;
+const StyledStepper = styled(Stepper)`
+  height: 5rem;
+`;
+
 const Section = styled.section`
   width: 100%;
+  display: flex;
+  position: relative;
+`;
+const StyledForm = styled(Form)`
+  padding-top: 4rem;
+  width: 60%;
+`;
+const MetaData = styled.div`
+  padding-top: 4rem;
+  width: 40%;
 `;
 const H1 = styled.h1`
+  position: absolute;
   font-weight: bold;
   font-size: 24px;
   line-height: 29px;
@@ -155,7 +172,62 @@ const H2 = styled.h2`
   font-size: 20px;
   line-height: 24px;
 `;
+const H3 = styled.h3`
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  color: #4f4f4f;
+`;
 const Checkboxs = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 2rem;
+  label {
+    margin-bottom: 1.87rem;
+    color: #4f4f4f;
+  }
+`;
+const SubmitButton = styled.input`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16.5rem;
+  height: 64px;
+  padding: var(--padding) calc(var(--padding) * 2);
+  background: var(--accent-color-normal);
+  color: var(--primary-color-normal);
+  border-radius: 1px;
+  text-decoration: none;
+  appearance: none;
+  border: none;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  transition: background 0.3s linear;
+  position: absolute;
+  right: 0;
+  &.-outline {
+    color: var(--primary-color-dark);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+    background: #fff;
+    &:hover {
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+      background: #f2f2f2;
+    }
+  }
+  & + .button {
+    margin-left: 20px;
+  }
+  .icon {
+    display: inline-flex;
+    &.-right {
+      margin-left: var(--margin);
+    }
+    &.-left {
+      margin-right: var(--margin);
+    }
+  }
 `;
