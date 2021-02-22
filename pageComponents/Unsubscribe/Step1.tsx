@@ -28,7 +28,7 @@ export function Step1({ email, name }: Props) {
       <Wrapper>
         <StyledStepper
           steps={["Feedback", "Details", "Review"]}
-          activeStep={3}
+          activeStep={1}
         />
         <Formik
           initialValues={initialValues}
@@ -101,14 +101,17 @@ export function Step1({ email, name }: Props) {
                       <H2
                         style={{ marginBottom: "2rem" }}
                       >{`Comment (Optional)`}</H2>
-                      <Field
+                      <Textarea
+                        style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
                         as="textarea"
                         name="otherDesc"
                         placeholder="Please tell us more so we can improve the Hustle Club."
-                        rows={6}
+                        rows={8}
                       />
                     </Checkboxs>
-                    <p>Select one or more option s to continue.</p>
+                    <p style={{ marginTop: "30px" }}>
+                      Select one or more option s to continue.
+                    </p>
 
                     <SubmitButton
                       value="CONTINIUE"
@@ -121,7 +124,9 @@ export function Step1({ email, name }: Props) {
                     />
                   </StyledForm>
                   <MetaData>
-                    <H2>You are about to lose your</H2>
+                    <H2 style={{ marginTop: "3rem" }}>
+                      You are about to lose your
+                    </H2>
                     <H2>Hustle Club membership</H2>
                     <H3>Commitment:</H3>
                     <H3>Monthly plan, Paid monthly - US$9/mo</H3>
@@ -163,6 +168,7 @@ const FormWrapper = styled.div`
 `;
 const StyledStepper = styled(Stepper)`
   height: 5rem;
+  width: 71%;
 `;
 
 const Section = styled.section`
@@ -199,8 +205,24 @@ const Checkboxs = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 2rem;
+  width: 80%;
   label {
     margin-bottom: 1.87rem;
+    color: #4f4f4f;
+    input {
+      margin-right: 12px;
+    }
+  }
+`;
+const Textarea = styled(Field)`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #4f4f4f;
+  &::placeholder {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
     color: #4f4f4f;
   }
 `;
