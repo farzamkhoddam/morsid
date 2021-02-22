@@ -12,9 +12,16 @@ interface Props {
   email: string;
   name: string;
 }
-
+interface formValue {
+  why?: string[];
+  otherDesc?: string;
+}
+function removeEmptyKeys(values: formValue) {
+  if (values?.why?.length === 0) delete values.why;
+  if (values?.otherDesc === "") delete values.otherDesc;
+}
 export function Step1({ email, name }: Props) {
-  const initialValues = {};
+  const initialValues: formValue = {};
 
   return (
     <Container>
@@ -26,6 +33,7 @@ export function Step1({ email, name }: Props) {
         <Formik
           initialValues={initialValues}
           //   validationSchema={step1Schema}
+
           onSubmit={async (values) => {
             try {
               //   await axios.post("/api/users/login", values);
@@ -38,81 +46,90 @@ export function Step1({ email, name }: Props) {
             }
           }}
         >
-          {({ isSubmitting }) => (
-            <FormWrapper>
-              <Section>
-                <H1>{`Dear ${name}, we’d hate to see you go`}.</H1>
+          {({ values }) => {
+            removeEmptyKeys(values);
+            console.log("navid values==", values);
+            console.log("navid values==", values === {});
+            return (
+              <FormWrapper>
+                <Section>
+                  <H1>{`Dear ${name}, we’d hate to see you go`}.</H1>
 
-                <StyledForm>
-                  <H2 style={{ marginTop: "3rem", marginBottom: "0" }}>
-                    Why do you want to cancel?
-                  </H2>
-                  <Checkboxs role="group" aria-labelledby="checkbox-group">
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="why"
-                        value="I’ve found an alternative"
-                      />
-                      {`I’ve found an alternative.`}
-                    </label>
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="why"
-                        value="I find the material hard to digest"
-                      />
-                      {`I find the material hard to digest`}
-                    </label>
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="why"
-                        value="I didn’t implement the playbooks"
-                      />
-                      {`I didn’t implement the playbooks`}
-                    </label>
+                  <StyledForm>
+                    <H2 style={{ marginTop: "3rem", marginBottom: "0" }}>
+                      Why do you want to cancel?
+                    </H2>
+                    <Checkboxs role="group" aria-labelledby="checkbox-group">
+                      <label>
+                        <Field
+                          type="checkbox"
+                          name="why"
+                          value="I’ve found an alternative"
+                        />
+                        {`I’ve found an alternative.`}
+                      </label>
+                      <label>
+                        <Field
+                          type="checkbox"
+                          name="why"
+                          value="I find the material hard to digest"
+                        />
+                        {`I find the material hard to digest`}
+                      </label>
+                      <label>
+                        <Field
+                          type="checkbox"
+                          name="why"
+                          value="I didn’t implement the playbooks"
+                        />
+                        {`I didn’t implement the playbooks`}
+                      </label>
 
-                    <label>
-                      <Field
-                        type="checkbox"
-                        name="why"
-                        value="I was looking for something different"
-                      />
-                      {`I was looking for something different`}
-                    </label>
-                    <label style={{ marginBottom: "3rem" }}>
-                      <Field type="checkbox" name="why" value="other" />
-                      {`other`}
-                    </label>
+                      <label>
+                        <Field
+                          type="checkbox"
+                          name="why"
+                          value="I was looking for something different"
+                        />
+                        {`I was looking for something different`}
+                      </label>
+                      <label style={{ marginBottom: "3rem" }}>
+                        <Field type="checkbox" name="why" value="other" />
+                        {`other`}
+                      </label>
 
-                    <H2
-                      style={{ marginBottom: "2rem" }}
-                    >{`Comment (Optional)`}</H2>
-                    <Field
-                      as="textarea"
-                      name="otherDesc"
-                      placeholder="Please tell us more so we can improve the Hustle Club."
-                      rows={6}
+                      <H2
+                        style={{ marginBottom: "2rem" }}
+                      >{`Comment (Optional)`}</H2>
+                      <Field
+                        as="textarea"
+                        name="otherDesc"
+                        placeholder="Please tell us more so we can improve the Hustle Club."
+                        rows={6}
+                      />
+                    </Checkboxs>
+                    <p>Select one or more option s to continue.</p>
+
+                    <SubmitButton
+                      value="CONTINIUE"
+                      type="submit"
+                      // اگه آبجکت ولیوز خالی باشه، دکمه رو دیزیبل میکنه
+                      disabled={
+                        Object.keys(values).length === 0 &&
+                        values.constructor === Object
+                      }
                     />
-                  </Checkboxs>
-                  <p>Select one or more option s to continue.</p>
-
-                  <SubmitButton
-                    value="CONTINIUE"
-                    type="submit"
-                    disabled={isSubmitting}
-                  />
-                </StyledForm>
-                <MetaData>
-                  <H2>You are about to lose your</H2>
-                  <H2>Hustle Club membership</H2>
-                  <H3>Commitment:</H3>
-                  <H3>Monthly plan, Paid monthly - US$9/mo</H3>
-                </MetaData>
-              </Section>
-            </FormWrapper>
-          )}
+                  </StyledForm>
+                  <MetaData>
+                    <H2>You are about to lose your</H2>
+                    <H2>Hustle Club membership</H2>
+                    <H3>Commitment:</H3>
+                    <H3>Monthly plan, Paid monthly - US$9/mo</H3>
+                  </MetaData>
+                </Section>
+              </FormWrapper>
+            );
+          }}
         </Formik>
       </Wrapper>
     </Container>
@@ -187,14 +204,16 @@ const Checkboxs = styled.div`
     color: #4f4f4f;
   }
 `;
-const SubmitButton = styled.input`
+const SubmitButton = styled.input<{ disabled: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 16.5rem;
   height: 64px;
   padding: var(--padding) calc(var(--padding) * 2);
-  background: var(--accent-color-normal);
+    background:  ${({ disabled }) =>
+      disabled ? "var(--gray-color-xlight)" : "var(--accent-color-normal)"};
+  }
   color: var(--primary-color-normal);
   border-radius: 1px;
   text-decoration: none;
