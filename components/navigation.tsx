@@ -12,7 +12,7 @@ const NotLoginedUserMenuItems = [
   },
   {
     path: "/articles",
-    title: "Articles",
+    title: "Playbooks",
   },
   {
     path: "/login",
@@ -26,7 +26,7 @@ const LoginedUserMenuItems = [
   },
   {
     path: "/articles",
-    title: "Articles",
+    title: "Playbooks",
   },
   {
     path: "/account",

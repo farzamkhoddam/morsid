@@ -272,6 +272,7 @@ const SmartButton = styled(Button)`
   line-height: 24px;
   width: 358px;
   height: 64px;
+  margin-top: 2rem;
   @media ${device.tabletL} {
     width: 358px;
   }

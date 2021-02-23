@@ -40,8 +40,8 @@ export default function LoginForm() {
               );
               setUserData(res.data.user.subscribed);
               // اگه مستقیم آدرس صفحه لاگین رو توی بروزر تایپ کرده باشه ، به هوم پیج بره
-              if (document.referrer) router.back();
-              router.push("/");
+
+              router.push("/articles");
             } catch {
               toast.error("Wrong email or password");
             }

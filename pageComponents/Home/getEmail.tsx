@@ -86,7 +86,7 @@ const SubmitButton = styled.input<{ vertical: boolean }>`
   margin-top: ${({ vertical }) => (vertical ? "1rem" : "0")};
   height: 64px;
   padding: var(--padding) calc(var(--padding) * 2);
-  background: var(--accent-color-normal);
+  background-image: linear-gradient(to right, #cda159, #fee7b1, #f5c34b);
   color: var(--primary-color-normal);
   border-radius: 1px;
   text-decoration: none;
