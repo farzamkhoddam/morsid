@@ -7,6 +7,7 @@ import styled from "styled-components";
 import axios from "axios";
 import React from "react";
 import Stepper from "components/Stepper";
+import { inherits } from "util";
 
 interface Props {
   email: string;
@@ -56,62 +57,79 @@ export function Step1({ email, name }: Props) {
                   <H1>{`Dear ${name}, we’d hate to see you go`}.</H1>
 
                   <StyledForm>
-                    <H2 style={{ marginTop: "3rem", marginBottom: "0" }}>
-                      Why do you want to cancel?
-                    </H2>
-                    <Checkboxs role="group" aria-labelledby="checkbox-group">
-                      <label>
-                        <Field
-                          type="checkbox"
-                          name="why"
-                          value="I’ve found an alternative"
-                        />
-                        {`I’ve found an alternative.`}
-                      </label>
-                      <label>
-                        <Field
-                          type="checkbox"
-                          name="why"
-                          value="I find the material hard to digest"
-                        />
-                        {`I find the material hard to digest`}
-                      </label>
-                      <label>
-                        <Field
-                          type="checkbox"
-                          name="why"
-                          value="I didn’t implement the playbooks"
-                        />
-                        {`I didn’t implement the playbooks`}
-                      </label>
+                    <TwoSide>
+                      <Side1>
+                        <FirstH2>Why do you want to cancel?</FirstH2>
+                        <Checkboxs
+                          role="group"
+                          aria-labelledby="checkbox-group"
+                        >
+                          <label>
+                            <Field
+                              type="checkbox"
+                              name="why"
+                              value="I’ve found an alternative"
+                            />
+                            {`I’ve found an alternative.`}
+                          </label>
+                          <label>
+                            <Field
+                              type="checkbox"
+                              name="why"
+                              value="I find the material hard to digest"
+                            />
+                            {`I find the material hard to digest`}
+                          </label>
+                          <label>
+                            <Field
+                              type="checkbox"
+                              name="why"
+                              value="I didn’t implement the playbooks"
+                            />
+                            {`I didn’t implement the playbooks`}
+                          </label>
 
-                      <label>
-                        <Field
-                          type="checkbox"
-                          name="why"
-                          value="I was looking for something different"
-                        />
-                        {`I was looking for something different`}
-                      </label>
-                      <label style={{ marginBottom: "3rem" }}>
-                        <Field type="checkbox" name="why" value="other" />
-                        {`other`}
-                      </label>
+                          <label>
+                            <Field
+                              type="checkbox"
+                              name="why"
+                              value="I was looking for something different"
+                            />
+                            {`I was looking for something different`}
+                          </label>
+                          <label style={{ marginBottom: "2.5rem" }}>
+                            <Field type="checkbox" name="why" value="other" />
+                            {`other`}
+                          </label>
 
-                      <H2
-                        style={{ marginBottom: "2rem" }}
-                      >{`Comment (Optional)`}</H2>
-                      <Textarea
-                        style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
-                        as="textarea"
-                        name="otherDesc"
-                        placeholder="Please tell us more so we can improve the Hustle Club."
-                        rows={8}
-                      />
-                    </Checkboxs>
-                    <p style={{ marginTop: "30px" }}>
-                      Select one or more option s to continue.
-                    </p>
+                          <H2
+                            style={{ marginBottom: "2rem" }}
+                          >{`Comment (Optional)`}</H2>
+                          <Textarea
+                            style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
+                            as="textarea"
+                            name="otherDesc"
+                            placeholder="Please tell us more so we can improve the Hustle Club."
+                            rows={8}
+                          />
+                        </Checkboxs>
+                        <Desc>Select one or more option s to continue.</Desc>
+                      </Side1>
+                      <Side2>
+                        <Side2Title>
+                          You are about to lose your Hustle Club membership
+                        </Side2Title>
+                        <Side2Subtitle>
+                          <DesktopH3>Commitment:</DesktopH3>
+                          <DesktopH3>
+                            Monthly plan, Paid monthly - US$9/mo
+                          </DesktopH3>
+                          <MobileH3>
+                            Commitment: Monthly plan, Paid monthly - US$9/mo
+                          </MobileH3>
+                        </Side2Subtitle>
+                      </Side2>
+                    </TwoSide>
 
                     <SubmitButton
                       value="CONTINIUE"
@@ -123,14 +141,6 @@ export function Step1({ email, name }: Props) {
                       }
                     />
                   </StyledForm>
-                  <MetaData>
-                    <H2 style={{ marginTop: "3rem" }}>
-                      You are about to lose your
-                    </H2>
-                    <H2>Hustle Club membership</H2>
-                    <H3>Commitment:</H3>
-                    <H3>Monthly plan, Paid monthly - US$9/mo</H3>
-                  </MetaData>
                 </Section>
               </FormWrapper>
             );
@@ -153,18 +163,29 @@ const Wrapper = styled.div`
   margin: 0 auto;
   width: inherit;
   height: inherit;
-  padding: 4.5rem 2rem 5rem 0;
+  padding: 4.5rem 22px 5rem 0;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   position: relative;
+  @media ${device.tabletL} {
+    padding-right: 0;
+    padding-left: 0;
+  }
 `;
 
 const FormWrapper = styled.div`
   width: 100%;
-  padding: 5rem 2rem 4rem 2rem;
+  padding: 5rem 22px 4rem 22px;
+  @media ${device.tabletL} {
+    padding-top: 1rem;
+  }
+  @media ${device.mobileL} {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
 `;
 const StyledStepper = styled(Stepper)`
   height: 5rem;
@@ -173,33 +194,115 @@ const StyledStepper = styled(Stepper)`
 
 const Section = styled.section`
   width: 100%;
-  display: flex;
-  position: relative;
 `;
 const StyledForm = styled(Form)`
   padding-top: 4rem;
-  width: 60%;
+  width: 100%;
 `;
-const MetaData = styled.div`
-  padding-top: 4rem;
+const TwoSide = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+  @media ${device.tabletL} {
+    flex-direction: column;
+  }
+`;
+const Side1 = styled.div`
+  width: 60%;
+  @media ${device.tabletL} {
+    width: 90%;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+  }
+`;
+const Side2 = styled.div`
   width: 40%;
+  @media ${device.tabletL} {
+    width: 100%;
+    margin-bottom: 84px;
+  }
 `;
 const H1 = styled.h1`
   position: absolute;
   font-weight: bold;
   font-size: 24px;
   line-height: 29px;
+  @media ${device.tabletL} {
+    font-size: 20px;
+    line-height: 24px;
+    padding-right: 22px;
+  }
+  @media ${device.mobileL} {
+    padding-right: 1rem;
+  }
 `;
 const H2 = styled.h2`
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
+  @media ${device.tabletL} {
+    font-size: 16px;
+    line-height: 20px;
+  }
+`;
+const FirstH2 = styled(H2)`
+  margin-top: 3rem;
+  margin-bottom: 0;
+  @media ${device.tabletL} {
+    margin-top: 1rem;
+  }
+  @media ${device.mobileM} {
+    margin-top: 2rem;
+  }
+`;
+const Side2Title = styled(H2)`
+  margin-top: 3rem;
+  width: 70%;
+  line-height: 200%;
+  @media ${device.tabletL} {
+    margin-top: 0;
+    width: fit-content;
+    line-height: 100%;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+  }
 `;
 const H3 = styled.h3`
   font-weight: 500;
   font-size: 20px;
   line-height: 29px;
   color: #4f4f4f;
+  @media ${device.tabletL} {
+    font-size: 20px;
+    line-height: 29px;
+  }
+`;
+const DesktopH3 = styled(H3)`
+  @media ${device.tabletL} {
+    display: none;
+  }
+`;
+const MobileH3 = styled(H3)`
+  display: none;
+  @media ${device.tabletL} {
+    display: inline;
+    text-align: center;
+  }
+`;
+const Side2Subtitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  h3 {
+    margin: 0;
+    @media ${device.tabletL} {
+      margin-right: 0.5rem;
+    }
+  }
+  @media ${device.tabletL} {
+    flex-direction: row;
+  }
 `;
 const Checkboxs = styled.div`
   display: flex;
@@ -212,6 +315,19 @@ const Checkboxs = styled.div`
     input {
       margin-right: 12px;
     }
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+  }
+`;
+const Desc = styled.p`
+  margin-top: 30px;
+  margin-bottom: 28px;
+  width: fit-content;
+  text-align: center;
+  @media ${device.tabletL} {
+    margin-top: 40px;
+    margin-bottom: 60px;
   }
 `;
 const Textarea = styled(Field)`
@@ -249,7 +365,7 @@ const SubmitButton = styled.input<{ disabled: boolean }>`
   text-transform: uppercase;
   transition: background 0.3s linear;
   position: absolute;
-  right: 0;
+  right: 22px;
   &.-outline {
     color: var(--primary-color-dark);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
@@ -270,5 +386,10 @@ const SubmitButton = styled.input<{ disabled: boolean }>`
     &.-left {
       margin-right: var(--margin);
     }
+  }
+  @media ${device.mobileL}{
+      position: relative;
+      margin:0 auto;
+      right:0;
   }
 `;

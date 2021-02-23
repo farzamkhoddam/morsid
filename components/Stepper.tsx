@@ -91,19 +91,19 @@ const StepSymbol = styled.div<{ active: boolean }>`
   position: relative;
     &::before {
     content: "";
-    width: 0.8rem;
+    width: 1rem;
     background-color: white;
     height: 100%;
     position: absolute;
-    left: -14px;
+    left: -17px;
 }
   &::after {
     content: "";
-    width: 0.8rem;
+    width: 1rem;
     background-color: white;
     height: 100%;
     position: absolute;
-    right: -14px;
+    right: -17px;
 }
   }
 `;
