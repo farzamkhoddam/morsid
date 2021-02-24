@@ -123,5 +123,12 @@ const SubmitButton = styled.input<{ vertical: boolean }>`
   @media ${device.mobileL} {
     margin-top: 1rem;
     width: 100%;
+    font-size: 95%;
+  }
+  @media ${device.mobileM} {
+    font-size: 90%;
+  }
+  @media ${device.mobileS} {
+    font-size: 80%;
   }
 `;

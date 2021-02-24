@@ -103,7 +103,7 @@ const Container = styled.section`
     height: 32rem;
   }
   @media ${device.mobileS} {
-    height: 26.6rem;
+    height: 29.6rem;
   }
 `;
 const ImageLimiter = styled(Container)`
@@ -156,6 +156,9 @@ const ImageContainer = styled.div`
   }
   @media ${device.mobileM} {
     margin-top: 6.5rem;
+  }
+  @media ${device.mobileM} {
+    margin-top: 3.5rem;
   }
 `;
 const InnerSection = styled.div`
