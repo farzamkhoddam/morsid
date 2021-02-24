@@ -1,14 +1,12 @@
 import Button from "components/Button";
-import { TextInput } from "components/TextInput";
 import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import SimplePageHeader from "components/simplePageHeader";
 import { device } from "consts/theme";
 import styled from "styled-components";
-
-import { NewWPClient } from "../../wpapi/axios";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 interface Props {
   firstName: string;
@@ -48,15 +46,11 @@ export function EditProfileView({ firstName, lastName }: Props) {
             initialValues={initialValues}
             validationSchema={EditProfileSchema}
             onSubmit={async (values) => {
+              console.log("navid valeus=", values);
               try {
-                const axiosInstance = NewWPClient();
-                await axiosInstance.post(
-                  `https://wp.thehustleclub.com/wp-json/pl/v1/edit_profile?v=1`,
-                  values,
-                );
+                await axios.post("/api/users/edit-profile", values);
                 router.push("/account");
               } catch (e) {
-                console.log("navid error");
                 toast.error(e);
               }
             }}
