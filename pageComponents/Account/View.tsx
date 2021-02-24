@@ -25,7 +25,7 @@ export function AccountView({
           <TitleContainer>
             <div>Profile</div>
             <LinksContainer>
-              <Link href="/">
+              <Link href="/edit-profile">
                 <span>Edit Profile</span>
               </Link>
               <Link href="/">

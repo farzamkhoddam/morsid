@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 
 import { fetchViwer, Viewer_viewer as User } from "wpapi";
 import { getTokenCookie } from "utils/auth-cookie";
-import { removeUserData } from "utils/auth-storage";
+
 import { EditProfileView } from "pageComponents/EditProfile/View";
 import { Redirect } from "next";
 
@@ -14,19 +14,10 @@ export default function EditProfile({ user }: Props) {
   if (!user) {
     return null;
   }
-
-  const handleLogout = () => {
-    removeUserData();
-  };
-
-  const { firstName, lastName, email } = user;
+  const { firstName, lastName } = user;
 
   return (
-    <EditProfileView
-      firstName={firstName || ""}
-      lastName={lastName || ""}
-      email={email || ""}
-    />
+    <EditProfileView firstName={firstName || ""} lastName={lastName || ""} />
   );
 }
 

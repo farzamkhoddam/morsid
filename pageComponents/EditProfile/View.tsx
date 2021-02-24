@@ -1,40 +1,41 @@
 import Button from "components/Button";
+import { TextInput } from "components/TextInput";
 import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import SimplePageHeader from "components/simplePageHeader";
 import { device } from "consts/theme";
 import styled from "styled-components";
 
-import axios from "axios";
+import { NewWPClient } from "../../wpapi/axios";
 import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 interface Props {
   firstName: string;
   lastName: string;
-  email: string;
 }
 interface FormValues {
-  name: string;
-  email: string;
-  newPassword: string;
-  lastPassword: string;
+  firstName: string;
+  lastName: string;
+  new_pass: string;
+  old_pass: string;
 }
-
-const LoginSchema = yup.object().shape({
-  Name: yup.string().label("Name").email().required(),
-  email: yup.string().label("Email Address").email().required(),
-  newPassword: yup.string().min(8).label("New Password").required(),
-  lastPassword: yup.string().min(8).label("Last Password").required(),
+//navid check required
+const EditProfileSchema = yup.object().shape({
+  firstName: yup.string().label("First Name").required("Required"),
+  lastName: yup.string().label("Last Name").required("Required"),
+  new_pass: yup.string().label("New Password"),
+  old_pass: yup.string().label("Last Password"),
 });
-export function EditProfileView({ firstName, lastName, email }: Props) {
-  const smartName = `${firstName} ${lastName}`;
+export function EditProfileView({ firstName, lastName }: Props) {
   const initialValues: FormValues = {
-    name: smartName,
-    email: email,
-    lastPassword: "",
-    newPassword: "",
+    firstName: firstName,
+    lastName: lastName,
+    new_pass: "",
+    old_pass: "",
   };
   const router = useRouter();
+
   return (
     <div className="edit-profile-page">
       <SimplePageHeader activeItemIndex={2} />
@@ -45,33 +46,42 @@ export function EditProfileView({ firstName, lastName, email }: Props) {
           </TitleContainer>
           <Formik
             initialValues={initialValues}
-            validationSchema={LoginSchema}
+            validationSchema={EditProfileSchema}
             onSubmit={async (values) => {
               try {
-                await axios.post("/api/users/login", values);
-                const res = await axios.post<{ user: { subscribed: boolean } }>(
-                  "/api/users/me",
+                const axiosInstance = NewWPClient();
+                await axiosInstance.post(
+                  `https://wp.thehustleclub.com/wp-json/pl/v1/edit_profile?v=1`,
+                  values,
                 );
+                router.push("/account");
               } catch (e) {
-                console.log("edit profile error=", e);
+                console.log("navid error");
+                toast.error(e);
               }
             }}
           >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, errors, touched }) => (
               <Form style={{ width: "100%" }}>
                 <Section>
                   <RowItem>
-                    <Label>Name</Label>
-                    <StyledField name="name" type="text" />
+                    <Label>First Name</Label>
+                    <StyledField name="firstName" type="text" />
+                    {errors.firstName && touched.firstName ? (
+                      <FieldError>{errors.firstName}</FieldError>
+                    ) : null}
                   </RowItem>
                   <RowItem>
-                    <Label>Email</Label>
-                    <StyledField name="email" type="email" />
+                    <Label>Last Name</Label>
+                    <StyledField name="lastName" type="text" />
+                    {errors.lastName && touched.lastName ? (
+                      <FieldError>{errors.firstName}</FieldError>
+                    ) : null}
                   </RowItem>
                   <RowItem>
                     <Label>Last Password</Label>
                     <StyledField
-                      name="lastPassword"
+                      name="old_pass"
                       type="password"
                       placeholder="Enter Last Password"
                     />
@@ -79,7 +89,7 @@ export function EditProfileView({ firstName, lastName, email }: Props) {
                   <RowItem>
                     <Label>New Password</Label>
                     <StyledField
-                      name="newPassword"
+                      name="new_pass"
                       type="password"
                       placeholder="Enter New Password"
                     />
@@ -161,6 +171,7 @@ const Section = styled.article`
   }
 `;
 const RowItem = styled.div`
+  position: relative;
   width: calc(50% - (var(--wcw) / 2));
   @media ${device.tabletL} {
     width: 100%;
@@ -190,6 +201,11 @@ const StyledField = styled(Field)`
     height: 64px;
     display: flex;
     align-items: center;
+`;
+const FieldError = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  color: red;
 `;
 const Buttons = styled.div`
   display: flex;
