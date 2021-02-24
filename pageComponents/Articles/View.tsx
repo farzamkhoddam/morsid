@@ -41,7 +41,7 @@ export const ArticlesView = ({
         </LoadMoreButton>
         <H2>Masterclass Trainings</H2>
         <MasterClasses>
-          <Link href="https://go.thehustleclub.com/ipp-private">
+          <Link href="https://go.thehustleclub.com/mm-private">
             <ImageContainer>
               <Image
                 src={"/articles-masterclass1.png"}
@@ -52,13 +52,13 @@ export const ArticlesView = ({
               />
             </ImageContainer>
           </Link>
-          <Link href="https://go.thehustleclub.com/mm-private">
+          <Link href="https://go.thehustleclub.com/ipp-private">
             <MidleImageContainer>
               <Image
                 src={"/articles-masterclass2.png"}
                 alt={"masterclass"}
                 width={508}
-                height={298}
+                height={341}
                 quality={100}
               />
             </MidleImageContainer>
@@ -106,6 +106,7 @@ const H2 = styled.h1`
 `;
 const MasterClasses = styled.div`
   display: flex;
+  align-items: flex-end;
   padding: 0 22px;
   margin-bottom: 186px;
   @media ${device.tabletL} {
@@ -115,7 +116,7 @@ const MasterClasses = styled.div`
 `;
 const ImageContainer = styled.div`
   width: 362px;
-  height: 222px;
+  height: 212px;
   position: relative;
   cursor: pointer;
   @media ${device.tabletL} {
@@ -129,8 +130,10 @@ const ImageContainer = styled.div`
 `;
 const MidleImageContainer = styled(ImageContainer)`
   margin: 0 30px;
+  height: 243px;
   @media ${device.tabletL} {
     margin: 64px 0;
+    height: 341px;
   }
 `;
 const LoadMoreButton = styled.div`
