@@ -22,7 +22,6 @@ export default BlogList;
 
 const Section = styled.section`
   display: flex;
-  padding-top: 12rem;
 
   @media (max-width: 700px) {
     align-items: center;
