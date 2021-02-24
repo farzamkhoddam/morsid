@@ -8,6 +8,7 @@ import GetEmail from "./getEmail";
 
 export default function HomeHeader() {
   const { siginStatus } = useUserData();
+
   return (
     <Container>
       <CloneContainerForHashur>
@@ -23,7 +24,7 @@ export default function HomeHeader() {
       {/* چون عکس هدر باید تا آخر صفحه بره، وقتی صحفه خیلی زوم اوت بشه بسیار زشت میشه. 
       از این دیو ایمج لیمیتر استفاده میکنیم که ایمیج از یک حدی بزرگتر نشه */}
       <ImageLimiter>
-        <ImageContainer>
+        <ImageContainer isSignOut={siginStatus === "NOT-LOGINED"}>
           <Image
             src="/home-header.jpg"
             width={686}
@@ -138,7 +139,7 @@ const WaveHashur1Container = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ isSignOut: boolean }>`
   width: 50%;
   height: auto;
   position: absolute;
@@ -157,8 +158,8 @@ const ImageContainer = styled.div`
   @media ${device.mobileM} {
     margin-top: 6.5rem;
   }
-  @media ${device.mobileM} {
-    margin-top: 3.5rem;
+  @media ${device.mobileS} {
+    margin-top: ${({ isSignOut }) => (isSignOut ? "5.5rem" : "3.5rem")};
   }
 `;
 const InnerSection = styled.div`

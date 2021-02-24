@@ -29,7 +29,7 @@ export function AccountView({
                 <span>Edit Profile</span>
               </Link>
               <Link href="/">
-                <span style={{ marginLeft: "4.25rem" }}>Unsubscribe</span>
+                <UnsubTitle>Unsubscribe</UnsubTitle>
               </Link>
             </LinksContainer>
           </TitleContainer>
@@ -86,8 +86,12 @@ const TitleContainer = styled.div`
   width: 100%;
   max-width: var(--page-max-width);
   padding: 0 2rem;
+
   @media ${device.tabletL} {
     width: 100%;
+  }
+  @media ${device.mobileL} {
+    flex-direction: column;
   }
 `;
 const LinksContainer = styled.div`
@@ -101,6 +105,15 @@ const LinksContainer = styled.div`
     &:hover {
       color: var(--accent-color-normal);
     }
+  }
+  @media ${device.mobileL} {
+    margin-top: 1rem;
+  }
+`;
+const UnsubTitle = styled.div`
+  margin-left: 4.25rem;
+  @media ${device.mobileL} {
+    margin-left: 3.25rem;
   }
 `;
 const Section = styled.article`
