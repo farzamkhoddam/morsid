@@ -52,9 +52,8 @@ export function EditProfileView({ firstName, lastName, email }: Props) {
                 const res = await axios.post<{ user: { subscribed: boolean } }>(
                   "/api/users/me",
                 );
-                console.log("navid success");
-              } catch {
-                console.log("navid error");
+              } catch (e) {
+                console.log("edit profile error=", e);
               }
             }}
           >

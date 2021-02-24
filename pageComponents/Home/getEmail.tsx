@@ -4,6 +4,7 @@ import { Formik, Form } from "formik";
 import { TextInput } from "components/TextInput";
 import { device } from "consts/theme";
 import * as yup from "yup";
+import axios from "axios";
 
 interface Props {
   vertical?: boolean;
@@ -31,7 +32,16 @@ const GetEmail: React.FC<Props> = ({
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}
-        onSubmit={() => {
+        onSubmit={async (values) => {
+          try {
+            await axios.post(
+              "https://hooks.zapier.com/hooks/catch/1929342/opvrayz",
+              values,
+            );
+          } catch (e) {
+            console.log("error=", e);
+          }
+
           document.location.href = "https://go.thehustleclub.com/sp-v1";
         }}
       >
