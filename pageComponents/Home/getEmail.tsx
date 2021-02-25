@@ -34,14 +34,10 @@ const GetEmail: React.FC<Props> = ({
         validationSchema={LoginSchema}
         onSubmit={async (values) => {
           try {
-            await axios.post(
-              "https://hooks.zapier.com/hooks/catch/1929342/opvrayz",
-              values,
-            );
+            await axios.post("/api/users/submit-email", values);
           } catch (e) {
             console.log("error=", e);
           }
-
           document.location.href = "https://go.thehustleclub.com/sp-v1";
         }}
       >

@@ -9,27 +9,13 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useWindowSize } from "hooks/useWindowSize";
 import Head from "next/head";
+import GetEmail from "pageComponents/Home/getEmail";
 interface Props {
   post: Post;
 }
 
 export function ArticleView({ post }: Props) {
   const windowSize = useWindowSize();
-  function getSmartScreenWidth() {
-    return windowSize.width > 1440 ? 1440 : windowSize.width;
-  }
-  function getSmartScreenheight() {
-    // این نسبت یک دوم بستگی به ریشیوی عکس داره. اینجا ریشیوی عکس اینطور درنظر گرفته شده
-    // که عرض دو برابر ارتفاع هست
-    return getSmartScreenWidth() / 2.5;
-  }
-  function getHeaderContainerHeight() {
-    // این فاصله ایه که میخوایم بخش اطلاعات کارت پایینتر از بخش عکس قرار بگیره
-    const bottomSpace = 32;
-    return windowSize.width < 700
-      ? "auto"
-      : getSmartScreenheight() + bottomSpace;
-  }
 
   if (!post.post) {
     return <Error statusCode={404} />;
@@ -39,6 +25,7 @@ export function ArticleView({ post }: Props) {
     post: { title, content, excerpt, date, featuredImage },
     viewer,
   } = post;
+  console.log("navid viewer=", viewer);
   return (
     <>
       <Head>
@@ -82,8 +69,6 @@ export function ArticleView({ post }: Props) {
             <PropertieContainer>
               <Propertie>
                 <h1>{title}</h1>
-                {/* <p>{removePTags(excerpt || "")}</p> */}
-                <div dangerouslySetInnerHTML={{ __html: excerpt || "" }} />
                 <div id="date">
                   <time>{(date || "").split("T")[0]}</time>
                 </div>
@@ -95,18 +80,26 @@ export function ArticleView({ post }: Props) {
             dangerouslySetInnerHTML={{ __html: content || excerpt || "" }}
           />
         </article>
+        {/* //اگه ثبت نام نکرده بود */}
         {!viewer ? (
           <MustBuyContainer>
             <TransparentSection />
             <H4>Read the rest of this story with a premium account.</H4>
-            <LoginButton to="/login" title="Login" />
+            <StyledGetEmail
+              vertical={true}
+              submitLabel="Get Access For Just $1"
+            />
           </MustBuyContainer>
-        ) : !viewer.subscribed ? (
+        ) : // اگه ثبت نام کرده بود اما اکانت پریمیوم رو نداشت
+        !viewer.subscribed ? (
           <MustBuyContainer>
             <TransparentSection />
             <H4>Read the rest of this story with a premium account.</H4>
 
-            <MyStripeButton />
+            <StyledButton
+              title="Renew Subscription Now"
+              to="https://go.thehustleclub.com/sp-v1"
+            />
           </MustBuyContainer>
         ) : null}
 
@@ -288,7 +281,12 @@ const H4 = styled.h4`
   line-height: 156.4%;
   text-align: center;
 `;
-const LoginButton = styled(Button)`
+const StyledGetEmail = styled(GetEmail)`
+  margin-top: 2rem;
+  max-width: 26rem;
+`;
+
+const StyledButton = styled(Button)`
   width: 264px;
   height: 64px;
 `;

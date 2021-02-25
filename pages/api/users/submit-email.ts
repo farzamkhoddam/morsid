@@ -1,3 +1,4 @@
+// این رکوئست توی کامپوننت گت ایمیل کال میشه و هدفش اینه که قبل از اینکه کاربر ثبت نام کنه، بتونیم ایمیلش رو توی یک فرم خاص ثبت کنیم
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -10,18 +11,15 @@ export default async function EditProfileUser(
     return;
   }
 
-  // const { firstName, lastName } = req.body;
-  console.log("navid req.body=", req);
   try {
-    const result = await axios.post(
-      `https://wp.thehustleclub.com/wp-json/pl/v1/edit_profile?v=1`,
+    await axios.post(
+      `https://hooks.zapier.com/hooks/catch/1929342/opvrayz`,
       req.body,
     );
-    console.log("navid res", result);
     res.status(200).json({ success: true });
-    // res.status(200).json({ body: req.body });
+    return;
   } catch (e) {
-    console.log(e);
+    console.log("error=", e);
   }
   res.status(400).send({ success: false });
 }

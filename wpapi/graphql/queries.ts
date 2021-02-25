@@ -36,6 +36,7 @@ export const POST = gql`
       date
       excerpt
       content
+      access
       featuredImage {
         node {
           mediaItemUrl
