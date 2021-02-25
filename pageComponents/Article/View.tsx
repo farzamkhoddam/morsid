@@ -1,4 +1,4 @@
-import { Post } from "../../wpapi";
+import { Post, Post_post_access } from "../../wpapi";
 import Error from "next/error";
 import SEO from "../../components/seo";
 import { device } from "../../consts/theme";
@@ -25,7 +25,7 @@ export function ArticleView({ post }: Props) {
     post: { title, content, excerpt, date, featuredImage },
     viewer,
   } = post;
-  console.log("navid viewer=", viewer);
+
   return (
     <>
       <Head>
@@ -95,11 +95,16 @@ export function ArticleView({ post }: Props) {
           <MustBuyContainer>
             <TransparentSection />
             <H4>Read the rest of this story with a premium account.</H4>
-
             <StyledButton
               title="Renew Subscription Now"
               to="https://go.thehustleclub.com/sp-v1"
             />
+          </MustBuyContainer>
+        ) : post.post.access !== Post_post_access.access ? (
+          <MustBuyContainer>
+            <TransparentSection />
+            <H4>This article will open for you soon.</H4>
+            <StyledButton title="OPEN STORYBOKKS" to="/articles" />
           </MustBuyContainer>
         ) : null}
 

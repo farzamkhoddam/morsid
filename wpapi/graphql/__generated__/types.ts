@@ -113,6 +113,11 @@ export interface Post_post_featuredImage {
    */
   node: Post_post_featuredImage_node | null;
 }
+export enum Post_post_access {
+  blocked = "blocked",
+  access = "access",
+  coming = "coming",
+}
 
 export interface Post_post {
   __typename: "Post";
@@ -143,7 +148,12 @@ export interface Post_post {
   /**
    * Connection between the NodeWithFeaturedImage type and the MediaItem type
    */
+
   featuredImage: Post_post_featuredImage | null;
+  /**
+   * shows viewew has permission for reading article or not
+   */
+  access: Post_post_access;
 }
 
 export interface Post_viewer {

@@ -70,7 +70,7 @@ export default function LoginForm() {
               <SignupContainer>
                 <SignUDesc>
                   {`If you don't have an existing account, please `}
-                  <Link href="/signup">
+                  <Link href="/">
                     <SignUpClickable>sign up</SignUpClickable>
                   </Link>
                   {` here.`}

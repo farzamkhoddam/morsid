@@ -18,10 +18,10 @@ interface FormValues {
   new_pass: string;
   old_pass: string;
 }
-//navid check required
+
 const EditProfileSchema = yup.object().shape({
-  firstName: yup.string().label("First Name").required("Required"),
-  lastName: yup.string().label("Last Name").required("Required"),
+  firstName: yup.string().label("First Name"),
+  lastName: yup.string().label("Last Name"),
   new_pass: yup.string().label("New Password"),
   old_pass: yup.string().label("Last Password"),
 });
