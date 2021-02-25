@@ -41,39 +41,48 @@ export const ArticlesView = ({
         </LoadMoreButton>
         <H2>Masterclass Trainings</H2>
         <MasterClasses>
-          <Link href="https://go.thehustleclub.com/mm-private">
-            <ImageContainer>
-              <Image
-                src={"/articles-masterclass1.png"}
-                alt={"masterclass"}
-                width={508}
-                height={298}
-                quality={100}
-              />
-            </ImageContainer>
-          </Link>
-          <Link href="https://go.thehustleclub.com/ipp-private">
-            <MidleImageContainer>
-              <Image
-                src={"/articles-masterclass2.png"}
-                alt={"masterclass"}
-                width={508}
-                height={341}
-                quality={100}
-              />
-            </MidleImageContainer>
-          </Link>
-          <Link href="https://go.thehustleclub.com/fba-private">
-            <ImageContainer>
-              <Image
-                src={"/articles-masterclass3.png"}
-                alt={"masterclass"}
-                width={508}
-                height={298}
-                quality={100}
-              />
-            </ImageContainer>
-          </Link>
+          <ClassItem>
+            <Link href="https://go.thehustleclub.com/mm-private">
+              <ImageContainer>
+                <Image
+                  src={"/articles-masterclass1.png"}
+                  alt={"masterclass"}
+                  width={508}
+                  height={298}
+                  quality={100}
+                />
+              </ImageContainer>
+            </Link>
+            <H3>Online Billboard ADS</H3>
+          </ClassItem>
+          <MidleClassItem>
+            <Link href="https://go.thehustleclub.com/ipp-private">
+              <MidleImageContainer>
+                <Image
+                  src={"/articles-masterclass2.png"}
+                  alt={"masterclass"}
+                  width={508}
+                  height={341}
+                  quality={100}
+                />
+              </MidleImageContainer>
+            </Link>
+            <H3>Mistery Masterclass</H3>
+          </MidleClassItem>
+          <ClassItem>
+            <Link href="https://go.thehustleclub.com/fba-private">
+              <ImageContainer>
+                <Image
+                  src={"/articles-masterclass3.png"}
+                  alt={"masterclass"}
+                  width={508}
+                  height={298}
+                  quality={100}
+                />
+              </ImageContainer>
+            </Link>
+            <H3>rank & bank system</H3>
+          </ClassItem>
         </MasterClasses>
       </div>
     </div>
@@ -98,10 +107,11 @@ const H2 = styled.h1`
   font-size: 24px;
   line-height: 29px;
   color: #1d3330;
-  margin: 80px 22px 71px;
+  margin: 80px 22px 40px;
   @media ${device.tabletL} {
     font-size: 20px;
     line-height: 24px;
+    margin-bottom: 35px;
   }
 `;
 const MasterClasses = styled.div`
@@ -112,6 +122,15 @@ const MasterClasses = styled.div`
   @media ${device.tabletL} {
     flex-direction: column;
     align-items: center;
+  }
+`;
+const ClassItem = styled.div`
+  width: auto;
+`;
+const MidleClassItem = styled(ClassItem)`
+  margin: 0 30px;
+  @media ${device.tabletL} {
+    margin: 54px auto;
   }
 `;
 const ImageContainer = styled.div`
@@ -126,14 +145,28 @@ const ImageContainer = styled.div`
   @media ${device.mobileL} {
     width: 80%;
     height: auto;
+    margin: 0 auto;
   }
 `;
 const MidleImageContainer = styled(ImageContainer)`
-  margin: 0 30px;
   height: 243px;
   @media ${device.tabletL} {
-    margin: 64px 0;
-    height: 341px;
+    height: auto;
+  }
+`;
+const H3 = styled.div`
+  font-family: Bebas Neue;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+  color: #1d3330;
+  margin-top: 24px;
+  @media ${device.tabletL} {
+    margin-top: 32px;
+  }
+  @media ${device.mobileM} {
+    font-size: 30px;
+    line-height: 33px;
   }
 `;
 const LoadMoreButton = styled.div`

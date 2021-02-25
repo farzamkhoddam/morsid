@@ -38,7 +38,7 @@ const GetEmail: React.FC<Props> = ({
           } catch (e) {
             console.log("error=", e);
           }
-          document.location.href = "https://go.thehustleclub.com/sp-v1";
+          document.location.href = process.env.clickFunelPaymentUrl as string;
         }}
       >
         {({ isSubmitting }) => (

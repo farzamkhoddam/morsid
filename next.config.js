@@ -1,4 +1,7 @@
 module.exports = {
+  env: {
+    clickFunelPaymentUrl: "https://go.thehustleclub.com/sp-v1",
+  },
   images: {
     domains: ["wp.thehustleclub.com"],
   },

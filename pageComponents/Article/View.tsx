@@ -97,7 +97,7 @@ export function ArticleView({ post }: Props) {
             <H4>Read the rest of this story with a premium account.</H4>
             <StyledButton
               title="Renew Subscription Now"
-              to="https://go.thehustleclub.com/sp-v1"
+              to={process.env.clickFunelPaymentUrl}
             />
           </MustBuyContainer>
         ) : post.post.access !== Post_post_access.access ? (
