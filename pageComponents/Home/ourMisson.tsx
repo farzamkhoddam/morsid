@@ -19,8 +19,8 @@ export default function OurMission() {
         <OurMissionContent>
           <OurMissionTitle>Our Mission</OurMissionTitle>
           <OurMissionSubtitle>
-            To empower 1000 aspiring Entrepreneurs to fire their boss with their
-            side Hustle.
+            To empower 1000 aspiring entrepreneur to fire their boss with their
+            side hustle.
           </OurMissionSubtitle>
           {deviceType < deviceTypes.laptopXS && (
             <OurMissionImagContainer>
@@ -34,26 +34,19 @@ export default function OurMission() {
             </OurMissionImagContainer>
           )}
           <OurMissionDesc>
-            {`We've know how risky it can be to start your own business. And we
-              know that having a game plan can make that journey a whole lot
-              easier.`}
+            {`We know how scary and risky it can be to start your own business. We also know how much smoother and successful your journey will be if you have a solid game plan made by someone who has been down the same road.`}
           </OurMissionDesc>
           <br />
           <OurMissionDesc>
-            {`We want to empower you with our combined experience of 20+
-              years in the online business space.`}
+            {`We want to empower you with our combined experience of 20+ years in the online business space.`}
           </OurMissionDesc>
           <br />
           <OurMissionDesc>
-            {`With our expert analysts and 7 figure business owners, we know which side hustle actually has the
-              potential to replace your day job and give you the freedom you
-              deserve. That's why we only deliver hustles that have been vetted
-              by our team.`}
+            {`With our expert analysts and 7 figure business owners, we know which side hustles actually have the potential to replace your day job and give you the freedom you deserve. That's why we only deliver hustles that have been vetted by our team of experienced professionals`}
           </OurMissionDesc>
           <br />
           <OurMissionDesc>
-            {`As a Hustle Club Member, entrepreneurial success is
-              in your favor.`}
+            {`As a Hustle Club member, entrepreneurial success is in your favor.`}
           </OurMissionDesc>
           {siginStatus === "NOT-LOGINED" ? (
             <StyledGetEmail

@@ -32,7 +32,7 @@ const Footer = () => {
           />
         </CircleHashrContainer>
 
-        <Sentense>{`UNLOCK THE SKILLS FOR GENERATING "NEW MONEY"`}</Sentense>
+        <Sentense>{`UNLOCK THE SKILLS YOU NEED TO START GENERATING "NEW MONEY"`}</Sentense>
         <Part2Container>
           <LogoContainer>
             <WhiteLogo width={"216"} height={"84"} />

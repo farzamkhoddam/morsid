@@ -46,7 +46,6 @@ export function EditProfileView({ firstName, lastName }: Props) {
             initialValues={initialValues}
             validationSchema={EditProfileSchema}
             onSubmit={async (values) => {
-              console.log("navid valeus=", values);
               try {
                 await axios.post("/api/users/edit-profile", values);
                 router.push("/account");
