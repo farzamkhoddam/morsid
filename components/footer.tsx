@@ -50,17 +50,17 @@ const Container = styled.div`
   width: 100%;
   max-width: 100vw;
   justify-content: center;
-  height: 480px;
+  height: 398px;
   bottom: 0;
   background-color: var(--primary-color-normal);
   flex-wrap: wrap;
   overflow: hidden;
   position: relative;
   @media ${device.tabletL} {
-    height: 368px;
+    height: 264px;
   }
-  @media ${device.tabletS} {
-    height: auto;
+  @media ${device.mobileL} {
+    height: 299px;
   }
 `;
 const ContentWrapper = styled.div`
@@ -69,77 +69,56 @@ const ContentWrapper = styled.div`
   position: relative;
   overflow: hidden;
   padding: 0 2rem;
-  @media ${device.tabletS} {
-    text-align: center;
-  }
+  text-align: center;
 `;
 const Sentense = styled.h3`
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: normal;
-  font-size: 56px;
-  line-height: 67px;
-  text-transform: capitalize;
+  font-size: 40px;
+  line-height: 48px;
   color: #ffffff;
-  width: fit-content;
-
-  margin-top: 4rem;
+  text-align: center;
+  margin-top: 108px;
   @media ${device.tabletL} {
-    font-size: 40px;
-    line-height: 48px;
+    font-size: 24px;
+    line-height: 29px;
+    margin-top: 80px;
   }
-  @media ${device.tabletS} {
-    font-size: 47px;
-    line-height: 56px;
-  }
+
   @media ${device.mobileL} {
-    font-size: 40px;
-    line-height: 48px;
-  }
-  @media ${device.mobileM} {
-    font-size: 38px;
-    line-height: 43px;
-  }
-  @media ${device.mobileS} {
-    font-size: 31px;
-    line-height: 37px;
+    font-size: 24px;
+    line-height: 29px;
+    margin-top: 86px;
   }
 `;
 const Part2Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-top: 8rem;
+  margin-top: 69px;
 
   @media ${device.tabletL} {
-    justify-content: space-between;
-    margin-top: 4rem;
+    margin-top: 39px;
   }
-  @media ${device.tabletL} {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    margin-bottom: 4rem;
+  @media ${device.mobileL} {
+    margin-top: 44px;
   }
 `;
 const LogoContainer = styled.div`
-  width: 70%;
+  width: auto;
   opacity: 0.3;
-  margin-left: 3rem;
   color: var(--gray-color-xlight);
   mix-blend-mode: overlay;
-  margin-left: 6rem;
-
   @media ${device.tabletL} {
-    margin-left: 7rem;
-    margin-top: 0.9rem;
+    svg {
+      height: 53px;
+    }
   }
-
-  @media ${device.tabletS} {
-    margin: 0;
-    margin-bottom: 4rem;
+  @media ${device.mobileL} {
+    svg {
+      height: 40px;
+    }
   }
 `;
 
@@ -156,7 +135,7 @@ const CircleHashrContainer = styled.div`
   top: -38px;
   opacity: 0.3;
   @media ${device.tabletS} {
-    right: 2rem;
+    display: none;
   }
 `;
 const WaveHashur2Container = styled.div`
