@@ -2,7 +2,6 @@ import { useState, ReactNode } from "react";
 import { HiOutlineMenu, HiX } from "react-icons/hi";
 import styled from "styled-components";
 import Link from "next/link";
-import { device } from "../consts/theme";
 import { useUserData } from "hooks/useUserData";
 
 const NotLoginedUserMenuItems = [
