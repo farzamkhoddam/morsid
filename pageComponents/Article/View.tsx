@@ -25,7 +25,7 @@ export function ArticleView({ post }: Props) {
     post: { title, content, excerpt, date, featuredImage },
     viewer,
   } = post;
-
+  console.log("navid viewer=", post);
   return (
     <>
       <Head>
@@ -103,8 +103,8 @@ export function ArticleView({ post }: Props) {
         ) : post.post.access !== Post_post_access.access ? (
           <MustBuyContainer>
             <TransparentSection />
-            <H4>This article will open for you soon.</H4>
-            <StyledButton title="OPEN STORYBOKKS" to="/articles" />
+            <H4>This Playbook Is Coming Soon...</H4>
+            <StyledButton title="View Playbooks" to="/articles" />
           </MustBuyContainer>
         ) : null}
 

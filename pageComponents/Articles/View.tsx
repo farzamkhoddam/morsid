@@ -23,6 +23,7 @@ export const ArticlesView = ({
   isFetchingNextPage,
 }: Props) => {
   const { siginStatus } = useUserData();
+  console.log("navid siginStatus=,", siginStatus);
   return (
     <div className="page">
       <SEO />
