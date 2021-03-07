@@ -12,20 +12,38 @@ import { Step4 } from "./Step4";
 interface Props {
   user: User;
 }
-
+export interface UnsubscribeFormData {
+  why?: string[];
+  otherDesc?: string;
+}
 export function UnsubscribeView({ user: { email, firstName } }: Props) {
   const router = useRouter();
   const [stepNumber, setStepNumber] = useState<number>(3);
+  const [formData, setFormData] = useState<UnsubscribeFormData>(
+    {} as UnsubscribeFormData,
+  );
   let CurrentStep;
   switch (stepNumber) {
     case 1:
-      CurrentStep = <Step1 email="navid" name={firstName || "client"} />;
+      CurrentStep = (
+        <Step1
+          name={firstName || "client"}
+          setFormData={setFormData}
+          setStepNumber={setStepNumber}
+        />
+      );
       break;
     case 2:
-      CurrentStep = <Step2 email="navid" name={firstName || "client"} />;
+      CurrentStep = <Step2 setStepNumber={setStepNumber} />;
       break;
     case 3:
-      CurrentStep = <Step3 email="navid" name={firstName || "client"} />;
+      CurrentStep = (
+        <Step3
+          email={email}
+          setStepNumber={setStepNumber}
+          setFormData={setFormData}
+        />
+      );
       break;
     case 4:
       CurrentStep = <Step4 email="navid" name={firstName || "client"} />;

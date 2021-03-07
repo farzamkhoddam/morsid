@@ -15,21 +15,6 @@ interface Props {
 
 export function ArticleView({ post }: Props) {
   const windowSize = useWindowSize();
-  function getSmartScreenWidth() {
-    return windowSize.width > 1440 ? 1440 : windowSize.width;
-  }
-  function getSmartScreenheight() {
-    // این نسبت یک دوم بستگی به ریشیوی عکس داره. اینجا ریشیوی عکس اینطور درنظر گرفته شده
-    // که عرض دو برابر ارتفاع هست
-    return getSmartScreenWidth() / 2.5;
-  }
-  function getHeaderContainerHeight() {
-    // این فاصله ایه که میخوایم بخش اطلاعات کارت پایینتر از بخش عکس قرار بگیره
-    const bottomSpace = 32;
-    return windowSize.width < 700
-      ? "auto"
-      : getSmartScreenheight() + bottomSpace;
-  }
 
   if (!post.post) {
     return <Error statusCode={404} />;

@@ -4,25 +4,22 @@ import { Formik, Form, Field } from "formik";
 import { device } from "consts/theme";
 import styled from "styled-components";
 
-import axios from "axios";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import Stepper from "components/Stepper";
-import { inherits } from "util";
+import { UnsubscribeFormData } from "./View";
 
 interface Props {
-  email: string;
   name: string;
+  setFormData: Dispatch<SetStateAction<UnsubscribeFormData>>;
+  setStepNumber: Dispatch<SetStateAction<number>>;
 }
-interface formValue {
-  why?: string[];
-  otherDesc?: string;
-}
-function removeEmptyKeys(values: formValue) {
+
+function removeEmptyKeys(values: Partial<UnsubscribeFormData>) {
   if (values?.why?.length === 0) delete values.why;
   if (values?.otherDesc === "") delete values.otherDesc;
 }
-export function Step1({ email, name }: Props) {
-  const initialValues: formValue = {};
+export function Step1({ name, setFormData, setStepNumber }: Props) {
+  const initialValues: Partial<UnsubscribeFormData> = {};
 
   return (
     <Container>
@@ -34,14 +31,10 @@ export function Step1({ email, name }: Props) {
         <Formik
           initialValues={initialValues}
           //   validationSchema={step1Schema}
-
-          onSubmit={async (values) => {
+          onSubmit={async (values: Partial<UnsubscribeFormData>) => {
             try {
-              //   await axios.post("/api/users/login", values);
-              //   const res = await axios.post<{ user: { subscribed: boolean } }>(
-              //     "/api/users/me",
-              //   );
-              console.log("navid value=", values);
+              setFormData(values);
+              setStepNumber(2);
             } catch {
               console.log("navid error");
             }
@@ -49,8 +42,6 @@ export function Step1({ email, name }: Props) {
         >
           {({ values }) => {
             removeEmptyKeys(values);
-            console.log("navid values==", values);
-            console.log("navid values==", values === {});
             return (
               <FormWrapper>
                 <Section>
@@ -64,50 +55,50 @@ export function Step1({ email, name }: Props) {
                           role="group"
                           aria-labelledby="checkbox-group"
                         >
-                          <label>
+                          <Label>
                             <Field
                               type="checkbox"
                               name="why"
                               value="I’ve found an alternative"
                             />
                             {`I’ve found an alternative.`}
-                          </label>
-                          <label>
+                          </Label>
+                          <Label>
                             <Field
                               type="checkbox"
                               name="why"
                               value="I find the material hard to digest"
                             />
                             {`I find the material hard to digest`}
-                          </label>
-                          <label>
+                          </Label>
+                          <Label>
                             <Field
                               type="checkbox"
                               name="why"
                               value="I didn’t implement the playbooks"
                             />
                             {`I didn’t implement the playbooks`}
-                          </label>
+                          </Label>
 
-                          <label>
+                          <Label>
                             <Field
                               type="checkbox"
                               name="why"
                               value="I was looking for something different"
                             />
                             {`I was looking for something different`}
-                          </label>
-                          <label style={{ marginBottom: "2.5rem" }}>
+                          </Label>
+                          <Label style={{ marginBottom: "2.5rem" }}>
                             <Field type="checkbox" name="why" value="other" />
                             {`other`}
-                          </label>
+                          </Label>
 
                           <H2
                             style={{ marginBottom: "2rem" }}
                           >{`Comment (Optional)`}</H2>
                           <Textarea
                             style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
-                            as="textarea"
+                            component="textarea"
                             name="otherDesc"
                             placeholder="Please tell us more so we can improve the Hustle Club."
                             rows={8}
@@ -319,6 +310,11 @@ const Checkboxs = styled.div`
   @media ${device.mobileL} {
     width: 100%;
   }
+`;
+const Label = styled.label`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
 `;
 const Desc = styled.p`
   margin-top: 30px;

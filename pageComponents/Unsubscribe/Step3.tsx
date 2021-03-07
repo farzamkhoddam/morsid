@@ -1,79 +1,36 @@
-import Button from "components/Button";
-import * as yup from "yup";
-import { Formik, Form, Field } from "formik";
+import { Formik } from "formik";
 import { device } from "consts/theme";
 import styled from "styled-components";
-import LeftArrow from "components/Svgs/leftArrow";
-import axios from "axios";
-import React from "react";
+
+import React, { Dispatch, SetStateAction } from "react";
 import Stepper from "components/Stepper";
-import { inherits } from "util";
-import Link from "next/link";
+import { UnsubscribeFormData } from "./View";
 
 interface Props {
   email: string;
-  name: string;
+  setFormData: Dispatch<SetStateAction<UnsubscribeFormData>>;
+  setStepNumber: Dispatch<SetStateAction<number>>;
 }
-interface formValue {
-  why?: string[];
-  otherDesc?: string;
-}
-function removeEmptyKeys(values: formValue) {
-  if (values?.why?.length === 0) delete values.why;
-  if (values?.otherDesc === "") delete values.otherDesc;
-}
-export function Step3({ email, name }: Props) {
-  const initialValues: formValue = {};
 
+export function Step3({ email, name }: Props) {
   return (
     <Container>
       <Wrapper>
         <StyledStepper
           steps={["Feedback", "Details", "Review"]}
-          activeStep={2}
+          activeStep={3}
         />
-        <Formik
-          initialValues={initialValues}
-          //   validationSchema={step1Schema}
-
-          onSubmit={async (values) => {
-            try {
-              //   await axios.post("/api/users/login", values);
-              //   const res = await axios.post<{ user: { subscribed: boolean } }>(
-              //     "/api/users/me",
-              //   );
-              console.log("navid value=", values);
-            } catch {
-              console.log("navid error");
-            }
-          }}
-        >
-          {({ values }) => {
-            removeEmptyKeys(values);
-            console.log("navid values==", values);
-            console.log("navid values==", values === {});
-            return (
-              <FormWrapper>
-                <H1>Are you sure you want to go?</H1>
-                <P>If you unsubscribe now, you miss important things.</P>
-                <Buttonscontainer>
-                  <BackButtonDiv>
-                    <p>I want to stay</p>
-                  </BackButtonDiv>
-                  <SubmitButton
-                    value="SUBMIT"
-                    type="submit"
-                    // اگه آبجکت ولیوز خالی باشه، دکمه رو دیزیبل میکنه
-                    disabled={
-                      Object.keys(values).length === 0 &&
-                      values.constructor === Object
-                    }
-                  />
-                </Buttonscontainer>
-              </FormWrapper>
-            );
-          }}
-        </Formik>
+        <FormWrapper>
+          <H1>Are you sure you want to go?</H1>
+          <P>If you unsubscribe now, you miss important things.</P>
+          <Buttonscontainer>
+            <BackButtonDiv>
+              <p>I want to stay</p>
+            </BackButtonDiv>
+            <SubmitButton value="SUBMIT" type="submit" />
+          </Buttonscontainer>
+        </FormWrapper>
+        );
       </Wrapper>
     </Container>
   );
@@ -92,7 +49,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   width: inherit;
   height: inherit;
-  padding: 4.5rem 22px 5rem 0;
+  padding: 4.5rem 22px 5rem 22px;
 
   display: flex;
   flex-direction: column;
@@ -121,7 +78,7 @@ const FormWrapper = styled.div`
 `;
 const StyledStepper = styled(Stepper)`
   height: 5rem;
-  width: 71%;
+  width: 100%;
 `;
 const H1 = styled.h1`
   width: fit-content;
@@ -157,7 +114,7 @@ const Buttonscontainer = styled.div`
   }
 `;
 
-const SubmitButton = styled.input<{ disabled: boolean }>`
+const SubmitButton = styled.input`
   border: 3px solid var(--accent-color-normal);
   margin-left: 1rem;
   display: flex;

@@ -1,29 +1,19 @@
-import Button from "components/Button";
-import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { device } from "consts/theme";
 import styled from "styled-components";
 import LeftArrow from "components/Svgs/leftArrow";
-import axios from "axios";
-import React from "react";
 import Stepper from "components/Stepper";
-import { inherits } from "util";
-import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
 
 interface Props {
-  email: string;
-  name: string;
+  setStepNumber: Dispatch<SetStateAction<number>>;
 }
 interface formValue {
-  why?: string[];
-  otherDesc?: string;
+  confirm: string[];
 }
-function removeEmptyKeys(values: formValue) {
-  if (values?.why?.length === 0) delete values.why;
-  if (values?.otherDesc === "") delete values.otherDesc;
-}
-export function Step2({ email, name }: Props) {
-  const initialValues: formValue = {};
+
+export function Step2({ setStepNumber }: Props) {
+  const initialValues: formValue = { confirm: [] };
 
   return (
     <Container>
@@ -36,22 +26,16 @@ export function Step2({ email, name }: Props) {
           initialValues={initialValues}
           //   validationSchema={step1Schema}
 
-          onSubmit={async (values) => {
+          onSubmit={async () => {
             try {
-              //   await axios.post("/api/users/login", values);
-              //   const res = await axios.post<{ user: { subscribed: boolean } }>(
-              //     "/api/users/me",
-              //   );
-              console.log("navid value=", values);
+              setStepNumber(3);
             } catch {
               console.log("navid error");
             }
           }}
         >
           {({ values }) => {
-            removeEmptyKeys(values);
             console.log("navid values==", values);
-            console.log("navid values==", values === {});
             return (
               <FormWrapper>
                 <Section>
@@ -61,48 +45,43 @@ export function Step2({ email, name }: Props) {
                     <TwoSide>
                       <Side1>
                         <FirstH2>
-                          I understand that by cancelling my plan. I’ll lose ...
+                          I understand that by cancelling my plan. I’ll confirm
+                          ...
                         </FirstH2>
                         <Checkboxs
                           role="group"
                           aria-labelledby="checkbox-group"
                         >
-                          <label>
+                          <Label>
                             <StyledField
                               type="checkbox"
-                              name="lose"
-                              value="Access to special member discounts, and any new playbooks
-                              that are released."
+                              name="confirm"
+                              value="item1"
                             />
-                            {`Access to special member discounts, and any new playbooks
-that are released.`}
-                          </label>
-                          <label>
+                            {`Access to special member discounts, and any new playbooks that are released.`}
+                          </Label>
+                          <Label>
                             <Field
                               type="checkbox"
-                              name="lose"
-                              value="All the lessons, resources, and progress made in The Hustle Club
-                              Asset Vault"
+                              name="confirm"
+                              value="item2"
                             />
-                            {`All the lessons, resources, and progress made in The Hustle Club
-Asset Vault`}
-                          </label>
-                          <label>
+                            {`All the lessons, resources, and progress made in The Hustle Club Asset Vault`}
+                          </Label>
+                          <Label>
                             <Field
                               type="checkbox"
-                              name="lose"
-                              value="My current lockd-in price. I understand that the price of a 
-                              Hustle Club subscribtion is likely to increase in the future."
+                              name="confirm"
+                              value="item3"
                             />
-                            {`My current lockd-in price. I understand that the price of a 
-Hustle Club subscribtion is likely to increase in the future.`}
-                          </label>
+                            {`My current lockd-in price. I understand that the price of a Hustle Club subscribtion is likely to increase in the future.`}
+                          </Label>
                         </Checkboxs>
                         <Desc>Check all the boxes to continue ...</Desc>
                       </Side1>
                       <Side2>
                         <Side2Title>
-                          You are about to lose your Hustle Club membership
+                          You are about to confirm your Hustle Club membership
                         </Side2Title>
                         <Side2Subtitle>
                           <DesktopH3>Commitment:</DesktopH3>
@@ -116,7 +95,7 @@ Hustle Club subscribtion is likely to increase in the future.`}
                       </Side2>
                     </TwoSide>
                     <Buttonscontainer>
-                      <BackButtonDiv>
+                      <BackButtonDiv onClick={() => setStepNumber(1)}>
                         <Arrow />
                         <p>Back</p>
                       </BackButtonDiv>
@@ -124,10 +103,7 @@ Hustle Club subscribtion is likely to increase in the future.`}
                         value="CONTINIUE"
                         type="submit"
                         // اگه آبجکت ولیوز خالی باشه، دکمه رو دیزیبل میکنه
-                        disabled={
-                          Object.keys(values).length === 0 &&
-                          values.constructor === Object
-                        }
+                        disabled={values?.confirm?.length < 3}
                       />
                     </Buttonscontainer>
                   </StyledForm>
@@ -310,6 +286,11 @@ const Checkboxs = styled.div`
     width: 100%;
   }
 `;
+const Label = styled.label`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+`;
 const StyledField = styled(Field)`
   background-color: red;
 `;
@@ -324,18 +305,7 @@ const Desc = styled.p`
     margin-bottom: 60px;
   }
 `;
-const Textarea = styled(Field)`
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #4f4f4f;
-  &::placeholder {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    color: #4f4f4f;
-  }
-`;
+
 const Buttonscontainer = styled.div`
   width: 100%;
   display: flex;
