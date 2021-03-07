@@ -3,11 +3,12 @@ import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { device } from "consts/theme";
 import styled from "styled-components";
-
+import LeftArrow from "components/Svgs/leftArrow";
 import axios from "axios";
 import React from "react";
 import Stepper from "components/Stepper";
 import { inherits } from "util";
+import Link from "next/link";
 
 interface Props {
   email: string;
@@ -21,7 +22,7 @@ function removeEmptyKeys(values: formValue) {
   if (values?.why?.length === 0) delete values.why;
   if (values?.otherDesc === "") delete values.otherDesc;
 }
-export function Step1({ email, name }: Props) {
+export function Step2({ email, name }: Props) {
   const initialValues: formValue = {};
 
   return (
@@ -29,7 +30,7 @@ export function Step1({ email, name }: Props) {
       <Wrapper>
         <StyledStepper
           steps={["Feedback", "Details", "Review"]}
-          activeStep={1}
+          activeStep={2}
         />
         <Formik
           initialValues={initialValues}
@@ -54,66 +55,50 @@ export function Step1({ email, name }: Props) {
             return (
               <FormWrapper>
                 <Section>
-                  <H1>{`Dear ${name}, we’d hate to see you go`}.</H1>
+                  <H1>Are you sure you want to go?</H1>
 
                   <StyledForm>
                     <TwoSide>
                       <Side1>
-                        <FirstH2>Why do you want to cancel?</FirstH2>
+                        <FirstH2>
+                          I understand that by cancelling my plan. I’ll lose ...
+                        </FirstH2>
                         <Checkboxs
                           role="group"
                           aria-labelledby="checkbox-group"
                         >
                           <label>
-                            <Field
+                            <StyledField
                               type="checkbox"
-                              name="why"
-                              value="I’ve found an alternative"
+                              name="lose"
+                              value="Access to special member discounts, and any new playbooks
+                              that are released."
                             />
-                            {`I’ve found an alternative.`}
+                            {`Access to special member discounts, and any new playbooks
+that are released.`}
                           </label>
                           <label>
                             <Field
                               type="checkbox"
-                              name="why"
-                              value="I find the material hard to digest"
+                              name="lose"
+                              value="All the lessons, resources, and progress made in The Hustle Club
+                              Asset Vault"
                             />
-                            {`I find the material hard to digest`}
+                            {`All the lessons, resources, and progress made in The Hustle Club
+Asset Vault`}
                           </label>
                           <label>
                             <Field
                               type="checkbox"
-                              name="why"
-                              value="I didn’t implement the playbooks"
+                              name="lose"
+                              value="My current lockd-in price. I understand that the price of a 
+                              Hustle Club subscribtion is likely to increase in the future."
                             />
-                            {`I didn’t implement the playbooks`}
+                            {`My current lockd-in price. I understand that the price of a 
+Hustle Club subscribtion is likely to increase in the future.`}
                           </label>
-
-                          <label>
-                            <Field
-                              type="checkbox"
-                              name="why"
-                              value="I was looking for something different"
-                            />
-                            {`I was looking for something different`}
-                          </label>
-                          <label style={{ marginBottom: "2.5rem" }}>
-                            <Field type="checkbox" name="why" value="other" />
-                            {`other`}
-                          </label>
-
-                          <H2
-                            style={{ marginBottom: "2rem" }}
-                          >{`Comment (Optional)`}</H2>
-                          <Textarea
-                            style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
-                            as="textarea"
-                            name="otherDesc"
-                            placeholder="Please tell us more so we can improve the Hustle Club."
-                            rows={8}
-                          />
                         </Checkboxs>
-                        <Desc>Select one or more option s to continue.</Desc>
+                        <Desc>Check all the boxes to continue ...</Desc>
                       </Side1>
                       <Side2>
                         <Side2Title>
@@ -130,16 +115,21 @@ export function Step1({ email, name }: Props) {
                         </Side2Subtitle>
                       </Side2>
                     </TwoSide>
-
-                    <SubmitButton
-                      value="CONTINIUE"
-                      type="submit"
-                      // اگه آبجکت ولیوز خالی باشه، دکمه رو دیزیبل میکنه
-                      disabled={
-                        Object.keys(values).length === 0 &&
-                        values.constructor === Object
-                      }
-                    />
+                    <Buttonscontainer>
+                      <BackButtonDiv>
+                        <Arrow />
+                        <p>Back</p>
+                      </BackButtonDiv>
+                      <SubmitButton
+                        value="CONTINIUE"
+                        type="submit"
+                        // اگه آبجکت ولیوز خالی باشه، دکمه رو دیزیبل میکنه
+                        disabled={
+                          Object.keys(values).length === 0 &&
+                          values.constructor === Object
+                        }
+                      />
+                    </Buttonscontainer>
                   </StyledForm>
                 </Section>
               </FormWrapper>
@@ -320,9 +310,12 @@ const Checkboxs = styled.div`
     width: 100%;
   }
 `;
+const StyledField = styled(Field)`
+  background-color: red;
+`;
 const Desc = styled.p`
-  margin-top: 30px;
-  margin-bottom: 28px;
+  margin-top: 2.63rem;
+  margin-bottom: 79px;
   width: fit-content;
   text-align: center;
   color: #4f4f4f;
@@ -343,7 +336,14 @@ const Textarea = styled(Field)`
     color: #4f4f4f;
   }
 `;
+const Buttonscontainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
 const SubmitButton = styled.input<{ disabled: boolean }>`
+  margin-left: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -365,8 +365,6 @@ const SubmitButton = styled.input<{ disabled: boolean }>`
   line-height: 24px;
   text-transform: uppercase;
   transition: background 0.3s linear;
-  position: absolute;
-  right: 22px;
   &.-outline {
     color: var(--primary-color-dark);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
@@ -388,9 +386,26 @@ const SubmitButton = styled.input<{ disabled: boolean }>`
       margin-right: var(--margin);
     }
   }
+  @media ${device.tabletM}{
+    width:15.75rem;
+  }
   @media ${device.mobileL}{
       position: relative;
       margin:0 auto;
       right:0;
   }
 `;
+const BackButtonDiv = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  width: 89px;
+  justify-content: space-between;
+  @media ${device.tabletM} {
+    width: 92px;
+  }
+`;
+const Arrow = styled(LeftArrow)``;
