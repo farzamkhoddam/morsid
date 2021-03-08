@@ -1,70 +1,17 @@
-import Button from "components/Button";
-import * as yup from "yup";
-import { Formik, Form, Field } from "formik";
 import { device } from "consts/theme";
 import styled from "styled-components";
-import LeftArrow from "components/Svgs/leftArrow";
-import axios from "axios";
 import React from "react";
-import Stepper from "components/Stepper";
-import { inherits } from "util";
-import Link from "next/link";
+import axios from "axios";
 
-interface Props {
-  email: string;
-  name: string;
-}
-interface formValue {
-  why?: string[];
-  otherDesc?: string;
-}
-function removeEmptyKeys(values: formValue) {
-  if (values?.why?.length === 0) delete values.why;
-  if (values?.otherDesc === "") delete values.otherDesc;
-}
-export function Step4({ email, name }: Props) {
-  const initialValues: formValue = {};
-
+export function Step4() {
   return (
     <Container>
       <Wrapper>
-        <Formik
-          initialValues={initialValues}
-          //   validationSchema={step1Schema}
-
-          onSubmit={async (values) => {
-            try {
-              //   await axios.post("/api/users/login", values);
-              //   const res = await axios.post<{ user: { subscribed: boolean } }>(
-              //     "/api/users/me",
-              //   );
-              console.log("navid value=", values);
-            } catch {
-              console.log("navid error");
-            }
-          }}
-        >
-          {({ values }) => {
-            removeEmptyKeys(values);
-            console.log("navid values==", values);
-            console.log("navid values==", values === {});
-            return (
-              <FormWrapper>
-                <H1>You have successfully unsubscribed!</H1>
-                <P>You have been successfuly removed from this subscriber</P>
-                <SubmitButton
-                  value="HOME"
-                  type="submit"
-                  // اگه آبجکت ولیوز خالی باشه، دکمه رو دیزیبل میکنه
-                  disabled={
-                    Object.keys(values).length === 0 &&
-                    values.constructor === Object
-                  }
-                />
-              </FormWrapper>
-            );
-          }}
-        </Formik>
+        <FormWrapper>
+          <H1>You have successfully unsubscribed!</H1>
+          <P>You have been successfuly removed from this subscriber</P>
+          <SubmitButton />
+        </FormWrapper>
       </Wrapper>
     </Container>
   );
@@ -135,7 +82,7 @@ const P = styled.p`
   color: #161515;
   margin-bottom: 4.5rem;
 `;
-const SubmitButton = styled.input<{ disabled: boolean }>`
+const SubmitButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

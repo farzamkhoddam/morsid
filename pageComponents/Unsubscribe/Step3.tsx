@@ -5,14 +5,38 @@ import styled from "styled-components";
 import React, { Dispatch, SetStateAction } from "react";
 import Stepper from "components/Stepper";
 import { UnsubscribeFormData } from "./View";
+import { useRouter } from "next/router";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 interface Props {
   email: string;
   setFormData: Dispatch<SetStateAction<UnsubscribeFormData>>;
   setStepNumber: Dispatch<SetStateAction<number>>;
+  formData: UnsubscribeFormData;
 }
 
-export function Step3({ email, name }: Props) {
+export function Step3({ email, formData }: Props) {
+  const router = useRouter();
+  const submitHandler = async () => {
+    console.log("navid data=", formData);
+
+    try {
+      const res = await axios.post("/wp-json/pl/v1/cl_cancel_subscribe_user", {
+        email: email,
+        formData,
+      });
+      console.log("navid res=", res);
+      // setUserData(res.data.user.subscribed);
+    } catch {
+      toast.error(
+        "Unfortunately, something went wrong. Please try again later ...",
+      );
+    }
+  };
+  const stayHandler = () => {
+    router.replace("/");
+  };
   return (
     <Container>
       <Wrapper>
@@ -24,13 +48,12 @@ export function Step3({ email, name }: Props) {
           <H1>Are you sure you want to go?</H1>
           <P>If you unsubscribe now, you miss important things.</P>
           <Buttonscontainer>
-            <BackButtonDiv>
+            <BackButtonDiv onClick={() => stayHandler()}>
               <p>I want to stay</p>
             </BackButtonDiv>
-            <SubmitButton value="SUBMIT" type="submit" />
+            <SubmitButton onClick={() => submitHandler()}>SUBMIT</SubmitButton>
           </Buttonscontainer>
         </FormWrapper>
-        );
       </Wrapper>
     </Container>
   );
@@ -79,6 +102,7 @@ const FormWrapper = styled.div`
 const StyledStepper = styled(Stepper)`
   height: 5rem;
   width: 100%;
+  max-width: 714px;
 `;
 const H1 = styled.h1`
   width: fit-content;
@@ -114,13 +138,14 @@ const Buttonscontainer = styled.div`
   }
 `;
 
-const SubmitButton = styled.input`
+const SubmitButton = styled.div`
+  cursor: pointer;
   border: 3px solid var(--accent-color-normal);
-  margin-left: 1rem;
+  margin-left: 0.7rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16.5rem;
+  width: 50%;
   height: 64px;
   padding: var(--padding) calc(var(--padding) * 2);
   background-color: white;
@@ -128,15 +153,13 @@ const SubmitButton = styled.input`
   border-radius: 1px;
   text-decoration: none;
   appearance: none;
-  font-family: Montserrat;
-  font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   text-transform: uppercase;
   transition: background 0.3s linear;
+
   &.-outline {
-    color: var(--primary-color-dark);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
     background: #fff;
     &:hover {
@@ -166,6 +189,7 @@ const SubmitButton = styled.input`
   }
 `;
 const BackButtonDiv = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   background-color: var(--accent-color-normal);
@@ -174,6 +198,7 @@ const BackButtonDiv = styled.div`
   line-height: 24px;
   text-transform: uppercase;
   width: 50%;
+  margin-right: 0.7rem;
   display: flex;
   align-items: center;
   @media ${device.tabletM} {

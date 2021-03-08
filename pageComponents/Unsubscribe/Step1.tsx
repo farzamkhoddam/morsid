@@ -180,7 +180,8 @@ const FormWrapper = styled.div`
 `;
 const StyledStepper = styled(Stepper)`
   height: 5rem;
-  width: 71%;
+  width: 100%;
+  max-width: 714px;
 `;
 
 const Section = styled.section`

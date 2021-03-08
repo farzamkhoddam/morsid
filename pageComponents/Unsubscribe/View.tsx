@@ -1,10 +1,6 @@
-import Button from "components/Button";
 import { Step2 } from "./Step2";
 import SimplePageHeader from "components/simplePageHeader";
-import { device } from "consts/theme";
-import styled from "styled-components";
 import { Viewer_viewer as User } from "wpapi";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { Step1 } from "./Step1";
 import { Step3 } from "./Step3";
@@ -17,7 +13,6 @@ export interface UnsubscribeFormData {
   otherDesc?: string;
 }
 export function UnsubscribeView({ user: { email, firstName } }: Props) {
-  const router = useRouter();
   const [stepNumber, setStepNumber] = useState<number>(3);
   const [formData, setFormData] = useState<UnsubscribeFormData>(
     {} as UnsubscribeFormData,
@@ -39,14 +34,15 @@ export function UnsubscribeView({ user: { email, firstName } }: Props) {
     case 3:
       CurrentStep = (
         <Step3
-          email={email}
+          email={email || "without email"}
           setStepNumber={setStepNumber}
           setFormData={setFormData}
+          formData={formData}
         />
       );
       break;
     case 4:
-      CurrentStep = <Step4 email="navid" name={firstName || "client"} />;
+      CurrentStep = <Step4 />;
       break;
     default:
       CurrentStep = <div />;
