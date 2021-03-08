@@ -27,14 +27,9 @@ export function Step1({ name, setFormData, setStepNumber }: Props) {
         />
         <Formik
           initialValues={initialValues}
-          //   validationSchema={step1Schema}
-          onSubmit={async (values: Partial<UnsubscribeFormData>) => {
-            try {
-              setFormData(values);
-              setStepNumber(2);
-            } catch {
-              console.log("navid error");
-            }
+          onSubmit={(values: Partial<UnsubscribeFormData>) => {
+            setFormData(values);
+            setStepNumber(2);
           }}
         >
           {({ values }) => {

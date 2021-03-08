@@ -24,18 +24,11 @@ export function Step2({ setStepNumber }: Props) {
         />
         <Formik
           initialValues={initialValues}
-          //   validationSchema={step1Schema}
-
-          onSubmit={async () => {
-            try {
-              setStepNumber(3);
-            } catch {
-              console.log("navid error");
-            }
+          onSubmit={() => {
+            setStepNumber(3);
           }}
         >
           {({ values }) => {
-            console.log("navid values==", values);
             return (
               <FormWrapper>
                 <Section>

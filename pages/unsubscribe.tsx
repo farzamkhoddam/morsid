@@ -17,12 +17,7 @@ export default function EditProfile({ user }: Props) {
   }
 
   const { email, subscribed } = user;
-  if (
-    !email
-    // TODO: navid uncomment it
-    // ||  !subscribed
-  )
-    router.replace("/");
+  if (!email || !subscribed) router.replace("/");
   return <UnsubscribeView user={user} />;
 }
 

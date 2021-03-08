@@ -25,7 +25,7 @@ export function ArticleView({ post }: Props) {
     post: { title, content, excerpt, date, featuredImage },
     viewer,
   } = post;
-  console.log("navid viewer=", post);
+
   return (
     <>
       <Head>

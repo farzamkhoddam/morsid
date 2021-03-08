@@ -3,18 +3,15 @@ import SimplePageHeader from "components/simplePageHeader";
 import { device } from "consts/theme";
 import styled from "styled-components";
 import Link from "next/link";
+import { Viewer_viewer as User } from "wpapi";
 
 interface Props {
-  firstName: string;
-  lastName: string;
-  email: string;
+  user: User;
   handleLogout: () => void;
 }
 
 export function AccountView({
-  firstName,
-  lastName,
-  email,
+  user: { firstName, lastName, email, subscribed },
   handleLogout,
 }: Props) {
   return (
@@ -28,9 +25,11 @@ export function AccountView({
               <Link href="/edit-profile">
                 <span>Edit Profile</span>
               </Link>
-              <Link href="/">
-                <UnsubTitle>Unsubscribe</UnsubTitle>
-              </Link>
+              {subscribed && (
+                <Link href="/unsubscribe">
+                  <UnsubTitle>Unsubscribe</UnsubTitle>
+                </Link>
+              )}
             </LinksContainer>
           </TitleContainer>
 
@@ -111,7 +110,11 @@ const LinksContainer = styled.div`
   }
 `;
 const UnsubTitle = styled.div`
+  cursor: pointer;
   margin-left: 4.25rem;
+  &:hover {
+    color: var(--accent-color-normal);
+  }
   @media ${device.mobileL} {
     margin-left: 3.25rem;
   }
@@ -137,15 +140,16 @@ const Label = styled.div`
 
 const Field = styled.div`
     width: 100%;
-    
     margin: 8px 0 3.125rem;
-    
     padding: 16px;
     border: 1px solid;
     border-radius: 1px;
     appearance: none;
-    font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+    letter-spacing: 0.06em;
     border-color: var(--primary-color-normal)};
     overflow-wrap: anywhere;
     text-align: start;

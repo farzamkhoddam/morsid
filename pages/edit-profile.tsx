@@ -12,11 +12,8 @@ export default function EditProfile({ user }: Props) {
   if (!user) {
     return null;
   }
-  const { firstName, lastName } = user;
 
-  return (
-    <EditProfileView firstName={firstName || ""} lastName={lastName || ""} />
-  );
+  return <EditProfileView user={user} />;
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({

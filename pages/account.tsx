@@ -19,16 +19,7 @@ export default function Account({ user }: Props) {
     removeUserData();
   };
 
-  const { firstName, lastName, email } = user;
-
-  return (
-    <AccountView
-      firstName={firstName || ""}
-      lastName={lastName || ""}
-      email={email || ""}
-      handleLogout={handleLogout}
-    />
-  );
+  return <AccountView user={user} handleLogout={handleLogout} />;
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({

@@ -6,11 +6,11 @@ import { device } from "consts/theme";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import { Viewer_viewer as User } from "wpapi";
 import axios from "axios";
 
 interface Props {
-  firstName: string;
-  lastName: string;
+  user: User;
 }
 interface FormValues {
   firstName: string;
@@ -25,10 +25,10 @@ const EditProfileSchema = yup.object().shape({
   new_pass: yup.string().label("New Password"),
   old_pass: yup.string().label("Last Password"),
 });
-export function EditProfileView({ firstName, lastName }: Props) {
+export function EditProfileView({ user: { firstName, lastName } }: Props) {
   const initialValues: FormValues = {
-    firstName: firstName,
-    lastName: lastName,
+    firstName: firstName || "",
+    lastName: lastName || "",
     new_pass: "",
     old_pass: "",
   };
@@ -176,6 +176,7 @@ const Label = styled.div`
   line-height: 20px;
   letter-spacing: 0.06em;
   text-transform: capitalize;
+  color: var(--gray-color-normal);
 `;
 
 const StyledField = styled(Field)`
@@ -185,8 +186,10 @@ const StyledField = styled(Field)`
     border: 1px solid;
     border-radius: 1px;
     appearance: none;
-    font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.06em;
     border-color: var(--primary-color-normal)};
     overflow-wrap: anywhere;
     text-align: start;
@@ -210,7 +213,7 @@ const Buttons = styled.div`
     width: 100%;
   }
   @media ${device.mobileL} {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 `;
 const SaveButton = styled.input`
@@ -268,6 +271,6 @@ const StyledButton = styled(Button)`
   @media ${device.mobileL} {
     width: 100%;
     margin: 0;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
   }
 `;
