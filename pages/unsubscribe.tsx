@@ -1,22 +1,29 @@
 import { GetServerSideProps } from "next";
+
 import { fetchViwer, Viewer_viewer as User } from "wpapi";
 import { getTokenCookie } from "utils/auth-cookie";
-import { EditProfileView } from "pageComponents/EditProfile/View";
 import { Redirect } from "next";
+import { useRouter } from "next/router";
+import { UnsubscribeView } from "pageComponents/Unsubscribe/View";
 
 interface Props {
   user?: User;
 }
 
 export default function EditProfile({ user }: Props) {
+  const router = useRouter();
   if (!user) {
     return null;
   }
-  const { firstName, lastName } = user;
 
-  return (
-    <EditProfileView firstName={firstName || ""} lastName={lastName || ""} />
-  );
+  const { email, subscribed } = user;
+  if (
+    !email
+    // TODO: navid uncomment it
+    // ||  !subscribed
+  )
+    router.replace("/");
+  return <UnsubscribeView user={user} />;
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({
