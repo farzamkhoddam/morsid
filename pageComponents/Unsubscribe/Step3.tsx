@@ -96,6 +96,9 @@ const StyledStepper = styled(Stepper)`
   height: 5rem;
   width: 100%;
   max-width: 714px;
+  @media ${device.tabletS} {
+    width: 90%;
+  }
 `;
 const H1 = styled.h1`
   width: fit-content;
@@ -110,7 +113,6 @@ const H1 = styled.h1`
     margin-bottom: 1.875rem;
   }
   @media ${device.mobileL} {
-    padding-right: 1rem;
   }
 `;
 const P = styled.section`
@@ -125,9 +127,14 @@ const P = styled.section`
 const Buttonscontainer = styled.div`
   width: 57%;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   @media ${device.tabletL} {
     width: 73%;
+  }
+  @media ${device.mobileL} {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 `;
 
@@ -179,6 +186,7 @@ const SubmitButton = styled.div`
     position: relative;
     margin: 0 auto;
     right: 0;
+    width: 90%;
   }
 `;
 const BackButtonDiv = styled.div`
@@ -196,5 +204,9 @@ const BackButtonDiv = styled.div`
   align-items: center;
   @media ${device.tabletM} {
     width: 14.25rem;
+  }
+  @media ${device.mobileL} {
+    width: 90%;
+    margin-bottom: 2rem;
   }
 `;
