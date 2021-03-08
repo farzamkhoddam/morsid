@@ -208,7 +208,7 @@ const Buttons = styled.div`
   align-items: center;
   margin: 0 auto;
   margin-top: 2rem;
-  width: calc((2 * (6 * var(--bcw)+4 * var(--wcw)+var(--wcw))));
+  width: 52%;
   @media ${device.tabletL} {
     width: 100%;
   }
@@ -220,7 +220,7 @@ const SaveButton = styled.input`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: calc(50%);
+  width: 50%;
   height: 64px;
   padding: var(--padding) calc(var(--padding) * 2);
   background: var(--accent-color-normal);
@@ -264,7 +264,7 @@ const SaveButton = styled.input`
 const StyledButton = styled(Button)`
   width: 50%;
   height: 64px;
-  margin-right: 11px;
+  margin-right: 15px;
   div {
     width: 100%;
   }
