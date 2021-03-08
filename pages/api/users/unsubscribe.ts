@@ -1,8 +1,8 @@
+import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
-import { fetchLoginUser } from "../../../wpapi";
-import { setTokenCookie } from "utils/auth-cookie";
+import { getTokenCookie } from "utils/auth-cookie";
 
-export default async function RegisterUser(
+export default async function UnsubscribeUser(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
@@ -11,24 +11,20 @@ export default async function RegisterUser(
     return;
   }
 
-  const { email, password } = req.body;
-
   try {
-    const { data } = await fetchLoginUser({
-      variables: {
-        input: {
-          clientMutationId: "next",
-          username: email,
-          password,
+    const token = getTokenCookie(req);
+    await axios.post(
+      `https://wp.thehustleclub.com/wp-json/pl/v1/cl_cancel_subscribe_user`,
+      req.body,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       },
-    });
-    const token = data?.data?.login?.refreshToken;
-    if (token) {
-      setTokenCookie(res, token);
-      res.status(200).json({ success: true });
-      return;
-    }
+    );
+    res.status(200).json({ success: true });
+    return;
   } catch (e) {
     console.log(e);
   }

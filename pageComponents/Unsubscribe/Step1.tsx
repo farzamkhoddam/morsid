@@ -1,9 +1,6 @@
-import Button from "components/Button";
-import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { device } from "consts/theme";
 import styled from "styled-components";
-
 import React, { Dispatch, SetStateAction } from "react";
 import Stepper from "components/Stepper";
 import { UnsubscribeFormData } from "./View";

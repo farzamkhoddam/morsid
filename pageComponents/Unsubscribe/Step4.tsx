@@ -1,16 +1,17 @@
 import { device } from "consts/theme";
 import styled from "styled-components";
 import React from "react";
-import axios from "axios";
+import { useRouter } from "next/router";
 
 export function Step4() {
+  const router = useRouter();
   return (
     <Container>
       <Wrapper>
         <FormWrapper>
           <H1>You have successfully unsubscribed!</H1>
           <P>You have been successfuly removed from this subscriber</P>
-          <SubmitButton />
+          <SubmitButton onClick={() => router.replace("/")}>Home</SubmitButton>
         </FormWrapper>
       </Wrapper>
     </Container>
@@ -83,6 +84,7 @@ const P = styled.p`
   margin-bottom: 4.5rem;
 `;
 const SubmitButton = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

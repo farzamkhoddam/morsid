@@ -1,7 +1,5 @@
-import { Formik } from "formik";
 import { device } from "consts/theme";
 import styled from "styled-components";
-
 import React, { Dispatch, SetStateAction } from "react";
 import Stepper from "components/Stepper";
 import { UnsubscribeFormData } from "./View";
@@ -16,27 +14,22 @@ interface Props {
   formData: UnsubscribeFormData;
 }
 
-export function Step3({ email, formData }: Props) {
+export function Step3({ email, formData, setStepNumber }: Props) {
   const router = useRouter();
   const submitHandler = async () => {
-    console.log("navid data=", formData);
-
     try {
-      const res = await axios.post("/wp-json/pl/v1/cl_cancel_subscribe_user", {
+      await axios.post("/api/users/unsubscribe", {
         email: email,
         formData,
       });
-      console.log("navid res=", res);
-      // setUserData(res.data.user.subscribed);
+      setStepNumber(4);
     } catch {
       toast.error(
         "Unfortunately, something went wrong. Please try again later ...",
       );
     }
   };
-  const stayHandler = () => {
-    router.replace("/");
-  };
+
   return (
     <Container>
       <Wrapper>
@@ -48,7 +41,7 @@ export function Step3({ email, formData }: Props) {
           <H1>Are you sure you want to go?</H1>
           <P>If you unsubscribe now, you miss important things.</P>
           <Buttonscontainer>
-            <BackButtonDiv onClick={() => stayHandler()}>
+            <BackButtonDiv onClick={() => router.replace("/")}>
               <p>I want to stay</p>
             </BackButtonDiv>
             <SubmitButton onClick={() => submitHandler()}>SUBMIT</SubmitButton>
