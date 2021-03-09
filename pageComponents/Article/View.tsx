@@ -42,7 +42,7 @@ export function PlaybookView({ post }: Props) {
           title={title}
           description={content ? content : excerpt}
           image={featuredImage?.node?.mediaItemUrl}
-          playbook={true}
+          article={true}
         />
 
         <article className="blog-post">
