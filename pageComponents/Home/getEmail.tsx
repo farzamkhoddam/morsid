@@ -1,10 +1,11 @@
+import lscache from "lscache";
 import styled from "styled-components";
-
 import { Formik, Form } from "formik";
 import { TextInput } from "components/TextInput";
 import { device } from "consts/theme";
 import * as yup from "yup";
 import axios from "axios";
+import { KEYs } from "consts/other";
 
 interface Props {
   vertical?: boolean;
@@ -38,7 +39,11 @@ const GetEmail: React.FC<Props> = ({
           } catch (e) {
             console.log("error=", e);
           }
-          document.location.href = process.env.clickFunelPaymentUrl as string;
+          const referrer = lscache.get(KEYs.utmReferrer);
+          const smartUrl = referrer
+            ? `${process.env.clickFunelPaymentUrl}?${KEYs.utmReferrer}=${referrer}`
+            : (process.env.clickFunelPaymentUrl as string);
+          document.location.href = smartUrl;
         }}
       >
         {({ isSubmitting }) => (
