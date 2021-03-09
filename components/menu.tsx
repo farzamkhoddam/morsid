@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 interface Props {
   className?: string;
-
   activeItemIndex: number;
 }
 const Menu: React.FC<Props> = ({ className, activeItemIndex }) => {

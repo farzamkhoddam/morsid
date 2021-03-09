@@ -13,7 +13,7 @@ export interface UnsubscribeFormData {
   otherDesc?: string;
 }
 export function UnsubscribeView({ user: { email, firstName } }: Props) {
-  const [stepNumber, setStepNumber] = useState<number>(4);
+  const [stepNumber, setStepNumber] = useState<number>(1);
   const [formData, setFormData] = useState<UnsubscribeFormData>(
     {} as UnsubscribeFormData,
   );
