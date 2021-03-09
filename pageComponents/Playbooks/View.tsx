@@ -16,7 +16,7 @@ interface Props {
   fetchNextPage: () => void;
 }
 
-export const ArticlesView = ({
+export const PlaybooksView = ({
   pages,
   fetchNextPage,
   hasNextPage,

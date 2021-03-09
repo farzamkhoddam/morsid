@@ -10,11 +10,11 @@ interface Props {
 const BlogList = ({ posts }: Props) => {
   return (
     <Section className={`home-posts`}>
-      <ArticlesContainer>
+      <PlaybooksContainer>
         {posts.map((post) =>
           post ? <PostCard key={post.id} post={post} /> : null,
         )}
-      </ArticlesContainer>
+      </PlaybooksContainer>
     </Section>
   );
 };
@@ -28,7 +28,7 @@ const Section = styled.section`
     padding-left: 0;
   }
 `;
-const ArticlesContainer = styled.div`
+const PlaybooksContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 30%);
   gap: 36px;

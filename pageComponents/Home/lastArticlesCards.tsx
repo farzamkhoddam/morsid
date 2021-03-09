@@ -9,7 +9,7 @@ interface Props {
   posts: PostsPage;
 }
 
-const LastArticlesCards = ({ posts }: Props) => {
+const LastPlaybooksCards = ({ posts }: Props) => {
   const windowSize = useWindowSize();
   //TODO: refactor this with the deviceType parameter of useWindowSize hook
   let deviceType = "laptop";
@@ -36,7 +36,7 @@ const LastArticlesCards = ({ posts }: Props) => {
   );
 };
 
-export default LastArticlesCards;
+export default LastPlaybooksCards;
 
 const CardsContainer = styled.div`
   width: 100%;

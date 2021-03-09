@@ -16,8 +16,8 @@ export default function EditProfile({ user }: Props) {
     return null;
   }
 
-  const { email, subscribed } = user;
-  if (!email || !subscribed) router.replace("/");
+  const { email } = user;
+  if (!email) router.replace("/");
   return <UnsubscribeView user={user} />;
 }
 

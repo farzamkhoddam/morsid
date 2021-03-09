@@ -5,13 +5,13 @@ import { device } from "../../consts/theme";
 import Link from "next/link";
 import LighteningIcon from "components/Svgs/lightening";
 import React from "react";
-import LastArticlesCards from "./lastArticlesCards";
+import LastPlaybooksCards from "./lastPlaybooksCards";
 
 interface Props {
   posts: PostsPage;
 }
 
-export default function LastArticles({ posts }: Props) {
+export default function LastPlaybooks({ posts }: Props) {
   return (
     <SectionContainer>
       <StyledLighteningIcon1 />
@@ -31,8 +31,8 @@ export default function LastArticles({ posts }: Props) {
           value={carouselValue}
           onChange={(value) => setCarouselValue(value)}
         /> */}
-        <LastArticlesCards posts={posts} />
-        <Link href="/articles">
+        <LastPlaybooksCards posts={posts} />
+        <Link href="/playbooks">
           <ShowMoreButton>Show More</ShowMoreButton>
         </Link>
       </LatestWrapper>

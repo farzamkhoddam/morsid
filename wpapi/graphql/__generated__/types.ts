@@ -151,7 +151,7 @@ export interface Post_post {
 
   featuredImage: Post_post_featuredImage | null;
   /**
-   * shows viewew has permission for reading article or not
+   * shows viewew has permission for reading playbook or not
    */
   access: Post_post_access;
 }

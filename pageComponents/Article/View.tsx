@@ -14,7 +14,7 @@ interface Props {
   post: Post;
 }
 
-export function ArticleView({ post }: Props) {
+export function PlaybookView({ post }: Props) {
   const windowSize = useWindowSize();
 
   if (!post.post) {
@@ -42,7 +42,7 @@ export function ArticleView({ post }: Props) {
           title={title}
           description={content ? content : excerpt}
           image={featuredImage?.node?.mediaItemUrl}
-          article={true}
+          playbook={true}
         />
 
         <article className="blog-post">
@@ -104,7 +104,7 @@ export function ArticleView({ post }: Props) {
           <MustBuyContainer>
             <TransparentSection />
             <H4>This Playbook Is Coming Soon...</H4>
-            <StyledButton title="View Playbooks" to="/articles" />
+            <StyledButton title="View Playbooks" to="/playbooks" />
           </MustBuyContainer>
         ) : null}
 

@@ -52,7 +52,7 @@ export default function HomeHeader() {
               />
             ) : (
               <SmartButton
-                to="/articles"
+                to="/playbooks"
                 title="Read Playbooks"
                 viewType="glow"
               />

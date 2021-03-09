@@ -10,7 +10,7 @@ const NotLoginedUserMenuItems = [
     title: "Home",
   },
   {
-    path: "/articles",
+    path: "/playbooks",
     title: "Playbooks",
   },
   {
@@ -24,7 +24,7 @@ const LoginedUserMenuItems = [
     title: "Home",
   },
   {
-    path: "/articles",
+    path: "/playbooks",
     title: "Playbooks",
   },
   {

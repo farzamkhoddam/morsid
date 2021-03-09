@@ -4,7 +4,7 @@ import SEO from "../components/seo";
 import Footer from "components/footer";
 import HomeMenu from "pageComponents/Home/menu";
 import HomeHeader from "pageComponents/Home/header";
-import LatArticles from "pageComponents/Home/lastArticles";
+import LatPlaybooks from "pageComponents/Home/lastPlaybooks";
 import OurMission from "pageComponents/Home/ourMisson";
 import styled from "styled-components";
 
@@ -18,7 +18,7 @@ export default function Home({ posts }: Props) {
       <SEO />
       <HomeMenu />
       <HomeHeader />
-      <LatArticles posts={posts} />
+      <LatPlaybooks posts={posts} />
       <OurMission />
       <Footer />
     </Container>

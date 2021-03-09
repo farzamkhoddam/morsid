@@ -1,13 +1,13 @@
 import { GetStaticProps } from "next";
 import { fetchPosts, Posts_posts as PostsPage } from "../wpapi";
-import { ArticlesView } from "../pageComponents/Articles/View";
+import { PlaybooksView } from "../pageComponents/Playbooks/View";
 import { QueryClient, useInfiniteQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import axios from "axios";
 
 const POST_PER_PAGE = 6;
 
-export default function Articles() {
+export default function Playbooks() {
   const {
     data,
     fetchNextPage,
@@ -34,7 +34,7 @@ export default function Articles() {
   );
 
   return (
-    <ArticlesView
+    <PlaybooksView
       hasNextPage={!!hasNextPage}
       fetchNextPage={fetchNextPage}
       isFetchingNextPage={isFetchingNextPage}

@@ -12,7 +12,7 @@ const PostCard = ({ post, className }: { post: Post; className?: string }) => {
 
   return (
     <Container className={className}>
-      <Link href={`/article/${post.slug}`}>
+      <Link href={`/playbook/${post.slug}`}>
         <PostWrapper>
           <GreySide>
             {!smallThumbnail?.postSmallThumbnail?.mediaItemUrl ? (

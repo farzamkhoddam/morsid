@@ -55,7 +55,7 @@ export default function OurMission() {
             />
           ) : (
             <SmartButton
-              to="/articles"
+              to="/playbooks"
               title="Read Playbooks"
               viewType="glow"
             />
@@ -67,14 +67,14 @@ export default function OurMission() {
               }
               loginWithoutSubscribed={
                 <SmartButton
-                  to="/articles"
+                  to="/playbooks"
                   title="Read Playbooks"
                   viewType="glow"
                 />
               }
               loginWithSubscribed={
                 <SmartButton
-                  to="/articles"
+                  to="/playbooks"
                   title="Read Artciles"
                   viewType="glow"
                 />
