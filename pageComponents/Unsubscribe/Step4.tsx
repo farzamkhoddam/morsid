@@ -72,7 +72,6 @@ const H1 = styled.h1`
     margin-bottom: 1.875rem;
   }
   @media ${device.mobileL} {
-    padding-right: 1rem;
   }
 `;
 const P = styled.p`

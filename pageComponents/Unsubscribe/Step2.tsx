@@ -150,6 +150,9 @@ const StyledStepper = styled(Stepper)`
   height: 5rem;
   width: 100%;
   max-width: 714px;
+  @media ${device.tabletS} {
+    width: 90%;
+  }
 `;
 
 const Section = styled.section`
@@ -304,6 +307,11 @@ const Buttonscontainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  @media ${device.mobileL} {
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
 `;
 
 const SubmitButton = styled.input<{ disabled: boolean }>`
@@ -357,6 +365,7 @@ const SubmitButton = styled.input<{ disabled: boolean }>`
       position: relative;
       margin:0 auto;
       right:0;
+      width:90%;
   }
 `;
 const BackButtonDiv = styled.div`

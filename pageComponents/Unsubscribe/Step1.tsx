@@ -174,6 +174,9 @@ const StyledStepper = styled(Stepper)`
   height: 5rem;
   width: 100%;
   max-width: 714px;
+  @media ${device.tabletS} {
+    width: 90%;
+  }
 `;
 
 const Section = styled.section`
