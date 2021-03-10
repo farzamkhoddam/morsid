@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import Image from "next/image";
 import React from "react";
-
+import { Viewer_viewer as User } from "../../wpapi";
 import LighteningIcon from "components/Svgs/lightening";
 import Button from "components/Button";
 import { device } from "consts/theme";
 import { deviceTypes, useWindowSize } from "hooks/useWindowSize";
-import { useUserData } from "hooks/useUserData";
 import GetEmail from "./getEmail";
+import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
 
-export default function OurMission() {
+interface Props {
+  user: User;
+}
+
+export default function OurMission({ user }: Props) {
   const { deviceType } = useWindowSize();
-  const { siginStatus } = useUserData();
+
   return (
     <SectionContainer>
       <StyledLighteningIcon2 />
@@ -48,18 +52,30 @@ export default function OurMission() {
           <OurMissionDesc>
             {`As a Hustle Club member, entrepreneurial success is in your favor.`}
           </OurMissionDesc>
-          {siginStatus === "NOT-LOGINED" ? (
-            <StyledGetEmail
-              vertical={true}
-              submitLabel="Get Proven Side Hustles Now"
-            />
-          ) : (
-            <SmartButton
-              to="/playbooks"
-              title="Read Playbooks"
-              viewType="glow"
-            />
-          )}
+          <SmartCompBaseOnLogin
+            doesNotLogin={
+              <StyledGetEmail
+                vertical={true}
+                submitLabel="Get Proven Side Hustles Now"
+              />
+            }
+            loginWithSubscribed={
+              <SmartButton
+                to="/playbooks"
+                title="Read Playbooks"
+                viewType="glow"
+              />
+            }
+            loginWithoutSubscribed={
+              <SmartButton
+                to="/playbooks"
+                title="Read Playbooks"
+                viewType="glow"
+              />
+            }
+            user={user}
+          />
+
           {/* {typeof window && (
             <StyledSmartCompBaseOnLogin
               doesNotLogin={

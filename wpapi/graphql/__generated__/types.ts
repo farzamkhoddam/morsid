@@ -82,6 +82,7 @@ export interface Posts {
    * Connection between the RootQuery type and the post type
    */
   posts: Posts_posts | null;
+  viewer: Post_viewer | null;
 }
 
 export interface PostsVariables {

@@ -5,8 +5,13 @@ import { device } from "../../consts/theme";
 import { useWindowSize } from "hooks/useWindowSize";
 import React from "react";
 import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
+import { Viewer_viewer as User } from "../../wpapi";
 
-const HomeMenu = () => {
+interface Props {
+  user: User;
+}
+
+const HomeMenu = ({ user }: Props) => {
   const windowSize = useWindowSize();
   function getSmartLogoWidth() {
     return windowSize.width > 425 ? 120 : 95;
@@ -42,6 +47,7 @@ const HomeMenu = () => {
                 <LoginButton>My Profile</LoginButton>
               </Link>
             }
+            user={user}
           />
         )}
       </Wrapper>

@@ -1,13 +1,17 @@
-import { GetStaticProps } from "next";
-import { fetchPosts, Posts_posts as PostsPage } from "../wpapi";
+import { GetServerSideProps, GetStaticProps } from "next";
+import { fetchPosts, fetchViwer, Posts_posts as PostsPage } from "../wpapi";
 import { PlaybooksView } from "../pageComponents/Playbooks/View";
 import { QueryClient, useInfiniteQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import axios from "axios";
+import { getTokenCookie } from "utils/auth-cookie";
+import { Viewer_viewer as User } from "wpapi";
 
 const POST_PER_PAGE = 6;
-
-export default function Playbooks() {
+interface Props {
+  user: User;
+}
+export default function Playbooks({ user }: Props) {
   const {
     data,
     fetchNextPage,
@@ -39,22 +43,39 @@ export default function Playbooks() {
       fetchNextPage={fetchNextPage}
       isFetchingNextPage={isFetchingNextPage}
       pages={data?.pages || []}
+      user={user}
     />
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const token = getTokenCookie(req);
+  let user: User | null | undefined = null;
+  if (token) {
+    const [{ data }] = [
+      await fetchViwer({
+        clientConfig: () => ({ headers: { Authorization: `Bearer ${token}` } }),
+      }),
+    ];
+    user = data?.data?.viewer;
+  }
+
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery("posts", async () => {
-    return (await fetchPosts({ variables: { first: POST_PER_PAGE } })).data
-      ?.data.posts;
+    return (
+      await fetchPosts({
+        variables: { first: POST_PER_PAGE },
+        // clientConfig: () => ({ headers: { Authorization: `Bearer ${token}` } }),
+      })
+    ).data?.data.posts;
   });
 
   return {
     props: {
+      user: user as User,
       // see https://github.com/tannerlinsley/react-query/issues/1458#issuecomment-747716357
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
-    revalidate: 20,
+    // revalidate: 20,
   };
 };

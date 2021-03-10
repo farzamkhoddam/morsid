@@ -2,7 +2,7 @@ import { useState, ReactNode } from "react";
 import { HiOutlineMenu, HiX } from "react-icons/hi";
 import styled from "styled-components";
 import Link from "next/link";
-import { useUserData } from "hooks/useUserData";
+import { Viewer_viewer as User } from "wpapi";
 
 const NotLoginedUserMenuItems = [
   {
@@ -51,24 +51,21 @@ interface Props {
   setIsActiveMenu: Function;
   isActiveMenu: boolean;
   activeItemIndex: number;
+  user: User;
 }
 const Navigation: React.FC<Props> = ({
   setIsActiveMenu,
   isActiveMenu,
-
+  user,
   activeItemIndex,
 }) => {
-  const { siginStatus } = useUserData();
   const [toggleMenu, setToggleMenu] = useState(isActiveMenu);
   function handleToggleClick() {
     setIsActiveMenu(!toggleMenu);
     setToggleMenu(!toggleMenu);
   }
 
-  const MenuItems =
-    siginStatus === "NOT-LOGINED"
-      ? NotLoginedUserMenuItems
-      : LoginedUserMenuItems;
+  const MenuItems = !user ? NotLoginedUserMenuItems : LoginedUserMenuItems;
   const listMenuItems = MenuItems.map((menuItem, index) => {
     return (
       <ListLink

@@ -1,6 +1,6 @@
-import { useUserData } from "hooks/useUserData";
 import { ReactNode } from "react";
 import { CSSObject } from "styled-components";
+import { Viewer_viewer as User } from "wpapi";
 
 interface Props {
   doesNotLogin: ReactNode;
@@ -8,6 +8,7 @@ interface Props {
   loginWithSubscribed?: ReactNode;
   className?: string;
   style?: CSSObject;
+  user: User | null;
 }
 const SmartCompBaseOnLogin: React.FC<Props> = ({
   doesNotLogin,
@@ -15,16 +16,14 @@ const SmartCompBaseOnLogin: React.FC<Props> = ({
   loginWithoutSubscribed,
   className,
   style,
+  user,
 }) => {
-  const { siginStatus } = useUserData();
-
+  let smartComponent = doesNotLogin;
+  if (user?.subscribed) smartComponent = loginWithSubscribed;
+  if (user?.subscribed === false) smartComponent = loginWithoutSubscribed;
   return (
     <div className={className} style={style}>
-      {siginStatus !== "NOT-LOGINED"
-        ? siginStatus === "SUBSCRIBED"
-          ? loginWithSubscribed || loginWithoutSubscribed // in some cased  only things matter is logined or not. in this case we dont sent loginWithSubscribed
-          : loginWithoutSubscribed
-        : doesNotLogin}
+      {smartComponent}
     </div>
   );
 };

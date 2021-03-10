@@ -8,6 +8,7 @@ import { setUserData } from "utils/auth-storage";
 import { device } from "consts/theme";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import { KEYs } from "consts/other";
 
 interface FormValues {
   email: string;
@@ -35,10 +36,6 @@ export default function LoginForm() {
           onSubmit={async (values) => {
             try {
               await axios.post("/api/users/login", values);
-              const res = await axios.post<{ user: { subscribed: boolean } }>(
-                "/api/users/me",
-              );
-              setUserData(res.data.user.subscribed);
               router.push("/playbooks");
             } catch {
               toast.error("Wrong email or password");

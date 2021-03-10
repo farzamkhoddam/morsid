@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import Menu from "../components/menu";
+import { Viewer_viewer as User } from "wpapi";
 
 interface Props {
   activeItemIndex: number;
+  user: User;
 }
 
-const SimplePageHeader: React.FC<Props> = ({ activeItemIndex }) => {
+const SimplePageHeader: React.FC<Props> = ({ activeItemIndex, user }) => {
   return (
     <Container>
-      <Menu activeItemIndex={activeItemIndex} />
+      <Menu activeItemIndex={activeItemIndex} user={user} />
     </Container>
   );
 };

@@ -3,12 +3,15 @@ import { device } from "../../consts/theme";
 import Image from "next/image";
 import Button from "components/Button";
 import React from "react";
-import { useUserData } from "hooks/useUserData";
 import GetEmail from "./getEmail";
+import SmartCompBaseOnLogin from "components/smartCompBaseOnLogin";
+import { Viewer_viewer as User } from "../../wpapi";
 
-export default function HomeHeader() {
-  const { siginStatus } = useUserData();
+interface Props {
+  user: User;
+}
 
+export default function HomeHeader({ user }: Props) {
   return (
     <Container>
       <CloneContainerForHashur>
@@ -24,7 +27,7 @@ export default function HomeHeader() {
       {/* چون عکس هدر باید تا آخر صفحه بره، وقتی صحفه خیلی زوم اوت بشه بسیار زشت میشه. 
       از این دیو ایمج لیمیتر استفاده میکنیم که ایمیج از یک حدی بزرگتر نشه */}
       <ImageLimiter>
-        <ImageContainer isSignOut={siginStatus === "NOT-LOGINED"}>
+        <ImageContainer isSignOut={!user}>
           <Image
             src="/home-header.jpg"
             width={686}
@@ -45,18 +48,29 @@ export default function HomeHeader() {
           </CircleHashrContainer>
           <TitleAndButton>
             <Title>MASTER THE ART OF ENGINEERING SIDE INCOME</Title>
-            {siginStatus === "NOT-LOGINED" ? (
-              <StyledGetEmail
-                vertical={true}
-                submitLabel="Get Proven Side Hustles Now"
-              />
-            ) : (
-              <SmartButton
-                to="/playbooks"
-                title="Read Playbooks"
-                viewType="glow"
-              />
-            )}
+            <SmartCompBaseOnLogin
+              doesNotLogin={
+                <StyledGetEmail
+                  vertical={true}
+                  submitLabel="Get Proven Side Hustles Now"
+                />
+              }
+              loginWithSubscribed={
+                <SmartButton
+                  to="/playbooks"
+                  title="Read Playbooks"
+                  viewType="glow"
+                />
+              }
+              loginWithoutSubscribed={
+                <SmartButton
+                  to="/playbooks"
+                  title="Read Playbooks"
+                  viewType="glow"
+                />
+              }
+              user={user}
+            />
           </TitleAndButton>
         </InnerSection>
       </ImageLimiter>

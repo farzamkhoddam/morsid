@@ -1,4 +1,4 @@
 export enum KEYs {
-  userDataKey = "user_data",
+  refreshToken = "refreshToken",
   utmReferrer = "utm_referrer",
 }

@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import Navigation from "../components/navigation";
 import { useState } from "react";
-
+import { Viewer_viewer as User } from "wpapi";
 import Image from "next/image";
 import Link from "next/link";
 interface Props {
   className?: string;
   activeItemIndex: number;
+  user: User;
 }
-const Menu: React.FC<Props> = ({ className, activeItemIndex }) => {
+const Menu: React.FC<Props> = ({ className, activeItemIndex, user }) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   return (
     <MenuContainer className={className}>
@@ -24,6 +25,7 @@ const Menu: React.FC<Props> = ({ className, activeItemIndex }) => {
               activeItemIndex={activeItemIndex}
               setIsActiveMenu={setIsActiveMenu}
               isActiveMenu={isActiveMenu}
+              user={user}
             />
           </DeactiveMenuNavContainer>
         ) : (
@@ -32,6 +34,7 @@ const Menu: React.FC<Props> = ({ className, activeItemIndex }) => {
               activeItemIndex={activeItemIndex}
               setIsActiveMenu={setIsActiveMenu}
               isActiveMenu={isActiveMenu}
+              user={user}
             />
           </ActiveMenuNavContainer>
         )}

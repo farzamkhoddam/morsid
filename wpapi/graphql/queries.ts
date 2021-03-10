@@ -24,6 +24,12 @@ export const POSTS = gql`
         hasPreviousPage
       }
     }
+    viewer {
+      email
+      firstName
+      lastName
+      subscribed
+    }
   }
 `;
 

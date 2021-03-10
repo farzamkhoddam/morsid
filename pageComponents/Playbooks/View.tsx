@@ -1,19 +1,19 @@
 import SEO from "../../components/seo";
 import styled from "styled-components";
 import BlogList from "./blogList";
-import { Posts_posts as PostsPage } from "../../wpapi";
+import { Viewer_viewer as User, Posts_posts as PostsPage } from "../../wpapi";
 import Menu from "../../components/menu";
 import Button from "../../components/Button";
 import { device } from "consts/theme";
 import React from "react";
 import MasterClasses from "./MasterClass";
-import { useUserData } from "hooks/useUserData";
 
 interface Props {
   pages: PostsPage[];
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
   fetchNextPage: () => void;
+  user: User;
 }
 
 export const PlaybooksView = ({
@@ -21,13 +21,12 @@ export const PlaybooksView = ({
   fetchNextPage,
   hasNextPage,
   isFetchingNextPage,
+  user,
 }: Props) => {
-  const { siginStatus } = useUserData();
-
   return (
     <div className="page">
       <SEO />
-      <Menu activeItemIndex={1} />
+      <Menu activeItemIndex={1} user={user} />
       <div className="wrapper">
         <H1>Hustle Playbooks</H1>
         {pages.map((page) => (
@@ -41,7 +40,7 @@ export const PlaybooksView = ({
             />
           ) : null}
         </LoadMoreButton>
-        {siginStatus === "SUBSCRIBED" && <MasterClasses />}
+        {user?.subscribed && <MasterClasses />}
       </div>
     </div>
   );
