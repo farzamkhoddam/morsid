@@ -25,7 +25,10 @@ const EditProfileSchema = yup.object().shape({
   new_pass: yup.string().label("New Password"),
   old_pass: yup.string().label("Last Password"),
 });
-export function EditProfileView({ user: { firstName, lastName } }: Props) {
+export function EditProfileView({
+  user: { firstName, lastName },
+  user,
+}: Props) {
   const initialValues: FormValues = {
     firstName: firstName || "",
     lastName: lastName || "",
@@ -36,7 +39,7 @@ export function EditProfileView({ user: { firstName, lastName } }: Props) {
 
   return (
     <div className="edit-profile-page">
-      <SimplePageHeader activeItemIndex={2} />
+      <SimplePageHeader activeItemIndex={2} user={user} />
       <Container>
         <Wrapper>
           <TitleContainer>

@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { fetchPosts, fetchViwer, Posts_posts as PostsPage } from "../wpapi";
 import { PlaybooksView } from "../pageComponents/Playbooks/View";
 import { QueryClient, useInfiniteQuery } from "react-query";

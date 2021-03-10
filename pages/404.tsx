@@ -1,44 +1,35 @@
-import { RiArrowLeftSLine, RiBugLine, RiSkullLine } from "react-icons/ri";
-import SEO from "../components/seo";
+import { RiArrowLeftSLine, RiSkullLine } from "react-icons/ri";
 import Link from "next/link";
-import SimplePageHeader from "components/simplePageHeader";
 
-const NotFound = () => (
-  <div className="not-found-page">
-    <SEO title="Page not found" />
-    <SimplePageHeader activeItemIndex={-1} />
-    <div
-      className="wrapper"
-      style={{
-        textAlign: "center",
-      }}
-    >
-      <header>
-        <RiSkullLine
-          style={{
-            fontSize: "128px",
-            color: "var(--primary-color-dark)",
-          }}
-        />
-        <h1>Oops we did not expect that to happen</h1>
-        <p>
-          Have you wondered into the unknow. Let us help you, Please take a look
-          at below options
-        </p>
-      </header>
-      <Link href="/">
-        <div className="button">
-          <RiArrowLeftSLine className="icon -left" />
-          Back to Homepage
-        </div>
-      </Link>
-      {/* <Link href="/contact">
-        <div className="button -outline">
-          Report this <RiBugLine className="icon -right" />
-        </div>
-      </Link> */}
+export default function NotFound() {
+  return (
+    <div className="not-found-page">
+      <div
+        className="wrapper"
+        style={{
+          textAlign: "center",
+        }}
+      >
+        <header>
+          <RiSkullLine
+            style={{
+              fontSize: "128px",
+              color: "var(--primary-color-dark)",
+            }}
+          />
+          <h1>Oops we did not expect that to happen</h1>
+          <p>
+            Have you wondered into the unknow. Let us help you, Please take a
+            look at below options
+          </p>
+        </header>
+        <Link href="/">
+          <div className="button" style={{ marginTop: "2rem" }}>
+            <RiArrowLeftSLine className="icon -left" />
+            Back to Homepage
+          </div>
+        </Link>
+      </div>
     </div>
-  </div>
-);
-
-export default NotFound;
+  );
+}

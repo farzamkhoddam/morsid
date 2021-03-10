@@ -11,12 +11,13 @@ interface Props {
 }
 
 export function AccountView({
+  user,
   user: { firstName, lastName, email, subscribed },
   handleLogout,
 }: Props) {
   return (
     <div className="account-page">
-      <SimplePageHeader activeItemIndex={2} subscribed={subscribed} />
+      <SimplePageHeader activeItemIndex={2} user={user} />
       <Container>
         <Wrapper>
           <TitleContainer>

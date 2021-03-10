@@ -1,4 +1,5 @@
-import { Post, Post_post_access } from "../../wpapi";
+import { Viewer_viewer as User, Post, Post_post_access } from "wpapi";
+
 import Error from "next/error";
 import SEO from "../../components/seo";
 import { device } from "../../consts/theme";
@@ -37,7 +38,7 @@ export function PlaybookView({ post }: Props) {
         />
       </Head>
       <div className="page">
-        <SimplePageHeader activeItemIndex={-1} />
+        <SimplePageHeader activeItemIndex={-1} user={viewer as User} />
         <SEO
           title={title}
           description={content ? content : excerpt}

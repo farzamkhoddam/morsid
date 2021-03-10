@@ -9,7 +9,6 @@ import CalendarIcon from "./Svgs/calendar";
 
 const PostCard = ({ post, className }: { post: Post; className?: string }) => {
   const { smallThumbnail, title, excerpt } = post;
-
   return (
     <Container className={className}>
       <Link href={`/playbook/${post.slug}`}>

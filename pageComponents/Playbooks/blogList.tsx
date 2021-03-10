@@ -1,10 +1,11 @@
 import PostCard from "../../components/post-card";
 import styled from "styled-components";
 import { device } from "../../consts/theme";
-import { Posts_posts_nodes as Post } from "../../wpapi";
+import { Posts_posts_nodes as Post, Viewer_viewer as User } from "../../wpapi";
 
 interface Props {
   posts: (Post | null)[];
+  user: User;
 }
 
 const BlogList = ({ posts }: Props) => {

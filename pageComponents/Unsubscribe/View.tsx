@@ -12,7 +12,7 @@ export interface UnsubscribeFormData {
   why?: string[];
   otherDesc?: string;
 }
-export function UnsubscribeView({ user: { email, firstName } }: Props) {
+export function UnsubscribeView({ user: { email, firstName }, user }: Props) {
   const [stepNumber, setStepNumber] = useState<number>(1);
   const [formData, setFormData] = useState<UnsubscribeFormData>(
     {} as UnsubscribeFormData,
@@ -51,7 +51,7 @@ export function UnsubscribeView({ user: { email, firstName } }: Props) {
   }
   return (
     <div className="unsubscribe-page">
-      <SimplePageHeader activeItemIndex={2} />
+      <SimplePageHeader activeItemIndex={2} user={user} />
       {CurrentStep}
     </div>
   );
