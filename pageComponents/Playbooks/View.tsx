@@ -30,7 +30,11 @@ export const PlaybooksView = ({
       <div className="wrapper">
         <H1>Hustle Playbooks</H1>
         {pages.map((page) => (
-          <BlogList key={page.pageInfo?.startCursor} posts={page.nodes || []} />
+          <BlogList
+            key={page.pageInfo?.startCursor}
+            posts={page.nodes || []}
+            user={user}
+          />
         ))}
         <LoadMoreButton>
           {hasNextPage ? (

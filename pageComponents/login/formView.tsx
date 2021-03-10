@@ -4,11 +4,9 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import * as yup from "yup";
 import styled from "styled-components";
-import { setUserData } from "utils/auth-storage";
 import { device } from "consts/theme";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { KEYs } from "consts/other";
 
 interface FormValues {
   email: string;

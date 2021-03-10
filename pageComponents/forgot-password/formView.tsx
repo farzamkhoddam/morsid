@@ -5,7 +5,6 @@ import axios from "axios";
 import * as yup from "yup";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { setUserData } from "utils/auth-storage";
 import { device } from "consts/theme";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -47,10 +46,6 @@ export default function LoginForm() {
             setLoginFailed(false);
             try {
               await axios.post("/api/users/login", values);
-              const res = await axios.post<{ user: { subscribed: boolean } }>(
-                "/api/users/me",
-              );
-              setUserData(res.data.user.subscribed);
               router.push("/account");
             } catch {
               setLoginFailed(true);

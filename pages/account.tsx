@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 
 import { fetchViwer, Viewer_viewer as User } from "wpapi";
 import { getTokenCookie } from "utils/auth-cookie";
-import { removeUserData } from "utils/auth-storage";
+
 import { AccountView } from "pageComponents/Account/View";
 import { Redirect } from "next";
 
@@ -16,7 +16,8 @@ export default function Account({ user }: Props) {
   }
 
   const handleLogout = () => {
-    removeUserData();
+    // removeUserData();
+    //navid find way to remove token  for logout
   };
 
   return <AccountView user={user} handleLogout={handleLogout} />;
