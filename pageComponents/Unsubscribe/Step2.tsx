@@ -38,8 +38,7 @@ export function Step2({ setStepNumber }: Props) {
                     <TwoSide>
                       <Side1>
                         <FirstH2>
-                          I understand that by cancelling my plan. I’ll confirm
-                          ...
+                          I understand that by cancelling my plan. I’ll lose ...
                         </FirstH2>
                         <Checkboxs
                           role="group"
@@ -67,14 +66,14 @@ export function Step2({ setStepNumber }: Props) {
                               name="confirm"
                               value="item3"
                             />
-                            {`My current lockd-in price. I understand that the price of a Hustle Club subscribtion is likely to increase in the future.`}
+                            {`My current locked-in price. I understand that the price of a Hustle Club subscription is likely to increase in the future.`}
                           </Label>
                         </Checkboxs>
                         <Desc>Check all the boxes to continue ...</Desc>
                       </Side1>
                       <Side2>
                         <Side2Title>
-                          You are about to confirm your Hustle Club membership
+                          You are about to lose your Hustle Club membership
                         </Side2Title>
                         <Side2Subtitle>
                           <DesktopH3>Commitment:</DesktopH3>
