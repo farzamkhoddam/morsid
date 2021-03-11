@@ -51,6 +51,9 @@ export function SupportNotLoginedView() {
           <TitleContainer>
             <div>How can we help?</div>
           </TitleContainer>
+          <TellUs>
+            Tell us about your problem, and we’ll find you a solution
+          </TellUs>
           <Formik
             initialValues={initialValues}
             validationSchema={EditProfileSchema}
@@ -84,14 +87,14 @@ export function SupportNotLoginedView() {
                       <FieldError>{errors.email}</FieldError>
                     ) : null}
                   </RowItem>
-                  <RowItem>
-                    <Label>ٍWhat’s your question?</Label>
+                  <RowItem2>
+                    <Label>What’s your question?</Label>
                     <StyledField name="question" type="text" />
                     {errors.question && touched.question ? (
                       <FieldError>{errors.question}</FieldError>
                     ) : null}
-                  </RowItem>
-                  <RowItem>
+                  </RowItem2>
+                  <RowItem3>
                     <H2 style={{ marginBottom: "2rem" }}>{`Tell us more`}</H2>
                     <Textarea
                       style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
@@ -100,7 +103,7 @@ export function SupportNotLoginedView() {
                       //   placeholder="Please tell us more so we can improve the Hustle Club."
                       rows={8}
                     />
-                  </RowItem>
+                  </RowItem3>
 
                   <SaveButton
                     value="SUBMIT"
@@ -155,7 +158,25 @@ const TitleContainer = styled.div`
     width: 100%;
   }
 `;
-
+const TellUs = styled.p`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 144.4%;
+  align-self: flex-start;
+  position: absolute;
+  top: 6rem;
+  @media ${device.laptopXS} {
+    top: 7rem;
+  }
+  @media ${device.mobileS} {
+    font-size: 16px;
+  }
+  @media ${device.mobileM} {
+    font-size: 19px;
+  }
+`;
 const Section = styled.article`
   display: flex;
   justify-content: space-between;
@@ -173,7 +194,31 @@ const Section = styled.article`
 `;
 const RowItem = styled.div`
   position: relative;
-  width: calc(50% - (var(--wcw) / 2));
+  width: 49%;
+  margin-top: 3.2rem;
+  height: 7rem;
+  @media ${device.tabletL} {
+    width: 100%;
+  }
+  @media ${device.laptopXS} {
+    margin-top: 3.3rem;
+  }
+`;
+const RowItem2 = styled.div`
+  position: relative;
+  width: 100%;
+
+  @media ${device.tabletL} {
+    width: 100%;
+  }
+  @media ${device.laptopXS} {
+    margin-top: 3.3rem;
+  }
+`;
+const RowItem3 = styled.div`
+  position: relative;
+  width: 100%;
+  margin-bottom: 4rem;
   @media ${device.tabletL} {
     width: 100%;
   }
@@ -242,7 +287,7 @@ const SaveButton = styled.input`
   line-height: 24px;
   text-transform: uppercase;
   transition: background 0.3s linear;
-  margin-left: 11px;
+  width: 16.5rem;
   &.-outline {
     color: var(--primary-color-dark);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
@@ -283,9 +328,11 @@ const StyledButton = styled(Button)`
   }
 `;
 const H2 = styled.h2`
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--gray-color-normal);
+  margin-bottom: 0;
   @media ${device.tabletL} {
     font-size: 16px;
     line-height: 20px;
@@ -296,6 +343,8 @@ const Textarea = styled(Field)`
   font-size: 16px;
   line-height: 20px;
   color: #4f4f4f;
+  width: 100%;
+  height: 15.93rem;
   &::placeholder {
     font-weight: 500;
     font-size: 16px;
