@@ -260,6 +260,13 @@ article img {
     margin: 0 auto;
   }
 }
+.thanks-page,
+.not-found-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 22px;
+}
 // Contact page
 .unsubscribe-page,
 .edit-profile-page,
