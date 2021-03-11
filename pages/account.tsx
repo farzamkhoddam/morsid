@@ -17,7 +17,7 @@ export default function Account({ user }: Props) {
 
   const handleLogout = () => {
     // removeUserData();
-    //navid find way to remove token  for logout
+    //navid checl logout system after comment abobe line
   };
 
   return <AccountView user={user} handleLogout={handleLogout} />;

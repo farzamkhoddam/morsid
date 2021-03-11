@@ -7,7 +7,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { device } from "consts/theme";
 import Link from "next/link";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import ToasterContainer from "components/ToasterContainer";
 
 interface FormValues {
   email: string;
@@ -38,6 +39,7 @@ export default function LoginForm() {
   }, [loginFailed]);
   return (
     <FormContainer>
+      <ToasterContainer />
       <FormWrapper>
         <Formik
           initialValues={initialValues}

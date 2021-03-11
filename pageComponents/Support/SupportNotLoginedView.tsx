@@ -4,57 +4,63 @@ import { Formik, Form, Field } from "formik";
 import SimplePageHeader from "components/simplePageHeader";
 import { device } from "consts/theme";
 import styled from "styled-components";
-import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
-import { Viewer_viewer as User } from "wpapi";
 import axios from "axios";
 import React from "react";
 import ToasterContainer from "components/ToasterContainer";
 
-interface Props {
-  user: User;
-}
 interface FormValues {
-  firstName: string;
-  lastName: string;
-  new_pass: string;
-  old_pass: string;
+  name: string;
+  email: string;
+  question: string;
+  tellMore: string;
 }
 
 const EditProfileSchema = yup.object().shape({
-  firstName: yup.string().label("First Name"),
-  lastName: yup.string().label("Last Name"),
-  new_pass: yup.string().label("New Password"),
-  old_pass: yup.string().label("Last Password"),
+  name: yup.string().label("Name").required(),
+  email: yup.string().label("Email Address").email().required(),
+  question: yup.string().label("Question").required(),
+  tellMore: yup.string().label("Tell More"),
 });
-export function EditProfileView({
-  user: { firstName, lastName },
-  user,
-}: Props) {
+export function SupportNotLoginedView() {
   const initialValues: FormValues = {
-    firstName: firstName || "",
-    lastName: lastName || "",
-    new_pass: "",
-    old_pass: "",
+    name: "",
+    email: "",
+    question: "",
+    tellMore: "",
   };
-  const router = useRouter();
 
   return (
     <div className="edit-profile-page">
-      <ToasterContainer />
-      <SimplePageHeader activeItemIndex={2} user={user} />
+      {/* <ToasterContainer /> */}
+
+      <SimplePageHeader activeItemIndex={2} />
       <Container>
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            error: {
+              style: {
+                background: "#161515",
+                color: "white",
+              },
+            },
+          }}
+        />
         <Wrapper>
           <TitleContainer>
-            <div>Profile</div>
+            <div>How can we help?</div>
           </TitleContainer>
           <Formik
             initialValues={initialValues}
             validationSchema={EditProfileSchema}
             onSubmit={async (values) => {
               try {
-                await axios.post("/api/users/edit-profile", values);
-                router.push("/account");
+                await axios.post("/api/support", {
+                  ...values,
+                  status: "VISITOR",
+                });
+                toast.success("Your message has been successfully registered");
               } catch (e) {
                 toast.error("Sorry, your operation failed.");
                 console.log("error=", e);
@@ -65,47 +71,42 @@ export function EditProfileView({
               <Form style={{ width: "100%" }}>
                 <Section>
                   <RowItem>
-                    <Label>First Name</Label>
-                    <StyledField name="firstName" type="text" />
-                    {errors.firstName && touched.firstName ? (
-                      <FieldError>{errors.firstName}</FieldError>
+                    <Label>Name</Label>
+                    <StyledField name="name" type="text" />
+                    {errors.name && touched.name ? (
+                      <FieldError>{errors.name}</FieldError>
                     ) : null}
                   </RowItem>
                   <RowItem>
-                    <Label>Last Name</Label>
-                    <StyledField name="lastName" type="text" />
-                    {errors.lastName && touched.lastName ? (
-                      <FieldError>{errors.firstName}</FieldError>
+                    <Label>Email</Label>
+                    <StyledField name="email" type="email" />
+                    {errors.email && touched.email ? (
+                      <FieldError>{errors.email}</FieldError>
                     ) : null}
                   </RowItem>
                   <RowItem>
-                    <Label>Last Password</Label>
-                    <StyledField
-                      name="old_pass"
-                      type="password"
-                      placeholder="Enter Last Password"
-                    />
+                    <Label>ٍWhat’s your question?</Label>
+                    <StyledField name="question" type="text" />
+                    {errors.question && touched.question ? (
+                      <FieldError>{errors.question}</FieldError>
+                    ) : null}
                   </RowItem>
                   <RowItem>
-                    <Label>New Password</Label>
-                    <StyledField
-                      name="new_pass"
-                      type="password"
-                      placeholder="Enter New Password"
+                    <H2 style={{ marginBottom: "2rem" }}>{`Tell us more`}</H2>
+                    <Textarea
+                      style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
+                      component="textarea"
+                      name="tellMore"
+                      //   placeholder="Please tell us more so we can improve the Hustle Club."
+                      rows={8}
                     />
                   </RowItem>
-                  <Buttons>
-                    <StyledButton
-                      clickHandler={() => router.back()}
-                      title={`Cancel`}
-                      border={true}
-                    />
-                    <SaveButton
-                      value="Save"
-                      type="submit"
-                      disabled={isSubmitting}
-                    />
-                  </Buttons>
+
+                  <SaveButton
+                    value="SUBMIT"
+                    type="submit"
+                    disabled={isSubmitting}
+                  />
                 </Section>
               </Form>
             )}
@@ -279,5 +280,26 @@ const StyledButton = styled(Button)`
     width: 100%;
     margin: 0;
     margin-top: 2rem;
+  }
+`;
+const H2 = styled.h2`
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  @media ${device.tabletL} {
+    font-size: 16px;
+    line-height: 20px;
+  }
+`;
+const Textarea = styled(Field)`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #4f4f4f;
+  &::placeholder {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #4f4f4f;
   }
 `;

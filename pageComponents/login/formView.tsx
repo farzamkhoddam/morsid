@@ -6,7 +6,9 @@ import * as yup from "yup";
 import styled from "styled-components";
 import { device } from "consts/theme";
 import Link from "next/link";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import React from "react";
+import ToasterContainer from "components/ToasterContainer";
 
 interface FormValues {
   email: string;
@@ -27,6 +29,7 @@ export default function LoginForm() {
   const router = useRouter();
   return (
     <FormContainer>
+      <ToasterContainer />
       <FormWrapper>
         <Formik
           initialValues={initialValues}
