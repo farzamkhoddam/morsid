@@ -4,7 +4,7 @@ import { Viewer_viewer as User } from "wpapi";
 
 interface Props {
   activeItemIndex: number;
-  user: User;
+  user?: User;
 }
 
 const SimplePageHeader: React.FC<Props> = ({ activeItemIndex, user }) => {

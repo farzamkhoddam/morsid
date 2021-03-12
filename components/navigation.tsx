@@ -14,6 +14,10 @@ const NotLoginedUserMenuItems = [
     title: "Playbooks",
   },
   {
+    path: "/support",
+    title: "Support",
+  },
+  {
     path: "/login",
     title: "Login",
   },
@@ -26,6 +30,10 @@ const LoginedUserMenuItems = [
   {
     path: "/playbooks",
     title: "Playbooks",
+  },
+  {
+    path: "/support",
+    title: "Support",
   },
   {
     path: "/account",
@@ -51,7 +59,7 @@ interface Props {
   setIsActiveMenu: Function;
   isActiveMenu: boolean;
   activeItemIndex: number;
-  user: User;
+  user?: User;
 }
 const Navigation: React.FC<Props> = ({
   setIsActiveMenu,

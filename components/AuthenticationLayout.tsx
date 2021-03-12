@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { device } from "consts/theme";
 import { useWindowSize } from "hooks/useWindowSize";
 import HomeIcon from "./Svgs/ic24-home";
-import { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import Image from "next/image";
+import ToasterContainer from "./ToasterContainer";
 
 interface Props {
   title: string;
@@ -17,17 +17,7 @@ const AuthenticationLayout: React.FC<Props> = ({ title, children }) => {
 
   return (
     <div className="account-page">
-      <Toaster
-        position="bottom-center"
-        toastOptions={{
-          error: {
-            style: {
-              background: "#161515",
-              color: "white",
-            },
-          },
-        }}
-      />
+      <ToasterContainer />
       <Container>
         <Content>
           <ImageContainer>

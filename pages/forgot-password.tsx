@@ -10,6 +10,8 @@ import styled from "styled-components";
 import { device } from "consts/theme";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import React from "react";
+import ToasterContainer from "components/ToasterContainer";
 
 interface FormValues {
   email: string;
@@ -28,6 +30,7 @@ export default function ForgotPassword() {
 
   return (
     <AuthenticationLayout title="Enter your email, we'll send you a link to reset your password.">
+      <ToasterContainer />
       <FormContainer>
         <FormWrapper>
           <Formik

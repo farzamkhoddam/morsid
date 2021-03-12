@@ -5,39 +5,28 @@ import SimplePageHeader from "components/simplePageHeader";
 import { device } from "consts/theme";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Viewer_viewer as User } from "wpapi";
 import axios from "axios";
-import React from "react";
 import ToasterContainer from "components/ToasterContainer";
 
 interface Props {
   user: User;
 }
 interface FormValues {
-  firstName: string;
-  lastName: string;
-  new_pass: string;
-  old_pass: string;
+  question: string;
+  tellMore: string;
 }
 
 const EditProfileSchema = yup.object().shape({
-  firstName: yup.string().label("First Name"),
-  lastName: yup.string().label("Last Name"),
-  new_pass: yup.string().label("New Password"),
-  old_pass: yup.string().label("Last Password"),
+  question: yup.string().label("Question"),
+  tellMore: yup.string().label("Tell More"),
 });
-export function EditProfileView({
-  user: { firstName, lastName },
-  user,
-}: Props) {
+export function SupportLoginedView({ user }: Props) {
   const initialValues: FormValues = {
-    firstName: firstName || "",
-    lastName: lastName || "",
-    new_pass: "",
-    old_pass: "",
+    question: "",
+    tellMore: "",
   };
-  const router = useRouter();
 
   return (
     <div className="edit-profile-page">
@@ -46,15 +35,23 @@ export function EditProfileView({
       <Container>
         <Wrapper>
           <TitleContainer>
-            <div>Profile</div>
+            <div>How can we help?</div>
           </TitleContainer>
+          <TellUs>
+            Tell us about your problem, and we’ll find you a solution
+          </TellUs>
           <Formik
             initialValues={initialValues}
             validationSchema={EditProfileSchema}
             onSubmit={async (values) => {
               try {
-                await axios.post("/api/users/edit-profile", values);
-                router.push("/account");
+                await axios.post("/api/support", {
+                  ...values,
+                  email: user.email,
+                  name: user.firstName,
+                  status: user.subscribed ? "SUBSCRIBER" : "USER",
+                });
+                toast.success("Your message has been successfully registered");
               } catch (e) {
                 toast.error("Sorry, your operation failed.");
                 console.log("error=", e);
@@ -65,47 +62,30 @@ export function EditProfileView({
               <Form style={{ width: "100%" }}>
                 <Section>
                   <RowItem>
-                    <Label>First Name</Label>
-                    <StyledField name="firstName" type="text" />
-                    {errors.firstName && touched.firstName ? (
-                      <FieldError>{errors.firstName}</FieldError>
+                    <Label>What’s your question?</Label>
+                    <StyledField name="question" type="text" />
+                    {errors.question && touched.question ? (
+                      <FieldError>{errors.question}</FieldError>
                     ) : null}
                   </RowItem>
-                  <RowItem>
-                    <Label>Last Name</Label>
-                    <StyledField name="lastName" type="text" />
-                    {errors.lastName && touched.lastName ? (
-                      <FieldError>{errors.firstName}</FieldError>
-                    ) : null}
-                  </RowItem>
-                  <RowItem>
-                    <Label>Last Password</Label>
-                    <StyledField
-                      name="old_pass"
-                      type="password"
-                      placeholder="Enter Last Password"
+                  <RowItem2>
+                    <H2
+                      style={{ marginBottom: "0.5rem", marginTop: "0.5rem" }}
+                    >{`Tell us more`}</H2>
+                    <Textarea
+                      style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
+                      component="textarea"
+                      name="tellMore"
+                      //   placeholder="Please tell us more so we can improve the Hustle Club."
+                      rows={8}
                     />
-                  </RowItem>
-                  <RowItem>
-                    <Label>New Password</Label>
-                    <StyledField
-                      name="new_pass"
-                      type="password"
-                      placeholder="Enter New Password"
-                    />
-                  </RowItem>
-                  <Buttons>
-                    <StyledButton
-                      clickHandler={() => router.back()}
-                      title={`Cancel`}
-                      border={true}
-                    />
-                    <SaveButton
-                      value="Save"
-                      type="submit"
-                      disabled={isSubmitting}
-                    />
-                  </Buttons>
+                  </RowItem2>
+
+                  <SaveButton
+                    value="SUBMIT"
+                    type="submit"
+                    disabled={isSubmitting}
+                  />
                 </Section>
               </Form>
             )}
@@ -130,7 +110,6 @@ const Wrapper = styled.div`
   height: inherit;
   padding: 0 2rem;
   padding-top: 11rem;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -154,7 +133,25 @@ const TitleContainer = styled.div`
     width: 100%;
   }
 `;
-
+const TellUs = styled.p`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 144.4%;
+  align-self: flex-start;
+  position: absolute;
+  top: 6rem;
+  @media ${device.laptopXS} {
+    top: 7rem;
+  }
+  @media ${device.mobileS} {
+    font-size: 16px;
+  }
+  @media ${device.mobileM} {
+    font-size: 19px;
+  }
+`;
 const Section = styled.article`
   display: flex;
   justify-content: space-between;
@@ -172,9 +169,25 @@ const Section = styled.article`
 `;
 const RowItem = styled.div`
   position: relative;
-  width: calc(50% - (var(--wcw) / 2));
+  width: 100%;
+  margin-top: 3.2rem;
+  height: 7rem;
   @media ${device.tabletL} {
     width: 100%;
+  }
+  @media ${device.laptopXS} {
+    margin-top: 3.3rem;
+  }
+`;
+const RowItem2 = styled.div`
+  position: relative;
+  width: 100%;
+  margin-bottom: 3rem;
+  @media ${device.tabletL} {
+    width: 100%;
+  }
+  @media ${device.laptopXS} {
+    margin-top: 1.5rem;
   }
 `;
 const Label = styled.div`
@@ -227,7 +240,7 @@ const SaveButton = styled.input`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 16.5rem;
   height: 64px;
   padding: var(--padding) calc(var(--padding) * 2);
   background: var(--accent-color-normal);
@@ -241,7 +254,7 @@ const SaveButton = styled.input`
   line-height: 24px;
   text-transform: uppercase;
   transition: background 0.3s linear;
-  margin-left: 11px;
+  // margin-left: 11px;
   &.-outline {
     color: var(--primary-color-dark);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
@@ -268,16 +281,28 @@ const SaveButton = styled.input`
     margin: 0;
   }
 `;
-const StyledButton = styled(Button)`
-  width: 50%;
-  height: 64px;
-  margin-right: 15px;
-  div {
-    width: 100%;
+
+const H2 = styled.h2`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--gray-color-normal);
+  @media ${device.tabletL} {
+    font-size: 16px;
+    line-height: 20px;
   }
-  @media ${device.mobileL} {
-    width: 100%;
-    margin: 0;
-    margin-top: 2rem;
+`;
+const Textarea = styled(Field)`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #4f4f4f;
+  width: 100%;
+  height: 15.93rem;
+  &::placeholder {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #4f4f4f;
   }
 `;

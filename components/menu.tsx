@@ -7,7 +7,7 @@ import Link from "next/link";
 interface Props {
   className?: string;
   activeItemIndex: number;
-  user: User;
+  user?: User;
 }
 const Menu: React.FC<Props> = ({ className, activeItemIndex, user }) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
