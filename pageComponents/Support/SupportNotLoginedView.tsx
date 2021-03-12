@@ -95,7 +95,7 @@ export function SupportNotLoginedView() {
                     ) : null}
                   </RowItem2>
                   <RowItem3>
-                    <H2 style={{ marginBottom: "2rem" }}>{`Tell us more`}</H2>
+                    <H2 style={{ marginBottom: "0.5rem" }}>{`Tell us more`}</H2>
                     <Textarea
                       style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
                       component="textarea"
@@ -168,7 +168,7 @@ const TellUs = styled.p`
   align-self: flex-start;
   position: absolute;
   top: 6rem;
-  width: 90%;
+  width: 89%;
   @media ${device.laptopXS} {
     top: 7rem;
   }
@@ -313,7 +313,7 @@ const H2 = styled.h2`
   font-size: 16px;
   line-height: 20px;
   color: var(--gray-color-normal);
-  margin-bottom: 0;
+  margin-bottom: 0rem;
   @media ${device.tabletL} {
     font-size: 16px;
     line-height: 20px;
