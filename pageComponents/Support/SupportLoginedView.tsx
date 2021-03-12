@@ -80,12 +80,13 @@ export function SupportLoginedView({ user }: Props) {
                       rows={8}
                     />
                   </RowItem2>
-
-                  <SaveButton
-                    value="SUBMIT"
-                    type="submit"
-                    disabled={isSubmitting}
-                  />
+                  <BottomContainer>
+                    <SaveButton
+                      value="SUBMIT"
+                      type="submit"
+                      disabled={isSubmitting}
+                    />
+                  </BottomContainer>
                 </Section>
               </Form>
             )}
@@ -142,14 +143,14 @@ const TellUs = styled.p`
   align-self: flex-start;
   position: absolute;
   top: 6rem;
+  width: 89%;
   @media ${device.laptopXS} {
     top: 7rem;
   }
-  @media ${device.mobileS} {
+  @media ${device.tabletL} {
+    font-weight: 500;
     font-size: 16px;
-  }
-  @media ${device.mobileM} {
-    font-size: 19px;
+    line-height: 144.4%;
   }
 `;
 const Section = styled.article`
@@ -235,6 +236,11 @@ const Buttons = styled.div`
   @media ${device.mobileL} {
     flex-direction: column-reverse;
   }
+`;
+const BottomContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
 `;
 const SaveButton = styled.input`
   display: inline-flex;
