@@ -104,12 +104,13 @@ export function SupportNotLoginedView() {
                       rows={8}
                     />
                   </RowItem3>
-
-                  <SaveButton
-                    value="SUBMIT"
-                    type="submit"
-                    disabled={isSubmitting}
-                  />
+                  <BottomContainer>
+                    <SaveButton
+                      value="SUBMIT"
+                      type="submit"
+                      disabled={isSubmitting}
+                    />
+                  </BottomContainer>
                 </Section>
               </Form>
             )}
@@ -167,14 +168,14 @@ const TellUs = styled.p`
   align-self: flex-start;
   position: absolute;
   top: 6rem;
+  width: 90%;
   @media ${device.laptopXS} {
     top: 7rem;
   }
-  @media ${device.mobileS} {
+  @media ${device.tabletL} {
+    font-weight: 500;
     font-size: 16px;
-  }
-  @media ${device.mobileM} {
-    font-size: 19px;
+    line-height: 144.4%;
   }
 `;
 const Section = styled.article`
@@ -256,22 +257,15 @@ const FieldError = styled.div`
   bottom: 1rem;
   color: red;
 `;
-const Buttons = styled.div`
+const BottomContainer = styled.div`
+  width: 100%;
   display: flex;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: 2rem;
-  width: 52%;
-  @media ${device.tabletL} {
-    width: 100%;
-  }
-  @media ${device.mobileL} {
-    flex-direction: column-reverse;
-  }
+  align-items: flex-start;
 `;
 const SaveButton = styled.input`
   display: inline-flex;
   align-items: center;
+  self-align: flex-start;
   justify-content: center;
   width: 50%;
   height: 64px;
@@ -312,19 +306,6 @@ const SaveButton = styled.input`
   @media ${device.mobileL} {
     width: 100%;
     margin: 0;
-  }
-`;
-const StyledButton = styled(Button)`
-  width: 50%;
-  height: 64px;
-  margin-right: 15px;
-  div {
-    width: 100%;
-  }
-  @media ${device.mobileL} {
-    width: 100%;
-    margin: 0;
-    margin-top: 2rem;
   }
 `;
 const H2 = styled.h2`
