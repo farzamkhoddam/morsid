@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useWindowSize } from "hooks/useWindowSize";
 import Head from "next/head";
 import GetEmail from "pageComponents/Home/getEmail";
+import Feedback from "./Feedback";
 interface Props {
   post: Post;
 }
@@ -23,7 +24,7 @@ export function PlaybookView({ post }: Props) {
   }
 
   const {
-    post: { title, content, excerpt, date, featuredImage },
+    post: { title, content, excerpt, date, featuredImage, id },
     viewer,
   } = post;
 
@@ -80,6 +81,7 @@ export function PlaybookView({ post }: Props) {
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: content || excerpt || "" }}
           />
+          <Feedback playbookId={id} />
         </article>
         {/* //اگه ثبت نام نکرده بود */}
         {!viewer ? (

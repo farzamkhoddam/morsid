@@ -1,10 +1,9 @@
-import Button from "components/Button";
 import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import SimplePageHeader from "components/simplePageHeader";
 import { device } from "consts/theme";
 import styled from "styled-components";
-import { useRouter } from "next/router";
+
 import toast from "react-hot-toast";
 import { Viewer_viewer as User } from "wpapi";
 import axios from "axios";
@@ -224,19 +223,7 @@ const FieldError = styled.div`
   bottom: 1rem;
   color: red;
 `;
-const Buttons = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: 2rem;
-  width: 52%;
-  @media ${device.tabletL} {
-    width: 100%;
-  }
-  @media ${device.mobileL} {
-    flex-direction: column-reverse;
-  }
-`;
+
 const BottomContainer = styled.div`
   width: 100%;
   display: flex;
