@@ -30,26 +30,31 @@ const HomeMenu = ({ user }: Props) => {
             height={getSmartLogoHeight()}
           />
         </LogoContainer>
-        {typeof window && (
-          <SmartCompBaseOnLogin
-            doesNotLogin={
-              <Link href="/login">
-                <LoginButton>Login</LoginButton>
-              </Link>
-            }
-            loginWithoutSubscribed={
-              <Link href="/account">
-                <LoginButton>My Profile</LoginButton>
-              </Link>
-            }
-            loginWithSubscribed={
-              <Link href="/account">
-                <LoginButton>My Profile</LoginButton>
-              </Link>
-            }
-            user={user}
-          />
-        )}
+        <MenuItems>
+          <Link href="/support">
+            <Support>Support</Support>
+          </Link>
+          {typeof window && (
+            <SmartCompBaseOnLogin
+              doesNotLogin={
+                <Link href="/login">
+                  <LoginButton>Login</LoginButton>
+                </Link>
+              }
+              loginWithoutSubscribed={
+                <Link href="/account">
+                  <LoginButton>My Profile</LoginButton>
+                </Link>
+              }
+              loginWithSubscribed={
+                <Link href="/account">
+                  <LoginButton>My Profile</LoginButton>
+                </Link>
+              }
+              user={user}
+            />
+          )}
+        </MenuItems>
       </Wrapper>
     </Container>
   );
@@ -77,6 +82,9 @@ const Wrapper = styled.div`
   @media ${device.mobileL}{
     padding 0 22px;
   }
+`;
+const MenuItems = styled.div`
+  display: flex;
 `;
 const LoginButton = styled.div`
   cursor: pointer;
@@ -115,6 +123,15 @@ const LoginButton = styled.div`
     height: 44px;
     font-size: 16px;
     line-height: 20px;
+  }
+`;
+const Support = styled(LoginButton)`
+  background: transparent;
+  border: none;
+  color: white;
+  &:hover {
+    background: transparent;
+    color: var(--accent-color-normal);
   }
 `;
 const LogoContainer = styled.div`
