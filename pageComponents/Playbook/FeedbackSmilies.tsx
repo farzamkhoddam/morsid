@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
-import HomeIcon from "../../components/Svgs/ic24-home";
+import SmilyIcon from "./SVGs/Smily0";
 
 interface Props {
   setContentmentLevel: Dispatch<SetStateAction<number>>;
@@ -14,19 +14,44 @@ const FeedBackSmilies: React.FC<Props> = ({
   return (
     <Container>
       <IconContainer onClick={() => setContentmentLevel(0)}>
-        <HomeIcon width="40" height="40" />
+        <SmilyIcon
+          width="40"
+          height="40"
+          fill="#dbbd82"
+          opacity={contentmentLevel === 0 ? "1" : "0.5"}
+        />
       </IconContainer>
       <IconContainer onClick={() => setContentmentLevel(1)}>
-        <HomeIcon width="40" height="40" />
+        <SmilyIcon
+          width="40"
+          height="40"
+          fill="#dbbd82"
+          opacity={contentmentLevel === 1 ? "1" : "0.5"}
+        />
       </IconContainer>
       <IconContainer onClick={() => setContentmentLevel(2)}>
-        <HomeIcon width="40" height="40" />
+        <SmilyIcon
+          width="40"
+          height="40"
+          fill="#dbbd82"
+          opacity={contentmentLevel === 2 ? "1" : "0.5"}
+        />
       </IconContainer>
       <IconContainer onClick={() => setContentmentLevel(3)}>
-        <HomeIcon width="40" height="40" />
+        <SmilyIcon
+          width="40"
+          height="40"
+          fill="#dbbd82"
+          opacity={contentmentLevel === 3 ? "1" : "0.5"}
+        />
       </IconContainer>
       <IconContainer onClick={() => setContentmentLevel(4)}>
-        <HomeIcon width="40" height="40" />
+        <SmilyIcon
+          width="40"
+          height="40"
+          fill="#dbbd82"
+          opacity={contentmentLevel === 4 ? "1" : "0.5"}
+        />
       </IconContainer>
     </Container>
   );
@@ -39,5 +64,5 @@ const Container = styled.div`
   margin-bottom: 2rem;
 `;
 const IconContainer = styled.div`
-  width: auto;
+  cursor: pointer;
 `;
