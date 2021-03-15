@@ -58,5 +58,6 @@ const HomeIcon: React.FC<Props> = ({
       </defs>
     </g>
   </svg>
+  //
 );
 export default HomeIcon;
