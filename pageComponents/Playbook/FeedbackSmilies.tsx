@@ -1,6 +1,11 @@
+import { device } from "consts/theme";
 import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import SmilyIcon from "./SVGs/Smily0";
+import SmilyIcon1 from "./SVGs/Smily1";
+import SmilyIcon2 from "./SVGs/Smily2";
+import SmilyIcon3 from "./SVGs/Smily3";
+import SmilyIcon4 from "./SVGs/Smily4";
 
 interface Props {
   setContentmentLevel: Dispatch<SetStateAction<number>>;
@@ -22,7 +27,7 @@ const FeedBackSmilies: React.FC<Props> = ({
         />
       </IconContainer>
       <IconContainer onClick={() => setContentmentLevel(1)}>
-        <SmilyIcon
+        <SmilyIcon1
           width="40"
           height="40"
           fill="#dbbd82"
@@ -30,7 +35,7 @@ const FeedBackSmilies: React.FC<Props> = ({
         />
       </IconContainer>
       <IconContainer onClick={() => setContentmentLevel(2)}>
-        <SmilyIcon
+        <SmilyIcon2
           width="40"
           height="40"
           fill="#dbbd82"
@@ -38,7 +43,7 @@ const FeedBackSmilies: React.FC<Props> = ({
         />
       </IconContainer>
       <IconContainer onClick={() => setContentmentLevel(3)}>
-        <SmilyIcon
+        <SmilyIcon3
           width="40"
           height="40"
           fill="#dbbd82"
@@ -46,7 +51,7 @@ const FeedBackSmilies: React.FC<Props> = ({
         />
       </IconContainer>
       <IconContainer onClick={() => setContentmentLevel(4)}>
-        <SmilyIcon
+        <SmilyIcon4
           width="40"
           height="40"
           fill="#dbbd82"
@@ -62,6 +67,12 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
+  @media ${device.mobileM} {
+    width: 320px;
+  }
+  @media ${device.mobileS} {
+    width: 270px;
+  }
 `;
 const IconContainer = styled.div`
   cursor: pointer;

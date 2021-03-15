@@ -52,7 +52,7 @@ export default function Step1({ playbookId }: Props) {
           {({ isSubmitting }) => {
             return (
               <FormWrapper>
-                <Form>
+                <StyledForm>
                   <Textarea
                     style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
                     component="textarea"
@@ -65,7 +65,7 @@ export default function Step1({ playbookId }: Props) {
                     type="submit"
                     disabled={contentmentLevel < 0 || isSubmitting}
                   />
-                </Form>
+                </StyledForm>
               </FormWrapper>
             );
           }}
@@ -98,10 +98,17 @@ const Wrapper = styled.div`
 `;
 const Title = styled.h5`
   font-weight: 600;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 156.4%;
   color: #1d3330;
   margin-top: 39px;
+  @media ${device.mobileL} {
+    text-align: center;
+    width: 80%;
+  }
+  @media ${device.mobileS} {
+    font-size: 20px;
+  }
 `;
 const FormWrapper = styled.div`
   width: 100%;
@@ -110,7 +117,11 @@ const FormWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
+const StyledForm = styled(Form)`
+  @media ${device.mobileL} {
+    width: 85%;
+  }
+`;
 const Textarea = styled(Field)`
   font-weight: 500;
   font-size: 16px;
@@ -122,6 +133,10 @@ const Textarea = styled(Field)`
     font-size: 16px;
     line-height: 156.4%;
     color: #bdbdbd;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+    margin-bottom: 2rem;
   }
 `;
 const SubmitButton = styled.input<{ disabled: boolean }>`
