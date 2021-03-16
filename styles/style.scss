@@ -80,6 +80,7 @@ article img {
 .blog-post-content {
   max-width: var(--page-max-width);
   margin: 0 auto;
+  margin-bottom: 3rem;
   padding: 1rem 2rem;
   font-family: Montserrat;
   font-style: normal;
@@ -87,6 +88,7 @@ article img {
   font-size: 20px;
   color: #333333;
   overflow: auto;
+
   h2,
   h1 {
     font-weight: bold;
