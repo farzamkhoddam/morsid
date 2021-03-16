@@ -12,16 +12,16 @@ interface Props {
   playbookId: string;
 }
 interface Feedback {
-  contentmentLevel: number;
-  desc: string;
-  playbookId: string;
+  feedback_no: number;
+  content: string;
+  post_id: string;
 }
 
 export default function Step1({ playbookId }: Props) {
   const initialValues: Feedback = {
-    contentmentLevel: -1,
-    desc: "",
-    playbookId,
+    feedback_no: -1,
+    content: "",
+    post_id: playbookId,
   };
   const [contentmentLevel, setContentmentLevel] = useState<number>(-1);
 
@@ -38,11 +38,11 @@ export default function Step1({ playbookId }: Props) {
           initialValues={initialValues}
           onSubmit={async (values: Partial<Feedback>) => {
             try {
-              await axios.post("/api/users/edit-profile", {
+              await axios.post("/api/posts/feedback", {
                 ...values,
-                contentmentLevel,
-                playbookId,
-              });
+                feedback_no: contentmentLevel,
+                post_id: playbookId,
+              } as Feedback);
             } catch (e) {
               toast.error("Sorry, your operation failed.");
               console.log("error=", e);
@@ -56,7 +56,7 @@ export default function Step1({ playbookId }: Props) {
                   <Textarea
                     style={{ paddingTop: "1rem", paddingLeft: "1rem" }}
                     component="textarea"
-                    name="desc"
+                    name="content"
                     placeholder="Tell us more about why you choose your rating"
                   />
 
@@ -84,6 +84,7 @@ const Container = styled.div`
   height: 444px;
   background: #ffffff;
   box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1);
+  padding-bottom: 40px;
 `;
 const Wrapper = styled.div`
   max-width: var(--page-max-width);

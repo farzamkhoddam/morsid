@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { fetchPosts } from "../../../wpapi";
 import { getTokenCookie } from "utils/auth-cookie";
 
-export default async function RegisterUser(
+export default async function fetchPlaybooks(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {

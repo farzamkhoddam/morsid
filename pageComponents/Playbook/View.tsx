@@ -81,7 +81,8 @@ export function PlaybookView({ post }: Props) {
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: content || excerpt || "" }}
           />
-          <Feedback playbookId={id} />
+          {post.post.access === Post_post_access.access &&
+            viewer?.subscribed && <Feedback playbookId={id} />}
         </article>
         {/* //اگه ثبت نام نکرده بود */}
         {!viewer ? (

@@ -26,8 +26,8 @@ export default function Playbooks({ user }: Props) {
       if (pageParam) {
         query.set("after", pageParam);
       }
-      return (await axios.get(`/api/posts?${query.toString()}`)).data.data
-        .posts;
+      return (await axios.get(`/api/posts/fetch-playbooks?${query.toString()}`))
+        .data.data.posts;
     },
     {
       staleTime: Infinity,
