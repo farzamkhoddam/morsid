@@ -34,7 +34,7 @@ export default function ResetPassword() {
   if (!key || !login) toast.error("This link is wrong!");
 
   return (
-    <AuthenticationLayout title="Please enter new password.">
+    <AuthenticationLayout title="Choose your new password">
       <ToasterContainer />
       <FormContainer>
         <FormWrapper>
