@@ -33,7 +33,7 @@ export function SupportNotLoginedView() {
   return (
     <div className="edit-profile-page">
       <ToasterContainer />
-      <SimplePageHeader activeItemIndex={2} />
+      <SimplePageHeader activeItemIndex={1} />
       <Container>
         <Toaster
           position="bottom-center"

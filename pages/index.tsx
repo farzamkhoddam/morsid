@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import {
   fetchPosts,
   Posts_posts as PostsPage,
@@ -6,12 +6,12 @@ import {
 } from "../wpapi";
 import SEO from "../components/seo";
 import Footer from "components/footer";
-import HomeMenu from "pageComponents/Home/menu";
 import HomeHeader from "pageComponents/Home/header";
 import LastPlaybooks from "pageComponents/Home/lastPlaybooks";
 import OurMission from "pageComponents/Home/ourMisson";
-import styled from "styled-components";
 import { getTokenCookie } from "utils/auth-cookie";
+import React from "react";
+import SimplePageHeader from "components/simplePageHeader";
 
 interface Props {
   posts: PostsPage;
@@ -20,14 +20,14 @@ interface Props {
 
 export default function Home({ posts, user }: Props) {
   return (
-    <Container>
+    <div>
       <SEO />
-      <HomeMenu user={user} />
+      <SimplePageHeader activeItemIndex={-1} user={user} />
       <HomeHeader user={user} />
       <LastPlaybooks posts={posts} />
       <OurMission user={user} />
       <Footer />
-    </Container>
+    </div>
   );
 }
 
@@ -48,8 +48,3 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     // revalidate: 20,
   };
 };
-
-const Container = styled.div`
-  position: "relative";
-  padding-top: var(--header-height-desktop);
-`;

@@ -6,10 +6,6 @@ import { Viewer_viewer as User } from "wpapi";
 
 const NotLoginedUserMenuItems = [
   {
-    path: "/",
-    title: "Home",
-  },
-  {
     path: "/playbooks",
     title: "Playbooks",
   },
@@ -23,10 +19,6 @@ const NotLoginedUserMenuItems = [
   },
 ];
 const LoginedUserMenuItems = [
-  {
-    path: "/",
-    title: "Home",
-  },
   {
     path: "/playbooks",
     title: "Playbooks",
@@ -87,7 +79,7 @@ const Navigation: React.FC<Props> = ({
   });
   return (
     // <Container className={this.state.showMenu ? ' cross-nav' : ''}>
-    <Container className={"site-navigation"}>
+    <Container>
       <button
         onClick={handleToggleClick}
         className={"menu-trigger" + (toggleMenu ? " is-active" : "")}

@@ -44,7 +44,7 @@ const Menu: React.FC<Props> = ({ className, activeItemIndex, user }) => {
 };
 export default Menu;
 
-const MenuContainer = styled.header`
+const MenuContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

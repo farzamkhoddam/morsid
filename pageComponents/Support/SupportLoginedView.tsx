@@ -30,7 +30,7 @@ export function SupportLoginedView({ user }: Props) {
   return (
     <div className="edit-profile-page">
       <ToasterContainer />
-      <SimplePageHeader activeItemIndex={2} user={user} />
+      <SimplePageHeader activeItemIndex={1} user={user} />
       <Container>
         <Wrapper>
           <TitleContainer>

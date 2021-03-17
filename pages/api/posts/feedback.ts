@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { fetchPosts } from "../../../wpapi";
+
 import { getTokenCookie } from "utils/auth-cookie";
 import axios from "axios";
 

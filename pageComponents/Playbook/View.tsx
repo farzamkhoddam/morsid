@@ -39,7 +39,7 @@ export function PlaybookView({ post }: Props) {
         />
       </Head>
       <div className="page">
-        <SimplePageHeader activeItemIndex={-1} user={viewer as User} />
+        <SimplePageHeader activeItemIndex={0} user={viewer as User} />
         <SEO
           title={title}
           description={content ? content : excerpt}
