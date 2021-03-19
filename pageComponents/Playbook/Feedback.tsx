@@ -36,14 +36,15 @@ export default function Step1({ playbookId }: Props) {
         />
         <Formik
           initialValues={initialValues}
-          onSubmit={async (values: Partial<Feedback>) => {
+          onSubmit={async (values: Partial<Feedback>, { resetForm }) => {
             try {
               await axios.post("/api/posts/feedback", {
                 ...values,
                 feedback_no: contentmentLevel,
                 post_id: playbookId,
               } as Feedback);
-              toast.error("Thank you for your feedback");
+              toast.success("Thank you for your feedback");
+              resetForm();
             } catch (e) {
               toast.error("Sorry, your operation failed.");
               console.log("error=", e);
