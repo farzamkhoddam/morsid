@@ -43,6 +43,7 @@ export default function Step1({ playbookId }: Props) {
                 feedback_no: contentmentLevel,
                 post_id: playbookId,
               } as Feedback);
+              toast.error("Thank you for your feedback");
             } catch (e) {
               toast.error("Sorry, your operation failed.");
               console.log("error=", e);
