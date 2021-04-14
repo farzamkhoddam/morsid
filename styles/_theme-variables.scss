@@ -1,46 +1,19 @@
-// breakpoints
-$breakpoint-sm: 576px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 1024px;
-$breakpoint-xl: 1440px;
-
 :root {
-  --font-family: "Manrope", BlinkMacSystemFont, avenir next, avenir,
-    helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-  --font-family-mono: Manrope, Menlo, Consolas, Monaco, Liberation Mono,
-    Lucida Console, monospace;
-  --font-size-small: 12px;
+  --font-family: "Roboto", roboto;
 
-  // --primary-color-dark: RGBA(219, 189, 130, 100%);
-  --primary-color-normal: #1d3330;
-  // --primary-color-light: RGBA(219, 189, 130, 60%);
-  // --primary-color-xlight: RGBA(219, 189, 130, 40%);
+  --primary-color-dark: #308eff;
+  --primary-color-normal: #b6d6fd;
+  --primary-color-light: #e5f1ff;
 
-  // --secondary-color-dark: RGBA(29, 51, 48, 100%);
-  --secondary-color-normal: #161515;
-  // --secondary-color-light: RGBA(29, 51, 48, 60%);
-  // --secondary-color-xlight: RGBA(29, 51, 48, 40%);
-  --accent-color-light: #fbd995;
-  --accent-color-normal: #dbbd82;
-  --accent-color-dark: #b59b69;
+  --text-color-dark: #313131;
+  --text-color-normal: #6e6e6e;
 
-  --gray-color-dark: var(-- --primary-color-normal);
-  --gray-color-normal: #4f4f4f;
-  --gray-color-light: #828282;
-  --gray-color-xlight: #dbdddc;
-  --gray-color-xxlight: #f0f0f0;
+  --border-color-dark: #cfcfcf;
+  --border-color-normal: #ededed;
 
   --page-max-width: 1140px;
   --header-height-desktop: 7rem;
-  /////////////////////////
-  --home-link-hover-color: var(--primary-color-dark);
-  --button-color: #efe2ca;
-  --button-alternate-color: #dbbd82;
 
-  --text-color-meta: rgba(0, 0, 0, 0.5);
-
-  --label-text: rgba(0, 0, 0, 0.5);
-  --input-focus-border: var(--primary-color-normal);
   ///////////////////////
   /* blue-column-width */
   --bcw: 5.933%;

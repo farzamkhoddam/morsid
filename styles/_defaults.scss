@@ -30,26 +30,26 @@ a {
   }
 }
 h1 {
-  font-size: 4.875rem;
-  font-weight: 800;
-  line-height: 5.375rem;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 68px;
+  line-height: 80px;
+
+  color: #454545;
   color: var(--primary-color-normal);
 }
 h2 {
-  font-size: 3rem;
-  font-weight: 800;
-  line-height: 3.68575rem;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+
   color: var(--primary-color-normal);
 }
 h3 {
-  font-size: 1.437rem;
-  font-weight: 800;
-  line-height: 1.875rem;
-  color: #19251f;
-}
-h5 {
-  font-size: 0.8rem;
-  font-weight: 800;
-  line-height: 0.75rem;
+  font-family: Roboto;
+  font-weight: medium;
+  font-size: 32px;
+  line-height: 42px;
   color: #19251f;
 }
