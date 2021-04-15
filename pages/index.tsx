@@ -8,17 +8,17 @@ import Button from "elements/Button";
 import styled from "styled-components";
 import LinkdeinIcon from "elements/SVGs/LinkdinIcon";
 import WebIcon from "elements/SVGs/WebIcon";
+import PageLayout from "components/PageLayout";
 
 export default function Home() {
   return (
-    <div>
-      <SEO />
+    <PageLayout>
+      {/* <SEO /> */}
       <TestButton label="test1" />
       <TestButton label="test2" border={true} />
       <LinkdeinIcon />
       <WebIcon />
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }
 const TestButton = styled(Button)`

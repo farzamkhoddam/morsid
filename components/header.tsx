@@ -3,11 +3,11 @@ import React from "react";
 import styled from "styled-components";
 import { device } from "../consts/device";
 
-const Footer = () => {
+const Header = () => {
   return (
     <Container>
       <Wrapper>
-        <H2>LOGO</H2>
+        <H2 style={{ marginRight: "40px" }}>LOGO</H2>
         <Nav>
           <Body2>
             <a style={{ marginRight: "40px" }} href="/experts">
@@ -28,7 +28,7 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Header;
 
 const Container = styled.section`
   display: flex;
@@ -41,7 +41,7 @@ const Container = styled.section`
 `;
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   max-width: var(--page-max-width);
