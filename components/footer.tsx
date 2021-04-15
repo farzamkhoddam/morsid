@@ -34,7 +34,7 @@ const Footer = () => {
 
 export default Footer;
 
-const Container = styled.section`
+const Container = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;

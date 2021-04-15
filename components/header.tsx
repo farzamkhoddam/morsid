@@ -34,7 +34,7 @@ const Header = () => {
 
 export default Header;
 
-const Container = styled.section`
+const Container = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
