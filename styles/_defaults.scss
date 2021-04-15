@@ -25,6 +25,7 @@ p {
 a {
   text-decoration: none;
   color: inherit;
+  transition: color 0.5s;
   &:hover {
     color: var(--primary-color-dark);
   }

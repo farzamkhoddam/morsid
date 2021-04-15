@@ -7,7 +7,11 @@ const Header = () => {
   return (
     <Container>
       <Wrapper>
-        <H2 style={{ marginRight: "40px" }}>LOGO</H2>
+        <H2>
+          <a style={{ marginRight: "40px" }} href="/">
+            LOGO
+          </a>
+        </H2>
         <Nav>
           <Body2>
             <a style={{ marginRight: "40px" }} href="/experts">
@@ -36,8 +40,7 @@ const Container = styled.section`
   align-items: center;
   width: 100%;
   padding: 0 1rem;
-  height: 110px;
-  border-top: 1px solid #cfcfcf;
+  height: var(--header-height-desktop);
 `;
 const Wrapper = styled.div`
   display: flex;

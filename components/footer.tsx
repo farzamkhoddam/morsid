@@ -7,7 +7,11 @@ const Footer = () => {
   return (
     <Container>
       <Wrapper>
-        <H2>LOGO</H2>
+        <H2>
+          <a style={{ marginRight: "40px" }} href="/">
+            LOGO
+          </a>
+        </H2>
         <Nav>
           <Body2>
             <a style={{ marginRight: "40px" }} href="/experts">
@@ -37,7 +41,7 @@ const Container = styled.section`
   width: 100%;
   padding: 0 1rem;
   height: 110px;
-  border-top: 1px solid #cfcfcf;
+  border-top: 1px solid var(--border-color-dark);
 `;
 const Wrapper = styled.div`
   display: flex;
