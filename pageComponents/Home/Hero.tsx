@@ -13,7 +13,7 @@ export default function Hero() {
           <H2 style={{ marginRight: "12px" }}>Set</H2>
           <Underline>
             <H2>meetings</H2>
-            <div style={{ content: "url(/arc.svg)" }}></div>
+            <div style={{ content: "url(/images/arc.svg)" }}></div>
           </Underline>
           <H2>with them</H2>
         </Sentence>
@@ -24,7 +24,7 @@ export default function Hero() {
       </Side1>
       <Side2>
         <Image
-          src="/meetup.png"
+          src="/images/meetup.png"
           alt="meetup"
           width={566}
           height={379}
@@ -36,7 +36,7 @@ export default function Hero() {
 }
 const Sides = styled.div`
   display: flex;
-  justify-content: space-betwieen;
+  justify-content: space-between;
   width: 100%;
 `;
 const Side1 = styled.div`

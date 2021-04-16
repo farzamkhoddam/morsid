@@ -1,19 +1,27 @@
 import useHover from "hooks/useHover";
 import React, { useRef } from "react";
-import styled from "styled-components";
+import styled, { CSSObject } from "styled-components";
 
 interface Props {
   width?: string;
   height?: string;
   viewBox?: string;
   strokeColor?: string;
+  style?: CSSObject;
 }
 
-const WebIcon: React.FC<Props> = ({ width, height, viewBox, strokeColor }) => {
+const WebIcon: React.FC<Props> = ({
+  width,
+  height,
+  viewBox,
+  style,
+  strokeColor,
+}) => {
   const hoverRef = useRef(null);
   const isHover = useHover(hoverRef);
   return (
     <Svg
+      style={style}
       ref={hoverRef}
       width={width || "31"}
       height={height || "31"}

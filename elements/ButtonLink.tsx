@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 
@@ -6,23 +7,24 @@ interface Props {
   disabled?: boolean;
   className?: string;
   border?: boolean;
+  to: string;
 }
 
-const Button: React.FC<Props> = ({
+const ButtonLink: React.FC<Props> = ({
   label,
-  disabled = false,
   border = false,
   className,
+  to,
 }) => {
   return (
-    <Container disabled={disabled} className={className} border={border}>
-      {label}
+    <Container className={className} border={border}>
+      <Link href={to}>{label}</Link>
     </Container>
   );
 };
-export default Button;
+export default ButtonLink;
 
-const Container = styled.button<{ border: boolean }>`
+const Container = styled.div<{ border: boolean }>`
   background-color: ${({ border }) =>
     border ? "white" : "var(--primary-color-dark)"};
   border: ${({ border }) =>

@@ -14,11 +14,13 @@ export const PageContainer = styled.main`
 export const Paper = styled.section`
   background: #ffffff;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  border: 1px solid #ededed;
+  border: 1px solid var(--border-color-normal);
   box-sizing: border-box;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
+  padding: 1.5rem;
   &:hover {
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
   }
 `;

@@ -45,8 +45,8 @@ export const Body2 = styled.p`
 export const Body3 = styled.p`
   font-family: Roboto;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 23px;
   color: var(--text-color-normal);
   margin: 0;
 `;
