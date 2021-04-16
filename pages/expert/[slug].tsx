@@ -21,7 +21,7 @@ export default function ExpertUi() {
   return (
     <PageLayout>
       <SEO />
-      <TopPaper>
+      <TopPaper noHover={true}>
         <Avatar
           alt={currentExpert?.name || ""}
           imageUrl={
@@ -52,7 +52,7 @@ export default function ExpertUi() {
           <MeetingButton label="Set a meeting" to={`/expert/${slug}`} />
         </ReserveBlock>
       </TopPaper>
-      <MiddlePaper>
+      <MiddlePaper noHover={true}>
         <Body1
           style={{ marginBottom: "1rem", color: "var(--text-color-dark)" }}
         >
@@ -66,6 +66,19 @@ export default function ExpertUi() {
           the next level or what kind of investors to get on board.
         </Body3>
       </MiddlePaper>
+      <BottomPaper noHover={true}>
+        <div
+          id="SOIDIV_sharareh"
+          data-so-page="sharareh"
+          data-height="550"
+          data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;"
+          data-psz="00"
+        ></div>
+        <script
+          type="text/javascript"
+          src="https://cdn.oncehub.com/mergedjs/so.js"
+        ></script>
+      </BottomPaper>
     </PageLayout>
   );
 }
@@ -110,4 +123,12 @@ const MiddlePaper = styled(Paper)`
   max-width: 940px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 46px;
+`;
+const BottomPaper = styled(Paper)`
+  width: 100%;
+  max-width: 940px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 46px;
 `;
