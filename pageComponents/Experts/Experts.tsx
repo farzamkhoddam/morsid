@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "components/Card";
+import { EXPERT_LIST } from "../../consts/experts";
 
 import ButtonLink from "elements/ButtonLink";
 
@@ -8,27 +9,15 @@ export default function Experts() {
   return (
     <Container>
       <Cards>
-        <ExpertCard
-          name="Navid Goalpure"
-          desc="I've been the CEO of Dropbox for more than 3 years now. I can help you
-        to grow your business."
-          imageUrl="/images/experts/hamid.jpg"
-          price="$617"
-        />
-        <ExpertCard
-          name="Navid Goalpure"
-          desc="I've been the CEO of Dropbox for more than 3 years now. I can help you
-        to grow your business."
-          imageUrl="/images/experts/hamid.jpg"
-          price="$617"
-        />
-        <ExpertCard
-          name="Navid Goalpure"
-          desc="I've been the CEO of Dropbox for more than 3 years now. I can help you
-        to grow your business."
-          imageUrl="/images/experts/hamid.jpg"
-          price="$617"
-        />
+        {EXPERT_LIST.map((expert) => (
+          <ExpertCard
+            name={expert.name}
+            desc={expert.cartDesc}
+            imageUrl={expert.imageUrl}
+            price={expert.price}
+            slug={expert.slug}
+          />
+        ))}
       </Cards>
       {/* <SeeMore label="See More" border={true} to="/experts" /> */}
     </Container>

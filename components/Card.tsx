@@ -7,12 +7,14 @@ import LinkdeinIcon from "elements/SVGs/LinkdinIcon";
 import WebIcon from "elements/SVGs/WebIcon";
 
 import ButtonLink from "elements/ButtonLink";
+import Avatar from "./Avatar";
 
 interface Props {
   name: string;
   desc: string;
   imageUrl: string;
   price: string;
+  slug: string;
   className?: string;
 }
 export default function Card({
@@ -20,21 +22,12 @@ export default function Card({
   desc,
   imageUrl,
   price,
+  slug,
   className,
 }: Props) {
   return (
     <Container className={className}>
-      <Ring>
-        <ImageContainer>
-          <Image
-            src={imageUrl}
-            alt={name}
-            width={95}
-            height={95}
-            quality={100}
-          />
-        </ImageContainer>
-      </Ring>
+      <Avatar alt={name} imageUrl={imageUrl} />
       <Body2 style={{ marginBottom: "11px", color: "var(--text-color-dark)" }}>
         {name}
       </Body2>
@@ -49,7 +42,7 @@ export default function Card({
           <Caption>per hour</Caption>
         </Items>
       </DataRow>
-      <MeetingButton label="Set a meeting" to="/expert" />
+      <MeetingButton label="Set a meeting" to={`/expert/${slug}`} />
     </Container>
   );
 }
@@ -59,29 +52,6 @@ const Container = styled(Paper)`
   align-items: center;
   max-width: 358px;
   height: auto;
-`;
-const Ring = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 110px;
-  width: 110px;
-  border: 3px solid var(--primary-color-light);
-  border-radius: 50%;
-  margin-top: 0.5rem;
-  margin-bottom: 20px;
-`;
-const ImageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-
-  div {
-    border-radius: 50%;
-  }
 `;
 const DataRow = styled.div`
   display: flex;

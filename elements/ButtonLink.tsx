@@ -17,9 +17,11 @@ const ButtonLink: React.FC<Props> = ({
   to,
 }) => {
   return (
-    <Container className={className} border={border}>
-      <Link href={to}>{label}</Link>
-    </Container>
+    <Link href={to}>
+      <Container className={className} border={border}>
+        {label}
+      </Container>
+    </Link>
   );
 };
 export default ButtonLink;
