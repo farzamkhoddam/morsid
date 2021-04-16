@@ -2,16 +2,21 @@ import { Body2, H2 } from "elements/typo";
 import React from "react";
 import styled from "styled-components";
 import { device } from "../consts/device";
+import Image from "next/image";
 
 const Footer = () => {
   return (
     <Container>
       <Wrapper>
-        <H2>
-          <a style={{ marginRight: "40px" }} href="/">
-            LOGO
-          </a>
-        </H2>
+        <a style={{ marginRight: "40px" }} href="/">
+          <Image
+            src="/svgs/logo.svg"
+            alt={"Logo"}
+            width={131}
+            height={33}
+            quality={100}
+          />
+        </a>
         <Nav>
           <Body2>
             <a style={{ marginRight: "40px" }} href="/experts">

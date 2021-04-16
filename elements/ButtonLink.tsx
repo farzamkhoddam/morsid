@@ -25,6 +25,9 @@ const ButtonLink: React.FC<Props> = ({
 export default ButtonLink;
 
 const Container = styled.div<{ border: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: ${({ border }) =>
     border ? "white" : "var(--primary-color-dark)"};
   border: ${({ border }) =>
@@ -45,5 +48,11 @@ const Container = styled.div<{ border: boolean }>`
   &:hover {
     background-color: ${({ border }) =>
       border ? "var(--primary-color-dark)" : "var(--primary-color-darker)"};
+    color: white;
+  }
+  a {
+    &:hover {
+      color: white !important;
+    }
   }
 `;

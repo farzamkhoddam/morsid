@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Body3, H3 } from "elements/typo";
 import Card from "components/Card";
-import Button from "elements/Button";
+
 import ButtonLink from "elements/ButtonLink";
 
 export default function Experts() {

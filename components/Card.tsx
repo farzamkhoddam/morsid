@@ -5,7 +5,8 @@ import { Paper } from "elements/Layout";
 import Image from "next/image";
 import LinkdeinIcon from "elements/SVGs/LinkdinIcon";
 import WebIcon from "elements/SVGs/WebIcon";
-import Button from "elements/Button";
+
+import ButtonLink from "elements/ButtonLink";
 
 interface Props {
   name: string;
@@ -48,7 +49,7 @@ export default function Card({
           <Caption>per hour</Caption>
         </Items>
       </DataRow>
-      <MeetingButton label="Set a meeting" />
+      <MeetingButton label="Set a meeting" to="/expert" />
     </Container>
   );
 }
@@ -91,11 +92,12 @@ const DataRow = styled.div`
 `;
 const Items = styled.div`
   display: flex;
+  align-items: baseline;
 `;
 const Price = styled(Body2)`
   color: var(--text-color-dark);
   margin-right: 4px;
 `;
-const MeetingButton = styled(Button)`
-  width: 100%;
+const MeetingButton = styled(ButtonLink)`
+  width: 100% !important;
 `;
