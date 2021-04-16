@@ -13,7 +13,7 @@ export default function Hero() {
           <H2 style={{ marginRight: "12px" }}>Set</H2>
           <Underline>
             <H2>meetings</H2>
-            <div style={{ content: "url(/images/arc.svg)" }}></div>
+            <div style={{ content: "url(/svgs/arc.svg)" }}></div>
           </Underline>
           <H2>with them</H2>
         </Sentence>
