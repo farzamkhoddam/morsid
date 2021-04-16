@@ -5,13 +5,14 @@ import Header from "./Header";
 
 interface Props {
   children: ReactNode;
+  currentTabIndex?: number;
 }
-const PageLayout = ({ children }: Props) => {
+const PageLayout = ({ children, currentTabIndex = -1 }: Props) => {
   return (
     <Container>
-      <Header />
+      <Header currentTabIndex={currentTabIndex} />
       <Main>{children}</Main>
-      <Footer />
+      <Footer currentTabIndex={currentTabIndex} />
     </Container>
   );
 };

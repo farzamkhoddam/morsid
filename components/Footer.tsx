@@ -4,7 +4,10 @@ import styled from "styled-components";
 import { device } from "../consts/device";
 import Image from "next/image";
 
-const Footer = () => {
+interface Props {
+  currentTabIndex: number;
+}
+const Footer = ({ currentTabIndex }: Props) => {
   return (
     <Container>
       <Wrapper>
@@ -18,19 +21,19 @@ const Footer = () => {
           />
         </a>
         <Nav>
-          <Body2>
+          <NavItem isSelected={currentTabIndex === 0}>
             <a style={{ marginRight: "40px" }} href="/experts">
               Experts
             </a>
-          </Body2>
-          <Body2>
+          </NavItem>
+          <NavItem isSelected={currentTabIndex === 1}>
             <a style={{ marginRight: "40px" }} href="/how-its-work">
               How its works
             </a>
-          </Body2>
-          <Body2>
+          </NavItem>
+          <NavItem isSelected={currentTabIndex === 2}>
             <a href="/about">About us</a>
-          </Body2>
+          </NavItem>
         </Nav>
       </Wrapper>
     </Container>
@@ -58,4 +61,8 @@ const Wrapper = styled.div`
 const Nav = styled.nav`
   display: flex;
   align-items: center;
+`;
+const NavItem = styled(Body2)<{ isSelected: any }>`
+  color: ${({ isSelected }) =>
+    isSelected ? "var(--primary-color-dark)" : "var(--text-color-dark)"};
 `;
