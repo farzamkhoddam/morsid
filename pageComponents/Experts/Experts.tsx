@@ -16,6 +16,8 @@ export default function Experts() {
             imageUrl={expert.imageUrl}
             price={expert.price}
             slug={expert.slug}
+            linkdinAddress={expert?.linkdinAddress}
+            websiteAddress={expert?.websiteAddress}
           />
         ))}
       </Cards>

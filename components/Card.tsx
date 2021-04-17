@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Body2, Body3, Caption, H3 } from "elements/typo";
 import { Paper } from "elements/Layout";
-import Image from "next/image";
 import LinkdeinIcon from "elements/SVGs/LinkdinIcon";
 import WebIcon from "elements/SVGs/WebIcon";
 
 import ButtonLink from "elements/ButtonLink";
 import Avatar from "./Avatar";
+import Link from "next/link";
 
 interface Props {
   name: string;
@@ -15,6 +15,8 @@ interface Props {
   imageUrl: string;
   price: string;
   slug: string;
+  linkdinAddress?: string;
+  websiteAddress?: string;
   className?: string;
 }
 export default function Card({
@@ -23,6 +25,8 @@ export default function Card({
   imageUrl,
   price,
   slug,
+  linkdinAddress,
+  websiteAddress,
   className,
 }: Props) {
   return (
@@ -32,10 +36,19 @@ export default function Card({
         {name}
       </Body2>
       <Body3 style={{ marginBottom: "25px" }}>{desc}</Body3>
+      <BlankSpace />
       <DataRow>
         <Items>
-          <LinkdeinIcon style={{ marginRight: "20px" }} />
-          <WebIcon />
+          {linkdinAddress && (
+            <Link href={linkdinAddress}>
+              <LinkdeinIcon style={{ marginRight: "20px" }} />
+            </Link>
+          )}
+          {websiteAddress && (
+            <Link href={websiteAddress}>
+              <WebIcon />
+            </Link>
+          )}
         </Items>
         <Items>
           <Price>{price}</Price>
@@ -52,6 +65,7 @@ const Container = styled(Paper)`
   align-items: center;
   max-width: 358px;
   height: auto;
+  position: relative;
 `;
 const DataRow = styled.div`
   display: flex;
@@ -64,6 +78,10 @@ const Items = styled.div`
   display: flex;
   align-items: baseline;
 `;
+const BlankSpace = styled.div`
+  flex: 1;
+`;
+
 const Price = styled(Body2)`
   color: var(--text-color-dark);
   margin-right: 4px;

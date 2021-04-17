@@ -5,8 +5,8 @@ interface SeoDataInterface {
   defaultImage: string;
 }
 export const seoData: SeoDataInterface = {
-  defaultTitle: "Hustle Playbook",
-  defaultDescription: "Master the art of engineering side income",
+  defaultTitle: "Morsid Experts",
+  defaultDescription: "Connect with the Expert you need",
   siteUrl: "https://morsid.com",
   defaultImage: "/favicon.ico",
 };
