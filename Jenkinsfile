@@ -3,11 +3,14 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        nodejs('Node') {
-          sh '''yarn install
+        ws(dir: '/var/lib/jenkins/workspace/morsid-front-${GIT_BRANCH}') {
+          nodejs('Node') {
+            sh '''yarn install
 
 yarn build
 '''
+          }
+
         }
 
       }
