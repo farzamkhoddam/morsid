@@ -17,7 +17,7 @@ export default function ExpertUi() {
   const router = useRouter();
   const { slug } = router.query;
   const currentExpert = EXPERT_LIST.find((expert) => expert.slug === slug);
-  console.log("navid foo=", currentExpert);
+
   return (
     <PageLayout>
       <SEO />
