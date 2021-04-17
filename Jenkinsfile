@@ -4,8 +4,10 @@ pipeline {
     stage('Build') {
       steps {
         nodejs('Node') {
-          sh '''yarn build
-yarn install'''
+          sh '''yarn install
+
+yarn build
+'''
         }
 
       }
