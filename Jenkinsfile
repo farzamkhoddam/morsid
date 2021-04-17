@@ -3,7 +3,11 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'echo "hi"'
+        nodejs('Node') {
+          sh '''yarn build
+yarn install'''
+        }
+
       }
     }
 
