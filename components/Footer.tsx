@@ -31,9 +31,9 @@ const Footer = ({ currentTabIndex }: Props) => {
               How its works
             </a>
           </NavItem>
-          <NavItem isSelected={currentTabIndex === 2}>
+          {/* <NavItem isSelected={currentTabIndex === 2}>
             <a href="/about">About us</a>
-          </NavItem>
+          </NavItem> */}
         </Nav>
       </Wrapper>
     </Container>

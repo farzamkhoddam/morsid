@@ -35,13 +35,19 @@ export default function ExpertUi() {
             {currentExpert?.name}
           </Body1>
           <Row2>
-            <Body2>{currentExpert?.title}</Body2>
-            <Link href={currentExpert?.linkdinAddress || "#"}>
-              <LinkdeinIcon style={{ margin: "0 20px 0 40px" }} />
-            </Link>
-            <Link href={currentExpert?.linkdinAddress || "#"}>
-              <WebIcon />
-            </Link>
+            <Body2 style={{ marginRight: "40px" }}>
+              {currentExpert?.title}
+            </Body2>
+            {currentExpert?.linkdinAddress && (
+              <Link href={currentExpert?.linkdinAddress}>
+                <LinkdeinIcon style={{ marginRight: "20px" }} />
+              </Link>
+            )}
+            {currentExpert?.websiteAddress && (
+              <Link href={currentExpert?.websiteAddress}>
+                <WebIcon />
+              </Link>
+            )}
           </Row2>
         </DataBlock>
         <ReserveBlock>
@@ -58,13 +64,7 @@ export default function ExpertUi() {
         >
           How can I help you?
         </Body1>
-        <Body3>
-          I'm the CEO of Dropbox and have faced enormous amounts of challenges
-          in the past years. I can help you about how to run, scale and grow
-          your company.I like to help entrepreneurs think through their business
-          strategy - how to scale a company, hire the right people to take it to
-          the next level or what kind of investors to get on board.
-        </Body3>
+        <Body3>{currentExpert?.fullDesc}</Body3>
       </MiddlePaper>
       <BottomPaper noHover={true}>
         <div
