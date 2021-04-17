@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Workspace') {
       steps {
-        ws(dir: '/var/lib/jenkins/workspace/morsid-front-${GIT_BRANCH}')
+        ws(dir: '/var/lib/jenkins/workspace/morsid-front')
       }
     }
 
