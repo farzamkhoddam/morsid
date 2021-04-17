@@ -3,9 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''yarn install
-yarn build
-'''
+        sh 'echo "hi"'
       }
     }
 
