@@ -5,7 +5,6 @@ pipeline {
       steps {
         nodejs('Node') {
           sh '''yarn install
-
 yarn build
 '''
         }
