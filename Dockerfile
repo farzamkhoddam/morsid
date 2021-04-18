@@ -1,28 +1,36 @@
-FROM node:lts-alpine3.13
-
-# set working directory
-#WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
-#ENV PATH /app/node_modules/.bin:$PATH
-
-# install app dependencies
-#COPY package.json ./
-#COPY pages ./
-#COPY package-lock.json ./
-#RUN yarn install
-#RUN yarn build
-#RUN npm install --silent
-#RUN npm install react-scripts@3.4.1 -g --silent
-
-WORKDIR /usr/src/app
+# Install dependencies only when needed
+FROM node:alpine AS deps
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn
-COPY . ./
+RUN yarn install --frozen-lockfile
+
+# Rebuild the source code only when needed
+FROM node:alpine AS builder
+WORKDIR /app
+COPY . .
+COPY --from=deps /app/node_modules ./node_modules
 RUN yarn build
 
-# add app
-#COPY . ./
+# Production image, copy all the files and run next
+FROM node:alpine AS runner
+WORKDIR /app
 
-# start app
+ENV NODE_ENV production
+
+# You only need to copy next.config.js if you are NOT using the default configuration
+# COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+RUN chown -R nextjs:nodejs /app/.next
+USER nextjs
+
+EXPOSE 3000
+
 CMD ["yarn", "start"]
