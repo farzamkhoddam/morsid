@@ -19,4 +19,7 @@ docker run -p 3001:3000/tcp --name=morsid-f-d -d --rm morsid-front-dev:latest
     }
 
   }
+  environment {
+    environment = 'dev'
+  }
 }
