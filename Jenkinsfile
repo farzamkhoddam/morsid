@@ -4,6 +4,9 @@ pipeline {
     stage('Docker build ') {
       parallel {
         stage('Development') {
+          when {
+                branch 'development' 
+          }
           steps {
             sh '''docker build -t morsid-front-dev:${BUILD_NUMBER} . 
 
@@ -12,8 +15,13 @@ docker tag morsid-front-dev:${BUILD_NUMBER} morsid-front-dev:latest '''
         }
 
         stage('Master') {
+          when {
+                branch 'master' 
+          }
           steps {
-            sh 'echo hi'
+            sh '''docker build -t morsid-front:${BUILD_NUMBER} . 
+
+docker tag morsid-front:${BUILD_NUMBER} morsid-front:latest '''
           }
         }
 
@@ -23,17 +31,26 @@ docker tag morsid-front-dev:${BUILD_NUMBER} morsid-front-dev:latest '''
     stage('Docker restart ') {
       parallel {
         stage('Development') {
+          when {
+                branch 'development' 
+          }
           steps {
-            sh '''docker stop morsid-f-d || true
-docker run -p 3001:3000/tcp --name=morsid-f-d -d --rm morsid-front-dev:latest
+            sh '''docker stop morsid-f-dev || true
+docker run -p 3002:3000/tcp --name=morsid-f-dev -d --rm morsid-front-dev:latest
 
 '''
           }
         }
 
         stage('Master') {
+          when {
+                branch 'master' 
+          }
           steps {
-            sh 'echo bye'
+            sh  '''docker stop morsid-f || true
+docker run -p 3001:3000/tcp --name=morsid-f -d --rm morsid-front:latest
+
+'''
           }
         }
 
