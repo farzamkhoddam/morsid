@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SEO from "../../components/seo";
 import PageLayout from "components/PageLayout";
 import { useRouter } from "next/router";
@@ -55,7 +55,7 @@ export default function ExpertUi() {
             <Price>{currentExpert?.price || "$"}</Price>
             <Caption>per hour</Caption>
           </Items>
-          <MeetingButton label="Set a meeting" to={`/expert/${slug}`} />
+          <MeetingButton href={`#section3`}>Set a meeting</MeetingButton>
         </ReserveBlock>
       </TopPaper>
       <MiddlePaper noHover={true}>
@@ -66,18 +66,11 @@ export default function ExpertUi() {
         </Body1>
         <Body3>{currentExpert?.fullDesc}</Body3>
       </MiddlePaper>
-      <BottomPaper noHover={true}>
-        <div
-          id="SOIDIV_sharareh"
-          data-so-page="sharareh"
-          data-height="550"
-          data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;"
-          data-psz="00"
-        ></div>
-        <script
-          type="text/javascript"
-          src="https://cdn.oncehub.com/mergedjs/so.js"
-        ></script>
+      <BottomPaper noHover={true} id="section3">
+        <iframe
+          src="/soIframe.html"
+          style={{ width: "100%", height: "570px", border: "none" }}
+        ></iframe>
       </BottomPaper>
     </PageLayout>
   );
@@ -114,8 +107,28 @@ const Price = styled(Body2)`
   color: var(--text-color-dark);
   margin-right: 4px;
 `;
-const MeetingButton = styled(ButtonLink)`
-  width: 100% !important;
+
+const MeetingButton = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color-dark);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  width: 221px;
+  height: 54px;
+  // font
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+
+  &:hover {
+    background-color: var(--primary-color-darker);
+    color: white;
+  }
 `;
 
 const MiddlePaper = styled(Paper)`
