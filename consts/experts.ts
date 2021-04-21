@@ -28,12 +28,12 @@ export const EXPERT_LIST: Expert[] = [
     name: "Iman Nazari",
     title: "Front End Developer",
     cartDesc:
-      "I've been the CEO of Dropbox for more than 3 years now. I can help you to grow your business.",
+      "Iman is experienced in developing intelligent software and platform with +2M users acquired in his career. He can help you find the right tech-based business that fits the market. He finds it's weird to talk about himself in third person.",
     fullDesc:
-      "I've been the CEO of Dropbox for more than 3 years now. I can help you to grow your business. I've been the CEO of Dropbox for more than 3 years now. I can help you to grow your business.",
-    imageUrl: "/images/experts/hamid.jpg",
-    price: "$300",
-    linkdinAddress: "https://www.linkedin.com/in/navid-goalpure",
+      "Iman is experienced in developing intelligent software and platform with +2M users acquired in his career. He can help you find the right tech-based business that fits the market.He finds it's weird to talk about himself in third person.",
+    imageUrl: "/images/experts/iman.jpg",
+    price: "$130",
+    linkdinAddress: "https://www.linkedin.com/in/imannazari",
   },
   {
     slug: "navid_goalpure",

@@ -8,10 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^5.0.0-alpha.31",
+    "@material-ui/lab": "^5.0.0-alpha.31",
     "@types/nprogress": "^0.2.0",
     "@types/react-gtm-module": "^2.0.0",
     "axios": "^0.21.1",
     "cookie": "^0.4.1",
+    "date-fns": "^2.21.1",
     "formik": "^2.2.6",
     "next": "^10.0.8",
     "nprogress": "^0.2.0",
