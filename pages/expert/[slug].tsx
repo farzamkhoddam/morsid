@@ -68,10 +68,6 @@ export default function ExpertUi() {
         <Body3>{currentExpert?.fullDesc}</Body3>
       </MiddlePaper>
       <BottomPaper noHover={true} id="section3">
-        {/* <iframe
-          src="/soIframe.html"
-          style={{ width: "100%", height: "570px", border: "none" }}
-        ></iframe> */}
         <DateTimePicker />
       </BottomPaper>
     </PageLayout>

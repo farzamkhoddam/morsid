@@ -1,10 +1,15 @@
 import * as React from "react";
-import { makeStyles } from "@material-ui/core";
+import { Divider, makeStyles, Modal } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import { StaticDatePicker } from "@material-ui/lab";
 import styled from "styled-components";
+import { Body1, Body2, Caption } from "elements/typo";
+import SelectTimezoneMaterialUi from "select-timezone-material-ui";
+import { useState } from "react";
+import Backdrop from "@material-ui/core/Backdrop";
+import TimeBlocks from "./TimeBlock";
 
 function disablePrevDates(startDate: Date) {
   const today = new Date();
@@ -19,33 +24,218 @@ const useStyles = makeStyles((theme) => ({
     width: "max-content",
   },
 }));
+function getGmt(date: Date | null): string {
+  if (date) {
+    var split = date.toString().split(" ");
+    return split[5];
+  }
+  return "Unselected GTM";
+}
 export default function MaterialUIPickers() {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+
+  const [timezone, setTimeZone] = useState<string>(
+    `${Intl.DateTimeFormat().resolvedOptions().timeZone} (${getGmt(
+      new Date(),
+    )})`,
+  );
+  const [datePickerValue, setDatePickerValue] = useState<Date | null>(
     new Date(),
   );
-
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-  };
-  const [value, setValue] = React.useState<Date | null>(new Date());
+  const [isOpenModale, setOpenModal] = useState(false);
+  const [amOrPm, setAmOrPm] = useState<"AM" | "PM" | null>(null);
+  const [amOrPmIndex, setAmOrPmIndex] = useState<number | null>(null);
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
   const startDate = new Date();
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <StyledDatePicker<Date>
-        // orientation="landscape"
-        className={classes.root}
-        openTo="day"
-        value={value}
-        shouldDisableDate={disablePrevDates(startDate)}
-        onChange={(newValue) => {
-          setValue(newValue);
+    <Container>
+      <Body1
+        style={{
+          marginTop: "6px",
+          marginBottom: "32px",
+          color: "var(--text-color-dark)",
         }}
-        renderInput={(params) => <TextField {...params} variant="standard" />}
-      />
-    </LocalizationProvider>
+      >
+        Pick a date and time
+      </Body1>
+      <Row
+        style={{
+          marginBottom: "6px",
+        }}
+      >
+        <Body2
+          style={{
+            color: "var(--text-color-dark)",
+            marginRight: "6px",
+          }}
+        >
+          Duration:
+        </Body2>
+        <Body2>30 minutes</Body2>
+      </Row>
+      <Row
+        style={{
+          marginBottom: "32px",
+        }}
+      >
+        <YourTimeZone>Your time zone:</YourTimeZone>
+        <Body2>{`${timezone}`}</Body2>
+        <Body2
+          onClick={handleOpenModal}
+          style={{
+            color: "var(--primary-color-dark)",
+            marginLeft: "6px",
+            cursor: "pointer",
+          }}
+        >
+          change
+        </Body2>
+        <Modal
+          open={isOpenModale}
+          onClose={handleCloseModal}
+          aria-labelledby="modal-modal-title"
+          // aria-describedby="modal-modal-description"
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <ModalContent>
+            <Body2
+              id="modal-modal-title"
+              style={{
+                color: "var(--text-color-dark)",
+              }}
+            >
+              Please select a timezone from the list
+            </Body2>
+            <SelectTimezoneMaterialUi
+              label="Timezone"
+              defaultTimezoneName={
+                Intl.DateTimeFormat().resolvedOptions().timeZone
+              }
+              showTimezoneOffset={true}
+              onChange={(timezoneName: string, timezoneOffset: number) => {
+                setTimeZone(timezoneName);
+                // setSelectedDate();
+                handleCloseModal();
+              }}
+            />
+          </ModalContent>
+        </Modal>
+      </Row>
+      <Divider />
+      <FlexRow>
+        <FlexRowItem>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <StyledDatePicker<Date>
+              // orientation="landscape"
+              className={classes.root}
+              openTo="day"
+              value={datePickerValue}
+              shouldDisableDate={disablePrevDates(startDate)}
+              onChange={(newValue) => {
+                setDatePickerValue(newValue);
+              }}
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" />
+              )}
+            />
+          </LocalizationProvider>
+        </FlexRowItem>
+        <FlexRowItem>
+          <Body2
+            style={{
+              color: "var(--text-color-dark)",
+              marginBottom: "20px",
+              marginTop: "37px",
+            }}
+          >
+            Available starting times for Wed, Apr 14, 2021
+          </Body2>
+          <FlexRow
+            style={{
+              marginBottom: "1rem",
+            }}
+          >
+            <FlexRowItem>
+              <Caption
+                style={{
+                  marginBottom: "1rem",
+                }}
+              >
+                AM
+              </Caption>
+              <TimeBlocks
+                whichColumn="AM"
+                amOrPm={amOrPm}
+                setAmOrPm={setAmOrPm}
+                amOrPmIndex={amOrPmIndex}
+                setAmOrPmIndex={setAmOrPmIndex}
+              />
+            </FlexRowItem>
+            <FlexRowItem>
+              <Caption
+                style={{
+                  marginBottom: "1rem",
+                }}
+              >
+                PM
+              </Caption>
+              <TimeBlocks
+                time="PM"
+                amOrPm={amOrPm}
+                setAmOrPm={setAmOrPm}
+                amOrPmIndex={amOrPmIndex}
+                setAmOrPmIndex={setAmOrPmIndex}
+              />
+            </FlexRowItem>
+          </FlexRow>
+        </FlexRowItem>
+      </FlexRow>
+    </Container>
   );
 }
+const Container = styled.div`
+  width: 100%;
+  padding: 40px;
+`;
+const Row = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+`;
+const YourTimeZone = styled(Body2)`
+  color: var(--text-color-dark);
+  margin-right: 6px;
+  flex-shrink: 0;
+`;
+const ModalContent = styled.div`
+  padding: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: white;
+  border: 2px solid #000;
+  boxshadow: 24;
+  p: 4;
+`;
+const FlexRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const FlexRowItem = styled.div`
+  flex: 1;
+  margin: 0 auto;
+  text-align: center;
+`;
+
 const StyledDatePicker = styled(StaticDatePicker)`
   .MuiPickersDay-root.Mui-selected {
     background-color: var(--primary-color-dark);

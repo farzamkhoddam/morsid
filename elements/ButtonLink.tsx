@@ -51,6 +51,7 @@ const Container = styled.div<{ border: boolean }>`
     background-color: ${({ border }) =>
       border ? "var(--primary-color-dark)" : "var(--primary-color-darker)"};
     color: white;
+    cursor: pointer;
   }
   a {
     &:hover {

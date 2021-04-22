@@ -41,6 +41,7 @@ const Container = styled.button<{ border: boolean }>`
   line-height: 22px;
 
   &:hover {
+    cursor: pointer;
     background-color: ${({ border }) =>
       border ? "var(--primary-color-dark)" : "var(--primary-color-darker)"};
   }
