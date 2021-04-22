@@ -237,8 +237,12 @@ const FlexRowItem = styled.div`
 `;
 
 const StyledDatePicker = styled(StaticDatePicker)`
+  .MuiPickersDay-today {
+    border-radius: 50%;
+  }
   .MuiPickersDay-root.Mui-selected {
     background-color: var(--primary-color-dark);
+    border-radius: 50%;
     &:hover {
       background-color: var(--primary-color-darker);
     }
