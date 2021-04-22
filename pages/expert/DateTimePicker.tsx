@@ -186,7 +186,7 @@ export default function MaterialUIPickers() {
                 PM
               </Caption>
               <TimeBlocks
-                time="PM"
+                whichColumn="PM"
                 amOrPm={amOrPm}
                 setAmOrPm={setAmOrPm}
                 amOrPmIndex={amOrPmIndex}
