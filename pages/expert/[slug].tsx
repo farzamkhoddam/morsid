@@ -13,6 +13,7 @@ import Link from "next/link";
 import WebIcon from "elements/SVGs/WebIcon";
 import ButtonLink from "elements/ButtonLink";
 import DateTimePicker from "./DateTimePicker";
+import PersonalInformation from "./PersonalInformation";
 
 export default function ExpertUi() {
   const router = useRouter();
@@ -68,7 +69,8 @@ export default function ExpertUi() {
         <Body3>{currentExpert?.fullDesc}</Body3>
       </MiddlePaper>
       <BottomPaper noHover={true} id="section3">
-        <DateTimePicker />
+        {/* <DateTimePicker /> */}
+        <PersonalInformation />
       </BottomPaper>
     </PageLayout>
   );
