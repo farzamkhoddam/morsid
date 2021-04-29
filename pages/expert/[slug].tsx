@@ -22,7 +22,7 @@ export default function ExpertUi() {
   return (
     <PageLayout>
       <SEO />
-      <TopPaper noHover={true}>
+      <ProfilePaper noHover={true}>
         <Avatar
           alt={currentExpert?.name || ""}
           imageUrl={
@@ -56,17 +56,16 @@ export default function ExpertUi() {
             <Price>{currentExpert?.price || "$"}</Price>
             <Caption>per hour</Caption>
           </Items>
-          <MeetingButton href={`#section3`}>Set a meeting</MeetingButton>
+          <MeetingButton href={`#section3`}>Check price</MeetingButton>
         </ReserveBlock>
-      </TopPaper>
-      <MiddlePaper noHover={true}>
-        <Body1
-          style={{ marginBottom: "1rem", color: "var(--text-color-dark)" }}
-        >
-          How can I help you?
-        </Body1>
-        <Body3>{currentExpert?.fullDesc}</Body3>
-      </MiddlePaper>
+      </ProfilePaper>
+      <DescPaper noHover={true}>
+        <FullDesc
+          dangerouslySetInnerHTML={{
+            __html: currentExpert?.fullDesc || "<div/>",
+          }}
+        />
+      </DescPaper>
       <BottomPaper noHover={true} id="section3">
         {/* <DateTimePicker /> */}
         <PersonalInformation />
@@ -74,7 +73,7 @@ export default function ExpertUi() {
     </PageLayout>
   );
 }
-const TopPaper = styled(Paper)`
+const ProfilePaper = styled(Paper)`
   display: flex;
   align-items: center;
   margin-bottom: 30px;
@@ -116,7 +115,7 @@ const MeetingButton = styled.a`
   color: white;
   border-radius: 8px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  width: 221px;
+  width: 149px;
   height: 54px;
   // font
   font-style: normal;
@@ -130,12 +129,32 @@ const MeetingButton = styled.a`
   }
 `;
 
-const MiddlePaper = styled(Paper)`
+const DescPaper = styled(Paper)`
   width: 100%;
   max-width: 940px;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 46px;
+`;
+const FullDesc = styled.div`
+  li {
+    margin-bottom: 30px;
+  }
+  li,
+  p {
+    color: var(--text-color-normal);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 23px;
+  }
+  h2 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: var(--text-color-dark);
+  }
 `;
 const BottomPaper = styled(Paper)`
   width: 100%;
