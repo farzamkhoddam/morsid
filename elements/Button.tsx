@@ -1,11 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { CSSObject } from "styled-components";
 
 interface Props {
   label: string;
   disabled?: boolean;
   className?: string;
   border?: boolean;
+  style?: CSSObject;
 }
 
 const Button: React.FC<Props> = ({
@@ -13,9 +14,15 @@ const Button: React.FC<Props> = ({
   disabled = false,
   border = false,
   className,
+  style,
 }) => {
   return (
-    <Container disabled={disabled} className={className} border={border}>
+    <Container
+      disabled={disabled}
+      className={className}
+      style={style}
+      border={border}
+    >
       {label}
     </Container>
   );

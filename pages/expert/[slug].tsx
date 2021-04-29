@@ -9,10 +9,9 @@ import { Body1, Body2, Body3, Caption } from "elements/typo";
 import styled from "styled-components";
 import Avatar from "components/Avatar";
 import LinkdeinIcon from "elements/SVGs/LinkdinIcon";
-import Link from "next/link";
+
 import WebIcon from "elements/SVGs/WebIcon";
-import ButtonLink from "elements/ButtonLink";
-import DateTimePicker from "./DateTimePicker";
+
 import PersonalInformation from "./PersonalInformation";
 
 export default function ExpertUi() {
@@ -41,14 +40,14 @@ export default function ExpertUi() {
               {currentExpert?.title}
             </Body2>
             {currentExpert?.linkdinAddress && (
-              <Link href={currentExpert?.linkdinAddress}>
+              <a href={currentExpert?.linkdinAddress} target="_blank">
                 <LinkdeinIcon style={{ marginRight: "20px" }} />
-              </Link>
+              </a>
             )}
             {currentExpert?.websiteAddress && (
-              <Link href={currentExpert?.websiteAddress}>
+              <a href={currentExpert?.websiteAddress} target="_blank">
                 <WebIcon />
-              </Link>
+              </a>
             )}
           </Row2>
         </DataBlock>

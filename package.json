@@ -25,6 +25,7 @@
     "react-gtm-module": "^2.0.11",
     "react-hot-toast": "^1.0.1",
     "react-icons": "^4.2.0",
+    "react-payment-inputs": "^1.1.7",
     "react-query": "^3.13.8",
     "sass": "^1.32.8",
     "select-timezone-material-ui": "^2.6.0",

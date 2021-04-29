@@ -19,12 +19,12 @@ export function Textarea({
   ...props
 }: Props) {
   const [field, { touched, error }] = useField(name);
-  const hasError = touched && error ? true : false;
+  // const hasError = touched && error ? true : false;
   return (
     <StyledTextarea
       {...field}
       {...props}
-      hasError={hasError}
+      // hasError={hasError}
       style={style}
       placeholder={placeholder}
       className={className}
@@ -41,8 +41,7 @@ const StyledTextarea = styled(Field)`
   padding: 16px;
   border: 1px solid;
   border-radius: 8px;
-  border-color: ${({ hasError }) =>
-    hasError ? "red" : "var(--border-color-dark)"};
+  border-color: var(--border-color-dark);
   appearance: none;
   font-style: normal;
   font-weight: normal;

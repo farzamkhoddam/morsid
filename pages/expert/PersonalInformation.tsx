@@ -6,20 +6,29 @@ import styled from "styled-components";
 import toast from "react-hot-toast";
 import React from "react";
 import ToasterContainer from "components/ToasterContainer";
-import { TextInput } from "elements/TextInput";
+import { InputField, TextInput } from "elements/TextInput";
 import { Body1, Caption, Title } from "elements/typo";
 import { Textarea } from "elements/Textarea";
-
+import Button from "elements/Button";
+import { usePaymentInputs } from "react-payment-inputs";
+import images from "react-payment-inputs/images";
+import { FieldProps } from "interfaces/formik";
 interface FormValues {
   email: string;
   name: string;
   note: string;
+  cardNumber: string;
+  expiryDate: string;
+  cvc: string;
 }
 
 const initialValues: FormValues = {
   email: "",
   name: "",
   note: "",
+  cardNumber: "",
+  expiryDate: "",
+  cvc: "",
 };
 
 const LoginSchema = yup.object().shape({
@@ -29,6 +38,14 @@ const LoginSchema = yup.object().shape({
 });
 
 export default function PersonalInformation() {
+  const {
+    meta,
+    getCardImageProps,
+    getCardNumberProps,
+    getExpiryDateProps,
+    getCVCProps,
+    wrapperProps,
+  } = usePaymentInputs();
   const router = useRouter();
   return (
     <Container>
@@ -42,24 +59,18 @@ export default function PersonalInformation() {
         validationSchema={LoginSchema}
         onSubmit={async (values) => {
           toast.success("navid values");
-          console.log("navid values=", values);
         }}
       >
         {({ isSubmitting }) => (
           <Form>
             <Row>
-              <Flex1>
+              <Flex1 style={{ paddingRight: "1rem" }}>
                 <Caption as="label" htmlFor={"name"}>
                   Your Name
                 </Caption>
-                <TextInput
-                  name="name"
-                  type="text"
-                  placeholder="Card number"
-                  style={{ marginRight: "15px" }}
-                />
+                <TextInput name="name" type="text" placeholder="Card number" />
               </Flex1>
-              <Flex1>
+              <Flex1 style={{ paddingLeft: "1rem" }}>
                 <Caption as="label" htmlFor={"email"}>
                   Your Email
                 </Caption>
@@ -67,7 +78,6 @@ export default function PersonalInformation() {
                   name="email"
                   type="email"
                   placeholder="john.doe@gmail.com"
-                  style={{ marginleft: "15px" }}
                 />
               </Flex1>
             </Row>
@@ -97,17 +107,144 @@ export default function PersonalInformation() {
             >
               Payment Information
             </Body1>
-            <Row style={{ alignItems: "flex-start" }}>
+            <Row
+              id="Row"
+              style={{ alignItems: "stretch", marginBottom: "41px" }}
+            >
               <Flex1>
-                <Caption as="label">Credit Card</Caption>
-                <TextInput
-                  name="cardNumber"
-                  type="text"
-                  placeholder="Card number"
-                  style={{ marginRight: "15px" }}
-                />
-              </Flex1>
+                <div>
+                  <CreditForm id="CreditForm">
+                    <Row>
+                      <Caption as="label" style={{ margin: "0 1rem 0.5rem 0" }}>
+                        Credit Card
+                      </Caption>
+                      <svg {...getCardImageProps({ images })} />
+                    </Row>
+                    <Field name="cardNumber">
+                      {({
+                        field, // { name, value, onChange, onBlur }
+                        form: { touched },
+                      }: FieldProps) => {
+                        return (
+                          <>
+                            <InputField
+                              hasError={
+                                touched.cardNumber &&
+                                meta.erroredInputs.cardNumber
+                              }
+                              {...getCardNumberProps({
+                                onBlur: field.onBlur,
+                                onChange: field.onChange,
+                                name: "cardNumber",
+                              })}
+                            />
+                            {touched.cardNumber &&
+                            meta.erroredInputs.cardNumber ? (
+                              <span style={{ color: "red" }}>
+                                {meta.erroredInputs.cardNumber}
+                              </span>
+                            ) : null}
+                          </>
+                        );
+                      }}
+                    </Field>
 
+                    <Row style={{ marginTop: "30px" }}>
+                      <div>
+                        <Caption
+                          as="label"
+                          style={{ marginBottom: "0.5rem", display: "block" }}
+                        >
+                          Expiry date
+                        </Caption>
+                        <div style={{ marginRight: "1rem", display: "block" }}>
+                          <Field name="expiryDate">
+                            {({
+                              field, // { name, value, onChange, onBlur }
+                              form: { touched },
+                            }: FieldProps) => {
+                              return (
+                                <>
+                                  <InputField
+                                    hasError={
+                                      touched.expiryDate &&
+                                      meta.erroredInputs.expiryDate
+                                    }
+                                    {...getExpiryDateProps({
+                                      onBlur: field.onBlur,
+                                      onChange: field.onChange,
+                                      name: "expiryDate",
+                                    })}
+                                  />
+                                  {touched.expiryDate &&
+                                  meta.erroredInputs.expiryDate ? (
+                                    <span style={{ color: "red" }}>
+                                      {meta.erroredInputs.expiryDate}
+                                    </span>
+                                  ) : null}
+                                </>
+                              );
+                            }}
+                          </Field>
+                        </div>
+                      </div>
+                      <div>
+                        <Caption
+                          as="label"
+                          style={{ marginBottom: "0.5rem", display: "block" }}
+                        >
+                          CVC/CVV
+                        </Caption>
+                        <div style={{ marginLeft: "1rem", display: "block" }}>
+                          <Field name="cvc">
+                            {({
+                              field, // { name, value, onChange, onBlur }
+                              form: { touched },
+                            }: FieldProps) => {
+                              return (
+                                <>
+                                  <InputField
+                                    hasError={
+                                      touched.cvc && meta.erroredInputs.cvc
+                                    }
+                                    {...getCVCProps({
+                                      onBlur: field.onBlur,
+                                      onChange: field.onChange,
+                                      name: "cvc",
+                                    })}
+                                  />
+                                  {touched.cvc && meta.erroredInputs.cvc ? (
+                                    <span style={{ color: "red" }}>
+                                      {meta.erroredInputs.cvc}
+                                    </span>
+                                  ) : null}
+                                </>
+                              );
+                            }}
+                          </Field>
+                        </div>
+                        {/* <Field name="cvc">
+                          
+                          {({ field }) => (
+                            <InputField
+                              {...getCVCProps({
+                                onBlur: field.onBlur,
+                                onChange: field.onChange,
+                              })}
+                            />
+                          )}
+                        </Field> */}
+                      </div>
+                    </Row>
+                    <Row>
+                      <Button
+                        label="Pay Now"
+                        style={{ width: "100%", marginTop: "4px" }}
+                      />
+                    </Row>
+                  </CreditForm>
+                </div>
+              </Flex1>
               <ConfirmData>
                 <Body1
                   style={{
@@ -148,6 +285,10 @@ const Row = styled.div`
 
 const Flex1 = styled.div`
   flex: 1;
+`;
+const CreditForm = styled(Row)`
+  flex-direction: column;
+  padding-right: 1rem;
 `;
 const ConfirmData = styled.div`
   display: flex;
