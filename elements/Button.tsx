@@ -1,8 +1,9 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled, { CSSObject } from "styled-components";
 
 interface Props {
   label: string;
+  endIcon?: ReactNode;
   disabled?: boolean;
   className?: string;
   border?: boolean;
@@ -19,9 +20,9 @@ const Button: React.FC<Props> = ({
   return (
     <Container
       disabled={disabled}
-      className={className}
       style={style}
       border={border}
+      className={className}
     >
       {label}
     </Container>
@@ -34,7 +35,7 @@ const Container = styled.button<{ border: boolean }>`
     border ? "white" : "var(--primary-color-dark)"};
   border: ${({ border }) =>
     border ? "2px solid var(--primary-color-dark)" : "none"};
-  color: ${({ border }) => (border ? "var( --text-color-dark)" : "white")};
+  color: ${({ border }) => (border ? "var(--primary-color-dark)" : "white")};
   border-radius: 8px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
@@ -51,5 +52,6 @@ const Container = styled.button<{ border: boolean }>`
     cursor: pointer;
     background-color: ${({ border }) =>
       border ? "var(--primary-color-dark)" : "var(--primary-color-darker)"};
+    color: white;
   }
 `;

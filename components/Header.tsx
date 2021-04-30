@@ -3,11 +3,13 @@ import React from "react";
 import styled from "styled-components";
 import { device } from "../consts/device";
 import Image from "next/image";
+import Button from "elements/Button";
 
 interface Props {
   currentTabIndex: number;
+  isLogin: boolean;
 }
-const Header = ({ currentTabIndex }: Props) => {
+const Header = ({ currentTabIndex, isLogin }: Props) => {
   return (
     <Container>
       <Wrapper>
@@ -36,6 +38,16 @@ const Header = ({ currentTabIndex }: Props) => {
             <a href="/about">About us</a>
           </NavItem> */}
         </Nav>
+        <UserSection>
+          {isLogin ? (
+            <>
+              <LoginButton label="Login" border={true} />
+              <SignupButton label="Sign Up" />
+            </>
+          ) : (
+            <MyProfileButton label="My Profile &#x025BD;" border={true} />
+          )}
+        </UserSection>
       </Wrapper>
     </Container>
   );
@@ -66,4 +78,21 @@ const Nav = styled.nav`
 const NavItem = styled(Body2)<{ isSelected: any }>`
   color: ${({ isSelected }) =>
     isSelected ? "var(--primary-color-dark)" : "var(--text-color-dark)"};
+`;
+const UserSection = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+const LoginButton = styled(Button)`
+  width: 88px;
+  height: 46px;
+  margin-right: 40px;
+`;
+const SignupButton = styled(Button)`
+  width: 104px;
+  height: 46px;
+`;
+const MyProfileButton = styled(Button)`
+  width: 149px;
+  height: 48px;
 `;

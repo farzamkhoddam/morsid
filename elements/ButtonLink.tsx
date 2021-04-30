@@ -34,7 +34,7 @@ const Container = styled.div<{ border: boolean }>`
     border ? "white" : "var(--primary-color-dark)"};
   border: ${({ border }) =>
     border ? "2px solid var(--primary-color-dark)" : "none"};
-  color: ${({ border }) => (border ? "var( --text-color-dark)" : "white")};
+  color: ${({ border }) => (border ? "var(--primary-color-dark)" : "white")};
   border-radius: 8px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,

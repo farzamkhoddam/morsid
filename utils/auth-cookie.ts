@@ -10,7 +10,6 @@ export function setTokenCookie(res: NextApiResponse, token: string) {
     maxAge: MAX_AGE,
     expires: new Date(Date.now() + MAX_AGE * 1000),
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
     path: "/",
     sameSite: "lax",
   });

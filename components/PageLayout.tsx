@@ -6,11 +6,12 @@ import Header from "./Header";
 interface Props {
   children: ReactNode;
   currentTabIndex?: number;
+  isLogin: boolean;
 }
-const PageLayout = ({ children, currentTabIndex = -1 }: Props) => {
+const PageLayout = ({ children, currentTabIndex = -1, isLogin }: Props) => {
   return (
     <Container>
-      <Header currentTabIndex={currentTabIndex} />
+      <Header currentTabIndex={currentTabIndex} isLogin={isLogin} />
       <Main>{children}</Main>
       <Footer currentTabIndex={currentTabIndex} />
     </Container>

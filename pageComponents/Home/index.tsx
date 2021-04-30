@@ -3,13 +3,18 @@ import SEO from "../../components/seo";
 import PageLayout from "components/PageLayout";
 import Hero from "./Hero";
 import Experts from "./Experts";
+import { HomePageProps } from "pages";
 
-export default function HomePage() {
+interface Props {
+  pageProps: HomePageProps;
+}
+const HomePage: React.FC<Props> = ({ pageProps }) => {
   return (
-    <PageLayout>
+    <PageLayout isLogin={pageProps.isLogin}>
       <SEO />
       <Hero />
       <Experts />
     </PageLayout>
   );
-}
+};
+export default HomePage;
