@@ -1,0 +1,170 @@
+import React, { useEffect } from "react";
+import SEO from "../../components/seo";
+import PageLayout from "components/PageLayout";
+import { useRouter } from "next/router";
+import { EXPERT_LIST } from "consts/experts";
+import { Paper } from "elements/Layout";
+import { Body1, Body2, Caption } from "elements/typo";
+import styled from "styled-components";
+import Avatar from "components/Avatar";
+import LinkdeinIcon from "elements/SVGs/LinkdinIcon";
+import WebIcon from "elements/SVGs/WebIcon";
+import PersonalInformation from "./PersonalInformation";
+
+import { ExpertPageProps } from "pages/expert/[slug]";
+
+interface Props {
+  pageProps: ExpertPageProps;
+}
+
+export default function ExpertUi({ pageProps }: Props) {
+  const router = useRouter();
+  const { slug } = router.query;
+  const currentExpert = EXPERT_LIST.find((expert) => expert.slug === slug);
+
+  return (
+    <PageLayout isLogin={pageProps.isLogin}>
+      <SEO />
+
+      <ProfilePaper noHover={true}>
+        <Avatar
+          alt={currentExpert?.name || ""}
+          imageUrl={
+            currentExpert?.imageUrl || "/images/article-image-placeholder.jpg"
+          }
+        />
+
+        <DataBlock style={{ marginLeft: "1rem" }}>
+          <Body1
+            style={{ marginBottom: "18px", color: "var(--text-color-dark)" }}
+          >
+            {currentExpert?.name}
+          </Body1>
+          <Row2>
+            <Body2 style={{ marginRight: "40px" }}>
+              {currentExpert?.title}
+            </Body2>
+            {currentExpert?.linkdinAddress && (
+              <a href={currentExpert?.linkdinAddress} target="_blank">
+                <LinkdeinIcon style={{ marginRight: "20px" }} />
+              </a>
+            )}
+            {currentExpert?.websiteAddress && (
+              <a href={currentExpert?.websiteAddress} target="_blank">
+                <WebIcon />
+              </a>
+            )}
+          </Row2>
+        </DataBlock>
+        <ReserveBlock>
+          <Items>
+            <Price>{currentExpert?.price || "$"}</Price>
+            <Caption>per hour</Caption>
+          </Items>
+          <MeetingButton href={`#section3`}>Check price</MeetingButton>
+        </ReserveBlock>
+      </ProfilePaper>
+      <DescPaper noHover={true}>
+        <FullDesc
+          dangerouslySetInnerHTML={{
+            __html: currentExpert?.fullDesc || "<div/>",
+          }}
+        />
+      </DescPaper>
+      <BottomPaper noHover={true} id="section3">
+        {/* <DateTimePicker /> */}
+        {/* <PersonalInformation /> */}
+      </BottomPaper>
+    </PageLayout>
+  );
+}
+const ProfilePaper = styled(Paper)`
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  max-width: 940px;
+  margin-right: auto;
+  margin-left: auto;
+`;
+const DataBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Row2 = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const Items = styled.div`
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 1rem;
+`;
+const ReserveBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 221px;
+  align-items: center;
+  margin-left: auto;
+`;
+const Price = styled(Body2)`
+  color: var(--text-color-dark);
+  margin-right: 4px;
+`;
+
+const MeetingButton = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color-dark);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  width: 149px;
+  height: 54px;
+  // font
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+
+  &:hover {
+    background-color: var(--primary-color-darker);
+    color: white;
+  }
+`;
+
+const DescPaper = styled(Paper)`
+  width: 100%;
+  max-width: 940px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 46px;
+`;
+const FullDesc = styled.div`
+  li {
+    margin-bottom: 30px;
+  }
+  li,
+  p {
+    color: var(--text-color-normal);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 23px;
+  }
+  h2 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: var(--text-color-dark);
+  }
+`;
+const BottomPaper = styled(Paper)`
+  width: 100%;
+  max-width: 940px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 46px;
+`;

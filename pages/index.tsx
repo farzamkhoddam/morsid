@@ -7,7 +7,6 @@ export interface HomePageProps {
   isLogin: boolean;
 }
 export default function Home(pageProps: HomePageProps) {
-  console.log("navid foo=", pageProps);
   return <HomePage pageProps={pageProps} />;
 }
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {

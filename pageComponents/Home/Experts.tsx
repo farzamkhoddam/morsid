@@ -17,6 +17,7 @@ export default function Experts() {
       <Cards>
         {EXPERT_LIST.map((expert) => (
           <ExpertCard
+            key={expert.slug}
             name={expert.name}
             desc={expert.cartDesc}
             imageUrl={expert.imageUrl}

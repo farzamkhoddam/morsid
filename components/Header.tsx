@@ -1,18 +1,24 @@
-import { Body2, H2 } from "elements/typo";
-import React from "react";
+import { Body2 } from "elements/typo";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { device } from "../consts/device";
 import Image from "next/image";
 import Button from "elements/Button";
+import RegisterModal from "./modals/RegisterModalStep1";
 
 interface Props {
   currentTabIndex: number;
   isLogin: boolean;
 }
 const Header = ({ currentTabIndex, isLogin }: Props) => {
+  const [isOpenRegisterModal, setisOpenRegisterModal] = useState<boolean>(true);
+
   return (
     <Container>
       <Wrapper>
+        <RegisterModal
+          isOpen={isOpenRegisterModal}
+          setIsOpen={setisOpenRegisterModal}
+        />
         <a style={{ marginRight: "40px" }} href="/">
           <Image
             src="/svgs/logo.svg"
@@ -39,9 +45,13 @@ const Header = ({ currentTabIndex, isLogin }: Props) => {
           </NavItem> */}
         </Nav>
         <UserSection>
-          {isLogin ? (
+          {!isLogin ? (
             <>
-              <LoginButton label="Login" border={true} />
+              <LoginButton
+                label="Login"
+                border={true}
+                onClick={() => setisOpenRegisterModal(true)}
+              />
               <SignupButton label="Sign Up" />
             </>
           ) : (

@@ -1,13 +1,14 @@
 import React, { ReactNode } from "react";
 import styled, { CSSObject } from "styled-components";
 
-interface Props {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   endIcon?: ReactNode;
   disabled?: boolean;
   className?: string;
   border?: boolean;
   style?: CSSObject;
+  onClick?: () => void;
 }
 
 const Button: React.FC<Props> = ({
@@ -16,6 +17,7 @@ const Button: React.FC<Props> = ({
   border = false,
   className,
   style,
+  onClick,
 }) => {
   return (
     <Container
@@ -23,6 +25,7 @@ const Button: React.FC<Props> = ({
       style={style}
       border={border}
       className={className}
+      onClick={onClick}
     >
       {label}
     </Container>
