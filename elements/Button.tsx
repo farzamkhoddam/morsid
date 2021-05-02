@@ -8,6 +8,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   border?: boolean;
   style?: CSSObject;
+  type?: "button" | "submit";
   onClick?: () => void;
 }
 
@@ -17,6 +18,7 @@ const Button: React.FC<Props> = ({
   border = false,
   className,
   style,
+  type,
   onClick,
 }) => {
   return (
@@ -26,6 +28,7 @@ const Button: React.FC<Props> = ({
       border={border}
       className={className}
       onClick={onClick}
+      type={type || "button"}
     >
       {label}
     </Container>

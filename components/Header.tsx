@@ -3,22 +3,23 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Button from "elements/Button";
-import RegisterModal from "./modals/RegisterModalStep1";
+
+import { useContext } from "react";
+import { modalsContext } from "contexts/modalContext";
+import Modals from "./Modals";
+import ToasterContainer from "./ToasterContainer";
 
 interface Props {
   currentTabIndex: number;
   isLogin: boolean;
 }
 const Header = ({ currentTabIndex, isLogin }: Props) => {
-  const [isOpenRegisterModal, setisOpenRegisterModal] = useState<boolean>(true);
+  const { registerModal, setRegisterModal } = useContext(modalsContext);
 
   return (
     <Container>
       <Wrapper>
-        <RegisterModal
-          isOpen={isOpenRegisterModal}
-          setIsOpen={setisOpenRegisterModal}
-        />
+        <Modals />
         <a style={{ marginRight: "40px" }} href="/">
           <Image
             src="/svgs/logo.svg"
@@ -47,12 +48,11 @@ const Header = ({ currentTabIndex, isLogin }: Props) => {
         <UserSection>
           {!isLogin ? (
             <>
-              <LoginButton
-                label="Login"
-                border={true}
-                onClick={() => setisOpenRegisterModal(true)}
+              <LoginButton label="Login" border={true} />
+              <SignupButton
+                label="Sign Up"
+                onClick={() => setRegisterModal(true)}
               />
-              <SignupButton label="Sign Up" />
             </>
           ) : (
             <MyProfileButton label="My Profile &#x025BD;" border={true} />

@@ -8,7 +8,8 @@ import Router, { useRouter } from "next/router";
 
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { ModalsContextProvider } from "contexts/modalContext";
 
 const tagManagerArgs = {
   gtmId: "GTM-XXXXXX",
@@ -25,11 +26,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     TagManager.initialize(tagManagerArgs);
   }, []);
   return (
-    <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
-      </Hydrate>
-    </QueryClientProvider>
+    <ModalsContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <Component {...pageProps} />
+        </Hydrate>
+      </QueryClientProvider>
+    </ModalsContextProvider>
   );
 }
 

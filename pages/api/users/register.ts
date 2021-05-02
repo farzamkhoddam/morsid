@@ -1,5 +1,6 @@
+import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
-import { fetchRegisterUser } from "wpapi/graphql";
+import { setTokenCookie } from "utils/auth-cookie";
 
 export default async function RegisterUser(
   req: NextApiRequest,
@@ -10,28 +11,21 @@ export default async function RegisterUser(
     return;
   }
 
-  const { firstName, lastName, email, password } = req.body;
+  const { email, password } = req.body;
+  let test = {};
 
-  try {
-    await fetchRegisterUser({
-      variables: {
-        input: {
-          clientMutationId: "next",
-          username: email,
-          password,
-          email,
-          firstName,
-          lastName,
-        },
-      },
+  axios
+    .post(`${process.env.BASE_URL}/api/register/`, { email, password })
+    .then((resp) => {
+      const token = resp?.data?.tokens?.access;
+      if (token) {
+        // navid وقتی لاگ اوت آماده شد باید این رو آنکامنت کنیم
+        // setTokenCookie(res, token);
+        res.status(200).json({ success: true });
+        return;
+      }
+    })
+    .catch((error) => {
+      res.status(400).send({ success: false, errors: error });
     });
-  } catch (e) {
-    // TODO fix this in WP side
-    const parts = e.message.split(":");
-    const message = parts[parts.lenght === 1 ? 0 : 1].trim();
-    res.status(400).send({ success: false, errors: [message] });
-    return;
-  }
-
-  res.status(200).json({ success: true });
 }

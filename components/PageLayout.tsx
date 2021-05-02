@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 import Footer from "./Footer";
 import Header from "./Header";
+import ToasterContainer from "./ToasterContainer";
 
 interface Props {
   children: ReactNode;
@@ -11,6 +12,7 @@ interface Props {
 const PageLayout = ({ children, currentTabIndex = -1, isLogin }: Props) => {
   return (
     <Container>
+      <ToasterContainer />
       <Header currentTabIndex={currentTabIndex} isLogin={isLogin} />
       <Main>{children}</Main>
       <Footer currentTabIndex={currentTabIndex} />
