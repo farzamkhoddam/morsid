@@ -14,7 +14,7 @@ interface Props {
   isLogin: boolean;
 }
 const Header = ({ currentTabIndex, isLogin }: Props) => {
-  const { registerModal, setRegisterModal } = useContext(modalsContext);
+  const { setRegisterModal } = useContext(modalsContext);
 
   return (
     <Container>

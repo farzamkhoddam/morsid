@@ -14,8 +14,6 @@ import { usePaymentInputs } from "react-payment-inputs";
 import images from "react-payment-inputs/images";
 import { FieldProps } from "interfaces/formik";
 interface FormValues {
-  email: string;
-  name: string;
   note: string;
   cardNumber: string;
   expiryDate: string;
@@ -23,8 +21,6 @@ interface FormValues {
 }
 
 const initialValues: FormValues = {
-  email: "",
-  name: "",
   note: "",
   cardNumber: "",
   expiryDate: "",
@@ -46,14 +42,9 @@ export default function PersonalInformation() {
     getCVCProps,
     wrapperProps,
   } = usePaymentInputs();
-  const router = useRouter();
+
   return (
     <Container>
-      <ToasterContainer />
-      <Body1 style={{ color: "var(--text-color-dark)", marginBottom: "2rem" }}>
-        Personal Information
-      </Body1>
-
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}
@@ -63,24 +54,6 @@ export default function PersonalInformation() {
       >
         {({ isSubmitting }) => (
           <Form>
-            <Row>
-              <Flex1 style={{ paddingRight: "1rem" }}>
-                <Caption as="label" htmlFor={"name"}>
-                  Your Name
-                </Caption>
-                <TextInput name="name" type="text" placeholder="Card number" />
-              </Flex1>
-              <Flex1 style={{ paddingLeft: "1rem" }}>
-                <Caption as="label" htmlFor={"email"}>
-                  Your Email
-                </Caption>
-                <TextInput
-                  name="email"
-                  type="email"
-                  placeholder="john.doe@gmail.com"
-                />
-              </Flex1>
-            </Row>
             <Row>
               <Flex1>
                 <Caption
@@ -98,15 +71,7 @@ export default function PersonalInformation() {
               name="note"
               rows={8}
             />
-            <Body1
-              style={{
-                color: "var(--text-color-dark)",
-                marginBottom: "2rem",
-                maxWidth: "264px",
-              }}
-            >
-              Payment Information
-            </Body1>
+
             <Row
               id="Row"
               style={{ alignItems: "stretch", marginBottom: "41px" }}
@@ -223,23 +188,12 @@ export default function PersonalInformation() {
                             }}
                           </Field>
                         </div>
-                        {/* <Field name="cvc">
-                          
-                          {({ field }) => (
-                            <InputField
-                              {...getCVCProps({
-                                onBlur: field.onBlur,
-                                onChange: field.onChange,
-                              })}
-                            />
-                          )}
-                        </Field> */}
                       </div>
                     </Row>
                     <Row>
                       <Button
                         label="Pay Now"
-                        style={{ width: "100%", marginTop: "4px" }}
+                        style={{ width: "100%", marginTop: "34px" }}
                       />
                     </Row>
                   </CreditForm>

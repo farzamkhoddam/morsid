@@ -1,15 +1,16 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { CSSObject } from "styled-components";
 import Image from "next/image";
 
 interface Props {
   alt: string;
   imageUrl: string;
   className?: string;
+  style?: CSSObject;
 }
-export default function Avatar({ alt, imageUrl, className }: Props) {
+export default function Avatar({ alt, imageUrl, className, style }: Props) {
   return (
-    <Container className={className}>
+    <Container className={className} style={style}>
       <Ring>
         <ImageContainer>
           <Image
