@@ -1,29 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import SEO from "../../components/seo";
 import PageLayout from "components/PageLayout";
 import { useRouter } from "next/router";
-import { EXPERT_LIST } from "consts/experts";
+import { Expert, EXPERT_LIST } from "consts/experts";
 import { Paper } from "elements/Layout";
 import { Body1, Body2, Caption } from "elements/typo";
 import styled from "styled-components";
 import Avatar from "components/Avatar";
 import LinkdeinIcon from "elements/SVGs/LinkdinIcon";
 import WebIcon from "elements/SVGs/WebIcon";
-import PersonalInformation from "./PersonalInformation";
-
 import { ExpertPageProps } from "pages/expert/[slug]";
+import Experts from "./Experts";
+import ButtonLink from "elements/ButtonLink";
+import Button from "elements/Button";
+import { modalsContext } from "contexts/modalContext";
 
-interface Props {
-  pageProps: ExpertPageProps;
-}
-
-export default function ExpertUi({ pageProps }: Props) {
+export default function ExpertUi({ isLogin }: ExpertPageProps) {
+  const { registerModal, setRegisterModal } = useContext(modalsContext);
   const router = useRouter();
   const { slug } = router.query;
   const currentExpert = EXPERT_LIST.find((expert) => expert.slug === slug);
 
   return (
-    <PageLayout isLogin={pageProps.isLogin}>
+    <PageLayout isLogin={isLogin}>
       <SEO />
 
       <ProfilePaper noHover={true}>
@@ -56,12 +55,28 @@ export default function ExpertUi({ pageProps }: Props) {
             )}
           </Row2>
         </DataBlock>
+
         <ReserveBlock>
-          <Items>
-            <Price>{currentExpert?.price || "$"}</Price>
-            <Caption>per hour</Caption>
-          </Items>
-          <MeetingButton href={`#section3`}>Check price</MeetingButton>
+          {isLogin && (
+            <Items>
+              <Price>{currentExpert?.price || "$"}</Price>
+              <Caption>per hour</Caption>
+            </Items>
+          )}
+          {/* {isLogin ? (
+            <SetMeetongButton href={`#section3`}>Check price</SetMeetongButton>
+          ) : (
+            <CheckPriceButton href={`#section3`}>Check price</CheckPriceButton>
+          )} */}
+          {!isLogin ? (
+            //navid change to
+            <SetMeetongButton label="Set a meeting" to="/" />
+          ) : (
+            <CheckPriceButton
+              label="Check price"
+              onClick={() => setRegisterModal(true)}
+            />
+          )}
         </ReserveBlock>
       </ProfilePaper>
       <DescPaper noHover={true}>
@@ -71,10 +86,7 @@ export default function ExpertUi({ pageProps }: Props) {
           }}
         />
       </DescPaper>
-      <BottomPaper noHover={true} id="section3">
-        {/* <DateTimePicker /> */}
-        {/* <PersonalInformation /> */}
-      </BottomPaper>
+      <Experts currentExpert={currentExpert || ({} as Expert)} />
     </PageLayout>
   );
 }
@@ -110,30 +122,15 @@ const Price = styled(Body2)`
   color: var(--text-color-dark);
   margin-right: 4px;
 `;
-
-const MeetingButton = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--primary-color-dark);
-  border: none;
-  color: white;
-  border-radius: 8px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+const SetMeetongButton = styled(ButtonLink)`
+  width: 221px;
+  height: 54px;
+`;
+const CheckPriceButton = styled(Button)`
   width: 149px;
   height: 54px;
-  // font
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-
-  &:hover {
-    background-color: var(--primary-color-darker);
-    color: white;
-  }
 `;
-
+// const SetMeetongButton=
 const DescPaper = styled(Paper)`
   width: 100%;
   max-width: 940px;

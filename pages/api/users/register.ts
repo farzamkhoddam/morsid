@@ -26,6 +26,15 @@ export default async function RegisterUser(
       }
     })
     .catch((error) => {
+      if (error.response) {
+        console.log("navid yes");
+        // Request made and server responded
+        console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
+      } else {
+        console.log("navid no");
+      }
       res.status(400).send({ success: false, errors: error });
     });
 }
