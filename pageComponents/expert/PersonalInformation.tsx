@@ -251,7 +251,7 @@ export default function PersonalInformation() {
                     color: "var(--text-color-dark)",
                   }}
                 >
-                  Billed for 30 minutes meeting
+                  Billed for 1 hour meeting
                 </Body1>
                 <Body1
                   style={{

@@ -73,7 +73,7 @@ export default function MaterialUIPickers() {
         >
           Duration:
         </Body2>
-        <Body2>30 minutes</Body2>
+        <Body2>1 Hour</Body2>
       </Row>
       <Row
         style={{

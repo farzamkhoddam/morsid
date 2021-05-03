@@ -3,11 +3,14 @@ import SEO from "../../components/seo";
 import PageLayout from "components/PageLayout";
 import styled from "styled-components";
 import { Body1, Body3, H3, Title } from "elements/typo";
-import Image from "next/image";
+import { HowItsWorkProps } from "pages/how-its-work";
 
-export default function HowItsWorkUi() {
+interface Props {
+  pageProps: HowItsWorkProps;
+}
+export default function HowItsWorkUi({ pageProps }: Props) {
   return (
-    <PageLayout currentTabIndex={1}>
+    <PageLayout currentTabIndex={1} isLogin={pageProps.isLogin}>
       <SEO />
       <Container>
         <MainTitle>
@@ -84,7 +87,7 @@ export default function HowItsWorkUi() {
             <Title style={{ marginBottom: "24px" }}>Set a meeting</Title>
             <Body1>
               At this time, you will be pre-charged for the estimated length of
-              the call, based on the expert's per-minute rate.
+              the call, based on the expert's per-hour rate.
             </Body1>
           </RowItem>
         </Row>
