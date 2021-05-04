@@ -22,7 +22,7 @@ export const Paper = styled.section<{ noHover?: boolean }>`
   ${({ noHover }) =>
     !noHover &&
     `&:hover {
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 20px 2.5rem rgba(0, 0, 0, 0.1);
     border-radius: 8px;
   }`};
 `;

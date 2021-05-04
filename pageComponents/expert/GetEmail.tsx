@@ -7,17 +7,17 @@ import { Expert } from "consts/experts";
 import Avatar from "components/Avatar";
 import { STEPS } from "./constants";
 import { StyledStepper } from "./MaterialUIPickers";
-import PersonalInformation from "./PersonalInformation";
+import GetEmailImage from "./GetEmailImage";
 
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<STEP>>;
   currentExpert: Expert;
 }
 
-export default function PaymentForm({ setStep, currentExpert }: Props) {
+export default function GetEmail({ setStep, currentExpert }: Props) {
   return (
     <Container>
-      <Paper>
+      <Paper style={{ marginBottom: "256px" }}>
         <Avatar
           alt={currentExpert.name}
           imageUrl={currentExpert.imageUrl}
@@ -30,22 +30,15 @@ export default function PaymentForm({ setStep, currentExpert }: Props) {
             textAlign: "center",
           }}
         >{`Set a meeting with ${currentExpert.name}`}</Body1>
-        <StyledStepper steps={STEPS} activeStep={2} />
-        <PersonalInformation />
-        <Buttons>
-          <Body2
-            style={{ marginRight: "2.5rem", cursor: "pointer" }}
-            onClick={() => setStep(STEP.DateTimePicker)}
-          >
-            Back
-          </Body2>
-          <Body2
-            style={{ color: "var(--primary-color-dark)", cursor: "pointer" }}
-            onClick={() => setStep(STEP.GetEmail)}
-          >
-            Next &#x27F6;
-          </Body2>
-        </Buttons>
+        <StyledStepper steps={STEPS} activeStep={3} />
+        <FlexContainer>
+          <GetEmailImage />
+        </FlexContainer>
+        <FlexContainer>
+          <Body1 style={{ width: "315px", color: "var(--text-color-dark)" }}>
+            Your meeting was successfully set You'll get information via email
+          </Body1>
+        </FlexContainer>
       </Paper>
     </Container>
   );
@@ -54,10 +47,11 @@ const Container = styled.div`
   width: 100%;
   padding: 2.5rem;
 `;
-const Buttons = styled.div`
+const FlexContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--text-color-dark);
 `;

@@ -9,6 +9,6 @@ export enum device {
   laptopXS = `(max-width: 1024px)`,
   laptopS = `(max-width: 1280px)`,
   laptopM = `(max-width: 1366px)`,
-  laptopL = `(max-width: 1440px)`,
+  laptopL = `(max-width: 142.5rem)`,
   desktop = `(max-width: 2560px)`,
 }

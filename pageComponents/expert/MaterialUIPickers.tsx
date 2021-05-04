@@ -213,13 +213,20 @@ export default function MaterialUIPickers({ setStep, currentExpert }: Props) {
             </FlexRow>
           </FlexRowItem>
         </FlexRow>
+        <Buttons>
+          <Body2
+            style={{ color: "var(--primary-color-dark)", cursor: "pointer" }}
+          >
+            Next &#x27F6;
+          </Body2>
+        </Buttons>
       </Paper>
     </Container>
   );
 }
 const Container = styled.div`
   width: 100%;
-  padding: 40px;
+  padding: 2.5rem;
 `;
 const Row = styled.div`
   display: flex;
@@ -256,7 +263,7 @@ const FlexRowItem = styled.div`
 export const StyledStepper = styled(Stepper)`
   width: 700px;
   margin: 0 auto;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 `;
 const StyledDatePicker = styled(StaticDatePicker)`
   .MuiPickersDay-today {
@@ -273,3 +280,11 @@ const StyledDatePicker = styled(StaticDatePicker)`
     }
   }
 ` as typeof StaticDatePicker;
+const Buttons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding-right: 2.8rem;
+`;

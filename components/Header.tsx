@@ -20,7 +20,7 @@ const Header = ({ currentTabIndex, isLogin }: Props) => {
     <Container>
       <Wrapper>
         <Modals />
-        <a style={{ marginRight: "40px" }} href="/">
+        <a style={{ marginRight: "2.5rem" }} href="/">
           <Image
             src="/svgs/logo.svg"
             alt={"Logo"}
@@ -32,12 +32,12 @@ const Header = ({ currentTabIndex, isLogin }: Props) => {
 
         <Nav>
           <NavItem isSelected={currentTabIndex === 0}>
-            <a style={{ marginRight: "40px" }} href="/experts">
+            <a style={{ marginRight: "2.5rem" }} href="/experts">
               Experts
             </a>
           </NavItem>
           <NavItem isSelected={currentTabIndex === 1}>
-            <a style={{ marginRight: "40px" }} href="/how-its-work">
+            <a style={{ marginRight: "2.5rem" }} href="/how-its-work">
               How its works
             </a>
           </NavItem>
@@ -96,7 +96,7 @@ const UserSection = styled.div`
 const LoginButton = styled(Button)`
   width: 88px;
   height: 46px;
-  margin-right: 40px;
+  margin-right: 2.5rem;
 `;
 const SignupButton = styled(Button)`
   width: 104px;

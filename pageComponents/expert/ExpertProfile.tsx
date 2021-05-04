@@ -44,7 +44,7 @@ export default function ExpertProfile({
             {currentExpert?.name}
           </Body1>
           <Row2>
-            <Body2 style={{ marginRight: "40px" }}>
+            <Body2 style={{ marginRight: "2.5rem" }}>
               {currentExpert?.title}
             </Body2>
             {currentExpert?.linkdinAddress && (
@@ -93,7 +93,7 @@ const ProfilePaper = styled(Paper)`
   display: flex;
   align-items: center;
   margin-bottom: 30px;
-  max-width: 940px;
+  max-width: 92.5rem;
   margin-right: auto;
   margin-left: auto;
 `;

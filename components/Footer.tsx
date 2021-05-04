@@ -11,7 +11,7 @@ const Footer = ({ currentTabIndex }: Props) => {
   return (
     <Container>
       <Wrapper>
-        <a style={{ marginRight: "40px" }} href="/">
+        <a style={{ marginRight: "2.5rem" }} href="/">
           <Image
             src="/svgs/logo.svg"
             alt={"Logo"}
@@ -22,12 +22,12 @@ const Footer = ({ currentTabIndex }: Props) => {
         </a>
         <Nav>
           <NavItem isSelected={currentTabIndex === 0}>
-            <a style={{ marginRight: "40px" }} href="/experts">
+            <a style={{ marginRight: "2.5rem" }} href="/experts">
               Experts
             </a>
           </NavItem>
           <NavItem isSelected={currentTabIndex === 1}>
-            <a style={{ marginRight: "40px" }} href="/how-its-work">
+            <a style={{ marginRight: "2.5rem" }} href="/how-its-work">
               How its works
             </a>
           </NavItem>

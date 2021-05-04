@@ -107,7 +107,7 @@ const Step1 = ({ setStep }: Props) => {
                 <Body3
                   style={{
                     display: "inline-block",
-                    marginBottom: "40px",
+                    marginBottom: "2.5rem",
                     color: "var(--text-color-dark)",
                   }}
                 >
@@ -179,5 +179,5 @@ const Flex1 = styled.div`
 const CTA = styled(Button)`
   width: 195px;
   height: 54px;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 `;

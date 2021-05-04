@@ -13,7 +13,7 @@ interface Props {
 export default function Experts({ currentExpert }: Props) {
   return (
     <Container>
-      <H3 style={{ margin: "0 auto 40px " }}>
+      <H3 style={{ margin: "0 auto 2.5rem " }}>
         You can also choose from other experts
       </H3>
 
