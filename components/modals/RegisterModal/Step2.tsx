@@ -10,22 +10,25 @@ import { TextInput } from "elements/TextInput";
 import Button from "elements/Button";
 
 interface FormValues {
-  full_name: string;
+  first_name: string;
+  last_name: string;
   phone_number: string;
 }
 
 const initialValues: FormValues = {
-  full_name: "",
+  first_name: "",
+  last_name: "",
   phone_number: "",
 };
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const RegisterSchema = yup.object().shape({
-  full_name: yup.string(),
+  first_name: yup.string(),
+  last_name: yup.string(),
   phone_number: yup.string().matches(phoneRegExp, "Phone number is not valid"),
 });
 interface Props {
-  setStep: React.Dispatch<React.SetStateAction<1 | 2>>;
+  setStep: React.Dispatch<React.SetStateAction<1 | 2 | 3>>;
 }
 const Step2 = ({ setStep }: Props) => {
   return (
@@ -60,13 +63,23 @@ const Step2 = ({ setStep }: Props) => {
           <StyledForm>
             <Column>
               <Flex1>
-                <Caption as="label" htmlFor={"full_name"}>
-                  Full name
+                <Caption as="label" htmlFor={"first_name"}>
+                  First name
                 </Caption>
                 <TextInput
-                  name="full_name"
+                  name="first_name"
                   type="text"
-                  placeholder="e.g Jimmy Heller"
+                  placeholder="e.g Jimmy"
+                />
+              </Flex1>
+              <Flex1>
+                <Caption as="label" htmlFor={"last_name"}>
+                  Last name
+                </Caption>
+                <TextInput
+                  name="last_name"
+                  type="text"
+                  placeholder="e.g Heller"
                 />
               </Flex1>
               <Flex1>

@@ -5,6 +5,7 @@ import "reactjs-popup/dist/index.css";
 import styled from "styled-components";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
+import Step3 from "./Step3";
 
 interface FormValues {
   email: string;
@@ -17,7 +18,22 @@ interface Props {
 }
 
 const RegisterModal = ({ isOpen, setIsOpen }: Props) => {
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2 | 3>(3);
+  let correctStep = <div />;
+  switch (step) {
+    case 1:
+      correctStep = <Step1 setStep={setStep} />;
+      break;
+    case 2:
+      correctStep = <Step2 setStep={setStep} />;
+      break;
+    case 3:
+      correctStep = <Step3 setStep={setStep} />;
+      break;
+
+    default:
+      break;
+  }
   return (
     <StyledPopup
       open={isOpen}
@@ -34,7 +50,7 @@ const RegisterModal = ({ isOpen, setIsOpen }: Props) => {
       >
         &times;
       </CloseButton>
-      {step === 1 ? <Step1 setStep={setStep} /> : <Step2 setStep={setStep} />}
+      {correctStep}
     </StyledPopup>
   );
 };

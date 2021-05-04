@@ -8,7 +8,6 @@ import { TextInput } from "elements/TextInput";
 import Checkbox from "elements/CheckBox";
 import Button from "elements/Button";
 import axios from "axios";
-import ToasterContainer from "components/ToasterContainer";
 
 interface FormValues {
   email: string;
@@ -30,7 +29,7 @@ const RegisterSchema = yup.object().shape({
 
 const checkBoxName = "iAccept";
 interface Props {
-  setStep: React.Dispatch<React.SetStateAction<1 | 2>>;
+  setStep: React.Dispatch<React.SetStateAction<1 | 2 | 3>>;
 }
 const Step1 = ({ setStep }: Props) => {
   const [isSelected, setIsSelected] = useState<Record<string, boolean>>({
@@ -67,13 +66,13 @@ const Step1 = ({ setStep }: Props) => {
         onSubmit={async (values) => {
           try {
             await axios.post("/api/users/register/", values);
-
-            toast.success(
-              "navid با موفقیت ثبت نام کردید. لطفا اطلاعات بیشتری وارد کنید",
-            );
+            setStep(3);
           } catch (e) {
-            toast.error("navid متاسفانه مشکل خوردیم");
-            console.log("Register Error=", e);
+            e.error.map((error: string) => {
+              toast.error(error);
+            });
+
+            console.log("Register Error=", e.response.data);
           }
         }}
       >

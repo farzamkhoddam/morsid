@@ -111,16 +111,7 @@ const StepSymbol = styled.div<{ active: boolean; label: string }>`
 }
   }
 `;
-const FirstSymbol = styled(StepSymbol)`
-  &::before {
-    content: "";
-    width: 2.5rem;
-    background-color: white;
-    height: 100%;
-    position: absolute;
-    left: -44px;
-  }
-`;
+
 const StepLabel = styled.span<{ active: boolean }>`
   color: ${({ active }) => (active ? "#1d3330" : "#828282")};
 `;
