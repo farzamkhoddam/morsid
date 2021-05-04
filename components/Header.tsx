@@ -14,7 +14,7 @@ interface Props {
   isLogin: boolean;
 }
 const Header = ({ currentTabIndex, isLogin }: Props) => {
-  const { setRegisterModal } = useContext(modalsContext);
+  const { setRegisterModal, setLoginModal } = useContext(modalsContext);
 
   return (
     <Container>
@@ -48,7 +48,11 @@ const Header = ({ currentTabIndex, isLogin }: Props) => {
         <UserSection>
           {!isLogin ? (
             <>
-              <LoginButton label="Login" border={true} />
+              <LoginButton
+                label="Login"
+                border={true}
+                onClick={() => setLoginModal(true)}
+              />
               <SignupButton
                 label="Sign Up"
                 onClick={() => setRegisterModal(true)}

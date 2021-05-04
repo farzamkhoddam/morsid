@@ -28,7 +28,7 @@ const RegisterModal = ({ isOpen, setIsOpen }: Props) => {
       correctStep = <Step2 setStep={setStep} />;
       break;
     case 3:
-      correctStep = <Step3 setStep={setStep} />;
+      correctStep = <Step3 />;
       break;
 
     default:
