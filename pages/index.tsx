@@ -14,7 +14,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   return {
     props: {
+      //navid check
       isLogin: !!token,
+      // isLogin: !token,
     },
     // revalidate: 20,
   };

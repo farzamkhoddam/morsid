@@ -1,4 +1,4 @@
-import ToasterContainer from "components/ToasterContainer";
+import Router from "next/router";
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
@@ -14,11 +14,11 @@ interface FormValues {
 
 interface Props {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: (state: boolean) => void;
 }
 
 const RegisterModal = ({ isOpen, setIsOpen }: Props) => {
-  const [step, setStep] = useState<1 | 2 | 3>(3);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
   let correctStep = <div />;
   switch (step) {
     case 1:
@@ -37,7 +37,10 @@ const RegisterModal = ({ isOpen, setIsOpen }: Props) => {
   return (
     <StyledPopup
       open={isOpen}
-      onClose={() => setIsOpen(false)}
+      onClose={() => {
+        setIsOpen(false);
+        Router.reload();
+      }}
       position="right center"
       modal
       lockScroll

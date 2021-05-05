@@ -1,19 +1,16 @@
-import ToasterContainer from "components/ToasterContainer";
 import Button from "elements/Button";
-
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import styled from "styled-components";
 import { Body2, Body3, Caption, Title } from "elements/typo";
-import React, { useState } from "react";
+import React, { Dispatch, useContext, useState } from "react";
 import * as yup from "yup";
-
-import { Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import { TextInput } from "elements/TextInput";
 import Checkbox from "elements/CheckBox";
-
 import axios from "axios";
+import Router from "next/router";
 
 interface FormValues {
   email: string;
@@ -36,14 +33,14 @@ const checkBoxName = "RememberMe";
 
 interface Props {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: (state: boolean) => void;
 }
 
 const LoginModal = ({ isOpen, setIsOpen }: Props) => {
   const [isSelected, setIsSelected] = useState<Record<string, boolean>>({
     [checkBoxName]: false,
   });
-  const handleCheckboxChange = (changeEvent: { target: { name: any } }) => {
+  const handleCheckboxChange = () => {
     setIsSelected({ [checkBoxName]: !isSelected[checkBoxName] });
   };
   return (
@@ -54,14 +51,7 @@ const LoginModal = ({ isOpen, setIsOpen }: Props) => {
       modal
       lockScroll
     >
-      <CloseButton
-        onClick={() => {
-          setIsOpen(false);
-          setIsOpen(false);
-        }}
-      >
-        &times;
-      </CloseButton>
+      <CloseButton onClick={() => setIsOpen(false)}>&times;</CloseButton>
       <LoginContainer>
         <Title
           style={{ marginBottom: "1.5rem", color: "var(--primary-color-dark)" }}
@@ -78,6 +68,7 @@ const LoginModal = ({ isOpen, setIsOpen }: Props) => {
           onSubmit={async (values) => {
             try {
               await axios.post("/api/users/login/", values);
+              Router.reload();
             } catch (e) {
               e.error.map((error: string) => {
                 toast.error(error);

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 import { setTokenCookie } from "utils/auth-cookie";
@@ -14,24 +15,45 @@ export default async function RegisterUser(
 
   const { email, password } = req.body;
 
-  try {
-    const { data } = await fetchLoginUser({
-      variables: {
-        input: {
-          clientMutationId: "next",
-          username: email,
-          password,
-        },
-      },
+  axios
+    .post(`${process.env.BASE_URL}/api/login/`, {
+      email,
+      password,
+    })
+    .then((resp: Record<string, any>) => {
+      if (resp?.data) console.log("navid resp has data=", resp.data);
+      else console.log("navid resp has not data");
+      const token = resp?.data?.access;
+      if (token) {
+        setTokenCookie(res, token);
+        res.status(200).json({ success: true });
+        return;
+      } else {
+        res.status(400).send({
+          success: false,
+          error: [
+            "Unfortunatly, there is a problem in login process. please try later again",
+          ],
+        });
+      }
+    })
+    .catch((error) => {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error?.response?.data);
+        res.status(400).send({
+          success: false,
+          error: error?.response?.data,
+        });
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
+      } else {
+        res.status(400).send({
+          success: false,
+          error: [
+            "Unfortunatly, there is a problem now. please try later again",
+          ],
+        });
+      }
     });
-    const token = data?.data?.login?.refreshToken;
-    if (token) {
-      setTokenCookie(res, token);
-      res.status(200).json({ success: true });
-      return;
-    }
-  } catch (e) {
-    console.log(e);
-  }
-  res.status(400).send({ success: false });
 }

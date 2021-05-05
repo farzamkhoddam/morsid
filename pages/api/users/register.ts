@@ -12,17 +12,22 @@ export default async function RegisterUser(
   }
 
   const { email, password } = req.body;
-  let test = {};
 
   axios
     .post(`${process.env.BASE_URL}/api/register/`, { email, password })
     .then((resp) => {
       const token = resp?.data?.tokens?.access;
       if (token) {
-        // navid وقتی لاگ اوت آماده شد باید این رو آنکامنت کنیم
-        // setTokenCookie(res, token);
+        setTokenCookie(res, token);
         res.status(200).json({ success: true });
         return;
+      } else {
+        res.status(400).send({
+          success: false,
+          error: [
+            "Unfortunatly, there is a problem in register process. please try later again",
+          ],
+        });
       }
     })
     .catch((error) => {
@@ -35,11 +40,13 @@ export default async function RegisterUser(
         });
         // console.log(error.response.status);
         // console.log(error.response.headers);
+      } else {
+        res.status(400).send({
+          success: false,
+          error: [
+            "Unfortunatly, there is a problem now. please try later again",
+          ],
+        });
       }
-      res.status(400).send({
-        success: false,
-        error: ["Unfortunatly, there is a problem now. please try later again"],
-      });
-      return "navid return";
     });
 }

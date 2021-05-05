@@ -3,18 +3,33 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Button from "elements/Button";
-
+import Router from "next/router";
 import { useContext } from "react";
 import { modalsContext } from "contexts/modalContext";
 import Modals from "./Modals";
-import ToasterContainer from "./ToasterContainer";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 interface Props {
   currentTabIndex: number;
   isLogin: boolean;
 }
+
 const Header = ({ currentTabIndex, isLogin }: Props) => {
   const { setRegisterModal, setLoginModal } = useContext(modalsContext);
+  const handleLogout = async () => {
+    console.log("navid handleLogout");
+    try {
+      await axios.get("/api/users/logout/");
+      Router.reload();
+    } catch (e) {
+      e.error.map((error: string) => {
+        toast.error("navid لاگ اوت با موفقیت انجام نشد");
+      });
+
+      console.log("Register Error=", e.response.data);
+    }
+  };
 
   return (
     <Container>
@@ -59,7 +74,12 @@ const Header = ({ currentTabIndex, isLogin }: Props) => {
               />
             </>
           ) : (
-            <MyProfileButton label="My Profile &#x025BD;" border={true} />
+            <MyProfileButton
+              // label="My Profile &#x025BD;"
+              label="Logout"
+              border={true}
+              onClick={handleLogout}
+            />
           )}
         </UserSection>
       </Wrapper>
@@ -109,4 +129,5 @@ const SignupButton = styled(Button)`
 const MyProfileButton = styled(Button)`
   width: 149px;
   height: 48px;
+  outline: none;
 `;

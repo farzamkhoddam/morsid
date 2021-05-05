@@ -8,6 +8,7 @@ import { TextInput } from "elements/TextInput";
 import Checkbox from "elements/CheckBox";
 import Button from "elements/Button";
 import axios from "axios";
+import Router from "next/router";
 
 interface FormValues {
   email: string;
