@@ -38,8 +38,6 @@ export default async function RegisterUser(
           success: false,
           error: error?.response?.data,
         });
-        // console.log(error.response.status);
-        // console.log(error.response.headers);
       } else {
         res.status(400).send({
           success: false,

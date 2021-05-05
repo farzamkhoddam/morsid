@@ -1,7 +1,8 @@
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
+import { setTokenCookie } from "utils/auth-cookie";
 
-export default async function ResetPassword(
+export default async function RegisterUser(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
@@ -10,15 +11,32 @@ export default async function ResetPassword(
     return;
   }
 
-  try {
-    await axios.post(
-      `https://wp.thehustleclub.com/wp-json/pl/v1/reset_password`,
-      req.body,
-    );
-    res.status(200).json({ success: true });
-    return;
-  } catch (e) {
-    console.log(e);
-  }
-  res.status(400).send({ success: false });
+  const { email } = req.body;
+
+  axios
+    .post(`${process.env.BASE_URL}/api/users/reset_password/`, {
+      email,
+    })
+    .then(() => {
+      res.status(200).json({ success: true });
+    })
+    .catch((error) => {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error?.response?.data);
+        res.status(400).send({
+          success: false,
+          error: [error?.response?.data],
+        });
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
+      } else {
+        res.status(400).send({
+          success: false,
+          error: [
+            "Unfortunatly, there is a problem now. please try later again",
+          ],
+        });
+      }
+    });
 }

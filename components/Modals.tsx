@@ -1,10 +1,8 @@
-import React, { useReducer } from "react";
-
+import React from "react";
 import RegisterModal from "./modals/RegisterModal";
 import { modalsContext } from "contexts/modalContext";
 import { useContext } from "react";
 import LoginModal from "./modals/LoginModal";
-import { ModalsActionTypes, ModalsActions } from "./modals/interfaces";
 
 interface Props {
   currentTabIndex: number;
@@ -12,9 +10,6 @@ interface Props {
 }
 
 const Modals = () => {
-  // const { registerModal, setRegisterModal } = useContext(modalsContext);
-
-  // const { loginModal, setLoginModal } = useContext(modalsContext);
   const {
     loginModal,
     setLoginModal,

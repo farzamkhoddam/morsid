@@ -24,19 +24,18 @@ const initialState: ModalState = {
 function reducer(state: ModalState, action: ModalsActions) {
   switch (action.type) {
     case ModalsActionTypes.EnableLoginModal:
-      return { registerModal: false, loginModal: true } as ModalState;
+      return { ...initialState, loginModal: true } as ModalState;
+    case ModalsActionTypes.EnableRegisterModal:
+      return { ...initialState, registerModal: true } as ModalState;
+
     case ModalsActionTypes.DisableAllModal:
       return initialState;
-    case ModalsActionTypes.EnableRegisterModal:
-      return { registerModal: true, loginModal: false } as ModalState;
     default:
       throw new Error();
   }
 }
 
 function ModalsContextProvider({ children }: Props) {
-  // const [registerModal, setRegisterModal] = useState(false);
-  // const [loginModal, setLoginModal] = useState(false);
   const [modalSstate, modalsDispatch] = useReducer(reducer, initialState);
   const setRegisterModal = (state: boolean): void => {
     if (state) modalsDispatch({ type: ModalsActionTypes.EnableRegisterModal });
@@ -46,6 +45,7 @@ function ModalsContextProvider({ children }: Props) {
     if (state) modalsDispatch({ type: ModalsActionTypes.EnableLoginModal });
     else modalsDispatch({ type: ModalsActionTypes.DisableAllModal });
   };
+
   return (
     <modalsContext.Provider
       value={{

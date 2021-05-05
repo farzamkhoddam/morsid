@@ -64,17 +64,15 @@ const Step1 = ({ setStep }: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterSchema}
-        onSubmit={async (values) => {
-          try {
-            await axios.post("/api/users/register/", values);
-            setStep(3);
-          } catch (e) {
-            e.error.map((error: string) => {
-              toast.error(error);
+        onSubmit={(values) => {
+          axios
+            .post("/api/users/register/", values)
+            .then(() => setStep(3))
+            .catch((e) => {
+              e?.response?.data?.error.map((error: string) => {
+                toast.error(error);
+              });
             });
-
-            console.log("Register Error=", e.response.data);
-          }
         }}
       >
         {({ isSubmitting }) => (

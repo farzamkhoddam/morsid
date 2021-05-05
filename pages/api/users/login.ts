@@ -1,8 +1,6 @@
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
-
 import { setTokenCookie } from "utils/auth-cookie";
-import { fetchLoginUser } from "wpapi/graphql";
 
 export default async function RegisterUser(
   req: NextApiRequest,
@@ -20,15 +18,14 @@ export default async function RegisterUser(
       email,
       password,
     })
-    .then((resp: Record<string, any>) => {
-      if (resp?.data) console.log("navid resp has data=", resp.data);
-      else console.log("navid resp has not data");
+    .then((resp) => {
       const token = resp?.data?.access;
       if (token) {
         setTokenCookie(res, token);
         res.status(200).json({ success: true });
         return;
       } else {
+        console.log("navid inja 1");
         res.status(400).send({
           success: false,
           error: [
@@ -43,7 +40,7 @@ export default async function RegisterUser(
         console.log(error?.response?.data);
         res.status(400).send({
           success: false,
-          error: error?.response?.data,
+          error: [error?.response?.data],
         });
         // console.log(error.response.status);
         // console.log(error.response.headers);
