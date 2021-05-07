@@ -1,7 +1,10 @@
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
-import { setTokenCookie } from "utils/auth-cookie";
 
+export interface ForgetPasswordReqError {
+  success: false;
+  error: string;
+}
 export default async function RegisterUser(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -12,13 +15,13 @@ export default async function RegisterUser(
   }
 
   const { email } = req.body;
-
   axios
     .post(`${process.env.BASE_URL}/api/users/reset_password/`, {
       email,
     })
     .then(() => {
       res.status(200).json({ success: true });
+      return;
     })
     .catch((error) => {
       if (error.response) {
@@ -26,17 +29,15 @@ export default async function RegisterUser(
         console.log(error?.response?.data);
         res.status(400).send({
           success: false,
-          error: [error?.response?.data],
-        });
+          error: error?.response?.data?.email,
+        } as ForgetPasswordReqError);
         // console.log(error.response.status);
         // console.log(error.response.headers);
       } else {
         res.status(400).send({
           success: false,
-          error: [
-            "Unfortunatly, there is a problem now. please try later again",
-          ],
-        });
+          error: "Unfortunatly, there is a problem now. please try later again",
+        } as ForgetPasswordReqError);
       }
     });
 }

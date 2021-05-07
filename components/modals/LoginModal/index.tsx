@@ -35,7 +35,7 @@ const LoginModal = ({ isOpen, setIsOpen }: Props) => {
       {status === "LOGIN" ? (
         <LoginModalComponents setStatus={setStatus} />
       ) : (
-        <ForgetPasswordModal />
+        <ForgetPasswordModal setIsOpen={setIsOpen} />
       )}
     </StyledPopup>
   );

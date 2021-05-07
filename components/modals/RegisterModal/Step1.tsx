@@ -71,7 +71,7 @@ const Step1 = ({ setStep }: Props) => {
             .then(() => setStep(3))
             .catch((e) => {
               const responseError: RegisterReqError = e?.response?.data;
-              e?.response?.data?.error.map((error: string) => {
+              responseError.error.map((error: string) => {
                 toast.error(error);
               });
             });

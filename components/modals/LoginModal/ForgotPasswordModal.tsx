@@ -7,6 +7,7 @@ import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import { TextInput } from "elements/TextInput";
 import axios from "axios";
+import { ForgetPasswordReqError } from "pages/api/users/reset-password";
 
 interface FormValues {
   email: string;
@@ -17,8 +18,10 @@ const initialValues: FormValues = {
 const ForgotSchema = yup.object().shape({
   email: yup.string().label("Email Address").email().required(),
 });
-
-const ForgotModal = () => {
+interface Props {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const ForgotModal = ({ setIsOpen }) => {
   return (
     <Container>
       <Title
@@ -35,12 +38,16 @@ const ForgotModal = () => {
         validationSchema={ForgotSchema}
         onSubmit={(values) => {
           axios
-            .post("/api/users/reset_password/", values)
-            .then()
+            .post("/api/users/reset-password/", values)
+            .then(() => {
+              toast.success("We send you a reset password link to your email."),
+                setTimeout(function () {
+                  setIsOpen(false);
+                }, 3000);
+            })
             .catch((e) => {
-              e?.response?.data?.error.map((error: string) => {
-                toast.error(error);
-              });
+              const reqError: ForgetPasswordReqError = e?.response?.data;
+              toast.error(reqError.error);
             });
         }}
       >
