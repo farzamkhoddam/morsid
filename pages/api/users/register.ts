@@ -20,7 +20,7 @@ export default async function RegisterUser(
   axios
     .post(`${process.env.BASE_URL}/api/register/`, { email, password })
     .then((resp) => {
-      const token = resp?.data?.tokens?.access;
+      const token = resp?.data?.access;
       if (token) {
         setTokenCookie(res, token);
         res.status(200).json({ success: true });

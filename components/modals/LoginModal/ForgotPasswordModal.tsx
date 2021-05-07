@@ -21,7 +21,7 @@ const ForgotSchema = yup.object().shape({
 interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const ForgotModal = ({ setIsOpen }) => {
+const ForgotModal = ({ setIsOpen }: Props) => {
   return (
     <Container>
       <Title

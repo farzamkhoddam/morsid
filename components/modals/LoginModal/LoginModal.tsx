@@ -11,6 +11,7 @@ import axios from "axios";
 import Router from "next/router";
 import { useState } from "react";
 import { LoginReqError } from "pages/api/users/login";
+import { GetYapValidationOfPassWord } from "utils/other";
 
 interface FormValues {
   email: string;
@@ -22,11 +23,7 @@ const initialValues: FormValues = {
 };
 const LoginSchema = yup.object().shape({
   email: yup.string().label("Email Address").email().required(),
-  password: yup
-    .string()
-    .required("No password provided.")
-    .min(8, "Password is too short - should be 8 chars minimum.")
-    .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+  password: GetYapValidationOfPassWord(),
 });
 
 const checkBoxName = "RememberMe";

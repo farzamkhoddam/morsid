@@ -18,7 +18,6 @@ interface Props {
 const Header = ({ currentTabIndex, isLogin }: Props) => {
   const { setRegisterModal, setLoginModal } = useContext(modalsContext);
   const handleLogout = async () => {
-    console.log("navid handleLogout");
     try {
       await axios.get("/api/users/logout/");
       Router.reload();
