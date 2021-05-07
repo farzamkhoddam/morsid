@@ -1,26 +1,26 @@
-import { Body2, Body3, Caption, Title } from "elements/typo";
-import React, { useState } from "react";
-import * as yup from "yup";
+import Button from "elements/Button";
+import "reactjs-popup/dist/index.css";
 import styled from "styled-components";
-import { Field, Form, Formik } from "formik";
+import { Body2, Body3, Caption, Title } from "elements/typo";
+import * as yup from "yup";
+import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import { TextInput } from "elements/TextInput";
 import Checkbox from "elements/CheckBox";
-import Button from "elements/Button";
 import axios from "axios";
 import Router from "next/router";
-import { RegisterReqError } from "pages/api/users/register";
+import { useState } from "react";
+import { LoginReqError } from "pages/api/users/login";
 
 interface FormValues {
   email: string;
   password: string;
 }
-
 const initialValues: FormValues = {
   email: "",
   password: "",
 };
-const RegisterSchema = yup.object().shape({
+const LoginSchema = yup.object().shape({
   email: yup.string().label("Email Address").email().required(),
   password: yup
     .string()
@@ -29,51 +29,40 @@ const RegisterSchema = yup.object().shape({
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
 });
 
-const checkBoxName = "iAccept";
+const checkBoxName = "RememberMe";
+
 interface Props {
-  setStep: React.Dispatch<React.SetStateAction<1 | 2 | 3>>;
+  setStatus: React.Dispatch<React.SetStateAction<"LOGIN" | "FORGET">>;
 }
-const Step1 = ({ setStep }: Props) => {
+
+const LoginModal = ({ setStatus }: Props) => {
   const [isSelected, setIsSelected] = useState<Record<string, boolean>>({
-    [checkBoxName]: true,
+    [checkBoxName]: false,
   });
-  const handleCheckboxChange = (changeEvent: { target: { name: any } }) => {
+  const handleCheckboxChange = () => {
     setIsSelected({ [checkBoxName]: !isSelected[checkBoxName] });
   };
-
   return (
-    <RegisterContainer>
-      <Markers>
-        <StepMarker
-          isActive={true}
-          style={{ borderRadius: "20px 0px 0px 0px" }}
-        />
-
-        <StepMarker style={{ borderRadius: "0px 20px 0px 0px" }} />
-      </Markers>
-
-      <Caption style={{ marginBottom: "1rem" }}>1 of 2</Caption>
+    <LoginContainer>
       <Title
         style={{ marginBottom: "1.5rem", color: "var(--primary-color-dark)" }}
       >
-        Welcome to Morsid
+        Welcome back to Morsid
       </Title>
       <Body2 style={{ marginBottom: "2rem" }}>
-        For booking a meeting with our experts, Please sign up!
+        Please login to access your account
       </Body2>
 
       <Formik
         initialValues={initialValues}
-        validationSchema={RegisterSchema}
+        validationSchema={LoginSchema}
         onSubmit={(values) => {
           axios
-            .post("/api/users/register/", values)
-            .then(() => setStep(3))
+            .post("/api/users/login/", values)
+            .then(() => Router.reload())
             .catch((e) => {
-              const responseError: RegisterReqError = e?.response?.data;
-              e?.response?.data?.error.map((error: string) => {
-                toast.error(error);
-              });
+              const responseError: LoginReqError = e?.response?.data;
+              toast.error(responseError.error);
             });
         }}
       >
@@ -101,28 +90,32 @@ const Step1 = ({ setStep }: Props) => {
                 />
               </Flex1>
             </Column>
-
-            <Checkbox
-              label={
-                <Body3
-                  style={{
-                    display: "inline-block",
-                    marginBottom: "2.5rem",
-                    color: "var(--text-color-dark)",
-                  }}
-                >
-                  I agree to the{" "}
-                  <span style={{ borderBottom: "1px solid" }}>
-                    terms, conditions and privacy policy
-                  </span>
-                </Body3>
-              }
-              isSelected={isSelected["iAccept"]}
-              changeHandler={handleCheckboxChange}
-              name={checkBoxName}
-            />
+            <Row>
+              <Checkbox
+                label={
+                  <Body3
+                    style={{
+                      display: "inline-block",
+                      marginBottom: "2.5rem",
+                      color: "var(--text-color-dark)",
+                    }}
+                  >
+                    Remember me
+                  </Body3>
+                }
+                isSelected={isSelected["iAccept"]}
+                changeHandler={handleCheckboxChange}
+                name={checkBoxName}
+              />
+              <Body3
+                style={{ cursor: "pointer" }}
+                onClick={() => setStatus("FORGET")}
+              >
+                I forgot my password
+              </Body3>
+            </Row>
             <CTA
-              label="Create an account"
+              label="Login to account"
               type="submit"
               disabled={isSubmitting}
             />
@@ -130,14 +123,15 @@ const Step1 = ({ setStep }: Props) => {
         )}
       </Formik>
       <Body2 style={{ color: "var(--text-color-dark)" }}>
-        If you have an account, please{" "}
-        <span style={{ color: "var(--primary-color-dark)" }}>{` Login`}</span>
+        If you haven’t an account, please
+        <span style={{ color: "var(--primary-color-dark)" }}>{` Sign up`}</span>
       </Body2>
-    </RegisterContainer>
+    </LoginContainer>
   );
 };
-export default Step1;
-const RegisterContainer = styled.div`
+export default LoginModal;
+
+const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -145,25 +139,15 @@ const RegisterContainer = styled.div`
   height: auto;
   background: #ffffff;
   border-radius: 20px;
+  padding: 56px;
   padding-bottom: 68px;
-`;
-const Markers = styled.div`
-  display: flex;
-  width: 100%;
-  height: 1rem;
-  margin-bottom: 0.5rem;
-`;
-const StepMarker = styled.div<{ isActive?: boolean }>`
-  width: 100%;
-  height: 100%;
-  background-color: ${({ isActive }) =>
-    isActive ? "var(--primary-color-normal)" : "var(--border-color-normal)"};
 `;
 
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 358px;
 `;
 const Column = styled.div`
   display: flex;
@@ -172,9 +156,14 @@ const Column = styled.div`
   align-items: center;
   width: 100%;
 `;
-
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
 const Flex1 = styled.div`
   flex: 1;
+  width: 100%;
 `;
 const CTA = styled(Button)`
   width: 195px;

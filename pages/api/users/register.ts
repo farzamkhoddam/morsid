@@ -2,6 +2,10 @@ import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import { setTokenCookie } from "utils/auth-cookie";
 
+export interface RegisterReqError {
+  success: false;
+  error: string[];
+}
 export default async function RegisterUser(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -27,7 +31,7 @@ export default async function RegisterUser(
           error: [
             "Unfortunatly, there is a problem in register process. please try later again",
           ],
-        });
+        } as RegisterReqError);
       }
     })
     .catch((error) => {
@@ -36,15 +40,15 @@ export default async function RegisterUser(
         console.log(error?.response?.data);
         res.status(400).send({
           success: false,
-          error: error?.response?.data,
-        });
+          ...error?.response?.data,
+        } as RegisterReqError);
       } else {
         res.status(400).send({
           success: false,
           error: [
             "Unfortunatly, there is a problem now. please try later again",
           ],
-        });
+        } as RegisterReqError);
       }
     });
 }

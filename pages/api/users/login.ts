@@ -2,6 +2,11 @@ import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import { setTokenCookie } from "utils/auth-cookie";
 
+export interface LoginReqError {
+  success: false;
+  error: string;
+}
+
 export default async function RegisterUser(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -25,13 +30,11 @@ export default async function RegisterUser(
         res.status(200).json({ success: true });
         return;
       } else {
-        console.log("navid inja 1");
         res.status(400).send({
           success: false,
-          error: [
+          error:
             "Unfortunatly, there is a problem in login process. please try later again",
-          ],
-        });
+        } as LoginReqError);
       }
     })
     .catch((error) => {
@@ -40,17 +43,15 @@ export default async function RegisterUser(
         console.log(error?.response?.data);
         res.status(400).send({
           success: false,
-          error: [error?.response?.data],
-        });
+          ...error?.response?.data,
+        } as LoginReqError);
         // console.log(error.response.status);
         // console.log(error.response.headers);
       } else {
         res.status(400).send({
           success: false,
-          error: [
-            "Unfortunatly, there is a problem now. please try later again",
-          ],
-        });
+          error: "Unfortunatly, there is a problem now. please try later again",
+        } as LoginReqError);
       }
     });
 }
