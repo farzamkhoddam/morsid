@@ -20,7 +20,7 @@ export default function ExpertUi({ isLogin }: ExpertPageProps) {
   const router = useRouter();
   const { slug } = router.query;
   const currentExpert = EXPERT_LIST.find((expert) => expert.slug === slug);
-  const [step, setStep] = useState<STEP>(STEP.GetEmail);
+  const [step, setStep] = useState<STEP>(STEP.DateTimePicker);
   let DynamicContent: ReactNode = (
     <ExpertProfile
       isLogin={isLogin}

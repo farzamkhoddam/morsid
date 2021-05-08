@@ -68,7 +68,7 @@ const Step1 = ({ setStep }: Props) => {
         onSubmit={(values) => {
           axios
             .post("/api/users/register/", values)
-            .then(() => setStep(3))
+            .then(() => setStep(2))
             .catch((e) => {
               const responseError: RegisterReqError = e?.response?.data;
               responseError.error.map((error: string) => {

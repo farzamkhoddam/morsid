@@ -12,7 +12,7 @@ import React, { useEffect } from "react";
 import { ModalsContextProvider } from "contexts/modalContext";
 
 const tagManagerArgs = {
-  gtmId: "GTM-XXXXXX",
+  gtmId: "GTM-WD27XL2",
 };
 
 //Binding events.

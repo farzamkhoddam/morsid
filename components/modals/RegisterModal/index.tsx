@@ -12,7 +12,7 @@ interface Props {
 }
 
 const RegisterModal = ({ isOpen, setIsOpen }: Props) => {
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2 | 3>(2);
   let correctStep = <div />;
   switch (step) {
     case 1:

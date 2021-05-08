@@ -19,7 +19,7 @@ const ForgotSchema = yup.object().shape({
   email: yup.string().label("Email Address").email().required(),
 });
 interface Props {
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: (state: boolean) => void;
 }
 const ForgotModal = ({ setIsOpen }: Props) => {
   return (
