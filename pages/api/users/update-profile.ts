@@ -43,17 +43,18 @@ export default async function RegisterUser(
   res: NextApiResponse,
 ) {
   if (req.method !== "POST") {
+    console.log("navid inga");
     res.status(405).send({ success: false });
     return;
   }
 
-  const { email, password } = req.body;
+  const { first_name, last_name, phone_number } = req.body;
   const token = getTokenCookie(req);
 
   axios
-    .post(
-      `${process.env.BASE_URL}/api/register/`,
-      { email, password },
+    .put(
+      `${process.env.BASE_URL}/api/update/azardokhtziaee@gmail.com/`,
+      { first_name, last_name, phone_number },
       {
         headers: {
           Authorization: `Bearer ${token}`,

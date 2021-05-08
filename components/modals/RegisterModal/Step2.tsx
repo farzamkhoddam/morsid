@@ -8,6 +8,7 @@ import { Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import { TextInput } from "elements/TextInput";
 import Button from "elements/Button";
+import axios from "axios";
 
 interface FormValues {
   first_name: string;
@@ -57,6 +58,12 @@ const Step2 = ({ setStep }: Props) => {
         validationSchema={RegisterSchema}
         onSubmit={async (values) => {
           console.log("navid value=", values);
+          axios
+            .post("/api/users/update-profile/", values)
+            .then(() => setStep(3))
+            .catch((e) => {
+              toast.error("Someting went wrong!");
+            });
         }}
       >
         {({ isSubmitting }) => (
