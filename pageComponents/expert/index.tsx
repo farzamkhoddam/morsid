@@ -4,11 +4,13 @@ import PageLayout from "components/PageLayout";
 import { useRouter } from "next/router";
 import { Expert, EXPERT_LIST } from "consts/experts";
 import { ExpertPageProps } from "pages/expert/[slug]";
-import { modalsContext } from "contexts/modalContext";
 import ExpertProfile from "./ExpertProfile";
 import MaterialUIPickers from "./MaterialUIPickers";
 import PaymentForm from "./PaymentForm";
 import GetEmail from "./GetEmail";
+import ElementsForm from "./ElementsForm";
+import getStripe from "utils/stripe/get-stripe";
+import { Elements } from "@stripe/react-stripe-js";
 
 export enum STEP {
   ExperProfile = 1,
@@ -16,14 +18,18 @@ export enum STEP {
   PaymentForm = 3,
   GetEmail = 4,
 }
-export default function ExpertUi({ isLogin }: ExpertPageProps) {
+interface Props {
+  pageProps: ExpertPageProps;
+}
+
+export default function ExpertUi({ pageProps }: Props) {
   const router = useRouter();
   const { slug } = router.query;
   const currentExpert = EXPERT_LIST.find((expert) => expert.slug === slug);
-  const [step, setStep] = useState<STEP>(STEP.DateTimePicker);
+  const [step, setStep] = useState<STEP>(STEP.PaymentForm);
   let DynamicContent: ReactNode = (
     <ExpertProfile
-      isLogin={isLogin}
+      isLogin={pageProps.isLogin}
       setStep={setStep}
       currentExpert={currentExpert || ({} as Expert)}
     />
@@ -57,9 +63,12 @@ export default function ExpertUi({ isLogin }: ExpertPageProps) {
       break;
   }
   return (
-    <PageLayout isLogin={isLogin}>
+    <PageLayout isLogin={pageProps.isLogin}>
       <SEO />
-      {DynamicContent}
+      <Elements stripe={getStripe()}>
+        {DynamicContent}
+        <ElementsForm />
+      </Elements>
     </PageLayout>
   );
 }
