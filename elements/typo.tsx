@@ -4,28 +4,28 @@ export const H1 = styled.h1`
   font-weight: bold;
   font-size: 56px;
   line-height: 77px;
-  color: var(--text-color-dark);
+  color: var(--color-text1);
   margin: 0;
 `;
 export const H2 = styled.h2`
   font-weight: bold;
   font-size: 48px;
   line-height: 69px;
-  color: var(--text-color-dark);
+  color: var(--color-text1);
   margin: 0;
 `;
 export const H3 = styled.h3`
   font-weight: 500;
   font-size: 32px;
   line-height: 37px;
-  color: var(--text-color-dark);
+  color: var(--color-text1);
   margin: 0;
 `;
 export const Title = styled.h4`
   font-weight: 500;
   font-size: 24px;
   line-height: 34px;
-  color: var(--text-color-dark);
+  color: var(--color-text1);
   margin: 0;
 `;
 export const Body1 = styled.p`

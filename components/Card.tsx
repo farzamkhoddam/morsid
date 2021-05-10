@@ -15,7 +15,7 @@ interface Props {
   imageUrl: string;
   price: string;
   slug: string;
-  isLogin: string;
+  isLogin: boolean;
   linkdinAddress?: string;
   websiteAddress?: string;
   className?: string;
@@ -34,7 +34,7 @@ export default function Card({
   return (
     <Container className={className}>
       <Avatar alt={name} imageUrl={imageUrl} />
-      <Body2 style={{ marginBottom: "11px", color: "var(--text-color-dark)" }}>
+      <Body2 style={{ marginBottom: "11px", color: "var(--color-text1)" }}>
         {name}
       </Body2>
       <Body3 style={{ marginBottom: "25px" }}>{desc}</Body3>
@@ -87,7 +87,7 @@ const BlankSpace = styled.div`
 `;
 
 const Price = styled(Body2)`
-  color: var(--text-color-dark);
+  color: var(--color-text1);
   margin-right: 4px;
 `;
 const MeetingButton = styled(ButtonLink)`

@@ -9,21 +9,24 @@ import { TextInput } from "elements/TextInput";
 import Checkbox from "elements/CheckBox";
 import axios from "axios";
 import Router from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoginReqError } from "pages/api/users/login";
 import { GetYapValidationOfPassWord } from "utils/other";
 
 interface FormValues {
   email: string;
   password: string;
+  isRemember: boolean;
 }
 const initialValues: FormValues = {
   email: "",
   password: "",
+  isRemember: false,
 };
 const LoginSchema = yup.object().shape({
   email: yup.string().label("Email Address").email().required(),
   password: GetYapValidationOfPassWord(),
+  isRemember: yup.bool().required(),
 });
 
 const checkBoxName = "RememberMe";
@@ -34,11 +37,12 @@ interface Props {
 
 const LoginModal = ({ setStatus }: Props) => {
   const [isSelected, setIsSelected] = useState<Record<string, boolean>>({
-    [checkBoxName]: false,
+    [checkBoxName]: initialValues.isRemember,
   });
   const handleCheckboxChange = () => {
-    setIsSelected({ [checkBoxName]: !isSelected[checkBoxName] });
+    setIsSelected({ RememberMe: !isSelected[checkBoxName] });
   };
+
   return (
     <LoginContainer>
       <Title
@@ -53,13 +57,15 @@ const LoginModal = ({ setStatus }: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
+          console.log("navid values=", values);
           axios
             .post("/api/users/login/", values)
             .then(() => Router.reload())
             .catch((e) => {
               const responseError: LoginReqError = e?.response?.data;
               toast.error(responseError.error);
+              resetForm();
             });
         }}
       >
@@ -94,13 +100,13 @@ const LoginModal = ({ setStatus }: Props) => {
                     style={{
                       display: "inline-block",
                       marginBottom: "2.5rem",
-                      color: "var(--text-color-dark)",
+                      color: "var(--color-text1)",
                     }}
                   >
                     Remember me
                   </Body3>
                 }
-                isSelected={isSelected["iAccept"]}
+                isSelected={isSelected["RememberMe"]}
                 changeHandler={handleCheckboxChange}
                 name={checkBoxName}
               />
@@ -119,7 +125,7 @@ const LoginModal = ({ setStatus }: Props) => {
           </StyledForm>
         )}
       </Formik>
-      <Body2 style={{ color: "var(--text-color-dark)" }}>
+      <Body2 style={{ color: "var(--color-text1)" }}>
         If you haven’t an account, please
         <span style={{ color: "var(--primary-color-dark)" }}>{` Sign up`}</span>
       </Body2>

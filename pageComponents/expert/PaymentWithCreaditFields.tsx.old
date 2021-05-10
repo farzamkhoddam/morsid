@@ -202,14 +202,14 @@ export default function PersonalInformation() {
               <ConfirmData>
                 <Body1
                   style={{
-                    color: "var(--text-color-dark)",
+                    color: "var(--color-text1)",
                   }}
                 >
                   Billed for 1 hour meeting
                 </Body1>
                 <Body1
                   style={{
-                    color: "var(--text-color-dark)",
+                    color: "var(--color-text1)",
                     marginBottom: "1.5rem",
                   }}
                 >

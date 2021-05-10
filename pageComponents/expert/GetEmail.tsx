@@ -5,8 +5,6 @@ import { Paper } from "elements/Layout";
 import { STEP } from ".";
 import { Expert } from "consts/experts";
 import Avatar from "components/Avatar";
-import { STEPS } from "./constants";
-import { StyledStepper } from "./MaterialUIPickers";
 import GetEmailImage from "./GetEmailImage";
 
 interface Props {
@@ -30,12 +28,11 @@ export default function GetEmail({ setStep, currentExpert }: Props) {
             textAlign: "center",
           }}
         >{`Set a meeting with ${currentExpert.name}`}</Body1>
-        <StyledStepper steps={STEPS} activeStep={3} />
         <FlexContainer>
           <GetEmailImage />
         </FlexContainer>
         <FlexContainer>
-          <Body1 style={{ width: "315px", color: "var(--text-color-dark)" }}>
+          <Body1 style={{ width: "315px", color: "var(--color-text1)" }}>
             Your meeting was successfully set You'll get information via email
           </Body1>
         </FlexContainer>
@@ -53,5 +50,5 @@ const FlexContainer = styled.div`
   width: 100%;
   margin-bottom: 2rem;
   text-align: center;
-  color: var(--text-color-dark);
+  color: var(--color-text1);
 `;

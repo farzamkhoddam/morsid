@@ -32,7 +32,7 @@
 // }
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getTokenCookie, setTokenCookie } from "utils/auth-cookie";
+import { getTokenCookie } from "utils/auth-cookie";
 
 export interface RegisterReqError {
   success: false;

@@ -107,7 +107,7 @@ const MainTitle = styled.div`
   margin-top: 42px;
 `;
 const SubTitle = styled(Title)`
-  color: var(--text-color-dark);
+  color: var(--color-text1);
   margin-bottom: 80px;
 `;
 const Underline = styled.div`

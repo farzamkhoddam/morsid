@@ -5,10 +5,14 @@ import { IncomingMessage } from "http";
 const TOKEN_NAME = "token";
 const MAX_AGE = 60 * 60 * 24 * 14; // 14 days
 
-export function setTokenCookie(res: NextApiResponse, token: string) {
+export function setTokenCookie(
+  res: NextApiResponse,
+  token: string,
+  isRemember: boolean,
+) {
   const cookie = serialize(TOKEN_NAME, token, {
     maxAge: MAX_AGE,
-    expires: new Date(Date.now() + MAX_AGE * 1000),
+    expires: isRemember ? new Date(Date.now() + MAX_AGE * 1000) : undefined,
     httpOnly: true,
     path: "/",
     sameSite: "lax",

@@ -37,8 +37,11 @@ const Button: React.FC<Props> = ({
 export default Button;
 
 const Container = styled.button<{ border: boolean }>`
-  background-color: ${({ border }) =>
-    border ? "white" : "var(--primary-color-dark)"};
+  background-color: ${({ border, disabled }) => {
+    if (border) return "white";
+    return disabled ? "var(--color-border-gray)" : "var(--primary-color-dark)";
+  }};
+
   border: ${({ border }) =>
     border ? "2px solid var(--primary-color-dark)" : "none"};
   color: ${({ border }) => (border ? "var(--primary-color-dark)" : "white")};
@@ -58,6 +61,11 @@ const Container = styled.button<{ border: boolean }>`
     cursor: pointer;
     background-color: ${({ border }) =>
       border ? "var(--primary-color-dark)" : "var(--primary-color-darker)"};
+      background-color: ${({ disabled }) =>
+        disabled && "var(--color-border-gray)"};
     color: white;
+      
+    color: white;
+  }
   }
 `;

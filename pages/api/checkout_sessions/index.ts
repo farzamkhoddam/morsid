@@ -14,7 +14,6 @@ export default async function handler(
   if (req.method === "POST") {
     const amount: number = req.body.amount;
     const expert: number = req.body.expert;
-    console.log("navid ***expert=", expert);
     try {
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
@@ -28,8 +27,8 @@ export default async function handler(
             quantity: 1,
           },
         ],
-        success_url: `${req.headers.origin}/expert/${expert}/result?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/donate-with-checkout`,
+        success_url: `${req.headers.origin}/success-payment?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${req.headers.origin}/expert/${expert}/reserve`,
       };
       const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(
         params,

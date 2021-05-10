@@ -8,7 +8,7 @@ const Step3 = () => {
   return (
     <RegisterContainer>
       <SuccesIcon style={{ marginBottom: "2rem" }} />
-      <Title style={{ marginBottom: "20px", color: "var(--text-color-dark)" }}>
+      <Title style={{ marginBottom: "20px", color: "var(--color-text1)" }}>
         Congratulations
       </Title>
       <Body2>Your account has been successfully created!</Body2>

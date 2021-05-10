@@ -11,16 +11,13 @@ import { useState } from "react";
 import Backdrop from "@material-ui/core/Backdrop";
 import TimeBlocks from "./TimeBlock";
 import { Paper } from "elements/Layout";
-import { STEP } from ".";
+
 import { Expert } from "consts/experts";
 import Avatar from "components/Avatar";
-import Stepper from "components/Stepper";
-import { STEPS } from "./constants";
+import StripeButton from "./StripeButton";
 
 function disablePrevDates(startDate: Date) {
   const today = new Date();
-
-  const todaySeconds = today.getTime();
   return (date: Date) => {
     return today.getTime() > date.getTime();
   };
@@ -33,18 +30,19 @@ const useStyles = makeStyles((theme) => ({
 function getGmt(date: Date | null): string {
   if (date) {
     var split = date.toString().split(" ");
+    console.log("navid zone=", split[5]);
     return split[5];
   }
   return "Unselected GTM";
 }
 interface Props {
-  setStep: React.Dispatch<React.SetStateAction<STEP>>;
   currentExpert: Expert;
 }
 
-export default function MaterialUIPickers({ setStep, currentExpert }: Props) {
+export default function MaterialUIPickers({ currentExpert }: Props) {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [isPayActive, setIsPayActive] = useState<boolean>(false);
 
   const [timezone, setTimeZone] = useState<string>(
     `${Intl.DateTimeFormat().resolvedOptions().timeZone} (${getGmt(
@@ -75,8 +73,14 @@ export default function MaterialUIPickers({ setStep, currentExpert }: Props) {
             textAlign: "center",
           }}
         >{`Set a meeting with ${currentExpert.name}`}</Body1>
-        <StyledStepper steps={STEPS} activeStep={1} />
-
+        <Body1
+          style={{
+            color: "var(--color-text1)",
+            marginBottom: "20px",
+          }}
+        >
+          Pick a date and time
+        </Body1>
         <Row
           style={{
             marginBottom: "6px",
@@ -84,7 +88,7 @@ export default function MaterialUIPickers({ setStep, currentExpert }: Props) {
         >
           <Body2
             style={{
-              color: "var(--text-color-dark)",
+              color: "var(--color-text1)",
               marginRight: "6px",
             }}
           >
@@ -124,7 +128,7 @@ export default function MaterialUIPickers({ setStep, currentExpert }: Props) {
               <Body2
                 id="modal-modal-title"
                 style={{
-                  color: "var(--text-color-dark)",
+                  color: "var(--color-text1)",
                 }}
               >
                 Please select a timezone from the list
@@ -166,7 +170,7 @@ export default function MaterialUIPickers({ setStep, currentExpert }: Props) {
           <FlexRowItem>
             <Body2
               style={{
-                color: "var(--text-color-dark)",
+                color: "var(--color-text1)",
                 marginBottom: "20px",
                 marginTop: "37px",
               }}
@@ -192,6 +196,7 @@ export default function MaterialUIPickers({ setStep, currentExpert }: Props) {
                   setAmOrPm={setAmOrPm}
                   amOrPmIndex={amOrPmIndex}
                   setAmOrPmIndex={setAmOrPmIndex}
+                  setIsPayActive={setIsPayActive}
                 />
               </FlexRowItem>
               <FlexRowItem>
@@ -208,18 +213,30 @@ export default function MaterialUIPickers({ setStep, currentExpert }: Props) {
                   setAmOrPm={setAmOrPm}
                   amOrPmIndex={amOrPmIndex}
                   setAmOrPmIndex={setAmOrPmIndex}
+                  setIsPayActive={setIsPayActive}
                 />
               </FlexRowItem>
             </FlexRow>
           </FlexRowItem>
         </FlexRow>
-        <Buttons>
-          <Body2
-            style={{ color: "var(--primary-color-dark)", cursor: "pointer" }}
-          >
-            Next &#x27F6;
-          </Body2>
-        </Buttons>
+        {isPayActive ? (
+          <Body1 style={{ color: "var(--color-text1)", marginBottom: "30px" }}>
+            Please pay{" "}
+            <span
+              style={{ color: "var(--primary-color-dark)" }}
+            >{` ${currentExpert.price} `}</span>{" "}
+            for 60 minutes meeting
+          </Body1>
+        ) : (
+          <Body1 style={{ color: "var(--color-text1)", marginBottom: "30px" }}>
+            Please select the date and time first and then pay the bill
+          </Body1>
+        )}
+
+        <StripeButton
+          currentExpert={currentExpert || ({} as Expert)}
+          isPayActive={isPayActive}
+        />
       </Paper>
     </Container>
   );
@@ -227,6 +244,7 @@ export default function MaterialUIPickers({ setStep, currentExpert }: Props) {
 const Container = styled.div`
   width: 100%;
   padding: 2.5rem;
+  margin-bottom: 5rem;
 `;
 const Row = styled.div`
   display: flex;
@@ -235,7 +253,7 @@ const Row = styled.div`
   width: 100%;
 `;
 const YourTimeZone = styled(Body2)`
-  color: var(--text-color-dark);
+  color: var(--color-text1);
   margin-right: 6px;
   flex-shrink: 0;
 `;
@@ -260,11 +278,7 @@ const FlexRowItem = styled.div`
   margin: 0 auto;
   text-align: center;
 `;
-export const StyledStepper = styled(Stepper)`
-  width: 700px;
-  margin: 0 auto;
-  margin-bottom: 2.5rem;
-`;
+
 const StyledDatePicker = styled(StaticDatePicker)`
   .MuiPickersDay-today {
     border-radius: 50%;
@@ -280,11 +294,3 @@ const StyledDatePicker = styled(StaticDatePicker)`
     }
   }
 ` as typeof StaticDatePicker;
-const Buttons = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  margin-bottom: 1rem;
-  padding-right: 2.8rem;
-`;

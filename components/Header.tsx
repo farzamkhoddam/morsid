@@ -110,7 +110,7 @@ const Nav = styled.nav`
 `;
 const NavItem = styled(Body2)<{ isSelected: any }>`
   color: ${({ isSelected }) =>
-    isSelected ? "var(--primary-color-dark)" : "var(--text-color-dark)"};
+    isSelected ? "var(--primary-color-dark)" : "var(--color-text1)"};
 `;
 const UserSection = styled.div`
   display: flex;

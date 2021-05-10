@@ -65,7 +65,7 @@ const Step1 = ({ setStep }: Props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterSchema}
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           axios
             .post("/api/users/register/", values)
             .then(() => setStep(2))
@@ -74,6 +74,7 @@ const Step1 = ({ setStep }: Props) => {
               responseError.error.map((error: string) => {
                 toast.error(error);
               });
+              resetForm();
             });
         }}
       >
@@ -108,7 +109,7 @@ const Step1 = ({ setStep }: Props) => {
                   style={{
                     display: "inline-block",
                     marginBottom: "2.5rem",
-                    color: "var(--text-color-dark)",
+                    color: "var(--color-text1)",
                   }}
                 >
                   I agree to the{" "}
@@ -129,7 +130,7 @@ const Step1 = ({ setStep }: Props) => {
           </StyledForm>
         )}
       </Formik>
-      <Body2 style={{ color: "var(--text-color-dark)" }}>
+      <Body2 style={{ color: "var(--color-text1)" }}>
         If you have an account, please{" "}
         <span style={{ color: "var(--primary-color-dark)" }}>{` Login`}</span>
       </Body2>

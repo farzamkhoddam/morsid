@@ -15,14 +15,14 @@ export default async function RegisterUser(
     return;
   }
 
-  const { email, password } = req.body;
+  const { email, password, isRemember } = req.body;
 
   axios
     .post(`${process.env.BASE_URL}/api/register/`, { email, password })
     .then((resp) => {
       const token = resp?.data?.access;
       if (token) {
-        setTokenCookie(res, token);
+        setTokenCookie(res, token, isRemember);
         res.status(200).json({ success: true });
         return;
       } else {

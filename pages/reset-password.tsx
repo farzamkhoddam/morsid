@@ -57,7 +57,7 @@ export default function ResetPassword() {
 
   return (
     <PageLayout isLogin={false}>
-      <Body1 style={{ color: "var(--text-color-dark)", marginTop: "2rem" }}>
+      <Body1 style={{ color: "var(--color-text1)", marginTop: "2rem" }}>
         Please enter your new password
       </Body1>
       <FormContainer>

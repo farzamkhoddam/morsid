@@ -16,16 +16,11 @@ import { STEP } from ".";
 
 interface Props {
   isLogin: boolean;
-  setStep: React.Dispatch<React.SetStateAction<STEP>>;
   currentExpert: Expert;
 }
 
-export default function ExpertProfile({
-  isLogin,
-  setStep,
-  currentExpert,
-}: Props) {
-  const { setRegisterModal } = useContext(modalsContext);
+export default function ExpertProfile({ isLogin, currentExpert }: Props) {
+  const { setLoginModal } = useContext(modalsContext);
 
   return (
     <>
@@ -38,9 +33,7 @@ export default function ExpertProfile({
         />
 
         <DataBlock style={{ marginLeft: "1rem" }}>
-          <Body1
-            style={{ marginBottom: "18px", color: "var(--text-color-dark)" }}
-          >
+          <Body1 style={{ marginBottom: "18px", color: "var(--color-text1)" }}>
             {currentExpert?.name}
           </Body1>
           <Row2>
@@ -69,11 +62,14 @@ export default function ExpertProfile({
           )}
           {isLogin ? (
             //navid change "to"
-            <SetMeetongButton label="Set a meeting" to="/" />
+            <SetMeetongButton
+              label="Set a meeting"
+              to={`/expert/${currentExpert.slug}/reserve`}
+            />
           ) : (
             <CheckPriceButton
               label="Check price"
-              onClick={() => setRegisterModal(true)}
+              onClick={() => setLoginModal(true)}
             />
           )}
         </ReserveBlock>
@@ -85,7 +81,12 @@ export default function ExpertProfile({
           }}
         />
       </DescPaper>
-      {isLogin && <Experts currentExpert={currentExpert || ({} as Expert)} />}
+      {isLogin && (
+        <Experts
+          currentExpert={currentExpert || ({} as Expert)}
+          isLogin={isLogin}
+        />
+      )}
     </>
   );
 }
@@ -118,7 +119,7 @@ const ReserveBlock = styled.div`
   margin-left: auto;
 `;
 const Price = styled(Body2)`
-  color: var(--text-color-dark);
+  color: var(--color-text1);
   margin-right: 4px;
 `;
 const SetMeetongButton = styled(ButtonLink)`
@@ -153,6 +154,6 @@ const FullDesc = styled.div`
     font-weight: 500;
     font-size: 20px;
     line-height: 28px;
-    color: var(--text-color-dark);
+    color: var(--color-text1);
   }
 `;

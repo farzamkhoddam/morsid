@@ -25,6 +25,7 @@ interface Props {
   setAmOrPm: Dispatch<SetStateAction<"AM" | "PM" | null>>;
   amOrPmIndex: number | null;
   setAmOrPmIndex: Dispatch<SetStateAction<number | null>>;
+  setIsPayActive: Dispatch<SetStateAction<boolean>>;
 }
 export default function TimeBlocks({
   whichColumn,
@@ -32,6 +33,7 @@ export default function TimeBlocks({
   setAmOrPm,
   amOrPmIndex,
   setAmOrPmIndex,
+  setIsPayActive,
 }: Props) {
   const whichColumnArray = whichColumn === "AM" ? amLabels : pmLabels;
 
@@ -44,6 +46,7 @@ export default function TimeBlocks({
           onClick={() => {
             setAmOrPm(whichColumn);
             setAmOrPmIndex(i);
+            setIsPayActive(true);
           }}
         >
           {whichColumnLabel}
@@ -68,8 +71,7 @@ const Block = styled.div<{ isSelected: boolean }>`
 
   background-color: ${({ isSelected }) =>
     isSelected ? "var(--primary-color-dark)" : "#e6f1ff"};
-  color: ${({ isSelected }) =>
-    isSelected ? "white" : "var(--text-color-dark)"};
+  color: ${({ isSelected }) => (isSelected ? "white" : "var(--color-text1)")};
   border-radius: 8px;
   margin-bottom: 20px;
   font-weight: normal;
