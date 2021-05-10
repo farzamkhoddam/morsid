@@ -5,8 +5,11 @@ import Card from "components/Card";
 
 import ButtonLink from "elements/ButtonLink";
 import { EXPERT_LIST } from "consts/experts";
+interface Props {
+  isLogin: boolean;
+}
 
-export default function Experts() {
+export default function Experts({ isLogin }: Props) {
   return (
     <Container>
       <H3 style={{ margin: "0 auto" }}>Our Experts</H3>
@@ -23,6 +26,7 @@ export default function Experts() {
             imageUrl={expert.imageUrl}
             price={expert.price}
             slug={expert.slug}
+            isLogin={isLogin}
           />
         ))}
       </Cards>

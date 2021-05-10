@@ -5,7 +5,11 @@ import { EXPERT_LIST } from "../../consts/experts";
 
 import ButtonLink from "elements/ButtonLink";
 
-export default function Experts() {
+interface Props {
+  isLogin: boolean;
+}
+
+export default function Experts({ isLogin }: Props) {
   return (
     <Container>
       <Cards>
@@ -19,6 +23,7 @@ export default function Experts() {
             slug={expert.slug}
             linkdinAddress={expert?.linkdinAddress}
             websiteAddress={expert?.websiteAddress}
+            isLogin={isLogin}
           />
         ))}
       </Cards>

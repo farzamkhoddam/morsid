@@ -8,9 +8,10 @@ import { Expert, EXPERT_LIST } from "consts/experts";
 
 interface Props {
   currentExpert: Expert;
+  isLogin: boolean;
 }
 
-export default function Experts({ currentExpert }: Props) {
+export default function Experts({ currentExpert, isLogin }: Props) {
   return (
     <Container>
       <H3 style={{ margin: "0 auto 2.5rem " }}>
@@ -28,6 +29,7 @@ export default function Experts({ currentExpert }: Props) {
                 imageUrl={expert.imageUrl}
                 price={expert.price}
                 slug={expert.slug}
+                isLogin={isLogin}
               />
             );
         })}

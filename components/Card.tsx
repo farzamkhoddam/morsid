@@ -15,6 +15,7 @@ interface Props {
   imageUrl: string;
   price: string;
   slug: string;
+  isLogin: string;
   linkdinAddress?: string;
   websiteAddress?: string;
   className?: string;
@@ -25,6 +26,7 @@ export default function Card({
   imageUrl,
   price,
   slug,
+  isLogin,
   linkdinAddress,
   websiteAddress,
   className,
@@ -50,10 +52,12 @@ export default function Card({
             </Link>
           )}
         </Items>
-        <Items>
-          <Price>{price}</Price>
-          <Caption>per hour</Caption>
-        </Items>
+        {isLogin && (
+          <Items>
+            <Price>{price}</Price>
+            <Caption>per hour</Caption>
+          </Items>
+        )}
       </DataRow>
       <MeetingButton label="Set a meeting" to={`/expert/${slug}`} />
     </Container>
