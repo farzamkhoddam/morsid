@@ -85,14 +85,6 @@ export const VIEWER = gql`
   }
 `;
 
-export const CREATE_STRIPE_SESSION = gql`
-  mutation CreateStripeSession($input: CreateStripeSessionInput!) {
-    createStripeSession(input: $input) {
-      stripeSessionId
-    }
-  }
-`;
-
 export const SEND_PASSWORD_RESET_EMAIL = gql`
   mutation SendPasswordResetEmail($input: SendPasswordResetEmailInput!) {
     sendPasswordResetEmail(input: $input) {

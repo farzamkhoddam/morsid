@@ -276,22 +276,6 @@ export interface Viewer {
 // @generated
 // This file was automatically generated and should not be edited.
 
-// ====================================================
-// GraphQL mutation operation: CreateStripeSession
-// ====================================================
-
-export interface CreateStripeSession_createStripeSession {
-  __typename: "CreateStripeSessionPayload";
-  stripeSessionId: string | null;
-}
-
-export interface CreateStripeSession {
-  /**
-   * The payload for the createStripeSession mutation
-   */
-  createStripeSession: CreateStripeSession_createStripeSession | null;
-}
-
 export interface CreateStripeSessionVariables {
   input: CreateStripeSessionInput;
 }

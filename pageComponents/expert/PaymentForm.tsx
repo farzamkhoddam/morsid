@@ -7,7 +7,8 @@ import { Expert } from "consts/experts";
 import Avatar from "components/Avatar";
 import { STEPS } from "./constants";
 import { StyledStepper } from "./MaterialUIPickers";
-import PersonalInformation from "./PersonalInformation";
+// import PersonalInformation from "./PersonalInformation";
+import PaymentSection from "./PaymentSection";
 
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<STEP>>;
@@ -31,7 +32,8 @@ export default function PaymentForm({ setStep, currentExpert }: Props) {
           }}
         >{`Set a meeting with ${currentExpert.name}`}</Body1>
         <StyledStepper steps={STEPS} activeStep={2} />
-        <PersonalInformation />
+        {/* <PersonalInformation /> */}
+        <PaymentSection currentExpert={currentExpert || ({} as Expert)} />
         <Buttons>
           <Body2
             style={{ marginRight: "2.5rem", cursor: "pointer" }}
