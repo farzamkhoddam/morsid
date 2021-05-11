@@ -6,6 +6,7 @@ import React from "react";
 import SEO from "components/seo";
 import { GetServerSideProps, Redirect } from "next";
 import { getTokenCookie } from "utils/auth-cookie";
+import ReserveMeetitg from "pageComponents/expert/ReserveMeeting";
 
 export enum STEP {
   ExperProfile = 1,
@@ -22,7 +23,7 @@ export default function ExpertReserve({ isLogin }: Props) {
   return (
     <PageLayout isLogin={isLogin}>
       <SEO />
-      <MaterialUIPickers currentExpert={currentExpert || ({} as Expert)} />
+      <ReserveMeetitg currentExpert={currentExpert || ({} as Expert)} />
     </PageLayout>
   );
 }

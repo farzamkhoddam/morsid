@@ -5,10 +5,6 @@ import * as yup from "yup";
 import styled from "styled-components";
 import toast from "react-hot-toast";
 import React, { useState } from "react";
-
-import { Body1, Caption, Title } from "elements/typo";
-import { Textarea } from "elements/Textarea";
-import { formatAmountForDisplay } from "utils/stripe/stripe-helpers";
 import { fetchPostJSON } from "utils/stripe/api-helpers";
 import getStripe from "utils/stripe/get-stripejs";
 import { Expert } from "consts/experts";
@@ -23,10 +19,15 @@ interface FormValues {
 
 interface Props {
   currentExpert: Expert;
-  isPayActive: boolean;
+  // isPayActive: boolean;
+  reserveDate: string | null;
 }
 
-export default function StripeButton({ currentExpert, isPayActive }: Props) {
+export default function StripeButton({
+  currentExpert,
+  // isPayActive,
+  reserveDate,
+}: Props) {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
@@ -34,8 +35,10 @@ export default function StripeButton({ currentExpert, isPayActive }: Props) {
     setLoading(true);
     // Create a Checkout Session.
     const response = await fetchPostJSON("/api/checkout_sessions", {
-      amount: 10.0,
+      amount: currentExpert.price,
       expert: currentExpert.slug,
+      reserveDate: reserveDate,
+      expertMail: currentExpert.email,
     });
 
     if (response.statusCode === 500) {
@@ -67,7 +70,7 @@ export default function StripeButton({ currentExpert, isPayActive }: Props) {
         <PayButton
           label="Pay now"
           type="submit"
-          disabled={loading || !isPayActive}
+          disabled={loading || reserveDate === null}
         />
       </form>
     </Container>

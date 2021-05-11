@@ -1,55 +1,35 @@
 import React, { Dispatch } from "react";
 import styled from "styled-components";
-import { Caption } from "elements/typo";
 import { SetStateAction } from "react";
+import { FreeTime } from "./Interfaces";
+import { GetDateFromReserveDate, GetTimeArrray } from "./utils";
 
-const amLabels = [
-  "09:00 AM",
-  "09:30 AM",
-  "10:00 AM",
-  "10:30 AM",
-  "11:00 AM",
-  "11:30 AM",
-];
-const pmLabels = [
-  "12:00 PM",
-  "12:30 PM",
-  "01:00 PM",
-  "01:30 PM",
-  "02:00 PM",
-  "02:30 PM",
-];
 interface Props {
   whichColumn: "AM" | "PM";
-  amOrPm: "AM" | "PM" | null;
-  setAmOrPm: Dispatch<SetStateAction<"AM" | "PM" | null>>;
-  amOrPmIndex: number | null;
-  setAmOrPmIndex: Dispatch<SetStateAction<number | null>>;
-  setIsPayActive: Dispatch<SetStateAction<boolean>>;
+  setReserveDate: Dispatch<SetStateAction<string | null>>;
+  reserveDate: string | null;
+  blocks: FreeTime[];
+  datePickerValue: string;
 }
-export default function TimeBlocks({
-  whichColumn,
-  amOrPm,
-  setAmOrPm,
-  amOrPmIndex,
-  setAmOrPmIndex,
-  setIsPayActive,
-}: Props) {
-  const whichColumnArray = whichColumn === "AM" ? amLabels : pmLabels;
 
+export default function TimeBlocks({
+  datePickerValue,
+  whichColumn,
+  setReserveDate,
+  reserveDate,
+  blocks,
+}: Props) {
   return (
     <Container>
-      {whichColumnArray.map((whichColumnLabel, i) => (
+      {GetTimeArrray(blocks, whichColumn).map((block, i) => (
         <Block
           key={i}
-          isSelected={amOrPm === whichColumn && amOrPmIndex === i}
+          isSelected={GetDateFromReserveDate(reserveDate) === block}
           onClick={() => {
-            setAmOrPm(whichColumn);
-            setAmOrPmIndex(i);
-            setIsPayActive(true);
+            setReserveDate(`${datePickerValue} ${block}`);
           }}
         >
-          {whichColumnLabel}
+          {block}
         </Block>
       ))}
     </Container>

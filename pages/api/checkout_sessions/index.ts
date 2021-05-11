@@ -12,8 +12,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method === "POST") {
-    const amount: number = req.body.amount;
-    const expert: number = req.body.expert;
+    const { reserveDate, amount, expert, expertMail } = req.body;
     try {
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
@@ -27,7 +26,7 @@ export default async function handler(
             quantity: 1,
           },
         ],
-        success_url: `${req.headers.origin}/success-payment?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${req.headers.origin}/success-payment?expert=${expert}&expertMail=${expertMail}&reserveDate=${reserveDate}&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/expert/${expert}/reserve`,
       };
       const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(

@@ -1,274 +1,122 @@
 import * as React from "react";
-import { Divider, makeStyles, Modal } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import { StaticDatePicker } from "@material-ui/lab";
 import styled from "styled-components";
-import { Body1, Body2, Caption } from "elements/typo";
-import SelectTimezoneMaterialUi from "select-timezone-material-ui";
+import { Body2, Caption } from "elements/typo";
 import { useState } from "react";
-import Backdrop from "@material-ui/core/Backdrop";
 import TimeBlocks from "./TimeBlock";
-import { Paper } from "elements/Layout";
+import { FREE_TIMES } from "./Interfaces";
+import moment from "moment";
+import { disablePrevDates } from "./utils";
 
-import { Expert } from "consts/experts";
-import Avatar from "components/Avatar";
-import StripeButton from "./StripeButton";
-
-function disablePrevDates(startDate: Date) {
-  const today = new Date();
-  return (date: Date) => {
-    return today.getTime() > date.getTime();
-  };
-}
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: "max-content",
   },
 }));
-function getGmt(date: Date | null): string {
-  if (date) {
-    var split = date.toString().split(" ");
-    console.log("navid zone=", split[4]);
-    return split[5];
-  }
-  return "Unselected GTM";
-}
+
 interface Props {
-  currentExpert: Expert;
+  setReserveDate: React.Dispatch<React.SetStateAction<string | null>>;
+  reserveDate: string | null;
+  datesWithFreetimes: FREE_TIMES;
 }
 
-export default function MaterialUIPickers({ currentExpert }: Props) {
+export default function MaterialUIPickers({
+  datesWithFreetimes,
+  setReserveDate,
+  reserveDate,
+}: Props) {
+  const changeDateProcess = (newDate: Date) => {
+    const dateString = moment(newDate).format("YYYY-MM-DD").toString();
+    setDatePickerValue(dateString);
+  };
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [isPayActive, setIsPayActive] = useState<boolean>(false);
+  const [datePickerValue, setDatePickerValue] = useState<string>(
+    moment().format("YYYY-MM-DD").toString(),
+  );
 
-  const [timezone, setTimeZone] = useState<string>(
-    `${Intl.DateTimeFormat().resolvedOptions().timeZone} (${getGmt(
-      new Date(),
-    )})`,
-  );
-  const [datePickerValue, setDatePickerValue] = useState<Date | null>(
-    new Date(),
-  );
-  const [isOpenModale, setOpenModal] = useState(false);
-  const [amOrPm, setAmOrPm] = useState<"AM" | "PM" | null>(null);
-  const [amOrPmIndex, setAmOrPmIndex] = useState<number | null>(null);
-  const handleOpenModal = () => setOpenModal(true);
-  const handleCloseModal = () => setOpenModal(false);
-  const startDate = new Date();
   return (
     <Container>
-      <Paper>
-        <Avatar
-          alt={currentExpert.name}
-          imageUrl={currentExpert.imageUrl}
-          // style={{ marginBottom: "20px" }}
-        />
-        <Body1
-          style={{
-            color: "var(--primary-color-dark)",
-            marginBottom: "2rem",
-            textAlign: "center",
-          }}
-        >{`Set a meeting with ${currentExpert.name}`}</Body1>
-        <Body1
-          style={{
-            color: "var(--color-text1)",
-            marginBottom: "20px",
-          }}
-        >
-          Pick a date and time
-        </Body1>
-        <Row
-          style={{
-            marginBottom: "6px",
-          }}
-        >
+      <FlexRow>
+        <FlexRowItem>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <StyledDatePicker<Date>
+              // orientation="landscape"
+              className={classes.root}
+              openTo="day"
+              value={datePickerValue}
+              shouldDisableDate={disablePrevDates()}
+              onChange={(newValue) => {
+                if (newValue) changeDateProcess(newValue);
+              }}
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" />
+              )}
+            />
+          </LocalizationProvider>
+        </FlexRowItem>
+        <FlexRowItem>
           <Body2
             style={{
               color: "var(--color-text1)",
-              marginRight: "6px",
+              marginBottom: "20px",
+              marginTop: "37px",
             }}
           >
-            Duration:
+            {`Available starting times for ${moment(datePickerValue).format(
+              "dddd, MMMM DD, YYYY",
+            )}`}
           </Body2>
-          <Body2>1 Hour</Body2>
-        </Row>
-        <Row
-          style={{
-            marginBottom: "32px",
-          }}
-        >
-          <YourTimeZone>Your time zone:</YourTimeZone>
-          <Body2>{`${timezone}`}</Body2>
-          <Body2
-            onClick={handleOpenModal}
+          <FlexRow
             style={{
-              color: "var(--primary-color-dark)",
-              marginLeft: "6px",
-              cursor: "pointer",
+              marginBottom: "1rem",
             }}
           >
-            change
-          </Body2>
-          <Modal
-            open={isOpenModale}
-            onClose={handleCloseModal}
-            aria-labelledby="modal-modal-title"
-            // aria-describedby="modal-modal-description"
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
-          >
-            <ModalContent>
-              <Body2
-                id="modal-modal-title"
+            <FlexRowItem>
+              <Caption
                 style={{
-                  color: "var(--color-text1)",
+                  marginBottom: "1rem",
                 }}
               >
-                Please select a timezone from the list
-              </Body2>
-              <SelectTimezoneMaterialUi
-                label="Timezone"
-                defaultTimezoneName={
-                  Intl.DateTimeFormat().resolvedOptions().timeZone
-                }
-                showTimezoneOffset={true}
-                onChange={(timezoneName: string, timezoneOffset: number) => {
-                  setTimeZone(timezoneName);
-                  // setSelectedDate();
-                  handleCloseModal();
-                }}
+                AM
+              </Caption>
+              <TimeBlocks
+                whichColumn="AM"
+                setReserveDate={setReserveDate}
+                reserveDate={reserveDate}
+                blocks={datesWithFreetimes[datePickerValue]?.freeTimes}
+                datePickerValue={datePickerValue}
               />
-            </ModalContent>
-          </Modal>
-        </Row>
-        <Divider />
-        <FlexRow>
-          <FlexRowItem>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <StyledDatePicker<Date>
-                // orientation="landscape"
-                className={classes.root}
-                openTo="day"
-                value={datePickerValue}
-                shouldDisableDate={disablePrevDates(startDate)}
-                onChange={(newValue) => {
-                  setDatePickerValue(newValue);
+            </FlexRowItem>
+            <FlexRowItem>
+              <Caption
+                style={{
+                  marginBottom: "1rem",
                 }}
-                renderInput={(params) => (
-                  <TextField {...params} variant="standard" />
-                )}
+              >
+                PM
+              </Caption>
+              <TimeBlocks
+                whichColumn="PM"
+                setReserveDate={setReserveDate}
+                reserveDate={reserveDate}
+                blocks={datesWithFreetimes[datePickerValue]?.freeTimes}
+                datePickerValue={datePickerValue}
               />
-            </LocalizationProvider>
-          </FlexRowItem>
-          <FlexRowItem>
-            <Body2
-              style={{
-                color: "var(--color-text1)",
-                marginBottom: "20px",
-                marginTop: "37px",
-              }}
-            >
-              Available starting times for Wed, Apr 14, 2021
-            </Body2>
-            <FlexRow
-              style={{
-                marginBottom: "1rem",
-              }}
-            >
-              <FlexRowItem>
-                <Caption
-                  style={{
-                    marginBottom: "1rem",
-                  }}
-                >
-                  AM
-                </Caption>
-                <TimeBlocks
-                  whichColumn="AM"
-                  amOrPm={amOrPm}
-                  setAmOrPm={setAmOrPm}
-                  amOrPmIndex={amOrPmIndex}
-                  setAmOrPmIndex={setAmOrPmIndex}
-                  setIsPayActive={setIsPayActive}
-                />
-              </FlexRowItem>
-              <FlexRowItem>
-                <Caption
-                  style={{
-                    marginBottom: "1rem",
-                  }}
-                >
-                  PM
-                </Caption>
-                <TimeBlocks
-                  whichColumn="PM"
-                  amOrPm={amOrPm}
-                  setAmOrPm={setAmOrPm}
-                  amOrPmIndex={amOrPmIndex}
-                  setAmOrPmIndex={setAmOrPmIndex}
-                  setIsPayActive={setIsPayActive}
-                />
-              </FlexRowItem>
-            </FlexRow>
-          </FlexRowItem>
-        </FlexRow>
-        {isPayActive ? (
-          <Body1 style={{ color: "var(--color-text1)", marginBottom: "30px" }}>
-            Please pay{" "}
-            <span
-              style={{ color: "var(--primary-color-dark)" }}
-            >{` ${currentExpert.price} `}</span>{" "}
-            for 60 minutes meeting
-          </Body1>
-        ) : (
-          <Body1 style={{ color: "var(--color-text1)", marginBottom: "30px" }}>
-            Please select the date and time first and then pay the bill
-          </Body1>
-        )}
-
-        <StripeButton
-          currentExpert={currentExpert || ({} as Expert)}
-          isPayActive={isPayActive}
-        />
-      </Paper>
+            </FlexRowItem>
+          </FlexRow>
+        </FlexRowItem>
+      </FlexRow>
     </Container>
   );
 }
 const Container = styled.div`
   width: 100%;
-  padding: 2.5rem;
-  margin-bottom: 5rem;
 `;
-const Row = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-`;
-const YourTimeZone = styled(Body2)`
-  color: var(--color-text1);
-  margin-right: 6px;
-  flex-shrink: 0;
-`;
-const ModalContent = styled.div`
-  padding: 1rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  background-color: white;
-  border: 2px solid #000;
-  boxshadow: 24;
-  p: 4;
-`;
+
 const FlexRow = styled.div`
   display: flex;
   justify-content: space-between;
