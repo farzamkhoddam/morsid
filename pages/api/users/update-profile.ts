@@ -43,7 +43,6 @@ export default async function RegisterUser(
   res: NextApiResponse,
 ) {
   if (req.method !== "POST") {
-    console.log("navid inga");
     res.status(405).send({ success: false });
     return;
   }

@@ -49,7 +49,7 @@ export default function PersonalInformation() {
         initialValues={initialValues}
         validationSchema={LoginSchema}
         onSubmit={async (values) => {
-          toast.success("navid values");
+          toast.success("success");
         }}
       >
         {({ isSubmitting }) => (

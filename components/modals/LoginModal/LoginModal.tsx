@@ -58,7 +58,6 @@ const LoginModal = ({ setStatus }: Props) => {
         initialValues={initialValues}
         validationSchema={LoginSchema}
         onSubmit={(values, { resetForm }) => {
-          console.log("navid values=", values);
           axios
             .post("/api/users/login/", values)
             .then(() => Router.reload())

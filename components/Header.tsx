@@ -23,7 +23,7 @@ const Header = ({ currentTabIndex, isLogin }: Props) => {
       Router.reload();
     } catch (e) {
       e.error.map((error: string) => {
-        toast.error("navid لاگ اوت با موفقیت انجام نشد");
+        toast.error("Unfortunately an unknown problem occurred");
       });
 
       console.log("Register Error=", e.response.data);

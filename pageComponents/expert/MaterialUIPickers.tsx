@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 function getGmt(date: Date | null): string {
   if (date) {
     var split = date.toString().split(" ");
-    console.log("navid zone=", split[5]);
+    console.log("navid zone=", split[4]);
     return split[5];
   }
   return "Unselected GTM";

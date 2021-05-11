@@ -61,7 +61,6 @@ export default function ExpertProfile({ isLogin, currentExpert }: Props) {
             </Items>
           )}
           {isLogin ? (
-            //navid change "to"
             <SetMeetongButton
               label="Set a meeting"
               to={`/expert/${currentExpert.slug}/reserve`}

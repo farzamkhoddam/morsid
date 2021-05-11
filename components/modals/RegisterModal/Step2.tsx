@@ -57,7 +57,6 @@ const Step2 = ({ setStep }: Props) => {
         initialValues={initialValues}
         validationSchema={RegisterSchema}
         onSubmit={async (values) => {
-          console.log("navid value=", values);
           axios
             .post("/api/users/update-profile/", values)
             .then(() => setStep(3))
