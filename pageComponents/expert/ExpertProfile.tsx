@@ -56,7 +56,7 @@ export default function ExpertProfile({ isLogin, currentExpert }: Props) {
         <ReserveBlock>
           {isLogin && (
             <Items>
-              <Price>{currentExpert?.price || "$"}</Price>
+              <Price>${parseInt(currentExpert?.price||)}</Price>
               <Caption>per hour</Caption>
             </Items>
           )}

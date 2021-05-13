@@ -54,7 +54,7 @@ export default function Card({
         </Items>
         {isLogin && (
           <Items>
-            <Price>{price}</Price>
+            <Price>${parseInt(price)}</Price>
             <Caption>per hour</Caption>
           </Items>
         )}

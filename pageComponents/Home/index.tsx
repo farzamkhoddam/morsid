@@ -13,7 +13,7 @@ const HomePage: React.FC<Props> = ({ pageProps }) => {
     <PageLayout isLogin={pageProps.isLogin}>
       <SEO />
       <Hero />
-      <Experts />
+      <Experts isLogin={pageProps.isLogin} />
     </PageLayout>
   );
 };
