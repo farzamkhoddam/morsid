@@ -54,4 +54,7 @@ docker run -p 3001:3000/tcp --name=morsid-f -d --rm morsid-front:latest
     }
 
   }
+  environment {
+    BASE_URL = 'https://beta.morsid.com'
+  }
 }
