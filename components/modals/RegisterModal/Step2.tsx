@@ -30,8 +30,9 @@ const RegisterSchema = yup.object().shape({
 });
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<1 | 2 | 3>>;
+  email: string;
 }
-const Step2 = ({ setStep }: Props) => {
+const Step2 = ({ setStep, email }: Props) => {
   return (
     <RegisterContainer>
       <Markers>
@@ -58,7 +59,7 @@ const Step2 = ({ setStep }: Props) => {
         validationSchema={RegisterSchema}
         onSubmit={async (values) => {
           axios
-            .post("/api/users/update-profile/", values)
+            .post("/api/users/update-profile/", { ...values, email })
             .then(() => setStep(3))
             .catch((e) => {
               toast.error("Someting went wrong!");

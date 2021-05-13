@@ -32,8 +32,9 @@ const RegisterSchema = yup.object().shape({
 const checkBoxName = "iAccept";
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<1 | 2 | 3>>;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
 }
-const Step1 = ({ setStep }: Props) => {
+const Step1 = ({ setStep, setEmail }: Props) => {
   const [isSelected, setIsSelected] = useState<Record<string, boolean>>({
     [checkBoxName]: true,
   });
@@ -68,7 +69,10 @@ const Step1 = ({ setStep }: Props) => {
         onSubmit={(values, { resetForm }) => {
           axios
             .post("/api/users/register/", values)
-            .then(() => setStep(2))
+            .then(() => {
+              setEmail(values?.email);
+              setStep(2);
+            })
             .catch((e) => {
               const responseError: RegisterReqError = e?.response?.data;
               responseError.error.map((error: string) => {

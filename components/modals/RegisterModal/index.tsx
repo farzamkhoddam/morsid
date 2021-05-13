@@ -13,13 +13,14 @@ interface Props {
 
 const RegisterModal = ({ isOpen, setIsOpen }: Props) => {
   const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [email, setEmail] = useState<string>("");
   let correctStep = <div />;
   switch (step) {
     case 1:
-      correctStep = <Step1 setStep={setStep} />;
+      correctStep = <Step1 setStep={setStep} setEmail={setEmail} />;
       break;
     case 2:
-      correctStep = <Step2 setStep={setStep} />;
+      correctStep = <Step2 setStep={setStep} email={email} />;
       break;
     case 3:
       correctStep = <Step3 />;

@@ -47,12 +47,11 @@ export default async function UpdateUser(
     return;
   }
 
-  const { first_name, last_name, phone_number } = req.body;
+  const { first_name, last_name, phone_number, email } = req.body;
   const token = getTokenCookie(req);
-  //navid fix email
   axios
     .put(
-      `${process.env.BASE_URL}/api/update/azardokhtziaee@gmail.com/`,
+      `${process.env.BASE_URL}/api/update/${email}/`,
       { first_name, last_name, phone_number },
       {
         headers: {
