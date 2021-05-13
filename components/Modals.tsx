@@ -3,6 +3,7 @@ import RegisterModal from "./modals/RegisterModal";
 import { modalsContext } from "contexts/modalContext";
 import { useContext } from "react";
 import LoginModal from "./modals/LoginModal";
+import LoadingModal from "./modals/LoadingModal";
 
 interface Props {
   currentTabIndex: number;
@@ -15,6 +16,8 @@ const Modals = () => {
     setLoginModal,
     registerModal,
     setRegisterModal,
+    loadingModal,
+    setLoadingModal,
   } = useContext(modalsContext);
 
   return (
@@ -24,6 +27,7 @@ const Modals = () => {
         <>
           <RegisterModal isOpen={registerModal} setIsOpen={setRegisterModal} />
           <LoginModal isOpen={loginModal} setIsOpen={setLoginModal} />
+          <LoadingModal isOpen={loadingModal} setIsOpen={setLoadingModal} />
         </>
       )}
     </>

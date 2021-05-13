@@ -16,6 +16,9 @@ import { QueryObserverResult, useQuery } from "react-query";
 import toast from "react-hot-toast";
 import axios, { AxiosResponse } from "axios";
 import MaterialUIPickers from "./MaterialUIPickers";
+import Loading from "components/loading";
+import { modalsContext } from "contexts/modalContext";
+import { useContext } from "react";
 
 function getGmt(date: Date | null): string {
   if (date) {
@@ -29,8 +32,9 @@ interface Props {
 }
 
 export default function ReserveMeetitg({ currentExpert }: Props) {
+  const { setLoadingModal } = useContext(modalsContext);
+  //
   const [reserveDate, setReserveDate] = useState<string | null>(null);
-
   const [timezone, setTimeZone] = useState<string>(
     `${Intl.DateTimeFormat().resolvedOptions().timeZone} (${getGmt(
       new Date(),
@@ -52,8 +56,10 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
         timezone: timezone.split(" ")[0].toString(),
       }),
   );
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
-  if (isLoading) return <h1>Loading...</h1>;
   if (error) {
     //@ts-ignore
     toast.error(`An error has occurred:  ${error?.message || " unknown"}`);
@@ -204,4 +210,12 @@ const ModalContent = styled.div`
   border: 2px solid #000;
   boxshadow: 24;
   p: 4;
+`;
+const LoadingPage = styled(Loading)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 60vh;
 `;

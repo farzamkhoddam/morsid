@@ -22,6 +22,7 @@ export default async function handler(
           {
             name: `${expert} Meeting`,
             amount: formatAmountForStripe(amount, "usd"),
+            //navid :implement multi currency
             currency: "usd",
             quantity: 1,
           },

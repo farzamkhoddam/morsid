@@ -1,20 +1,58 @@
-import React from "react";
-import { GetServerSideProps } from "next";
+import React, { useState } from "react";
+import { GetServerSideProps, Redirect } from "next";
 import { getTokenCookie } from "utils/auth-cookie";
 import PageLayout from "components/PageLayout";
 import SEO from "components/seo";
-import { Expert } from "consts/experts";
-import MaterialUIPickers from "pageComponents/expert/MaterialUIPickers";
 import styled from "styled-components";
-import Avatar from "components/Avatar";
 import { Paper } from "elements/Layout";
 import { Body1 } from "elements/typo";
 import GetEmailImage from "pageComponents/expert/GetEmailImage";
+import axios from "axios";
+import { UserData } from "interfaces/user";
+import toast from "react-hot-toast";
+import Loading from "components/loading";
+import { useRouter } from "next/router";
 
 export interface SuccessPaymentPageProps {
   isLogin: boolean;
+  error: { status: boolean; message?: string };
+  userData: UserData;
 }
-export default function SuccessPayment({ isLogin }: SuccessPaymentPageProps) {
+
+export default function SuccessPayment(
+  // props,
+  { isLogin, error, userData }: SuccessPaymentPageProps,
+) {
+  const router = useRouter();
+  const { expertMail, reserveDate, expert, session_id } = router.query;
+  const [loading, setLoading] = useState<boolean>(true);
+  const [fetchedError, setFetchedError] = useState<boolean>(error.status);
+  if (fetchedError) {
+    toast.error(error.message || "Somthing went wrong");
+    // navid create page for this message
+    toast.error(
+      "Your payment was successful but your meeting was not booked. Please contact support",
+    );
+    return <h2>plz contact support</h2>;
+  }
+  axios
+    .post(`/api/reserve-meeting/`, {
+      userMail: userData.email,
+      expertMail,
+      expert,
+      reserveDate,
+      session_id,
+    })
+    .then((response) => {
+      setLoading(false);
+    })
+    .catch((err) => {
+      setLoading(false);
+      setFetchedError(true);
+    });
+  if (loading) {
+    return <LoadingPage />;
+  }
   return (
     <PageLayout isLogin={isLogin}>
       <SEO />
@@ -40,13 +78,46 @@ export default function SuccessPayment({ isLogin }: SuccessPaymentPageProps) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const token = getTokenCookie(req);
 
-  return {
-    props: {
-      isLogin: !!token,
+  const redirect: { redirect: Redirect } = {
+    redirect: {
+      statusCode: 302,
+      destination: "/",
     },
-    // revalidate: 20,
   };
+
+  if (!token) {
+    return redirect;
+  }
+  try {
+    const resp = await axios.post(
+      `${process.env.BASE_URL}/api/current_user/`,
+      {},
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return {
+      props: {
+        isLogin: !!token,
+        error: { status: false },
+        userData: resp.data,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        isLogin: !!token,
+        error: { status: true, message: err },
+        userData: null,
+      },
+    };
+  }
 };
+
 const Container = styled.div`
   width: 100%;
   padding: 2.5rem;
@@ -61,4 +132,12 @@ const FlexContainer = styled.div`
   text-align: center;
   color: var(--color-text1);
   padding: 100px;
+`;
+const LoadingPage = styled(Loading)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 60vh;
 `;

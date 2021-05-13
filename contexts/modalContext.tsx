@@ -6,6 +6,8 @@ type ModalContextType = {
   setRegisterModal: (state: boolean) => void;
   loginModal: boolean;
   setLoginModal: (state: boolean) => void;
+  loadingModal: boolean;
+  setLoadingModal: (state: boolean) => void;
 };
 type Props = {
   children: React.ReactNode;
@@ -15,10 +17,12 @@ const modalsContext = React.createContext({} as ModalContextType);
 interface ModalState {
   registerModal: boolean;
   loginModal: boolean;
+  loadingModal: boolean;
 }
 const initialState: ModalState = {
   registerModal: false,
   loginModal: false,
+  loadingModal: false,
 };
 
 function reducer(state: ModalState, action: ModalsActions) {
@@ -27,6 +31,8 @@ function reducer(state: ModalState, action: ModalsActions) {
       return { ...initialState, loginModal: true } as ModalState;
     case ModalsActionTypes.EnableRegisterModal:
       return { ...initialState, registerModal: true } as ModalState;
+    case ModalsActionTypes.EnableLoadingModal:
+      return { ...initialState, loadingModal: true } as ModalState;
 
     case ModalsActionTypes.DisableAllModal:
       return initialState;
@@ -45,6 +51,10 @@ function ModalsContextProvider({ children }: Props) {
     if (state) modalsDispatch({ type: ModalsActionTypes.EnableLoginModal });
     else modalsDispatch({ type: ModalsActionTypes.DisableAllModal });
   };
+  const setLoadingModal = (state: boolean): void => {
+    if (state) modalsDispatch({ type: ModalsActionTypes.EnableLoadingModal });
+    else modalsDispatch({ type: ModalsActionTypes.DisableAllModal });
+  };
 
   return (
     <modalsContext.Provider
@@ -53,6 +63,8 @@ function ModalsContextProvider({ children }: Props) {
         setRegisterModal,
         loginModal: modalSstate.loginModal,
         setLoginModal,
+        loadingModal: modalSstate.loadingModal,
+        setLoadingModal,
       }}
     >
       {children}

@@ -1,35 +1,3 @@
-// import axios from "axios";
-// import { NextApiRequest, NextApiResponse } from "next";
-// import { getTokenCookie } from "utils/auth-cookie";
-
-// export default async function EditProfileUser(
-//   req: NextApiRequest,
-//   res: NextApiResponse,
-// ) {
-//   if (req.method !== "POST") {
-//     res.status(405).send({ success: false });
-//     return;
-//   }
-
-//   try {
-//     const token = getTokenCookie(req);
-//     await axios.post(
-//       `https://wp.thehustleclub.com/wp-json/pl/v1/edit_profile?v=1`,
-//       req.body,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//           "Content-Type": "application/json",
-//         },
-//       },
-//     );
-//     res.status(200).json({ success: true });
-//     return;
-//   } catch (e) {
-//     console.log(e);
-//   }
-//   res.status(400).send({ success: false });
-// }
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getTokenCookie } from "utils/auth-cookie";
@@ -38,7 +6,7 @@ export interface RegisterReqError {
   success: false;
   error: string[];
 }
-export default async function UpdateUser(
+export default async function GetUserData(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
@@ -47,13 +15,13 @@ export default async function UpdateUser(
     return;
   }
 
-  const { first_name, last_name, phone_number } = req.body;
   const token = getTokenCookie(req);
-  //navid fix email
+
   axios
-    .put(
-      `${process.env.BASE_URL}/api/update/azardokhtziaee@gmail.com/`,
-      { first_name, last_name, phone_number },
+    .post(
+      `${process.env.BASE_URL}/api/current_user/`,
+      {},
+
       {
         headers: {
           Authorization: `Bearer ${token}`,

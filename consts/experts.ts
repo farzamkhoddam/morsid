@@ -37,7 +37,7 @@ export const EXPERT_LIST: Expert[] = [
     <p>I'm the CEO of Dropbox and have faced enormous amounts of challenges in the past years. I can help you about how to run, scale and grow your company.I like to help entrepreneurs think through their business strategy - how to scale a company, hire the right people to take it to the next level or what kind of investors to get on board.</p>
     `,
     imageUrl: "/images/experts/saeed_ramazany.jpg",
-    price: "$120",
+    price: "120.0",
     linkdinAddress: "http://www.linkedin.com/in/saeed-ramazany",
   },
   {
@@ -66,7 +66,7 @@ export const EXPERT_LIST: Expert[] = [
     `,
 
     imageUrl: "/images/experts/iman.jpg",
-    price: "$130",
+    price: "120.0",
     linkdinAddress: "https://www.linkedin.com/in/imannazari",
   },
   {
@@ -94,7 +94,7 @@ export const EXPERT_LIST: Expert[] = [
     <p>I'm the CEO of Dropbox and have faced enormous amounts of challenges in the past years. I can help you about how to run, scale and grow your company.I like to help entrepreneurs think through their business strategy - how to scale a company, hire the right people to take it to the next level or what kind of investors to get on board.</p>
     `,
     imageUrl: "/images/experts/hamid.jpg",
-    price: "$300",
+    price: "140.0",
     linkdinAddress: "https://www.linkedin.com/in/navid-goalpure",
     websiteAddress: "https://react-resume.ir/",
   },

@@ -32,7 +32,7 @@
     "react-payment-inputs": "^1.1.7",
     "react-query": "^3.13.8",
     "reactjs-popup": "^2.0.4",
-    "sass": "^1.32.8",
+    "sass": "^1.32.12",
     "select-timezone-material-ui": "^2.6.0",
     "stripe": "^8.148.0",
     "styled-components": "^5.2.1",

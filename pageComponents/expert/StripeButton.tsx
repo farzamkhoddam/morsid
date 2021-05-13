@@ -43,6 +43,9 @@ export default function StripeButton({
 
     if (response.statusCode === 500) {
       console.error(response.message);
+      toast.error(
+        response?.message || "We have a unknown problem. Please try again",
+      );
       return;
     }
 
@@ -57,7 +60,8 @@ export default function StripeButton({
     // If `redirectToCheckout` fails due to a browser or network
     // error, display the localized error message to your customer
     // using `error.message`.
-    console.warn(error.message);
+
+    console.warn("error=", error.message);
     toast.error(
       error?.message || "We have a unknown problem. Please try again",
     );
