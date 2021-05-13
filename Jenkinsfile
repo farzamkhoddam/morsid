@@ -8,7 +8,7 @@ pipeline {
             branch 'development'
           }
           steps {
-            sh '''cp /home/ec2-user/projects/envfiles/morsid-front/dev .env
+            sh '''cp /var/lib/jenkins/envfiles/morsid-front/dev .env
 docker build -t morsid-front-dev:${BUILD_NUMBER} . 
 docker tag morsid-front-dev:${BUILD_NUMBER} morsid-front-dev:latest '''
           }
@@ -19,7 +19,7 @@ docker tag morsid-front-dev:${BUILD_NUMBER} morsid-front-dev:latest '''
             branch 'master'
           }
           steps {
-            sh '''cp /home/ec2-user/projects/envfiles/morsid-front/prod .env
+            sh '''cp /var/lib/jenkins/envfiles/morsid-front/prod .env
 docker build -t morsid-front:${BUILD_NUMBER} . 
 docker tag morsid-front:${BUILD_NUMBER} morsid-front:latest '''
           }
