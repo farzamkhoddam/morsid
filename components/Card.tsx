@@ -33,7 +33,7 @@ export default function Card({
 }: Props) {
   return (
     <Container className={className}>
-      <Avatar alt={name} imageUrl={imageUrl} />
+      <Avatar alt={name} imageUrl={imageUrl} slug={slug} />
       <Body2 style={{ marginBottom: "11px", color: "var(--color-text1)" }}>
         {name}
       </Body2>

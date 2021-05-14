@@ -3,6 +3,7 @@ import Button from "elements/Button";
 import styled from "styled-components";
 import { Body1, H2 } from "elements/typo";
 import Image from "next/image";
+import ButtonLink from "elements/ButtonLink";
 
 export default function Hero() {
   return (
@@ -20,7 +21,7 @@ export default function Hero() {
         <Body1 style={{ margin: "25px 0 32px 0" }}>
           Get in touch with the experts to start or grow your startup
         </Body1>
-        <Button label="Find an Expert" />
+        <ButtonLink label="Find an Expert" to="/experts" />
       </Side1>
       <Side2>
         <Image

@@ -1,33 +1,44 @@
 import React from "react";
 import styled, { CSSObject } from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   alt: string;
   imageUrl: string;
+  slug: string;
   className?: string;
   style?: CSSObject;
 }
-export default function Avatar({ alt, imageUrl, className, style }: Props) {
+export default function Avatar({
+  alt,
+  imageUrl,
+  className,
+  style,
+  slug,
+}: Props) {
   return (
-    <Container className={className} style={style}>
-      <Ring>
-        <ImageContainer>
-          <Image
-            src={imageUrl}
-            alt={alt}
-            width={95}
-            height={95}
-            quality={100}
-          />
-        </ImageContainer>
-      </Ring>
-    </Container>
+    <Link href={"/expert/" + slug}>
+      <Container className={className} style={style}>
+        <Ring>
+          <ImageContainer>
+            <Image
+              src={imageUrl}
+              alt={alt}
+              width={95}
+              height={95}
+              quality={100}
+            />
+          </ImageContainer>
+        </Ring>
+      </Container>
+    </Link>
   );
 }
 const Container = styled.div`\
 display: flex;
 justify-content: center;
+cursor: pointer;
 
 `;
 const Ring = styled.div`

@@ -7,12 +7,10 @@ import styled from "styled-components";
 import Avatar from "components/Avatar";
 import LinkdeinIcon from "elements/SVGs/LinkdinIcon";
 import WebIcon from "elements/SVGs/WebIcon";
-
 import Experts from "./Experts";
 import ButtonLink from "elements/ButtonLink";
 import Button from "elements/Button";
 import { modalsContext } from "contexts/modalContext";
-import { STEP } from ".";
 
 interface Props {
   isLogin: boolean;
@@ -20,7 +18,7 @@ interface Props {
 }
 
 export default function ExpertProfile({ isLogin, currentExpert }: Props) {
-  const { setLoginModal } = useContext(modalsContext);
+  const { setRegisterModal } = useContext(modalsContext);
 
   return (
     <>
@@ -30,6 +28,7 @@ export default function ExpertProfile({ isLogin, currentExpert }: Props) {
           imageUrl={
             currentExpert?.imageUrl || "/images/article-image-placeholder.jpg"
           }
+          slug={currentExpert.slug}
         />
 
         <DataBlock style={{ marginLeft: "1rem" }}>
@@ -68,7 +67,7 @@ export default function ExpertProfile({ isLogin, currentExpert }: Props) {
           ) : (
             <CheckPriceButton
               label="Check price"
-              onClick={() => setLoginModal(true)}
+              onClick={() => setRegisterModal(true)}
             />
           )}
         </ReserveBlock>
@@ -131,7 +130,6 @@ const CheckPriceButton = styled(Button)`
 `;
 const DescPaper = styled(Paper)`
   width: 100%;
-  max-width: 940px;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 46px;

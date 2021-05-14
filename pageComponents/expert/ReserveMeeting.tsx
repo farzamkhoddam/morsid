@@ -71,7 +71,11 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
   return (
     <Container>
       <Paper>
-        <Avatar alt={currentExpert.name} imageUrl={currentExpert.imageUrl} />
+        <Avatar
+          alt={currentExpert.name}
+          imageUrl={currentExpert.imageUrl}
+          slug={currentExpert.slug}
+        />
         <Body1
           style={{
             color: "var(--primary-color-dark)",

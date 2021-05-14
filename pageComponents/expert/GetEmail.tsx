@@ -20,6 +20,7 @@ export default function GetEmail({ setStep, currentExpert }: Props) {
           alt={currentExpert.name}
           imageUrl={currentExpert.imageUrl}
           // style={{ marginBottom: "20px" }}
+          slug={currentExpert.slug}
         />
         <Body1
           style={{
