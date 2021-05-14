@@ -3,7 +3,7 @@ import SEO from "../../components/seo";
 import PageLayout from "components/PageLayout";
 import styled from "styled-components";
 import { Body1, Body3, H3, Title } from "elements/typo";
-import { HowItsWorkProps } from "pages/how-its-work";
+import { HowItsWorkProps } from "pages/how-it-works";
 
 interface Props {
   pageProps: HowItsWorkProps;

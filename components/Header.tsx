@@ -51,7 +51,7 @@ const Header = ({ currentTabIndex, isLogin }: Props) => {
             </a>
           </NavItem>
           <NavItem isSelected={currentTabIndex === 1}>
-            <a style={{ marginRight: "2.5rem" }} href="/how-its-work">
+            <a style={{ marginRight: "2.5rem" }} href="/how-it-works">
               How it works
             </a>
           </NavItem>
