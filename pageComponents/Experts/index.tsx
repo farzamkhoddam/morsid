@@ -12,7 +12,7 @@ export default function ExpertsUi({ pageProps }: Props) {
   return (
     <PageLayout currentTabIndex={0} isLogin={pageProps.isLogin}>
       <SEO />
-      <Experts />
+      <Experts isLogin={pageProps.isLogin} />
     </PageLayout>
   );
 }

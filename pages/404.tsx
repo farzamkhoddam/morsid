@@ -5,7 +5,7 @@ import PageLayout from "components/PageLayout";
 
 export default function NotFound() {
   return (
-    <PageLayout>
+    <PageLayout isLogin={false}>
       <div className="not-found-page">
         <div
           className="wrapper"
