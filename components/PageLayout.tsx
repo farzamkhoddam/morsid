@@ -28,6 +28,9 @@ const Container = styled.div`
   flex-direction: column;
 `;
 const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   flex: 1;
   width: 100%;
   max-width: var(--page-max-width);
