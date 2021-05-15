@@ -19,7 +19,7 @@ export default async function ReserveMeetitg(
   const { userMail, expertMail, expert, reserveDate, session_id } = req.body;
   axios
     .post(
-      `https://hooks.zapier.com/hooks/catch/1929342/byfor8z/`,
+      process.env.NEXT_PUBLIC_SEND_RESERVE_DATA_ENDPOINT || "",
       { userMail, expertMail, expert, reserveDate, session_id },
       {
         headers: {

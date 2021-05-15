@@ -6,12 +6,6 @@ import SEO from "components/seo";
 import styled from "styled-components";
 import { Paper } from "elements/Layout";
 import { Body1 } from "elements/typo";
-import GetEmailImage from "pageComponents/expert/GetEmailImage";
-import axios from "axios";
-import { UserData } from "interfaces/user";
-import toast from "react-hot-toast";
-import Loading from "components/loading";
-import { useRouter } from "next/router";
 import ErrorIcon from "elements/SVGs/ErrorIcon";
 
 export interface Props {

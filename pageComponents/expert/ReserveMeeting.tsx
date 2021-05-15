@@ -32,8 +32,6 @@ interface Props {
 }
 
 export default function ReserveMeetitg({ currentExpert }: Props) {
-  const { setLoadingModal } = useContext(modalsContext);
-  //
   const [reserveDate, setReserveDate] = useState<string | null>(null);
   const [timezone, setTimeZone] = useState<string>(
     `${Intl.DateTimeFormat().resolvedOptions().timeZone} (${getGmt(
@@ -166,10 +164,10 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
         />
         {reserveDate ? (
           <Body1 style={{ color: "var(--color-text1)", marginBottom: "30px" }}>
-            Please pay{" "}
+            Please pay
             <span
               style={{ color: "var(--primary-color-dark)" }}
-            >{` ${currentExpert.price} `}</span>{" "}
+            >{` $${currentExpert.price} `}</span>
             for 60 minutes meeting
           </Body1>
         ) : (
