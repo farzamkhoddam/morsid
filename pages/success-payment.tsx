@@ -12,6 +12,7 @@ import { UserData } from "interfaces/user";
 import toast from "react-hot-toast";
 import Loading from "components/loading";
 import { useRouter } from "next/router";
+import { route } from "next/dist/next-server/server/router";
 
 export interface SuccessPaymentPageProps {
   isLogin: boolean;
@@ -24,34 +25,33 @@ export default function SuccessPayment(
   { isLogin, error, userData }: SuccessPaymentPageProps,
 ) {
   const router = useRouter();
+
   const { expertMail, reserveDate, expert, session_id } = router.query;
   const [loading, setLoading] = useState<boolean>(true);
-  const [fetchedError, setFetchedError] = useState<boolean>(error.status);
-  if (fetchedError) {
-    toast.error(error.message || "Somthing went wrong");
-    // navid create page for this message
-    toast.error(
-      "Your payment was successful but your meeting was not booked. Please contact support",
-    );
-    return <h2>plz contact support</h2>;
-  }
-  axios
-    .post(`/api/reserve-meeting/`, {
-      userMail: userData.email,
-      expertMail,
-      expert,
-      reserveDate,
-      session_id,
-    })
-    .then((response) => {
-      setLoading(false);
-    })
-    .catch((err) => {
-      setLoading(false);
-      setFetchedError(true);
-    });
-  if (loading) {
-    return <LoadingPage />;
+
+  // اگه نتونستنیم مشخصات کابربری که جلسه رزرو کرده رو بگیریم
+  if (process.browser) {
+    if (error.status === true) {
+      router.replace("/error-page");
+    }
+    axios
+      .post(`/api/reserve-meeting/`, {
+        userMail: userData.email,
+        expertMail,
+        expert,
+        reserveDate,
+        session_id,
+      })
+      .then((response) => {
+        setLoading(false);
+      })
+      .catch((err) => {
+        // اگه نتونستیم جلسه ای با اکسپرت رزرو کنیم
+        router.replace("/error-page");
+      });
+    if (loading) {
+      return <LoadingPage />;
+    }
   }
   return (
     <PageLayout isLogin={isLogin}>
