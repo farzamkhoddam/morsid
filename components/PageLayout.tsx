@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import styled from "styled-components";
+import styled, { CSSObject } from "styled-components";
 import Footer from "./Footer";
 import Header from "./Header";
 import ToasterContainer from "./ToasterContainer";
@@ -8,13 +8,23 @@ interface Props {
   children: ReactNode;
   currentTabIndex?: number;
   isLogin: boolean;
+  className?: string;
+  style?: CSSObject;
+  mainStyle?: CSSObject;
 }
-const PageLayout = ({ children, currentTabIndex = -1, isLogin }: Props) => {
+const PageLayout = ({
+  children,
+  currentTabIndex = -1,
+  isLogin,
+  className,
+  style,
+  mainStyle,
+}: Props) => {
   return (
-    <Container>
+    <Container className={className} style={style}>
       <ToasterContainer />
       <Header currentTabIndex={currentTabIndex} isLogin={isLogin} />
-      <Main>{children}</Main>
+      <Main style={mainStyle}>{children}</Main>
       <Footer currentTabIndex={currentTabIndex} />
     </Container>
   );
@@ -28,9 +38,6 @@ const Container = styled.div`
   flex-direction: column;
 `;
 const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   flex: 1;
   width: 100%;
   max-width: var(--page-max-width);

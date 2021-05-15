@@ -2,9 +2,8 @@ import { RiArrowLeftSLine, RiSkullLine } from "react-icons/ri";
 import Link from "next/link";
 import React from "react";
 import PageLayout from "components/PageLayout";
-import { H1, Body1, Title } from "elements/typo";
 
-export default function Page404() {
+export default function Error() {
   return (
     <PageLayout
       isLogin={false}
@@ -22,12 +21,15 @@ export default function Page404() {
             color: "var(--primary-color-dark)",
           }}
         />
-        <Title style={{ marginBottom: "1rem" }}>PAGE NOT FOUND</Title>
-        <Body1>We can't seem to find the page you're looking for.</Body1>
+        <h1>Oops we did not expect that to happen</h1>
+        <p>
+          Have you wondered into the unknow. Let us help you, Please take a look
+          at below options
+        </p>
       </header>
       <Link href="/">
-        <div style={{ marginTop: "2rem", cursor: "pointer" }}>
-          <RiArrowLeftSLine />
+        <div className="button" style={{ marginTop: "2rem" }}>
+          <RiArrowLeftSLine className="icon -left" />
           Back to Homepage
         </div>
       </Link>
