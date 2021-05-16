@@ -33,12 +33,12 @@ interface Props {
 
 export default function ReserveMeetitg({ currentExpert }: Props) {
   const [reserveDate, setReserveDate] = useState<string | null>(null);
+  // به صورت دیفالت تایم زون بروزر رو ست میکنیم
   const [timezone, setTimeZone] = useState<string>(
     `${Intl.DateTimeFormat().resolvedOptions().timeZone} (${getGmt(
       new Date(),
     )})`,
   );
-
   const [isOpenModale, setOpenModal] = useState(false);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
@@ -161,6 +161,7 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
           datesWithFreetimes={datesWithFreetimes}
           setReserveDate={setReserveDate}
           reserveDate={reserveDate}
+          timezone={timezone}
         />
         {reserveDate ? (
           <Body1 style={{ color: "var(--color-text1)", marginBottom: "30px" }}>

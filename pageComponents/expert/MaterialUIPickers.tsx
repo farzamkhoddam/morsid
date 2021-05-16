@@ -22,12 +22,14 @@ interface Props {
   setReserveDate: React.Dispatch<React.SetStateAction<string | null>>;
   reserveDate: string | null;
   datesWithFreetimes: FREE_TIMES;
+  timezone: string;
 }
 
 export default function MaterialUIPickers({
   datesWithFreetimes,
   setReserveDate,
   reserveDate,
+  timezone,
 }: Props) {
   const changeDateProcess = (newDate: Date) => {
     const dateString = moment(newDate).format("YYYY-MM-DD").toString();
@@ -89,6 +91,7 @@ export default function MaterialUIPickers({
                 reserveDate={reserveDate}
                 blocks={datesWithFreetimes[datePickerValue]?.freeTimes}
                 datePickerValue={datePickerValue}
+                timezone={timezone}
               />
             </FlexRowItem>
             <FlexRowItem>
@@ -105,6 +108,7 @@ export default function MaterialUIPickers({
                 reserveDate={reserveDate}
                 blocks={datesWithFreetimes[datePickerValue]?.freeTimes}
                 datePickerValue={datePickerValue}
+                timezone={timezone}
               />
             </FlexRowItem>
           </FlexRow>

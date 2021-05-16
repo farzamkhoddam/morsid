@@ -10,6 +10,7 @@ interface Props {
   reserveDate: string | null;
   blocks: FreeTime[];
   datePickerValue: string;
+  timezone: string;
 }
 
 export default function TimeBlocks({
@@ -18,6 +19,7 @@ export default function TimeBlocks({
   setReserveDate,
   reserveDate,
   blocks,
+  timezone,
 }: Props) {
   return (
     <Container>
@@ -26,7 +28,7 @@ export default function TimeBlocks({
           key={i}
           isSelected={GetDateFromReserveDate(reserveDate) === block}
           onClick={() => {
-            setReserveDate(`${datePickerValue} ${block}`);
+            setReserveDate(`${datePickerValue} ${block} ${timezone}`);
           }}
         >
           {block}
