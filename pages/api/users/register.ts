@@ -18,7 +18,7 @@ export default async function RegisterUser(
   const { email, password, isRemember } = req.body;
 
   axios
-    .post(`${process.env.BASE_URL}/api/register/`, { email, password })
+    .post(`/api/register/`, { email, password })
     .then((resp) => {
       const token = resp?.data?.access;
       if (token) {
