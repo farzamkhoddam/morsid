@@ -33,7 +33,7 @@ export default function TimeBlocks({
               .add(1, "h")
               .format("HH:mm");
 
-            setReserveDate(`${datePickerValue} ${block} ${timezone}`);
+            setReserveDate(`${datePickerValue}T${block}-${after1Hour}`);
           }}
         >
           {block}
