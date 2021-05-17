@@ -18,7 +18,7 @@ export default async function RegisterUser(
   const { email, password, isRemember } = req.body;
 
   axios
-    .post(`/api/register/`, { email, password })
+    .post(`${process.env.BASE_URL}/api/register/`, { email, password })
     .then((resp) => {
       const token = resp?.data?.access;
       if (token) {
@@ -35,6 +35,7 @@ export default async function RegisterUser(
       }
     })
     .catch((error) => {
+      console.log("navid Error=", Object.keys(error));
       if (error.response) {
         // Request made and server responded
         console.log(error?.response?.data);
