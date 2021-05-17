@@ -12,6 +12,8 @@ import Router from "next/router";
 import { useEffect, useState } from "react";
 import { LoginReqError } from "pages/api/users/login";
 import { GetYapValidationOfPassWord } from "utils/other";
+import { modalsContext } from "contexts/modalContext";
+import { useContext } from "react";
 
 interface FormValues {
   email: string;
@@ -36,6 +38,8 @@ interface Props {
 }
 
 const LoginModal = ({ setStatus }: Props) => {
+  const { setRegisterModal } = useContext(modalsContext);
+
   const [isSelected, setIsSelected] = useState<Record<string, boolean>>({
     [checkBoxName]: initialValues.isRemember,
   });
@@ -126,7 +130,12 @@ const LoginModal = ({ setStatus }: Props) => {
       </Formik>
       <Body2 style={{ color: "var(--color-text1)" }}>
         If you haven’t an account, please
-        <span style={{ color: "var(--primary-color-dark)" }}>{` Sign up`}</span>
+        <span
+          onClick={() => {
+            setRegisterModal(true);
+          }}
+          style={{ color: "var(--primary-color-dark)", cursor: "pointer" }}
+        >{` Sign up`}</span>
       </Body2>
     </LoginContainer>
   );

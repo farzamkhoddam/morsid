@@ -38,7 +38,7 @@ const Step1 = ({ setStep, setEmail }: Props) => {
   const handleCheckboxChange = (changeEvent: { target: { name: any } }) => {
     setIsSelected({ [checkBoxName]: !isSelected[checkBoxName] });
   };
-  const { setRegisterModal, setLoginModal } = useContext(modalsContext);
+  const { setLoginModal } = useContext(modalsContext);
   return (
     <RegisterContainer>
       <Markers>
@@ -135,9 +135,7 @@ const Step1 = ({ setStep, setEmail }: Props) => {
         If you have an account, please
         <span
           onClick={() => {
-            console.log("navid check!");
-            // setRegisterModal(false);
-            // setLoginModal(true);
+            setLoginModal(true);
           }}
           style={{ color: "var(--primary-color-dark)", cursor: "pointer" }}
         >{` Login`}</span>
