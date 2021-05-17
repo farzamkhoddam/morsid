@@ -8,9 +8,9 @@ import { TextInput } from "elements/TextInput";
 import Checkbox from "elements/CheckBox";
 import Button from "elements/Button";
 import axios from "axios";
-import Router from "next/router";
 import { RegisterReqError } from "pages/api/users/register";
 import { modalsContext } from "contexts/modalContext";
+import { GetYapValidationOfPassWord } from "utils/other";
 
 interface FormValues {
   email: string;
@@ -23,10 +23,7 @@ const initialValues: FormValues = {
 };
 const RegisterSchema = yup.object().shape({
   email: yup.string().label("Email Address").email().required(),
-  password: yup
-    .string()
-    .required("No password provided.")
-    .min(8, "Password is too short - should be 8 chars minimum."),
+  password: GetYapValidationOfPassWord(),
 });
 
 const checkBoxName = "iAccept";
