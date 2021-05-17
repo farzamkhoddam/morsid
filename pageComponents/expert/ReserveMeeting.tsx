@@ -33,7 +33,7 @@ interface Props {
 
 export default function ReserveMeetitg({ currentExpert }: Props) {
   const [reserveDate, setReserveDate] = useState<string | null>(null);
-  console.log("navid string=", reserveDate);
+
   // به صورت دیفالت تایم زون بروزر رو ست میکنیم
   const [timezone, setTimeZone] = useState<string>(
     `${Intl.DateTimeFormat().resolvedOptions().timeZone} (${getGmt(

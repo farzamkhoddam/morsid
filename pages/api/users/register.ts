@@ -35,7 +35,6 @@ export default async function RegisterUser(
       }
     })
     .catch((error) => {
-      console.log("navid error=", error.response.data);
       if (error.response) {
         // Request made and server responded
         console.log(error?.response?.data);
@@ -44,6 +43,7 @@ export default async function RegisterUser(
           ...error?.response?.data,
         } as RegisterReqError);
       } else {
+        console.log(error);
         res.status(400).send({
           success: false,
           error: [
