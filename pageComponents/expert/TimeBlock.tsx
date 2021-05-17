@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { SetStateAction } from "react";
 import { FreeTime } from "./Interfaces";
 import { GetDateFromReserveDate, GetTimeArrray } from "./utils";
+import moment from "moment";
 
 interface Props {
   whichColumn: "AM" | "PM";
@@ -28,6 +29,10 @@ export default function TimeBlocks({
           key={i}
           isSelected={GetDateFromReserveDate(reserveDate) === block}
           onClick={() => {
+            const after1Hour = moment(`${datePickerValue}T${block}`)
+              .add(1, "h")
+              .format("HH:mm");
+
             setReserveDate(`${datePickerValue} ${block} ${timezone}`);
           }}
         >

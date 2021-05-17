@@ -35,7 +35,6 @@ export default async function RegisterUser(
       }
     })
     .catch((error) => {
-      console.log("navid Error=", Object.keys(error));
       if (error.response) {
         // Request made and server responded
         console.log(error?.response?.data);
