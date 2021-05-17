@@ -1,4 +1,4 @@
-import { ModalsActions, ModalsActionTypes } from "components/modals/interfaces";
+import { ModalsActions, ModalsActionTypes } from "components/Modals/interfaces";
 import React, { useReducer, useState } from "react";
 
 type ModalContextType = {
