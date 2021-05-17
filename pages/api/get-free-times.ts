@@ -22,7 +22,7 @@ export default async function RegisterUser(
 
   const { user, timezone } = req.body;
   axios
-    .post(`${process.env.BASE_URL}/api/free_times/`, {
+    .post(`${process.env.BASE_URL}/backendapi/free_times/`, {
       user,
       timezone,
     })

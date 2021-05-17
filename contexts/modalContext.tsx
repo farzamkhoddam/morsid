@@ -42,7 +42,7 @@ function reducer(state: ModalState, action: ModalsActions) {
 }
 
 function ModalsContextProvider({ children }: Props) {
-  const [modalSstate, modalsDispatch] = useReducer(reducer, initialState);
+  const [modalsState, modalsDispatch] = useReducer(reducer, initialState);
   const setRegisterModal = (state: boolean): void => {
     if (state) modalsDispatch({ type: ModalsActionTypes.EnableRegisterModal });
     else modalsDispatch({ type: ModalsActionTypes.DisableAllModal });
@@ -59,11 +59,11 @@ function ModalsContextProvider({ children }: Props) {
   return (
     <modalsContext.Provider
       value={{
-        registerModal: modalSstate.registerModal,
+        registerModal: modalsState.registerModal,
         setRegisterModal,
-        loginModal: modalSstate.loginModal,
+        loginModal: modalsState.loginModal,
         setLoginModal,
-        loadingModal: modalSstate.loadingModal,
+        loadingModal: modalsState.loadingModal,
         setLoadingModal,
       }}
     >

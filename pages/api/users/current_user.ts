@@ -19,7 +19,7 @@ export default async function GetUserData(
 
   axios
     .post(
-      `${process.env.BASE_URL}/api/current_user/`,
+      `${process.env.BASE_URL}/backendapi/current_user/`,
       {},
 
       {

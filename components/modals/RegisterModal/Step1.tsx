@@ -1,5 +1,5 @@
 import { Body2, Body3, Caption, Title } from "elements/typo";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as yup from "yup";
 import styled from "styled-components";
 import { Field, Form, Formik } from "formik";
@@ -10,6 +10,7 @@ import Button from "elements/Button";
 import axios from "axios";
 import Router from "next/router";
 import { RegisterReqError } from "pages/api/users/register";
+import { modalsContext } from "contexts/modalContext";
 
 interface FormValues {
   email: string;
@@ -40,7 +41,7 @@ const Step1 = ({ setStep, setEmail }: Props) => {
   const handleCheckboxChange = (changeEvent: { target: { name: any } }) => {
     setIsSelected({ [checkBoxName]: !isSelected[checkBoxName] });
   };
-
+  const { setRegisterModal, setLoginModal } = useContext(modalsContext);
   return (
     <RegisterContainer>
       <Markers>
@@ -134,8 +135,15 @@ const Step1 = ({ setStep, setEmail }: Props) => {
         )}
       </Formik>
       <Body2 style={{ color: "var(--color-text1)" }}>
-        If you have an account, please{" "}
-        <span style={{ color: "var(--primary-color-dark)" }}>{` Login`}</span>
+        If you have an account, please
+        <span
+          onClick={() => {
+            console.log("navid check!");
+            // setRegisterModal(false);
+            // setLoginModal(true);
+          }}
+          style={{ color: "var(--primary-color-dark)", cursor: "pointer" }}
+        >{` Login`}</span>
       </Body2>
     </RegisterContainer>
   );

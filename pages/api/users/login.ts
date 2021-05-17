@@ -19,7 +19,7 @@ export default async function LoginrUser(
   const { email, password, isRemember } = req.body;
 
   axios
-    .post(`${process.env.BASE_URL}/api/login/`, {
+    .post(`${process.env.BASE_URL}/backendapi/login/`, {
       email,
       password,
     })

@@ -18,7 +18,7 @@ export default async function RegisterUser(
   const { uid, token, new_password } = req.body;
 
   axios
-    .post(`${process.env.BASE_URL}/api/users/reset_password_confirm/`, {
+    .post(`${process.env.BASE_URL}/backendapi/users/reset_password_confirm/`, {
       new_password,
       uid,
       token,

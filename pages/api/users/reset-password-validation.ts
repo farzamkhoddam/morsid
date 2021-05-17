@@ -18,7 +18,7 @@ export default async function RegisterUser(
   const { uid, token } = req.body;
 
   axios
-    .post(`${process.env.BASE_URL}/api/check_token/`, {
+    .post(`${process.env.BASE_URL}/backendapi/check_token/`, {
       uid,
       token,
     })

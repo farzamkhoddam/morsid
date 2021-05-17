@@ -51,7 +51,7 @@ export default async function UpdateUser(
   const token = getTokenCookie(req);
   axios
     .put(
-      `${process.env.BASE_URL}/api/update/${email}/`,
+      `${process.env.BASE_URL}/backendapi/update/${email}/`,
       { first_name, last_name, phone_number },
       {
         headers: {

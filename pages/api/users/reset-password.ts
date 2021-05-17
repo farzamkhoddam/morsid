@@ -16,7 +16,7 @@ export default async function RegisterUser(
 
   const { email } = req.body;
   axios
-    .post(`${process.env.BASE_URL}/api/users/reset_password/`, {
+    .post(`${process.env.BASE_URL}/backendapi/users/reset_password/`, {
       email,
     })
     .then(() => {

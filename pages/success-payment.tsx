@@ -90,7 +90,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   }
   try {
     const resp = await axios.post(
-      `${process.env.BASE_URL}/api/current_user/`,
+      `${process.env.BASE_URL}/backendapi/current_user/`,
       {},
 
       {
