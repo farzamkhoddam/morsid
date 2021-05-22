@@ -1,4 +1,6 @@
-import { FreeTime } from "./Interfaces";
+import { FreeTime, FREE_TIMES } from "./Interfaces";
+import { format, utcToZonedTime } from "date-fns-tz";
+import { datePattern } from "./consts";
 
 const GetTimeArrray = (_blocks: FreeTime[], time: "AM" | "PM"): string[] => {
   const arr: string[] = [];
@@ -16,11 +18,33 @@ const GetDateFromReserveDate = (reserveDate: string | null): string => {
 };
 function disablePrevDates() {
   const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  // const tommorow = new Date(today);
+  // tommorow.setDate(tommorow.getDate());
+
   return (date: Date) => {
-    return tomorrow.getTime() > date.getTime();
+    return today.getTime() > date.getTime();
   };
 }
-
-export { GetTimeArrray, GetDateFromReserveDate, disablePrevDates };
+function getFormatedZonedTime(timezone: string): string {
+  const zonedDate = utcToZonedTime(new Date(), timezone);
+  return format(zonedDate, datePattern, { timeZone: timezone });
+}
+function convertTimeToZonedTme(time: Date, timezone: string): string {
+  const zonedDate = utcToZonedTime(time, timezone);
+  return format(zonedDate, datePattern, { timeZone: timezone });
+}
+function getOneDayFromDayObject(
+  datesWithFreetimes: FREE_TIMES,
+  datePickerValue: string,
+): FreeTime[] | undefined {
+  const day: any = datePickerValue.split("T")[0];
+  return datesWithFreetimes[day]?.freeTimes;
+}
+export {
+  GetTimeArrray,
+  GetDateFromReserveDate,
+  disablePrevDates,
+  getFormatedZonedTime,
+  convertTimeToZonedTme,
+  getOneDayFromDayObject,
+};

@@ -3,13 +3,12 @@ import styled from "styled-components";
 import { SetStateAction } from "react";
 import { FreeTime } from "./Interfaces";
 import { GetDateFromReserveDate, GetTimeArrray } from "./utils";
-import moment from "moment";
 
 interface Props {
   whichColumn: "AM" | "PM";
   setReserveDate: Dispatch<SetStateAction<string | null>>;
   reserveDate: string | null;
-  blocks: FreeTime[];
+  blocks: FreeTime[] | undefined;
   datePickerValue: string;
   timezone: string;
 }
@@ -22,6 +21,8 @@ export default function TimeBlocks({
   blocks,
   timezone,
 }: Props) {
+  if (!blocks) return <div />;
+  null;
   return (
     <Container>
       {GetTimeArrray(blocks, whichColumn).map((block, i) => (
@@ -29,11 +30,7 @@ export default function TimeBlocks({
           key={i}
           isSelected={GetDateFromReserveDate(reserveDate) === block}
           onClick={() => {
-            const after1Hour = moment(`${datePickerValue}T${block}`)
-              .add(1, "h")
-              .format("HH:mm");
-
-            setReserveDate(`${datePickerValue}T${block}-${after1Hour}`);
+            setReserveDate(`${datePickerValue}T${block}-${timezone}`);
           }}
         >
           {block}

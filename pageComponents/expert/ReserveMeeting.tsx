@@ -35,10 +35,9 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
   const [reserveDate, setReserveDate] = useState<string | null>(null);
 
   // به صورت دیفالت تایم زون بروزر رو ست میکنیم
+
   const [timezone, setTimeZone] = useState<string>(
-    `${Intl.DateTimeFormat().resolvedOptions().timeZone} (${getGmt(
-      new Date(),
-    )})`,
+    `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
   );
   const [isOpenModale, setOpenModal] = useState(false);
   const handleOpenModal = () => setOpenModal(true);
@@ -149,7 +148,7 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
                 }
                 showTimezoneOffset={true}
                 onChange={(timezoneName: string, timezoneOffset: number) => {
-                  setTimeZone(timezoneName);
+                  setTimeZone(timezoneName.split(" ")[0]);
                   // setSelectedDate();
                   handleCloseModal();
                 }}
