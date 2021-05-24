@@ -9,24 +9,19 @@ import { fetchPostJSON } from "utils/stripe/api-helpers";
 import getStripe from "utils/stripe/get-stripejs";
 import { Expert } from "consts/experts";
 import Button from "elements/Button";
-
-interface FormValues {
-  note: string;
-  cardNumber: string;
-  expiryDate: string;
-  cvc: string;
-}
+import { getReservedTime, isTimeSelected } from "./utils";
+import { datePattern } from "./consts";
 
 interface Props {
   currentExpert: Expert;
   // isPayActive: boolean;
-  reserveDate: string | null;
+  datePickerValue: string;
 }
 
 export default function StripeButton({
   currentExpert,
   // isPayActive,
-  reserveDate,
+  datePickerValue,
 }: Props) {
   const [loading, setLoading] = useState(false);
 
@@ -37,7 +32,7 @@ export default function StripeButton({
     const response = await fetchPostJSON("/api/checkout_sessions", {
       amount: currentExpert.price,
       expert: currentExpert.slug,
-      reserveDate: reserveDate,
+      datePickerValue: datePickerValue,
       expertMail: currentExpert.email,
     });
 
@@ -74,7 +69,7 @@ export default function StripeButton({
         <PayButton
           label="Pay now"
           type="submit"
-          disabled={loading || reserveDate === null}
+          disabled={loading || !isTimeSelected(datePickerValue)}
         />
       </form>
     </Container>

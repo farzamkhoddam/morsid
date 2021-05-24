@@ -9,10 +9,9 @@ import { Body1 } from "elements/typo";
 import GetEmailImage from "pageComponents/expert/GetEmailImage";
 import axios from "axios";
 import { UserData } from "interfaces/user";
-import toast from "react-hot-toast";
 import Loading from "components/loading";
 import { useRouter } from "next/router";
-import { route } from "next/dist/next-server/server/router";
+import { useEffect } from "react";
 
 export interface SuccessPaymentPageProps {
   isLogin: boolean;
@@ -26,10 +25,14 @@ export default function SuccessPayment(
 ) {
   const router = useRouter();
 
-  const { expertMail, reserveDate, expert, session_id } = router.query;
+  const { expertMail, reservedTime, expert, session_id } = router.query;
+  // چون توی خوندن از یوآرال علامت + با اسپیس جایگزین میشه و ما در این متغیر هیچ علامت اسپیسی نداریم. پس اینجا میتونیم اسپیس رو با مثبت جایگزین کنیم
+  // برای تایم زون هایی که علامت مثبت ندارن این کار الزامیه
+  const reservedTimeWithPlus = reservedTime?.toString().replace(" ", "+");
   const [loading, setLoading] = useState<boolean>(true);
+  // useEffect(() => {
 
-  // اگه نتونستنیم مشخصات کابربری که جلسه رزرو کرده رو بگیریم
+  // });
   if (process.browser) {
     if (error.status === true) {
       router.replace("/error-page");
@@ -39,7 +42,7 @@ export default function SuccessPayment(
         userMail: userData.email,
         expertMail,
         expert,
-        reserveDate,
+        reservedTime: reservedTimeWithPlus,
         session_id,
       })
       .then((response) => {

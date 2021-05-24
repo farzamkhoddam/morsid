@@ -2,38 +2,40 @@ import React, { Dispatch } from "react";
 import styled from "styled-components";
 import { SetStateAction } from "react";
 import { FreeTime } from "./Interfaces";
-import { GetDateFromReserveDate, GetTimeArrray } from "./utils";
+import {
+  getReservedTime,
+  GetTimeArrray,
+  injectTimeToDatePickerValue,
+} from "./utils";
 
 interface Props {
   whichColumn: "AM" | "PM";
-  setReserveDate: Dispatch<SetStateAction<string | null>>;
-  reserveDate: string | null;
   blocks: FreeTime[] | undefined;
   datePickerValue: string;
-  timezone: string;
+  setDatePickerValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function TimeBlocks({
   datePickerValue,
   whichColumn,
-  setReserveDate,
-  reserveDate,
   blocks,
-  timezone,
+  setDatePickerValue,
 }: Props) {
   if (!blocks) return <div />;
   null;
   return (
     <Container>
-      {GetTimeArrray(blocks, whichColumn).map((block, i) => (
+      {GetTimeArrray(blocks, whichColumn).map((blockLabel, i) => (
         <Block
           key={i}
-          isSelected={GetDateFromReserveDate(reserveDate) === block}
+          isSelected={getReservedTime(datePickerValue) === blockLabel}
           onClick={() => {
-            setReserveDate(`${datePickerValue}T${block}-${timezone}`);
+            setDatePickerValue(
+              injectTimeToDatePickerValue(datePickerValue, blockLabel),
+            );
           }}
         >
-          {block}
+          {blockLabel}
         </Block>
       ))}
     </Container>

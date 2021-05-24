@@ -11,11 +11,11 @@ const GetTimeArrray = (_blocks: FreeTime[], time: "AM" | "PM"): string[] => {
 
   return arr;
 };
-const GetDateFromReserveDate = (reserveDate: string | null): string => {
-  if (!reserveDate) return "";
-  const split = reserveDate.split(" ");
-  return split[1];
-};
+// const GetDateFromReserveDate = (reservedTime: string | null): string => {
+//   if (!reservedTime) return "";
+//   const split = reservedTime.split("T");
+//   return split[0];
+// };
 function disablePrevDates() {
   const today = new Date();
   // const tommorow = new Date(today);
@@ -40,11 +40,26 @@ function getOneDayFromDayObject(
   const day: any = datePickerValue.split("T")[0];
   return datesWithFreetimes[day]?.freeTimes;
 }
+function getReservedTime(datePickerValue: string): string {
+  return datePickerValue.substr(11, 5);
+}
+function injectTimeToDatePickerValue(
+  datePickerValue: string,
+  blockLabel: string,
+): string {
+  return datePickerValue.replace(getReservedTime(datePickerValue), blockLabel);
+}
+function isTimeSelected(datePickerValue: string) {
+  return getReservedTime(datePickerValue) !== "00:00";
+}
 export {
   GetTimeArrray,
-  GetDateFromReserveDate,
+  // GetDateFromReserveDate,
   disablePrevDates,
   getFormatedZonedTime,
   convertTimeToZonedTme,
   getOneDayFromDayObject,
+  getReservedTime,
+  injectTimeToDatePickerValue,
+  isTimeSelected,
 };

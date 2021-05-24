@@ -17,54 +17,54 @@ import toast from "react-hot-toast";
 import axios, { AxiosResponse } from "axios";
 import MaterialUIPickers from "./MaterialUIPickers";
 import Loading from "components/loading";
-import { modalsContext } from "contexts/modalContext";
-import { useContext } from "react";
+import { getFormatedZonedTime } from "./utils";
+import { useEffect } from "react";
 
-function getGmt(date: Date | null): string {
-  if (date) {
-    var split = date.toString().split(" ");
-    return split[5];
-  }
-  return "Unselected GTM";
-}
 interface Props {
   currentExpert: Expert;
 }
 
 export default function ReserveMeetitg({ currentExpert }: Props) {
-  const [reserveDate, setReserveDate] = useState<string | null>(null);
-
   // به صورت دیفالت تایم زون بروزر رو ست میکنیم
-
   const [timezone, setTimeZone] = useState<string>(
     `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
+  );
+  const [datePickerValue, setDatePickerValue] = useState<string>(
+    getFormatedZonedTime(timezone),
   );
   const [isOpenModale, setOpenModal] = useState(false);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
-  const {
-    isLoading,
-    error,
-    data,
-  }: QueryObserverResult<AxiosResponse<any>, unknown> = useQuery(
-    ["repoData", currentExpert.slug],
-    () =>
-      axios.post("/api/get-free-times", {
+
+  const [datesWithFreetimes, setDatesWithFreetimes] = useState<FREE_TIMES>();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+
+      const result = await axios.post("/api/get-free-times", {
         user: currentExpert.email,
         timezone: timezone.split(" ")[0].toString(),
-      }),
-  );
+      });
+      setDatesWithFreetimes(result?.data?.data);
+      setDatePickerValue(getFormatedZonedTime(timezone));
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, [timezone]);
+  console.log("navid timezone1=", timezone);
   if (isLoading) {
     return <LoadingPage />;
   }
 
-  if (error) {
+  if (!datesWithFreetimes) {
     //@ts-ignore
-    toast.error(`An error has occurred:  ${error?.message || " unknown"}`);
+    //navid create error page
+    toast.error(`An error has occurred`);
     return <h1>error</h1>;
   }
-
-  const datesWithFreetimes: FREE_TIMES = data?.data?.data;
 
   return (
     <Container>
@@ -149,7 +149,6 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
                 showTimezoneOffset={true}
                 onChange={(timezoneName: string, timezoneOffset: number) => {
                   setTimeZone(timezoneName.split(" ")[0]);
-                  // setSelectedDate();
                   handleCloseModal();
                 }}
               />
@@ -159,11 +158,11 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
         <Divider />
         <MaterialUIPickers
           datesWithFreetimes={datesWithFreetimes}
-          setReserveDate={setReserveDate}
-          reserveDate={reserveDate}
           timezone={timezone}
+          datePickerValue={datePickerValue}
+          setDatePickerValue={setDatePickerValue}
         />
-        {reserveDate ? (
+        {/* {getReservedTime() ? (
           <Body1 style={{ color: "var(--color-text1)", marginBottom: "30px" }}>
             Please pay
             <span
@@ -175,12 +174,12 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
           <Body1 style={{ color: "var(--color-text1)", marginBottom: "30px" }}>
             Please select the date and time first and then pay the bill
           </Body1>
-        )}
+        )} */}
 
         <StripeButton
           currentExpert={currentExpert || ({} as Expert)}
           // isPayActive={isPayActive}
-          reserveDate={reserveDate}
+          datePickerValue={datePickerValue}
         />
       </Paper>
     </Container>

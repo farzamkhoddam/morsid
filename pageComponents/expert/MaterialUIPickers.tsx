@@ -9,13 +9,14 @@ import { Body2, Caption } from "elements/typo";
 import { useState } from "react";
 import TimeBlocks from "./TimeBlock";
 import { FREE_TIMES } from "./Interfaces";
+import { format } from "date-fns-tz";
 
 import {
   convertTimeToZonedTme,
   disablePrevDates,
-  getFormatedZonedTime,
   getOneDayFromDayObject,
 } from "./utils";
+import { parseISO } from "date-fns";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -24,23 +25,21 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface Props {
-  setReserveDate: React.Dispatch<React.SetStateAction<string | null>>;
-  reserveDate: string | null;
   datesWithFreetimes: FREE_TIMES;
   timezone: string;
+  datePickerValue: string;
+  setDatePickerValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function MaterialUIPickers({
   datesWithFreetimes,
-  setReserveDate,
-  reserveDate,
   timezone,
+  datePickerValue,
+  setDatePickerValue,
 }: Props) {
   const classes = useStyles();
+  console.log("navid timezone2=", timezone);
 
-  const [datePickerValue, setDatePickerValue] = useState<string>(
-    getFormatedZonedTime(timezone),
-  );
   return (
     <Container>
       <FlexRow>
@@ -71,7 +70,11 @@ export default function MaterialUIPickers({
               marginTop: "37px",
             }}
           >
-            {`Available starting times for ${datePickerValue}`}
+            {`Available starting times for ${format(
+              parseISO(datePickerValue),
+              "iii, LLL dd, yyyy ",
+            )}`}
+            {/* {`Available starting times for ${format(datePickerValue, "yyyy")}`} */}
           </Body2>
           <FlexRow
             style={{
@@ -88,15 +91,13 @@ export default function MaterialUIPickers({
               </Caption>
               <TimeBlocks
                 whichColumn="AM"
-                setReserveDate={setReserveDate}
-                reserveDate={reserveDate}
+                setDatePickerValue={setDatePickerValue}
                 // blocks={datesWithFreetimes[datePickerValue]?.freeTimes}
                 blocks={getOneDayFromDayObject(
                   datesWithFreetimes,
                   datePickerValue,
                 )}
                 datePickerValue={datePickerValue}
-                timezone={timezone}
               />
             </FlexRowItem>
             <FlexRowItem>
@@ -109,14 +110,12 @@ export default function MaterialUIPickers({
               </Caption>
               <TimeBlocks
                 whichColumn="PM"
-                setReserveDate={setReserveDate}
-                reserveDate={reserveDate}
+                setDatePickerValue={setDatePickerValue}
                 blocks={getOneDayFromDayObject(
                   datesWithFreetimes,
                   datePickerValue,
                 )}
                 datePickerValue={datePickerValue}
-                timezone={timezone}
               />
             </FlexRowItem>
           </FlexRow>

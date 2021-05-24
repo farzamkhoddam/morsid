@@ -16,11 +16,17 @@ export default async function ReserveMeetitg(
   }
 
   const token = getTokenCookie(req);
-  const { userMail, expertMail, expert, reserveDate, session_id } = req.body;
+  const { userMail, expertMail, expert, reservedTime, session_id } = req.body;
   axios
     .post(
       process.env.NEXT_PUBLIC_SEND_RESERVE_DATA_ENDPOINT || "",
-      { userMail, expertMail, expert, reserveDate, session_id },
+      {
+        userMail,
+        expertMail,
+        expert,
+        reservedTime,
+        session_id,
+      },
       {
         headers: {
           Authorization: `Bearer ${token}`,
