@@ -67,7 +67,7 @@ export default function StripeButton({
     <Container>
       <form onSubmit={handleSubmit}>
         <PayButton
-          label="Pay now"
+          label="Checkout"
           type="submit"
           disabled={loading || !isTimeSelected(datePickerValue)}
         />

@@ -120,16 +120,12 @@ const LoginModal = ({ setStatus }: Props) => {
                 I forgot my password
               </Body3>
             </Row>
-            <CTA
-              label="Login to account"
-              type="submit"
-              disabled={isSubmitting}
-            />
+            <CTA label="Login" type="submit" disabled={isSubmitting} />
           </StyledForm>
         )}
       </Formik>
       <Body2 style={{ color: "var(--color-text1)" }}>
-        If you haven’t an account, please
+        Don’t have a Morsid account yet?
         <span
           onClick={() => {
             setRegisterModal(true);

@@ -57,7 +57,7 @@ const Step1 = ({ setStep, setEmail }: Props) => {
         Welcome to Morsid
       </Title>
       <Body2 style={{ marginBottom: "2rem" }}>
-        For booking a meeting with our experts, Please sign up!
+        Get access to world-class expertise using Morsid
       </Body2>
 
       <Formik
@@ -132,7 +132,7 @@ const Step1 = ({ setStep, setEmail }: Props) => {
         )}
       </Formik>
       <Body2 style={{ color: "var(--color-text1)" }}>
-        If you have an account, please
+        Already have an account?
         <span
           onClick={() => {
             setLoginModal(true);

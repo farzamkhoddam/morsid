@@ -2,7 +2,7 @@ import * as React from "react";
 import { Divider, makeStyles, Modal } from "@material-ui/core";
 import { StaticDatePicker } from "@material-ui/lab";
 import styled from "styled-components";
-import { Body1, Body2 } from "elements/typo";
+import { Body1, Body2, Title } from "elements/typo";
 import SelectTimezoneMaterialUi from "select-timezone-material-ui";
 import { useState } from "react";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -67,7 +67,7 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
 
   return (
     <Container>
-      <Paper>
+      <Paper style={{ position: "relative" }}>
         <Avatar
           alt={currentExpert.name}
           imageUrl={currentExpert.imageUrl}
@@ -80,6 +80,7 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
             textAlign: "center",
           }}
         >{`Set a meeting with ${currentExpert.name}`}</Body1>
+        <Price>{`$${currentExpert.price}`}</Price>
         <Body1
           style={{
             color: "var(--color-text1)",
@@ -174,6 +175,9 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
             Please select the date and time first and then pay the bill
           </Body1>
         )} */}
+        <Body1 style={{ color: "var(--color-text1)", marginBottom: "30px" }}>
+          Select a timeslot to confirm your booking
+        </Body1>
 
         <StripeButton
           currentExpert={currentExpert || ({} as Expert)}
@@ -219,4 +223,8 @@ const LoadingPage = styled(Loading)`
   align-items: center;
   width: 100%;
   height: 60vh;
+`;
+const Price = styled(Title)`
+  position: absolute;
+  right: 40px;
 `;
