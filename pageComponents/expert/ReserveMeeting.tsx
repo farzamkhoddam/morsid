@@ -7,14 +7,12 @@ import SelectTimezoneMaterialUi from "select-timezone-material-ui";
 import { useState } from "react";
 import Backdrop from "@material-ui/core/Backdrop";
 import { Paper } from "elements/Layout";
-
 import { Expert } from "consts/experts";
 import Avatar from "components/Avatar";
 import StripeButton from "./StripeButton";
 import { FREE_TIMES } from "./Interfaces";
-import { QueryObserverResult, useQuery } from "react-query";
 import toast from "react-hot-toast";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import MaterialUIPickers from "./MaterialUIPickers";
 import Loading from "components/loading";
 import { getFormatedZonedTime } from "./utils";
@@ -80,7 +78,7 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
             textAlign: "center",
           }}
         >{`Set a meeting with ${currentExpert.name}`}</Body1>
-        <Price>{`$${currentExpert.price}`}</Price>
+        <Price>{`$${parseInt(currentExpert.price)} /h`}</Price>
         <Body1
           style={{
             color: "var(--color-text1)",
