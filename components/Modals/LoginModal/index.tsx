@@ -18,7 +18,7 @@ const LoginModal = ({ isOpen, setIsOpen }: Props) => {
       open={isOpen}
       onClose={() => {
         setIsOpen(false);
-        // Router.reload();
+        Router.reload();
       }}
       position="right center"
       modal

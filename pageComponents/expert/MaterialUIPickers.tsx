@@ -38,7 +38,6 @@ export default function MaterialUIPickers({
   setDatePickerValue,
 }: Props) {
   const classes = useStyles();
-  console.log("navid timezone2=", timezone);
 
   return (
     <Container>

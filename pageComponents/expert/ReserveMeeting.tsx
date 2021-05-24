@@ -54,7 +54,6 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
 
     fetchData();
   }, [timezone]);
-  console.log("navid timezone1=", timezone);
   if (isLoading) {
     return <LoadingPage />;
   }

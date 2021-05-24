@@ -96,7 +96,7 @@ const Step2 = ({ setStep, email }: Props) => {
                 <TextInput
                   name="phone_number"
                   type="text"
-                  placeholder="+123456789"
+                  placeholder="123456789"
                 />
               </Flex1>
               <Buttons>

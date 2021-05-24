@@ -24,16 +24,12 @@ export default function SuccessPayment(
   { isLogin, error, userData }: SuccessPaymentPageProps,
 ) {
   const router = useRouter();
-
   const { expertMail, reservedTime, expert, session_id } = router.query;
   // چون توی خوندن از یوآرال علامت + با اسپیس جایگزین میشه و ما در این متغیر هیچ علامت اسپیسی نداریم. پس اینجا میتونیم اسپیس رو با مثبت جایگزین کنیم
   // برای تایم زون هایی که علامت مثبت ندارن این کار الزامیه
   const reservedTimeWithPlus = reservedTime?.toString().replace(" ", "+");
   const [loading, setLoading] = useState<boolean>(true);
-  // useEffect(() => {
-
-  // });
-  if (process.browser) {
+  useEffect(() => {
     if (error.status === true) {
       router.replace("/error-page");
     }
@@ -52,10 +48,12 @@ export default function SuccessPayment(
         // اگه نتونستیم جلسه ای با اکسپرت رزرو کنیم
         router.replace("/error-page");
       });
-    if (loading) {
-      return <LoadingPage />;
-    }
+  }, []);
+
+  if (loading) {
+    return <LoadingPage />;
   }
+
   return (
     <PageLayout isLogin={isLogin}>
       <SEO />
@@ -92,6 +90,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     return redirect;
   }
   try {
+    // get current user data
     const resp = await axios.post(
       `${process.env.BASE_URL}/backendapi/current_user/`,
       {},
