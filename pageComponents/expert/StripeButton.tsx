@@ -31,7 +31,7 @@ export default function StripeButton({
     // Create a Checkout Session.
     const response = await fetchPostJSON("/api/checkout_sessions", {
       amount: currentExpert.price,
-      expert: currentExpert.slug,
+      expert: currentExpert.name,
       datePickerValue: datePickerValue,
       expertMail: currentExpert.email,
     });

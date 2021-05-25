@@ -44,6 +44,7 @@ const RegisterModal = ({ isOpen, setIsOpen }: Props) => {
         onClick={() => {
           setStep(1);
           setIsOpen(false);
+          Router.reload();
         }}
       >
         &times;

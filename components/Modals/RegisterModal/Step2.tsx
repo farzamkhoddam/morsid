@@ -100,7 +100,7 @@ const Step2 = ({ setStep, email }: Props) => {
                 />
               </Flex1>
               <Buttons>
-                <Body3 style={{ cursor: "pointer" }} onClick={() => setStep(1)}>
+                <Body3 style={{ cursor: "pointer" }} onClick={() => setStep(3)}>
                   Skip for now
                 </Body3>
                 <Button label="Complete profile" type="submit" />

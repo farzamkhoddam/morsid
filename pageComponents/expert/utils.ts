@@ -52,6 +52,7 @@ function injectTimeToDatePickerValue(
 function isTimeSelected(datePickerValue: string) {
   return getReservedTime(datePickerValue) !== "00:00";
 }
+
 export {
   GetTimeArrray,
   // GetDateFromReserveDate,

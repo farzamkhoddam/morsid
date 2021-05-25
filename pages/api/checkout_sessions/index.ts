@@ -26,8 +26,10 @@ export default async function handler(
             quantity: 1,
           },
         ],
-        success_url: `${req.headers.origin}/success-payment?expert=${expert}&expertMail=${expertMail}&reservedTime=${datePickerValue}&session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/expert/${expert}/reserve`,
+        success_url: `${req.headers.origin}/success-payment?expert=${encodeURI(
+          expert,
+        )}&expertMail=${expertMail}&reservedTime=${datePickerValue}&session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${req.headers.origin}/expert/${encodeURI(expert)}/reserve`,
       };
       const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(
         params,
