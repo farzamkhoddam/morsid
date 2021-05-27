@@ -2,7 +2,10 @@ import { FreeTime, FREE_TIMES } from "./Interfaces";
 import { format, utcToZonedTime } from "date-fns-tz";
 import { datePattern } from "./consts";
 
-const GetTimeArrray = (_blocks: FreeTime[], time: "AM" | "PM"): string[] => {
+const GetTimeArrray = (
+  _blocks: FreeTime[] | undefined,
+  time: "AM" | "PM",
+): string[] => {
   const arr: string[] = [];
   if (_blocks)
     _blocks.map((date: FreeTime) => {

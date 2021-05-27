@@ -21,8 +21,14 @@ export default function TimeBlocks({
   blocks,
   setDatePickerValue,
 }: Props) {
+  console.log(
+    "navid GetTimeArrray(blocks, whichColumn)=",
+    GetTimeArrray(blocks, whichColumn),
+  );
   if (!blocks) return <div />;
-  null;
+  if (GetTimeArrray(blocks, whichColumn).length === 0)
+    return <Notime>No time available</Notime>;
+
   return (
     <Container>
       {GetTimeArrray(blocks, whichColumn).map((blockLabel, i) => (
@@ -41,10 +47,22 @@ export default function TimeBlocks({
     </Container>
   );
 }
+const Notime = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 164px;
+  height: 42px;
+  background: #ededed;
+  border-radius: 8px;
+  margin: 0 auto;
+`;
 const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  font-size: 14px;
+  line-height: 18px;
   width: 100%;
 `;
 
@@ -61,8 +79,6 @@ const Block = styled.div<{ isSelected: boolean }>`
   border-radius: 8px;
   margin-bottom: 20px;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 18px;
 
   &:hover {
     color: white;
