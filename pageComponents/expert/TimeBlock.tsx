@@ -21,10 +21,6 @@ export default function TimeBlocks({
   blocks,
   setDatePickerValue,
 }: Props) {
-  console.log(
-    "navid GetTimeArrray(blocks, whichColumn)=",
-    GetTimeArrray(blocks, whichColumn),
-  );
   if (!blocks) return <div />;
   if (GetTimeArrray(blocks, whichColumn).length === 0)
     return <Notime>No time available</Notime>;
