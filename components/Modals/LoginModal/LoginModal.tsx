@@ -14,6 +14,7 @@ import { GetYapValidationOfPassWord } from "utils/other";
 import { modalsContext } from "contexts/modalContext";
 import { useContext } from "react";
 import { device } from "consts/device";
+import { useState } from "react";
 
 interface FormValues {
   email: string;
