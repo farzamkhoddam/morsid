@@ -95,6 +95,7 @@ const Container = styled.header`
   width: 100%;
   padding: 0 1rem;
   height: var(--header-height-desktop);
+  overflow: hidden;
 `;
 const Wrapper = styled.div`
   display: flex;

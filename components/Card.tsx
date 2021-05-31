@@ -8,6 +8,7 @@ import WebIcon from "elements/SVGs/WebIcon";
 import ButtonLink from "elements/ButtonLink";
 import Avatar from "./Avatar";
 import Link from "next/link";
+import { device } from "consts/device";
 
 interface Props {
   name: string;
@@ -34,9 +35,7 @@ export default function Card({
   return (
     <Container className={className}>
       <Avatar alt={name} imageUrl={imageUrl} slug={slug} />
-      <Body2 style={{ marginBottom: "11px", color: "var(--color-text1)" }}>
-        {name}
-      </Body2>
+      <StyledBody2>{name}</StyledBody2>
       <Body3 style={{ marginBottom: "25px" }}>{desc}</Body3>
       <BlankSpace />
       <DataRow>
@@ -70,6 +69,14 @@ const Container = styled(Paper)`
   max-width: 358px;
   height: auto;
   position: relative;
+`;
+const StyledBody2 = styled.p`
+  marginbottom: 11px;
+  color: var(--color-text1);
+  @media ${device.tabletL} {
+    margin-bottom: 2rem;
+    margin-top: 0;
+  }
 `;
 const DataRow = styled.div`
   display: flex;
