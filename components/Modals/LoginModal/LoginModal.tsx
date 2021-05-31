@@ -9,11 +9,11 @@ import { TextInput } from "elements/TextInput";
 import Checkbox from "elements/CheckBox";
 import axios from "axios";
 import Router from "next/router";
-import { useEffect, useState } from "react";
 import { LoginReqError } from "pages/api/users/login";
 import { GetYapValidationOfPassWord } from "utils/other";
 import { modalsContext } from "contexts/modalContext";
 import { useContext } from "react";
+import { device } from "consts/device";
 
 interface FormValues {
   email: string;
@@ -49,14 +49,14 @@ const LoginModal = ({ setStatus }: Props) => {
 
   return (
     <LoginContainer>
-      <Title
+      <StyledTitle
         style={{ marginBottom: "1.5rem", color: "var(--primary-color-dark)" }}
       >
         Welcome back to Morsid
-      </Title>
-      <Body2 style={{ marginBottom: "2rem" }}>
+      </StyledTitle>
+      <StyledBody2 style={{ marginBottom: "2rem" }}>
         Please login to access your account
-      </Body2>
+      </StyledBody2>
 
       <Formik
         initialValues={initialValues}
@@ -98,27 +98,17 @@ const LoginModal = ({ setStatus }: Props) => {
             </Column>
             <Row>
               <Checkbox
-                label={
-                  <Body3
-                    style={{
-                      display: "inline-block",
-                      marginBottom: "2.5rem",
-                      color: "var(--color-text1)",
-                    }}
-                  >
-                    Remember me
-                  </Body3>
-                }
+                label={<CheckboxLabel>Remember me</CheckboxLabel>}
                 isSelected={isSelected["RememberMe"]}
                 changeHandler={handleCheckboxChange}
                 name={checkBoxName}
               />
-              <Body3
+              <StyledBody3
                 style={{ cursor: "pointer" }}
                 onClick={() => setStatus("FORGET")}
               >
                 I forgot my password
-              </Body3>
+              </StyledBody3>
             </Row>
             <CTA label="Login" type="submit" disabled={isSubmitting} />
           </StyledForm>
@@ -142,19 +132,50 @@ const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 745px;
-  height: auto;
+  width: 100%;
+  height: 95vh;
   background: #ffffff;
   border-radius: 20px;
-  padding: 56px;
+  padding: 1rem;
   padding-bottom: 68px;
+  overflow: auto;
 `;
-
+const StyledTitle = styled(Title)`
+  @media ${device.mobileL} {
+    font-size: 22px;
+    line-height: 33px;
+  }
+  @media ${device.mobileM} {
+    font-size: 20px;
+    line-height: 32px;
+    margin-top: 1.5rem;
+  }
+`;
+const StyledBody2 = styled(Body2)`
+  @media ${device.mobileL} {
+    font-size: 15px;
+    line-height: 20px;
+  }
+`;
+const CheckboxLabel = styled(Body3)`
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  color: var(--color-text1);
+  @media ${device.mobileL} {
+    margin-bottom: 0.5rem;
+  }
+`;
+const StyledBody3 = styled(Body3)`
+  @media ${device.mobileL} {
+    margin-bottom: 1.5rem;
+  }
+`;
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 358px;
+  width: 100%;
+  max-width: 358px;
 `;
 const Column = styled.div`
   display: flex;
@@ -167,6 +188,10 @@ const Row = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  @media ${device.mobileL} {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const Flex1 = styled.div`
   flex: 1;

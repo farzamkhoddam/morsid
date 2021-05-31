@@ -27,6 +27,7 @@ const LoginModal = ({ isOpen, setIsOpen }: Props) => {
       <CloseButton
         onClick={() => {
           setStatus("LOGIN"); //default
+          Router.reload();
           setIsOpen(false);
         }}
       >

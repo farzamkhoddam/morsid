@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { Expert, EXPERT_LIST } from "consts/experts";
+import React, { useContext } from "react";
+
+import { Expert } from "consts/experts";
 import { Paper } from "elements/Layout";
 import { Body1, Body2, Caption } from "elements/typo";
 import styled from "styled-components";
@@ -11,6 +11,7 @@ import Experts from "./Experts";
 import ButtonLink from "elements/ButtonLink";
 import Button from "elements/Button";
 import { modalsContext } from "contexts/modalContext";
+import { device } from "consts/device";
 
 interface Props {
   isLogin: boolean;
@@ -40,12 +41,20 @@ export default function ExpertProfile({ isLogin, currentExpert }: Props) {
               {currentExpert?.title}
             </Body2>
             {currentExpert?.linkdinAddress && (
-              <a href={currentExpert?.linkdinAddress} target="_blank">
+              <a
+                href={currentExpert?.linkdinAddress}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <LinkdeinIcon style={{ marginRight: "20px" }} />
               </a>
             )}
             {currentExpert?.websiteAddress && (
-              <a href={currentExpert?.websiteAddress} target="_blank">
+              <a
+                href={currentExpert?.websiteAddress}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <WebIcon />
               </a>
             )}
@@ -95,6 +104,9 @@ const ProfilePaper = styled(Paper)`
   max-width: 92.5rem;
   margin-right: auto;
   margin-left: auto;
+  @media ${device.mobileL} {
+    flex-direction: column;
+  }
 `;
 const DataBlock = styled.div`
   display: flex;
@@ -115,6 +127,10 @@ const ReserveBlock = styled.div`
   width: 221px;
   align-items: center;
   margin-left: auto;
+  @media ${device.mobileL} {
+    margin-left: 0;
+    margin-top: 2rem;
+  }
 `;
 const Price = styled(Body2)`
   color: var(--color-text1);
@@ -123,10 +139,16 @@ const Price = styled(Body2)`
 const SetMeetongButton = styled(ButtonLink)`
   width: 221px;
   height: 54px;
+  @media ${device.mobileL} {
+    margin: 0 auto;
+  }
 `;
 const CheckPriceButton = styled(Button)`
   width: 149px;
   height: 54px;
+  @media ${device.mobileL} {
+    margin: 0 auto;
+  }
 `;
 const DescPaper = styled(Paper)`
   width: 100%;

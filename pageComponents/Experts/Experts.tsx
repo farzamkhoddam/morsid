@@ -4,6 +4,7 @@ import Card from "components/Card";
 import { EXPERT_LIST } from "../../consts/experts";
 
 import ButtonLink from "elements/ButtonLink";
+import { device } from "consts/device";
 
 interface Props {
   isLogin: boolean;
@@ -34,18 +35,29 @@ export default function Experts({ isLogin }: Props) {
 const Container = styled.section`
   display: flex;
   flex-direction: column;
-  margin-top: 82px;
+  margin-top: 2.2rem;
 `;
 const Cards = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 4rem;
+  @media ${device.tabletL} {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 `;
 const ExpertCard = styled(Card)`
   width: 32%;
-`;
-const SeeMore = styled(ButtonLink)`
-  margin: 0 auto;
-  margin-bottom: 120px;
+  margin-top: 1.5rem;
+  @media ${device.tabletL} {
+    width: 47%;
+    margin: 1.2rem 0.5rem;
+  }
+  @media ${device.tabletM} {
+    width: 70%;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+  }
 `;

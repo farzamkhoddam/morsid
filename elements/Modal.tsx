@@ -3,11 +3,14 @@ import styled from "styled-components";
 
 export const StyledPopup = styled(Popup)`
   &-overlay {
+    padding: 1rem;
   }
   &-content {
-    width: max-content;
+    width: 99%;
+    max-width: 745px;
     border-radius: 20px;
     padding: 0;
+    max-height: 100vh;
   }
 `;
 

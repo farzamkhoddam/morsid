@@ -21,7 +21,8 @@ export function TextInput({ className, name, style, ...props }: Props) {
   );
 }
 const Container = styled.div`
-  width: 358px;
+  width: 100%;
+  max-width: 358px;
   margin-top: 0.5rem;
   margin-bottom: 30px;
 `;

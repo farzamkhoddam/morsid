@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { TextInput } from "elements/TextInput";
 import axios from "axios";
 import { ForgetPasswordReqError } from "pages/api/users/reset-password";
+import { device } from "consts/device";
 
 interface FormValues {
   email: string;
@@ -29,7 +30,7 @@ const ForgotModal = ({ setIsOpen }: Props) => {
       >
         Forgot Password
       </Title>
-      <Body2 style={{ marginBottom: "2rem" }}>
+      <Body2 style={{ marginBottom: "2rem", textAlign: "center" }}>
         Please enter your email to get the recovery password link
       </Body2>
 
@@ -79,19 +80,24 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 745px;
+  width: 100%;
+  max-width: 745px;
   height: auto;
   background: #ffffff;
   border-radius: 20px;
   padding: 56px;
   padding-bottom: 68px;
+  @media ${device.mobileL} {
+    padding: 56px 1rem;
+  }
 `;
 
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 358px;
+  width: 100%;
+  max-width: 358px;
 `;
 const Column = styled.div`
   display: flex;
