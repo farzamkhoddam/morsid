@@ -17,6 +17,7 @@ import MaterialUIPickers from "./MaterialUIPickers";
 import Loading from "components/loading";
 import { getFormatedZonedTime } from "./utils";
 import { useEffect } from "react";
+import { device } from "consts/device";
 
 interface Props {
   currentExpert: Expert;
@@ -57,7 +58,6 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
   }
 
   if (!datesWithFreetimes) {
-    //@ts-ignore
     //navid create error page
     toast.error(`An error has occurred`);
     return <h1>error</h1>;
@@ -173,15 +173,22 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
             Please select the date and time first and then pay the bill
           </Body1>
         )} */}
-        <Body1 style={{ color: "var(--color-text1)", marginBottom: "30px" }}>
-          Select a timeslot to confirm your booking
-        </Body1>
+        <StyledBody1
+          style={{
+            color: "var(--color-text1)",
 
-        <StripeButton
-          currentExpert={currentExpert || ({} as Expert)}
-          // isPayActive={isPayActive}
-          datePickerValue={datePickerValue}
-        />
+            marginBottom: "30px",
+          }}
+        >
+          Select a timeslot to confirm your booking
+        </StyledBody1>
+        <StripeButtonContainer>
+          <StripeButton
+            currentExpert={currentExpert || ({} as Expert)}
+            // isPayActive={isPayActive}
+            datePickerValue={datePickerValue}
+          />
+        </StripeButtonContainer>
       </Paper>
     </Container>
   );
@@ -190,6 +197,7 @@ const Container = styled.div`
   width: 100%;
   padding: 2.5rem;
   margin-bottom: 5rem;
+  min-width: 430px;
 `;
 const Row = styled.div`
   display: flex;
@@ -225,4 +233,16 @@ const LoadingPage = styled(Loading)`
 const Price = styled(Title)`
   position: absolute;
   right: 40px;
+`;
+const StyledBody1 = styled(Body1)`
+  @media ${device.tabletL} {
+    text-align: center;
+  }
+`;
+const StripeButtonContainer = styled.div`
+  @media ${device.tabletL} {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;

@@ -17,10 +17,12 @@ import {
   getOneDayFromDayObject,
 } from "./utils";
 import { parseISO } from "date-fns";
+import { device } from "consts/device";
 
 const useStyles = makeStyles(() => ({
   root: {
     width: "max-content",
+    marginTop: "1rem",
   },
 }));
 
@@ -61,7 +63,7 @@ export default function MaterialUIPickers({
             />
           </LocalizationProvider>
         </FlexRowItem>
-        <FlexRowItem>
+        <FlexRowItemTimes>
           <Body2
             style={{
               color: "var(--color-text1)",
@@ -75,7 +77,7 @@ export default function MaterialUIPickers({
             )}`}
             {/* {`Available starting times for ${format(datePickerValue, "yyyy")}`} */}
           </Body2>
-          <FlexRow
+          <FlexRowTimes
             style={{
               marginBottom: "1rem",
             }}
@@ -117,8 +119,8 @@ export default function MaterialUIPickers({
                 datePickerValue={datePickerValue}
               />
             </FlexRowItem>
-          </FlexRow>
-        </FlexRowItem>
+          </FlexRowTimes>
+        </FlexRowItemTimes>
       </FlexRow>
     </Container>
   );
@@ -130,13 +132,25 @@ const Container = styled.div`
 const FlexRow = styled.div`
   display: flex;
   justify-content: space-between;
+  @media ${device.tabletL} {
+    flex-direction: column;
+  }
 `;
 const FlexRowItem = styled.div`
   flex: 1;
   margin: 0 auto;
   text-align: center;
+  width: 100%;
 `;
-
+const FlexRowItemTimes = styled(FlexRowItem)`
+  @media ${device.tabletL} {
+    width: 100%;
+  }
+`;
+const FlexRowTimes = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 const StyledDatePicker = styled(StaticDatePicker)`
   .MuiPickersDay-today {
     border-radius: 50%;
