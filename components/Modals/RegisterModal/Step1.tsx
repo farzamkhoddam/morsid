@@ -11,6 +11,7 @@ import axios from "axios";
 import { RegisterReqError } from "pages/api/users/register";
 import { modalsContext } from "contexts/modalContext";
 import { GetYapValidationOfPassWord } from "utils/other";
+import { device } from "consts/device";
 
 interface FormValues {
   email: string;
@@ -56,9 +57,9 @@ const Step1 = ({ setStep, setEmail }: Props) => {
       >
         Welcome to Morsid
       </Title>
-      <Body2 style={{ marginBottom: "2rem" }}>
+      <StyledBody2 style={{ marginBottom: "2rem" }}>
         Get access to world-class expertise using Morsid
-      </Body2>
+      </StyledBody2>
 
       <Formik
         initialValues={initialValues}
@@ -86,7 +87,8 @@ const Step1 = ({ setStep, setEmail }: Props) => {
                 <Caption as="label" htmlFor={"email"}>
                   Email
                 </Caption>
-                <TextInput
+
+                <StyledTextInput
                   name="email"
                   type="email"
                   placeholder="e.g jimmy@email.com"
@@ -96,7 +98,8 @@ const Step1 = ({ setStep, setEmail }: Props) => {
                 <Caption as="label" htmlFor={"name"}>
                   Password
                 </Caption>
-                <TextInput
+
+                <StyledTextInput
                   name="password"
                   type="password"
                   placeholder="At least 8 character or more"
@@ -106,7 +109,7 @@ const Step1 = ({ setStep, setEmail }: Props) => {
 
             <Checkbox
               label={
-                <Body3
+                <StyledBody3
                   style={{
                     display: "inline-block",
                     marginBottom: "2.5rem",
@@ -117,7 +120,7 @@ const Step1 = ({ setStep, setEmail }: Props) => {
                   <span style={{ borderBottom: "1px solid" }}>
                     terms, conditions and privacy policy
                   </span>
-                </Body3>
+                </StyledBody3>
               }
               isSelected={isSelected["iAccept"]}
               changeHandler={handleCheckboxChange}
@@ -148,11 +151,17 @@ const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 745px;
+  max-width: 745px;
+  width: 100%;
   height: auto;
   background: #ffffff;
   border-radius: 20px;
   padding-bottom: 68px;
+
+  @media${device.tabletL} {
+    overflow: auto;
+    height: 93vh;
+  }
 `;
 const Markers = styled.div`
   display: flex;
@@ -166,11 +175,16 @@ const StepMarker = styled.div<{ isActive?: boolean }>`
   background-color: ${({ isActive }) =>
     isActive ? "var(--primary-color-normal)" : "var(--border-color-normal)"};
 `;
-
+const StyledBody2 = styled(Body2)`
+  @media${device.mobileL} {
+    text-align: center;
+  }
+`;
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 1rem;
 `;
 const Column = styled.div`
   display: flex;
@@ -182,6 +196,18 @@ const Column = styled.div`
 
 const Flex1 = styled.div`
   flex: 1;
+  width: 100%;
+`;
+const StyledTextInput = styled(TextInput)`
+  @media ${device.mobileL} {
+    margin: 0.5rem auto 30px auto;
+  }
+`;
+const StyledBody3 = styled(Body3)`
+  @media ${device.mobileL} {
+    font-size: 14px;
+    text-align: center;
+  }
 `;
 const CTA = styled(Button)`
   width: 195px;

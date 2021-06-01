@@ -41,7 +41,8 @@ const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 745px;
+  max-width: 745px;
+  width: 100%;
   height: auto;
   background: #ffffff;
   border-radius: 20px;

@@ -12,7 +12,7 @@ interface Props {
 }
 const Checkbox = ({ name, label, isSelected, changeHandler }: Props) => (
   <div className="form-check">
-    <label>
+    <label style={{ display: "flex" }}>
       <input
         type="checkbox"
         name={name}

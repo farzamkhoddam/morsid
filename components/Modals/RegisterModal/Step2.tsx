@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { TextInput } from "elements/TextInput";
 import Button from "elements/Button";
 import axios from "axios";
+import { device } from "consts/device";
 
 interface FormValues {
   first_name: string;
@@ -45,14 +46,10 @@ const Step2 = ({ setStep, email }: Props) => {
       </Markers>
 
       <Caption style={{ marginBottom: "1rem" }}>2 of 2</Caption>
-      <Title
-        style={{ marginBottom: "1.5rem", color: "var(--primary-color-dark)" }}
-      >
-        We want to know you better
-      </Title>
-      <Body2 style={{ marginBottom: "2rem" }}>
+      <StyledTitle>We want to know you better</StyledTitle>
+      <StyledBody2 style={{ marginBottom: "2rem" }}>
         We will need some more information to complete your profile
-      </Body2>
+      </StyledBody2>
 
       <Formik
         initialValues={initialValues}
@@ -100,9 +97,12 @@ const Step2 = ({ setStep, email }: Props) => {
                 />
               </Flex1>
               <Buttons>
-                <Body3 style={{ cursor: "pointer" }} onClick={() => setStep(3)}>
+                <StyledBody3
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setStep(3)}
+                >
                   Skip for now
-                </Body3>
+                </StyledBody3>
                 <Button label="Complete profile" type="submit" />
               </Buttons>
             </Column>
@@ -117,11 +117,16 @@ const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 745px;
+  max-width: 745px;
+  width: 100%;
   height: auto;
   background: #ffffff;
   border-radius: 20px;
   padding-bottom: 68px;
+  @media ${device.tabletL} {
+    overflow: auto;
+    height: 93vh;
+  }
 `;
 const Markers = styled.div`
   display: flex;
@@ -135,18 +140,34 @@ const StepMarker = styled.div<{ isActive?: boolean }>`
   background-color: ${({ isActive }) =>
     isActive ? "var(--primary-color-normal)" : "var(--border-color-normal)"};
 `;
-
+const StyledTitle = styled(Title)`
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color-dark);
+`;
+const StyledBody2 = styled(Body2)`
+  @media ${device.mobileL} {
+    font-size: 15px;
+    text-align: center;
+    padding: 0 1rem;
+  }
+`;
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${device.mobileL} {
+    width: 100%;
+    padding: 0 1rem;
+  }
 `;
 const Column = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: stretch;
   align-items: center;
-  width: 358px;
+  width: 100%;
+  max-width: 358px;
 `;
 
 const Flex1 = styled.div`
@@ -158,4 +179,12 @@ const Buttons = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  @media ${device.mobileL} {
+    flex-direction: column-reverse;
+  }
+`;
+const StyledBody3 = styled(Body3)`
+  @media ${device.mobileL} {
+    margin-top: 1rem;
+  }
 `;
