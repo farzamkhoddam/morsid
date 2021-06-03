@@ -5,6 +5,7 @@ import Card from "components/Card";
 
 import ButtonLink from "elements/ButtonLink";
 import { Expert, EXPERT_LIST } from "consts/experts";
+import { device } from "consts/device";
 
 interface Props {
   currentExpert: Expert;
@@ -48,9 +49,21 @@ const Cards = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 4rem;
+
+  @media ${device.mobileL} {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 const ExpertCard = styled(Card)`
   width: 32%;
+  @media ${device.tabletL} {
+    width: 49%;
+  }
+  @media ${device.mobileL} {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
 `;
 const SeeMore = styled(ButtonLink)`
   margin: 0 auto;
