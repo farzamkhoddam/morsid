@@ -12,6 +12,7 @@ import { UserData } from "interfaces/user";
 import Loading from "components/loading";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { device } from "consts/device";
 
 export interface SuccessPaymentPageProps {
   isLogin: boolean;
@@ -60,16 +61,12 @@ export default function SuccessPayment(
       <Container>
         <Paper style={{ marginBottom: "256px" }}>
           <FlexContainer>
-            <Body1
-              style={{
-                width: "315px",
-                color: "var(--color-text1)",
-                marginBottom: "40px",
-              }}
-            >
+            <StyledBody1>
               Your meeting was successfully set You'll get information via email
-            </Body1>
-            <GetEmailImage />
+            </StyledBody1>
+            <GetEmailImageContainer>
+              <GetEmailImage />
+            </GetEmailImageContainer>
           </FlexContainer>
         </Paper>
       </Container>
@@ -123,6 +120,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 const Container = styled.div`
   width: 100%;
   padding: 2.5rem;
+  @media ${device.mobileL} {
+    padding: 0;
+  }
 `;
 const FlexContainer = styled.div`
   display: flex;
@@ -135,6 +135,16 @@ const FlexContainer = styled.div`
   color: var(--color-text1);
   padding: 100px;
 `;
+const StyledBody1 = styled(Body1)`
+  width: 315px;
+  color: var(--color-text1);
+  marginbottom: 40px;
+  @media ${device.mobileL} {
+    font-size: 17px;
+    width: 280px;
+  }
+`;
+const GetEmailImageContainer = styled.div``;
 const LoadingPage = styled(Loading)`
   display: flex;
   flex-direction: column;
