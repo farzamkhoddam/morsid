@@ -11,6 +11,7 @@ import { TextInput } from "elements/TextInput";
 import PageLayout from "components/PageLayout";
 import { Body1, Caption } from "elements/typo";
 import Button from "elements/Button";
+import { device } from "consts/device";
 
 interface FormValues {
   uid: string;
@@ -88,30 +89,28 @@ export default function ResetPassword() {
             {({ isSubmitting }) => (
               <Form>
                 <Row>
-                  <div style={{ marginRight: "29px" }}>
+                  <MarginRight>
                     <Caption as="label" htmlFor={"name"}>
                       New password
                     </Caption>
-                    <TextInput
+                    <StyledTextInput
                       name="new_password"
                       type="password"
                       placeholder="At least 8 character or more"
-                      style={{ width: "358px" }}
                     />
-                  </div>
-                  <div>
+                  </MarginRight>
+                  <InputWrapper>
                     <Caption as="label" htmlFor={"name"}>
                       Confirm new password
                     </Caption>
-                    <TextInput
+                    <StyledTextInput
                       name="confirm_password"
                       type="password"
                       placeholder="Type your password again"
-                      style={{ width: "358px" }}
                     />
-                  </div>
+                  </InputWrapper>
                 </Row>
-                <SaveButton
+                <StyledSaveButton
                   label="Save"
                   type="submit"
                   disabled={isSubmitting}
@@ -146,4 +145,28 @@ const Row = styled.div`
   display: flex;
   justify-content: flex-start;
   width: 100%;
+  @media ${device.mobileL} {
+    flex-direction: column;
+  }
+`;
+const MarginRight = styled.div`
+  @media ${device.mobileL} {
+    margin-right: 0;
+  }
+  margin-right: 29px;
+  max-width: 358px;
+  width: 100%;
+`;
+const StyledTextInput = styled(TextInput)`
+  width: 100%;
+  max-width: 358px;
+`;
+const InputWrapper = styled.div`
+  max-width: 358px;
+  width: 100%;
+`;
+const StyledSaveButton = styled(SaveButton)`
+  @media ${device.mobileL} {
+    margin-bottom: 2rem;
+  }
 `;
