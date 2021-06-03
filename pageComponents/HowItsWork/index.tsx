@@ -4,6 +4,7 @@ import PageLayout from "components/PageLayout";
 import styled from "styled-components";
 import { Body1, Body3, H3, Title } from "elements/typo";
 import { HowItsWorkProps } from "pages/how-it-works";
+import { device } from "consts/device";
 
 interface Props {
   pageProps: HowItsWorkProps;
@@ -17,7 +18,7 @@ export default function HowItsWorkUi({ pageProps }: Props) {
           <H3 style={{ marginRight: "8px" }}>Do you need help to</H3>
           <Underline>
             <H3>grow</H3>
-            <div
+            <Line
               style={{
                 content: "url(/svgs/arc.svg)",
                 width: "77px",
@@ -30,13 +31,7 @@ export default function HowItsWorkUi({ pageProps }: Props) {
         <SubTitle>Try Morsid platform, It’s really simple!</SubTitle>
         <Row>
           <RowItem>
-            <img
-              src="/svgs/HowItsWork1.svg"
-              alt="image"
-              style={{
-                marginLeft: "-48px",
-              }}
-            />
+            <MarginLeftImg src="/svgs/HowItsWork1.svg" alt="image" />
           </RowItem>
           <RowItem
             style={{
@@ -49,7 +44,7 @@ export default function HowItsWorkUi({ pageProps }: Props) {
             </Body1>
           </RowItem>
         </Row>
-        <Row>
+        <ReverseRow>
           <RowItem>
             <Title style={{ marginBottom: "24px" }}>
               Review expert profile
@@ -60,28 +55,16 @@ export default function HowItsWorkUi({ pageProps }: Props) {
             </Body1>
           </RowItem>
           <RowItem>
-            <img
-              src="/svgs/HowItsWork2.svg"
-              alt="image"
-              style={{
-                marginRight: "-48px",
-              }}
-            />
+            <MarginRightImg src="/svgs/HowItsWork2.svg" alt="image" />
           </RowItem>
-        </Row>
+        </ReverseRow>
         <Row>
           <RowItem
             style={{
               marginRight: "10px",
             }}
           >
-            <img
-              src="/svgs/HowItsWork3.svg"
-              alt="image"
-              style={{
-                marginLeft: "-48px",
-              }}
-            />
+            <MarginLeftImg src="/svgs/HowItsWork3.svg" alt="image" style={{}} />
           </RowItem>
           <RowItem>
             <Title style={{ marginBottom: "24px" }}>Set a meeting</Title>
@@ -113,12 +96,39 @@ const SubTitle = styled(Title)`
 const Underline = styled.div`
   margin-right: 8px;
 `;
+const Line = styled.div`
+  @media ${device.mobileL} {
+    display: none;
+  }
+`;
 const Row = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 70%;
   margin-bottom: 130px;
+  @media ${device.tabletL} {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+`;
+
+const ReverseRow = styled(Row)`
+  @media ${device.tabletL} {
+    flex-direction: column-reverse;
+`;
+const MarginLeftImg = styled.img`
+  margin-left: -48px;
+  @media ${device.tabletL} {
+    margin: 0;
+  }
+`;
+const MarginRightImg = styled.img`
+  margin-right: -48px;
+  @media ${device.tabletL} {
+    margin: 0;
+  }
 `;
 const RowItem = styled.div`
   display: flex;
