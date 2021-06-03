@@ -7,6 +7,7 @@ import {
   GetTimeArrray,
   injectTimeToDatePickerValue,
 } from "./utils";
+import { device } from "consts/device";
 
 interface Props {
   whichColumn: "AM" | "PM";
@@ -68,6 +69,9 @@ const Block = styled.div<{ isSelected: boolean }>`
   align-items: center;
   width: 164px;
   height: 42px;
+  @media ${device.mobileL} {
+    width: 91%;
+  }
 
   background-color: ${({ isSelected }) =>
     isSelected ? "var(--primary-color-dark)" : "#e6f1ff"};
