@@ -15,9 +15,7 @@ interface Props {
 export default function Experts({ currentExpert, isLogin }: Props) {
   return (
     <Container>
-      <H3 style={{ margin: "0 auto 2.5rem " }}>
-        You can also choose from other experts
-      </H3>
+      <StyledH3>You can also choose from other experts</StyledH3>
 
       <Cards>
         {EXPERT_LIST.map((expert) => {
@@ -43,6 +41,13 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
   margin-top: 82px;
+`;
+const StyledH3 = styled(H3)`
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  @media ${device.mobileL} {
+    font-size: 22px;
+  }
 `;
 const Cards = styled.div`
   display: flex;
