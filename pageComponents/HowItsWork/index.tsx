@@ -15,9 +15,11 @@ export default function HowItsWorkUi({ pageProps }: Props) {
       <SEO />
       <Container>
         <MainTitle>
-          <H3 style={{ marginRight: "8px" }}>Do you need help to</H3>
+          <StyledH3 style={{ marginRight: "8px" }}>
+            Do you need help to
+          </StyledH3>
           <Underline>
-            <H3>grow</H3>
+            <StyledH3>grow</StyledH3>
             <Line
               style={{
                 content: "url(/svgs/arc.svg)",
@@ -26,7 +28,7 @@ export default function HowItsWorkUi({ pageProps }: Props) {
               }}
             />
           </Underline>
-          <H3>your startup?</H3>
+          <StyledH3>your startup?</StyledH3>
         </MainTitle>
         <SubTitle>Try Morsid platform, It’s really simple!</SubTitle>
         <Row>
@@ -88,10 +90,21 @@ const MainTitle = styled.div`
   display: flex;
   margin-bottom: 43px;
   margin-top: 42px;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+const StyledH3 = styled(H3)`
+  @media ${device.mobileL} {
+    font-size: 30px;
+  }
 `;
 const SubTitle = styled(Title)`
   color: var(--color-text1);
   margin-bottom: 80px;
+  text-align: center;
+  @media ${device.mobileL} {
+    font-size: 21px;
+  }
 `;
 const Underline = styled.div`
   margin-right: 8px;
@@ -111,6 +124,7 @@ const Row = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
+    width: 100%;
   }
 `;
 
@@ -122,16 +136,22 @@ const MarginLeftImg = styled.img`
   margin-left: -48px;
   @media ${device.tabletL} {
     margin: 0;
+    width: 100%;
   }
 `;
 const MarginRightImg = styled.img`
   margin-right: -48px;
   @media ${device.tabletL} {
     margin: 0;
+    width: 100%;
   }
 `;
 const RowItem = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  @media ${device.mobileL} {
+    width: 100%;
+    flex: 0;
+  }
 `;
