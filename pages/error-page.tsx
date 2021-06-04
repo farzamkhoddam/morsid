@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Paper } from "elements/Layout";
 import { Body1 } from "elements/typo";
 import ErrorIcon from "elements/SVGs/ErrorIcon";
+import { device } from "consts/device";
 
 export interface Props {
   isLogin: boolean;
@@ -29,16 +30,11 @@ export default function ShowErrorPage({ isLogin }: Props) {
             >
               Ooops :(
             </Body1>
-            <Body1
-              style={{
-                color: "var(--color-text1)",
-                padding: "0 17%",
-              }}
-            >
+            <StyledBody1 style={{}}>
               Sorry, your payment was successful but we couldn't book your
               meeting, Please contact us via morsid@support.com and we solve
               your problem as soon as possible.
-            </Body1>
+            </StyledBody1>
           </FlexContainer>
         </Paper>
       </Container>
@@ -69,6 +65,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 const Container = styled.div`
   width: 100%;
   padding: 40px;
+  @media ${device.mobileL} {
+    padding: 40px 0;
+  }
 `;
 const FlexContainer = styled.div`
   display: flex;
@@ -79,4 +78,12 @@ const FlexContainer = styled.div`
 
   text-align: center;
   color: var(--color-text1);
+`;
+const StyledBody1 = styled(Body1)`
+  color: var(--color-text1);
+  padding: 0 17%;
+  @media ${device.mobileL} {
+    padding: 0;
+    font-size: 18px;
+  }
 `;
