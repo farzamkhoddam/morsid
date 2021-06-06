@@ -52,12 +52,13 @@ const ExpertCard = styled(Card)`
   margin-top: 1.5rem;
   @media ${device.tabletL} {
     width: 47%;
-    margin: 1.2rem 0.5rem;
+    margin: 1.2rem 1rem;
   }
   @media ${device.tabletM} {
     width: 70%;
   }
   @media ${device.mobileL} {
     width: 100%;
+    max-width: 100%;
   }
 `;

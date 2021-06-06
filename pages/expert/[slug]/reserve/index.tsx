@@ -7,6 +7,8 @@ import SEO from "components/seo";
 import { GetServerSideProps, Redirect } from "next";
 import { getTokenCookie } from "utils/auth-cookie";
 import ReserveMeetitg from "pageComponents/expert/ReserveMeeting";
+import styled from "styled-components";
+import { device } from "consts/device";
 
 export enum STEP {
   ExperProfile = 1,
@@ -21,10 +23,10 @@ export default function ExpertReserve({ isLogin }: Props) {
   const currentExpert = EXPERT_LIST.find((expert) => expert.slug === slug);
 
   return (
-    <PageLayout isLogin={isLogin}>
+    <StyledPageLayout isLogin={isLogin}>
       <SEO />
       <ReserveMeetitg currentExpert={currentExpert || ({} as Expert)} />
-    </PageLayout>
+    </StyledPageLayout>
   );
 }
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
@@ -47,3 +49,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     // revalidate: 20,
   };
 };
+
+const StyledPageLayout = styled(PageLayout)`
+  main {
+    @media ${device.mobileL} {
+      padding: 0;
+    }
+  }
+`;

@@ -195,7 +195,7 @@ export default function ReserveMeetitg({ currentExpert }: Props) {
 }
 const Container = styled.div`
   width: 100%;
-  padding: 2.5rem;
+  padding: 1rem;
   margin-bottom: 5rem;
   min-width: 430px;
 `;

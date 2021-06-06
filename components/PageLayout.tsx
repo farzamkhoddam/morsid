@@ -41,6 +41,6 @@ const Main = styled.main`
   flex: 1;
   width: 100%;
   max-width: var(--page-max-width);
-  padding: 0 1rem;
   margin: 0 auto;
+  padding: 0 1rem;
 `;

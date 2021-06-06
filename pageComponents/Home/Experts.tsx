@@ -61,8 +61,9 @@ const ExpertCard = styled(Card)`
     width: 50%;
     margin-bottom: 2rem;
   }
-  @media ${device.tabletL} {
-    width: 85%;
+  @media ${device.mobileL} {
+    width: 100%;
+    max-width: 100%;
   }
 `;
 const SeeMore = styled(ButtonLink)`
